@@ -30,7 +30,6 @@ Telegram: <https://t.me/heindelssohn>
 | AirPods Pro 1 | MagSafe 充电盒版本，保修到 2022/11 | 900 | [闲鱼链接](https://m.tb.cn/h.UXVm8Fo?tk=iTg22wtTiQT)| 在售 |
 | iPad 9 | 无线局域网机型，全新未拆封，256G | 3400 | | 在售|
 | 天猫精灵 | |30||在售|
-<!-- | AirPods Pro 2|全新未拆封| 1800 ||在售| -->
 
 ## 合租区域
 
