@@ -2,7 +2,7 @@
  * @Author: Frank Chu
  * @Date: 2022-09-16 07:09:29
  * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-21 21:18:09
+ * @LastEditTime: 2022-09-25 10:31:31
  * @FilePath: /yongfrank.github.io/second-hand.md
  * @Description: 
  * 
@@ -11,7 +11,7 @@
 
 # 断舍离
 
-更新时间 2022-09-16 07:12:48
+更新时间 2022-09-25 10:31:48
 
 ## 联系方式
 
@@ -27,9 +27,8 @@ Telegram: <https://t.me/heindelssohn>
 |-|-|-|-|-|
 | iPhone 13 Pro Max | 银色 256G + 衫绿色 Leather Case，保修到 2022/11/26 | 7500 | [闲鱼链接](https://m.tb.cn/h.U1g0WpP?tk=mFdB2wtTkhN)| 在售 |
 | Apple Watch S7 | 45mm GPS 版本，星光色铝金属 + Nike 运动表带，保修到 2022/12/25 | 2500 | [闲鱼链接](https://m.tb.cn/h.UXVNHFB?tk=kisr2wtSUJt) | 在售 |
-| AirPods Pro 1 | MagSafe 充电盒版本，保修到 2022/11 | 900 | [闲鱼链接](https://m.tb.cn/h.UXVm8Fo?tk=iTg22wtTiQT)| 在售 |
+| AirPods Pro 1 | 全新未拆封 | 1100 |  | 在售 |
 | iPad 9 | 无线局域网机型，全新未拆封，256G | 3400 | | 在售|
-| 天猫精灵 | |30||在售|
 
 ## 合租区域
 
