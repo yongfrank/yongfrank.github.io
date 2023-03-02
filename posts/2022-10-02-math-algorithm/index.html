@@ -1,0 +1,167 @@
+<!doctype html><html lang=en-us><title>Swift: Math Algorithm | Blog by Frank</title><meta charset=utf-8><meta name=generator content="Hugo 0.111.0"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/2022-10-02-math-algorithm/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a></header><article><header><h1>Swift: Math Algorithm</h1><time datetime=2022-10-02T16:37:00Z>October 02, 2022</time></header><h2 id=prime-number>Prime Number</h2><p>A prime number is a whole number greater than 1 whose only factors are 1 and itself.</p><p>2, 3, 5, 7, 11, 13, 17, 19, 23, 29 are prime numbers.</p><h3 id=fastest-prime-checker-by-noah-wilder-on-the-stack-overflowhttpsstackoverflowcomquestions31105664check-if-a-number-is-prime><a href=https://stackoverflow.com/questions/31105664/check-if-a-number-is-prime>Fastest Prime Checker by Noah Wilder on the stack overflow</a></h3><blockquote><p>Swift 4.2, Xcode 10.1</p><p>This prime checking function and extension is the most efficient as it checks the divisibility of only $\frac{1}{2}\sqrt{n}$ integers.</p><p>Complexity: $O(\frac{1}{2} \sqrt{n})$</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>///  https://stackoverflow.com/questions/31105664/check-if-a-number-is-prime</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>///  Check if a number is prime?</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>isPrime</span>(<span style=color:#66d9ef>for</span> number: Int) -&gt; Bool {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>guard</span> number <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>2</span> <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span> }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>guard</span> number <span style=color:#f92672>!=</span> <span style=color:#ae81ff>2</span> <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span> }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>guard</span> number <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span> }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// `stride(from: 3, to: Int(sqrt(Double(number))), by: 2)`</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// traverse 3 5 7 9 11.... odd number</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// `stride(from:to:by:).contains(where:)`</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// If number % index = 1, then it&#39;s not prime.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// If the odd number contains number that the specific number can be divided by. Then it&#39;s not prime.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// So there is a negation operator before stride.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// True -&gt; Prime False -&gt; Not Prime</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#f92672>!</span>stride(from: <span style=color:#ae81ff>3</span>, to: Int(sqrt(Double(number))), by: <span style=color:#ae81ff>2</span>).contains(<span style=color:#66d9ef>where</span>: { index <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> number <span style=color:#f92672>%</span> index == <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>    })
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print(isPrime(<span style=color:#66d9ef>for</span>: <span style=color:#ae81ff>4</span>))
+</span></span></code></pre></div><h3 id=extension>Extension</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>extension</span> <span style=color:#a6e22e>Int</span> {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///  A prime number is a whole number greater than 1 whose only factors are 1 and itself.</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> isPrime: Bool {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>self</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>2</span> <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span> }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>self</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>2</span> <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span> }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>self</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span> }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#f92672>!</span>stride(from: <span style=color:#ae81ff>3</span>, to: Int(sqrt(Double(<span style=color:#66d9ef>self</span>))), by: <span style=color:#ae81ff>2</span>).contains(<span style=color:#66d9ef>where</span>: { index <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>self</span> <span style=color:#f92672>%</span> index == <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        })
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> number = <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>number.isPrime
+</span></span></code></pre></div><h3 id=get-odd-number-in-c>Get odd number in C</h3><blockquote><ul><li>Store the size of the array to be returned in the <code>result_count</code> variable</li><li>Allocate the array statically or dynamically.</li></ul><p><a href=https://stackoverflow.com/questions/52989394/c-get-odd-numbers-between-a-range-and-store-it-in-int-array>C get odd numbers between a range and store it in int array</a> - by user10543939 on the stack overflow</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> <span style=color:#a6e22e>oddNumbers</span>(<span style=color:#66d9ef>int</span> start, <span style=color:#66d9ef>int</span> end, <span style=color:#66d9ef>int</span><span style=color:#f92672>*</span> result_count) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>result;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> i;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// @brief #define	assert(e) \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    /// (__builtin_expect(!(e), 0) ? __assert_rtn(__func__, __ASSERT_FILE_NAME, __LINE__, #e) : (void)0)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>/// @param start 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>/// @param end 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>/// @param result_count 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>/// @return 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>assert</span>(result_count <span style=color:#f92672>&amp;&amp;</span> start <span style=color:#f92672>&lt;=</span> end <span style=color:#f92672>&amp;&amp;</span> INT8_MIN <span style=color:#f92672>&lt;</span> end);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// if start is even, then add 1 to be odd
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    start <span style=color:#f92672>+=</span> <span style=color:#f92672>!</span>(start <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span>);
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// if end is even, then minus 1 to be odd
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    end <span style=color:#f92672>-=</span> <span style=color:#f92672>!</span>(end <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// calculate array size
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#f92672>*</span>result_count <span style=color:#f92672>=</span> (end <span style=color:#f92672>-</span> start) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> <span style=color:#a6e22e>malloc</span>(<span style=color:#f92672>*</span>result_count <span style=color:#f92672>*</span> <span style=color:#66d9ef>sizeof</span>(result));
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>result) <span style=color:#66d9ef>return</span> NULL;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// fill in numbers in the result
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>for</span> (i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; start <span style=color:#f92672>&lt;=</span> end; i<span style=color:#f92672>++</span>, start <span style=color:#f92672>+=</span> <span style=color:#ae81ff>2</span>) result[i] <span style=color:#f92672>=</span> start;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> result;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> min <span style=color:#f92672>=</span> <span style=color:#ae81ff>30</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> max <span style=color:#f92672>=</span> <span style=color:#ae81ff>85</span>;
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// address of count
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> count;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>numbers <span style=color:#f92672>=</span> <span style=color:#a6e22e>oddNumbers</span>(min, max, <span style=color:#f92672>&amp;</span>count);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> count; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>printf</span>(<span style=color:#e6db74>&#34;%d &#34;</span>, numbers[i]);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Don&#39;t forget to `free()` the returned pointer when you are done using it.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>free</span>(numbers);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=stride-and-generics-template-in-c>Stride and generics template in C++</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>template</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>typename</span> T<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>T <span style=color:#f92672>*</span> stride(T start, T end, T step) {
+</span></span><span style=display:flex><span>    T <span style=color:#f92672>*</span> arrayOfOutPut;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> sizeOfArray <span style=color:#f92672>=</span> (end <span style=color:#f92672>-</span> start) <span style=color:#f92672>/</span> step <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>    arrayOfOutPut <span style=color:#f92672>=</span> (T <span style=color:#f92672>*</span>)malloc(sizeOfArray <span style=color:#f92672>*</span> <span style=color:#66d9ef>sizeof</span>(T));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sizeOfArray; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        arrayOfOutPut[i] <span style=color:#f92672>=</span> start <span style=color:#f92672>+</span> i <span style=color:#f92672>*</span> step;
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> arrayOfOutPut[i] <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> arrayOfOutPut;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>double</span> start <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>double</span> end <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>double</span> step <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> sizeOfArray <span style=color:#f92672>=</span> (end <span style=color:#f92672>-</span> start) <span style=color:#f92672>/</span> step <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>double</span><span style=color:#f92672>*</span> a <span style=color:#f92672>=</span> stride(start, end, step);
+</span></span><span style=display:flex><span>    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sizeOfArray; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> a[i] <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=valarray>valarray</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;valarray&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>isPrime</span>(<span style=color:#66d9ef>int</span> number) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>(number <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>2</span>)) <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>(number <span style=color:#f92672>!=</span> <span style=color:#ae81ff>2</span>)) <span style=color:#66d9ef>return</span> true;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>(number <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>)) <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> end <span style=color:#f92672>=</span> number;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> start <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> step <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> sizeOfArray <span style=color:#f92672>=</span> sizeOfArray <span style=color:#f92672>=</span> (end <span style=color:#f92672>-</span> start) <span style=color:#f92672>/</span> step <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    std<span style=color:#f92672>::</span>valarray<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> array(sizeOfArray);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sizeOfArray; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        array[i] <span style=color:#f92672>=</span> i;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    std<span style=color:#f92672>::</span>slice slcOfArray(start, end, step);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    std<span style=color:#f92672>::</span>valarray<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> valArrayOutput <span style=color:#f92672>=</span> std<span style=color:#f92672>::</span>valarray<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span>(array[slcOfArray]);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sizeOfArray; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (number <span style=color:#f92672>%</span> valArrayOutput[i] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> true;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> numberCount <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> startNumber <span style=color:#f92672>=</span> <span style=color:#ae81ff>200</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> endNumber <span style=color:#f92672>=</span> <span style=color:#ae81ff>299</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> startNumber; i <span style=color:#f92672>&lt;=</span> endNumber; i<span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span>(isPrime(i)) {
+</span></span><span style=display:flex><span>            numberCount <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>            std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> i;
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span>(numberCount <span style=color:#f92672>==</span> <span style=color:#ae81ff>8</span>) {
+</span></span><span style=display:flex><span>                std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span>endl;
+</span></span><span style=display:flex><span>                numberCount <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>            } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>                std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>;
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=sieve-of-eratosthenes>Sieve of Eratosthenes</h3><p><a href=https://www.geeksforgeeks.org/sieve-of-eratosthenes/>Sieve of Eratosthenes - GeeksForGeeks</a></p><p><a href=https://www.khanacademy.org/computing/computer-science/cryptography/comp-number-theory/v/sieve-of-eratosthenes-prime-adventure-part-4>Khan Academy - Sieve of Eratosthenes</a></p><pre tabindex=0><code class=language-pseudo data-lang=pseudo>For all numbers a: from 2 to sqrt(n)
+    IF a is unmarked THEN
+        a is prime
+        for all multiples of a (a &lt; n)
+            mark multiples as composite
+
+All unmarked numbers are prime!
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>SieveOfEratosthenes</span>(<span style=color:#66d9ef>int</span> n) {
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>bool</span> prime[n <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>];
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></article></html>

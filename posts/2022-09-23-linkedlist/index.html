@@ -1,0 +1,122 @@
+<!doctype html><html lang=en-us><title>Swift Linked List | Blog by Frank</title><meta charset=utf-8><meta name=generator content="Hugo 0.111.0"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/2022-09-23-linkedlist/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a></header><article><header><h1>Swift Linked List</h1><time datetime=2022-09-23T11:00:00Z>September 23, 2022</time></header><p><a href=https://daddycoding.com/2019/08/15/linked-list/>Linked List by Kelvin Tan</a></p><p><a href=https://juejin.cn/post/7035278534037733407>LinkedList in Swift by DamonLu on juejin.com</a></p><h2 id=definition>Definition</h2><p>Linked list is a chain of nodes. Nodes have two responsibilities:</p><ul><li>Hold a value.</li><li>Hold a reference to the next node in which a nil value represent the end of the list.</li></ul><h2 id=node-and-linkedlist>Node and LinkedList</h2><p>Node has to be defined in Class, because of the reference.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>//  The &lt;T&gt; represent generic data where you could use </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  any data types such as Int, String or others.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  Next is an optional because the last node might not have a next reference.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  Node is a reference type, so we use class.</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span>&lt;T&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> data: T
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> next: Node?
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>init</span>(data: T, next: Node? = <span style=color:#66d9ef>nil</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.data = data
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.next = next
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  To print out a proper linked list, insert the following code under Node.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  The code above enable the print statement to be shown as below:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  10 -&gt; 4 -&gt; 6</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>extension</span> <span style=color:#a6e22e>Node</span>: CustomStringConvertible {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> description: String {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> next = next <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>\(</span><span style=color:#66d9ef>self</span>.data<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span> }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>\(</span><span style=color:#66d9ef>self</span>.data<span style=color:#e6db74>)</span><span style=color:#e6db74> -&gt; &#34;</span> <span style=color:#f92672>+</span> String(describing: next)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  A linked list essentially contain a head and a tail of Node type.</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>LinkedList</span>&lt;T&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> head: Node&lt;T&gt;?
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> tail: Node&lt;T&gt;?
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>init</span>() { }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> isEmpty: Bool {
+</span></span><span style=display:flex><span>        head == <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//  Push gives you the capability</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//  to adding a value at the beginning of the list.</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>mutating</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>push</span>(<span style=color:#66d9ef>_</span> data: T) {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  Create a new node and assign it as the head</span>
+</span></span><span style=display:flex><span>        head = Node(data: data, next: head)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  Check if there is tail, </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  if there isn’t tail, assign tail as head.</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> tail == <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>            tail = head
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//  Pop gives you the capability </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//  of removing the value at the front</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>mutating</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>pop</span>() -&gt; T? {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>defer</span> {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>//  Assigning the head down a node.</span>
+</span></span><span style=display:flex><span>            head = head?.next
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>self</span>.isEmpty {
+</span></span><span style=display:flex><span>                tail = <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;pop: </span><span style=color:#e6db74>\(</span>head?.data<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> head?.data
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>mutating</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>append</span>(<span style=color:#66d9ef>_</span> data: T) {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  If the list is empty, </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  it will use push to create a new node.</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#f92672>!</span>isEmpty <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            push(data)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  It will add a new node </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  at the end of the node by assigning it as next.</span>
+</span></span><span style=display:flex><span>        tail?.next = Node(data: data)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  The newly added node is now the tail</span>
+</span></span><span style=display:flex><span>        tail = tail?.next
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>mutating</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>removeLast</span>() -&gt; T? {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  If the head is empty, </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  then the list is empty so return nil.</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> head = head <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>nil</span> }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  If the list only has one node, </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  instead of removing last, it will pop.</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> head.next <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>self</span>.pop() 
+</span></span><span style=display:flex><span>        } 
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  The loop to reach to the end </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  of the linked list and assign, </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  this is where if the loop is at the end, </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  it will be stored as current </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  while the second last is stored in prev.</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> prev = <span style=color:#66d9ef>self</span>.head
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> current = head
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>let</span> next = current.next {
+</span></span><span style=display:flex><span>            prev = current
+</span></span><span style=display:flex><span>            current = next
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  Take out the last note </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  and assign the second last as last node.</span>
+</span></span><span style=display:flex><span>        prev?.next = <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>        tail = prev
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;remove: </span><span style=color:#e6db74>\(</span>current.data<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> current.data
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  It&#39;s like Array&lt;Int&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> linkedList: LinkedList&lt;Int&gt; = LinkedList&lt;Int&gt;()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  Push some numbers to see your newly created linked list.</span>
+</span></span><span style=display:flex><span>linkedList.push(<span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span>linkedList.push(<span style=color:#ae81ff>5</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>linkedList.pop()
+</span></span><span style=display:flex><span>linkedList.append(<span style=color:#ae81ff>1000</span>)
+</span></span><span style=display:flex><span>linkedList.append(<span style=color:#ae81ff>2000</span>)
+</span></span><span style=display:flex><span>print(linkedList.head?.description ?? <span style=color:#e6db74>&#34;&#34;</span>)
+</span></span><span style=display:flex><span>linkedList.removeLast()
+</span></span><span style=display:flex><span>print(linkedList.head?.description ?? <span style=color:#e6db74>&#34;&#34;</span>)
+</span></span></code></pre></div></article></html>

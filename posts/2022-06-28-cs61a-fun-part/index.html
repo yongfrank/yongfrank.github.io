@@ -1,0 +1,24 @@
+<!doctype html><html lang=en-us><title>CS61A fun part, 2022 summer | Blog by Frank</title><meta charset=utf-8><meta name=generator content="Hugo 0.111.0"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/2022-06-28-cs61a-fun-part/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a></header><article><header><h1>CS61A fun part, 2022 summer</h1><time datetime=2022-06-28T10:16:00Z>June 28, 2022</time></header><h1 id=chapter-1-building-abstractions-with-functions>CHAPTER 1 Building Abstractions with Functions</h1><h2 id=object-set-function>Object, Set, Function</h2><p>In the <a href=http://composingprograms.com/pages/11-getting-started.html>composing programs</a>, there is an assignment statement.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> urllib.request <span style=color:#f92672>import</span> urlopen
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>shakespeare <span style=color:#f92672>=</span> urlopen(<span style=color:#e6db74>&#39;http://composingprograms.com/shakespeare.txt&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># This statement is to save all words in Set words by words</span>
+</span></span><span style=display:flex><span>words <span style=color:#f92672>=</span> set(shakespeare<span style=color:#f92672>.</span>read()<span style=color:#f92672>.</span>decode()<span style=color:#f92672>.</span>split())
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># {} means Set, and it will print all words in &#34;words&#34; above</span>
+</span></span><span style=display:flex><span>print({w <span style=color:#66d9ef>for</span> w <span style=color:#f92672>in</span> words})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># [::-1] enumerate each letter in a words, but -1 dictates to step backwards. </span>
+</span></span><span style=display:flex><span><span style=color:#75715e># It will print &#39;olleh&#39;</span>
+</span></span><span style=display:flex><span>a <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;hello&#39;</span>
+</span></span><span style=display:flex><span>print(a[::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Then, let&#39;s add some conditions. We want some words like </span>
+</span></span><span style=display:flex><span><span style=color:#75715e># &#39;reward&#39;, &#39;drawer&#39; in the article, and the length of words is 6.</span>
+</span></span><span style=display:flex><span>conditionWords <span style=color:#f92672>=</span> {w <span style=color:#66d9ef>for</span> w <span style=color:#f92672>in</span> words <span style=color:#66d9ef>if</span> len(w) <span style=color:#f92672>==</span> <span style=color:#ae81ff>6</span> <span style=color:#f92672>and</span> w[::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>in</span> words}
+</span></span></code></pre></div><h2 id=15-control-short-circuiting>1.5 Control: Short-circuiting</h2><p>Truth value of a logical expression can be determined without evaluating all of its subexpressions.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>&lt;</span>left<span style=color:#f92672>&gt;</span> <span style=color:#f92672>and</span> <span style=color:#f92672>&lt;</span>right<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># if left is a false value v(0, None, False), then the expression evaluates to v.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;</span>left<span style=color:#f92672>&gt;</span> <span style=color:#f92672>or</span> <span style=color:#f92672>&lt;</span>right<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># if left is a true value v(exclude 0, None, False), then the expression evaluates to v.</span>
+</span></span></code></pre></div></article></html>

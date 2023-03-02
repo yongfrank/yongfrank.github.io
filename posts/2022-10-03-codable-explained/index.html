@@ -1,0 +1,247 @@
+<!doctype html><html lang=en-us><title>Swift Codable, JSON, UserDefaults Explained | Blog by Frank</title><meta charset=utf-8><meta name=generator content="Hugo 0.111.0"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/2022-10-03-codable-explained/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a></header><article><header><h1>Swift Codable, JSON, UserDefaults Explained</h1><time datetime=2022-10-03T16:37:00Z>October 03, 2022</time></header><h2 id=whats-json>What&rsquo;s JSON</h2><p>JSON is a file format to store key-value pair.</p><p><a href=https://pokeapi.co/api/v2/pokemon/pikachu>It&rsquo;s JSON for Pikachu</a></p><h2 id=whats-codable-in-the-swift>What&rsquo;s Codable in the Swift</h2><p><strong>Codable</strong> was introduced in <strong>Swift 4.0</strong>, bringing with it incredibly smooth conversion between Swift data types and JSON.</p><blockquote><p>The code comes from</p><p><a href=https://www.hackingwithswift.com/articles/119/codable-cheat-sheet>Hacking With Swift by Paul Hudson</a></p><p>Codable cheat sheet</p><p>Convert between JSON and Swift types the smart way</p></blockquote><h2 id=part-i-codable-part>Part I: Codable Part</h2><h3 id=encoding-and-decoding-json>Encoding and decoding JSON</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> json = <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>[
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>name<span style=color:#e6db74>&#34;:&#34;</span>Frank<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>age<span style=color:#e6db74>&#34;: 20
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>name<span style=color:#e6db74>&#34;: &#34;</span>Paul<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>age<span style=color:#e6db74>&#34;: 38
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// Convert json into a **Data** object because that&#39;s </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// what Codable decoders work with.</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> data = Data(json.utf8)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// Define a Swift Struct that will hold our finished data</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>User</span>: Codable {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> name: String
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> age: Int
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// An object that decodes instances of </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// a data type from JSON objects.</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> decoder = JSONDecoder()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> decoded = <span style=color:#66d9ef>try</span> decoder.decode([User].<span style=color:#66d9ef>self</span>, from: data)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// This will print &#34;Frank&#34;, which is name of the firstusr in the JSON</span>
+</span></span><span style=display:flex><span>    print(decoded[<span style=color:#ae81ff>0</span>].name)
+</span></span><span style=display:flex><span>} <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;Failed to decode JSON&#34;</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=converting-case>Converting case</h3><p>Key is <code>first_name</code> in JSON, but we usually use <code>firstName</code> in Swift.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> json = <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>[
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>first_name<span style=color:#e6db74>&#34;: &#34;</span>Frank<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>last_name<span style=color:#e6db74>&#34;: &#34;</span>Chu<span style=color:#e6db74>&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>first_name<span style=color:#e6db74>&#34;: &#34;</span>Paul<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>last_name<span style=color:#e6db74>&#34;: &#34;</span>Hudson<span style=color:#e6db74>&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> data = Data(json.utf8)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>User</span>: Codable {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> firstName: String
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> lastName: String
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// To make this work we need to change only one property in the JSON decoder</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> decoder = JSONDecoder()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// That instructs Swift to map snake case names (`names_written_like_this`) to camel case names (`namesWrittenLikeThis`)</span>
+</span></span><span style=display:flex><span>decoder.keyDecodingStrategy = .convertFromSnakeCase
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> decoded = <span style=color:#66d9ef>try</span> decoder.decode([User].<span style=color:#66d9ef>self</span>, from: data)
+</span></span><span style=display:flex><span>    print(decoded)
+</span></span><span style=display:flex><span>} <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;Decode error&#34;</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=maping-different-key-names>Maping different key names</h3><p>If you have JSON keys that are completely diffrent from your Swift properties, you can map them using a <strong>CodingKeys</strong> enum.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>let</span> json = <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>[
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>user_first_name<span style=color:#e6db74>&#34;: &#34;</span>Frank<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>user_last_name<span style=color:#e6db74>&#34;: &#34;</span>Chu<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>user_age<span style=color:#e6db74>&#34;: 26
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>user_first_name<span style=color:#e6db74>&#34;: &#34;</span>Paul<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>user_last_name<span style=color:#e6db74>&#34;: &#34;</span>Hudson<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>user_age<span style=color:#e6db74>&#34;: 26
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> data = Data(json.utf8)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// Those key names aren&#39;t great, and really we&#39;d like to convert that data into a struct like this</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>User</span>: Codable {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> firstName: String
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> lastName: String
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> age: Int
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// To make that happen, we need to declare a CodingKeys enum:</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// a mapping that **Codable** can use to</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// convert JSON names into properties for our struct.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// It needs to conform to the **CodingKey** protocol,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// which is what makes this work with **Codable** protocol.</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>CodingKeys</span>: String, CodingKey {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> firstName = <span style=color:#e6db74>&#34;user_first_name&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> lastName = <span style=color:#e6db74>&#34;user_last_name&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> age = <span style=color:#e6db74>&#34;user_age&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> decoder = JSONDecoder()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> decoded = <span style=color:#66d9ef>try</span> decoder.decode([User].<span style=color:#66d9ef>self</span>, from: data)
+</span></span><span style=display:flex><span>    print(decoded)
+</span></span><span style=display:flex><span>} <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>    print(error)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=parsing-hierarchical-data-the-easy-way>Parsing hierarchical data the easy way</h3><p>Any non-trival JSON is like to have hierarchical data - one collection of data nested inside another.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> json = <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>[
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>name<span style=color:#e6db74>&#34;: {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;</span>first_name<span style=color:#e6db74>&#34;: &#34;</span>Taylor<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;</span>last_name<span style=color:#e6db74>&#34;: &#34;</span>Swift<span style=color:#e6db74>&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>age<span style=color:#e6db74>&#34;: 26
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>name<span style=color:#e6db74>&#34;: {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;</span>first_name<span style=color:#e6db74>&#34;: &#34;</span>Frank<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;</span>last_name<span style=color:#e6db74>&#34;: &#34;</span>Chu<span style=color:#e6db74>&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>age<span style=color:#e6db74>&#34;: 20
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> data = Data(json.utf8)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// **Codable** is able to handle this just fine, as long as you can describle the relationships clearly.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// This is the easy way to do this is using nested structs.</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>User</span>: Codable {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Name</span>: Codable {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> firstName: String
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> lastName: String
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> name: Name
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> age: Int
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> decoder = JSONDecoder()
+</span></span><span style=display:flex><span>decoder.keyDecodingStrategy = .convertFromSnakeCase
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> decoded = <span style=color:#66d9ef>try</span> decoder.decode([User].<span style=color:#66d9ef>self</span>, from: data)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// The downside is that if you want to read a user&#39;s first name,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// you need to use `user.name.first`,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// but at least the actual parsing work is trivial</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - our existing code works already!</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> user = decoded.last {
+</span></span><span style=display:flex><span>        print(user.name.firstName)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>} <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>    print(error)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=parsing-hierarchical-data-the-hard-way>Parsing hierarchical data the hard way</h3><p>If you want to parse hierarchical data into a flat struct - i.e., you want to be able to write <code>user.firstName</code> rather than <code>user.name.firstName</code> - then you need to do some parsing yourself.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// Second, we need to define coding keys</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// that describe where data can be found in the hierarchy.</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> json = <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>[
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>name<span style=color:#e6db74>&#34;: {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;</span>first_name<span style=color:#e6db74>&#34;: &#34;</span>Taylor<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;</span>last_name<span style=color:#e6db74>&#34;: &#34;</span>Swift<span style=color:#e6db74>&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>age<span style=color:#e6db74>&#34;: 26
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>name<span style=color:#e6db74>&#34;: {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;</span>first_name<span style=color:#e6db74>&#34;: &#34;</span>Frank<span style=color:#e6db74>&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            &#34;</span>last_name<span style=color:#e6db74>&#34;: &#34;</span>Chu<span style=color:#e6db74>&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        },
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;</span>age<span style=color:#e6db74>&#34;: 20
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>]
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> data = Data(json.utf8)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// First, create the struct you want to end up with</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>User</span>: Codable {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> firstName: String
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> lastName: String
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> age: Int
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// As you can see, at the root there&#39;s a key</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// called &#34;name&#34; and another called &#34;age&#34;,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &#34;so&#34; we need to add that as our root coding keys.</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>CodingKeys</span>: String, CodingKey {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> name, age
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// Inside &#34;name&#34; were two more keys, `&#34;first_name&#34;` and `&#34;last_name&#34;`,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// so we&#39;re going to create some coding keys for those two.</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>NameCodingKeys</span>: String, CodingKey {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>case</span> firstName, lastName
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// Now for the hard part: we need to write a custom initializer and</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// custom encode method for our type.</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>init</span>(from decoder: Decoder) <span style=color:#66d9ef>throws</span> {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// Inside there, the first thing we need to do is</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// attempt to pull out a container we can read</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// using the keys of our **CodingKeys** enum</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> container = <span style=color:#66d9ef>try</span> decoder.container(keyedBy: CodingKeys.<span style=color:#66d9ef>self</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// Once that&#39;s done we can attempt to read our age property.</span>
+</span></span><span style=display:flex><span>        age = <span style=color:#66d9ef>try</span> container.decode(Int.<span style=color:#66d9ef>self</span>, forKey: .age)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// Next we need to dig down one level to read our name data.</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> name = <span style=color:#66d9ef>try</span> container.nestedContainer(keyedBy: NameCodingKeys.<span style=color:#66d9ef>self</span>, forKey: .name)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        firstName = <span style=color:#66d9ef>try</span> name.decode(String.<span style=color:#66d9ef>self</span>, forKey: .firstName)
+</span></span><span style=display:flex><span>        lastName = <span style=color:#66d9ef>try</span> name.decode(String.<span style=color:#66d9ef>self</span>, forKey: .lastName)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// `encode(to:)` is effectively the reverse of the initializer we just write.</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>encode</span>(to encoder: Encoder) <span style=color:#66d9ef>throws</span> {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> containder = encoder.container(keyedBy: CodingKeys.<span style=color:#66d9ef>self</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span> containder.encode(age, forKey: .age)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> name = containder.nestedContainer(keyedBy: NameCodingKeys.<span style=color:#66d9ef>self</span>, forKey: .name)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span> name.encode(firstName, forKey: .firstName)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span> name.encode(lastName, forKey: .lastName)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> decoder = JSONDecoder()
+</span></span><span style=display:flex><span>decoder.keyDecodingStrategy = .convertFromSnakeCase
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> decoded = <span style=color:#66d9ef>try</span> decoder.decode([User].<span style=color:#66d9ef>self</span>, from: data)
+</span></span><span style=display:flex><span>    print(decoded)
+</span></span><span style=display:flex><span>} <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>    print(error)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=part-ii-userdefaults-part>Part II: UserDefaults Part</h2></article></html>

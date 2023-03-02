@@ -1,0 +1,214 @@
+<!doctype html><html lang=en-us><title>Swift: Image Picker UIKit in the SwiftUI | Blog by Frank</title><meta charset=utf-8><meta name=generator content="Hugo 0.111.0"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/2022-09-28-swift-image-picker-and-uiviewcontroller/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a></header><article><header><h1>Swift: Image Picker UIKit in the SwiftUI</h1><time datetime=2022-09-28T16:37:00Z>September 28, 2022</time></header><p><a href=https://www.hackingwithswift.com/books/ios-swiftui/wrapping-a-uiviewcontroller-in-a-swiftui-view>Wrapping a UIViewController in a SwiftUI view</a></p><p><a href=https://www.hackingwithswift.com/books/ios-swiftui/using-coordinators-to-manage-swiftui-view-controllers>Using coordinators to manage SwiftUI view controllers</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>SwiftUI</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>PhotosUI</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>ContentView</span>: View {
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// This particular struct is designed to show an image,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// so we need an optional **Image** view to hold the selected image,</span>
+</span></span><span style=display:flex><span>    @State <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> imageToBeDisplayedOnTheScreen: Image?
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// plus some state that determines whether the sheet is showing or not.</span>
+</span></span><span style=display:flex><span>    @State <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> showingImagePicker = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// To integrate our ImagePicker view into that we need to start</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// by add another @State image property that can be passed into the picker:</span>
+</span></span><span style=display:flex><span>    @State <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> inputImageFromPhotosLibrary: UIImage?
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> body: some View {
+</span></span><span style=display:flex><span>        VStack {
+</span></span><span style=display:flex><span>            imageToBeDisplayedOnTheScreen?
+</span></span><span style=display:flex><span>                .resizable()
+</span></span><span style=display:flex><span>                .scaledToFit()
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            Button(<span style=color:#e6db74>&#34;Select Image&#34;</span>) {
+</span></span><span style=display:flex><span>                showingImagePicker = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        .sheet(isPresented: <span style=color:#960050;background-color:#1e0010>$</span>showingImagePicker) {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// Our `ImagePicker` struct is a valid SwiftUI view,</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// which means we can now show it in a sheet </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// just like any other SwiftUI view.</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// - Parameters:</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// - image: pass the property into image picker. </span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// It will be updated when the image is selected</span>
+</span></span><span style=display:flex><span>            ImagePicker(image: <span style=color:#960050;background-color:#1e0010>$</span>inputImageFromPhotosLibrary)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// It will be updated when the image is selected in `ImagePicker(image:)`</span>
+</span></span><span style=display:flex><span>        .onChange(of: inputImageFromPhotosLibrary) { <span style=color:#66d9ef>_</span> <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>            loadImage()
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>loadImage</span>() {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> imageSelected = inputImageFromPhotosLibrary <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> }
+</span></span><span style=display:flex><span>        imageToBeDisplayedOnTheScreen = Image(uiImage: imageSelected)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>ContentView_Previews</span>: PreviewProvider {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>var</span> previews: some View {
+</span></span><span style=display:flex><span>        ContentView()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// Wrapping a UIKit view controller requires us to create a struct</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// that conforms to the `UIViewControllerRepresentable` protocol.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// That protocol builds on View, which means the struct </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// we’re defining can be used inside a SwiftUI view hierarchy,</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// however we don’t provide a body property</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// because the view’s body is the view controller itself –</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// it just shows whatever UIKit sends back.</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>ImagePicker</span>: UIViewControllerRepresentable {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    @Binding <span style=color:#66d9ef>var</span> imageSelectedInImagePickerStruct: UIImage?
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - Parameters:</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// - image: pass the property into image picker. It will be updated when the image is selected</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>init</span>(image: Binding&lt;UIImage?<span style=color:#f92672>&gt;</span>) {
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  See Extended Reading Materials</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  When initializing a binding variable,</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  the syntax has changed from a $ to an underscore.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//  https://developer.apple.com/forums/thread/120034</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>._imageSelectedInImagePickerStruct = image
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// These methods have really precise signatures,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// so I’m going to show you a neat shortcut.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// The reason the methods are long is because SwiftUI needs to know</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// what type of view controller our struct is wrapping,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// so if we just straight up tell Swift that type Xcode </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// will help us do the rest.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// That isn’t enough code to compile correctly,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// but when Xcode shows an error saying “Type ImagePicker does not conform to</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// protocol `UIViewControllerRepresentable`”,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// please click the red and white circle to the left of the error </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// and select “Fix”.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// This will make Xcode write the two methods we actually need,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// and in fact those methods are actually enough for Swift to figure out</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// the view controller type so you can delete the typealias line.</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>typealias</span> UIViewControllerType = PHPickerViewController
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// Conforming to UIViewControllerRepresentable does require us to</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// fill in that struct with two methods:</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// one called `makeUIViewController()`,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// which is responsible for creating the initial view controller</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// The `makeUIViewController()` method is important,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// so please replace its existing “code” line with this:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>makeUIViewController</span>(context: Context) -&gt; PHPickerViewController {
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// It creates a new photo picker configuration,</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// asking it to provide us only images,</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> config = PHPickerConfiguration()
+</span></span><span style=display:flex><span>        config.filter = .images
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// then uses that config to create and return a `PHPickerViewController`</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// that does the actual work of selecting an image.</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> picker = PHPickerViewController(configuration: config)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// The next step is to tell the `PHPickerViewController`</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// that when something happens it should tell our coordinator.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// That code won’t compile,</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// but before we fix it I want to spend just a moment </span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// digging in to what just happened.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// The reason our code doesn&#39;t compile is that Swift is checking</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// that our coordinator class is *capable* of acting as</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// a delegate for ** PHPickerViewController **, finding that it isn&#39;t,</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// and so is refusing to build our code any further.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// To fix this we need to modify our ** Coordinator ** class.</span>
+</span></span><span style=display:flex><span>        picker.delegate = context.coordinator
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> picker
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// and another called `updateUIViewController()`,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// which is designed to let us update the view controller when some SwiftUI state changes.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// We aren’t going to be using` updateUIViewController()`,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// so you can just delete the “code” line from there so that the method is empty.</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>updateUIViewController</span>(<span style=color:#66d9ef>_</span> uiViewController: PHPickerViewController, context: Context) {
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// However, we hit a problem: although we could show the image picker,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// we weren’t able to respond to the user selecting an image or pressing cancel.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// To make that happens requires a wholly new concept: coordinators.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// First, add this nested class inside the ImagePicker struct</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// class inherit from `NSObject`</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// the photo picker can say things like</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// “hey, the user selected an image, what do you want to do?</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// `PHPickerViewControllerDelegate`</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// adds functionality for detecting when the user selects an image.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// (NSObject lets Objective-C check for the functionality;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// this protocol is what actually provides it.)</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Coordinator</span>: NSObject, PHPickerViewControllerDelegate {
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// Rather than just pass the data down one level,</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// a better idea is to tell the coordinator what its parent is,</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// so it can modify values there directly.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// That means adding an ImagePicker property</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>var</span> parentInClassOfCoordinator: ImagePicker
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// and associated initializer to the Coordinator class.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// And now we can modify `makeCoordinator()`</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>init</span>(parent: ImagePicker) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>self</span>.parentInClassOfCoordinator = parent
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// The `picker` method receives two objects we care about:</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// the picker view controller that the user was interacting with,</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// plus an array of the users selections because it&#39;s possible</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// to let the user select mutiple images at once.</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>picker</span>(<span style=color:#66d9ef>_</span> picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// It&#39;s our job to do threee things:</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// 1. Tell the Picker to dismiss itself</span>
+</span></span><span style=display:flex><span>            picker.dismiss(animated: <span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// 2. Exit if the user made no selection - if they tapped Cancel.</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> provider = results.first?.itemProvider <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> }
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// 3. If this has an image we can use, use it</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// and if so place it into the parent.image</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>/// `func canLoadObject(ofClass aClass: NSItemProviderReading.Type) -&gt; Bool`</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> provider.canLoadObject(ofClass: UIImage.<span style=color:#66d9ef>self</span>) {
+</span></span><span style=display:flex><span>                <span style=color:#75715e>// loadObject(ofClass aClass: NSItemProviderReading.Type, completionHandler: @escaping @Sendable (NSItemProviderReading?, Error?) -&gt; Void) -&gt; Progress</span>
+</span></span><span style=display:flex><span>                provider.loadObject(ofClass: UIImage.<span style=color:#66d9ef>self</span>) { image, <span style=color:#66d9ef>_</span> <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>/// Notice how we need the typecast for UIImage -</span>
+</span></span><span style=display:flex><span>                    <span style=color:#75715e>/// that&#39;s because the data we&#39;re provided could in theory be anything.</span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>self</span>.parentInClassOfCoordinator.imageSelectedInImagePickerStruct = image <span style=color:#66d9ef>as</span>? UIImage
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// SwiftUI won’t automatically use it for the view’s coordinator.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// Instead, we need to add a new method called `makeCoordinator()`,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// which SwiftUI will automatically call if we implement it.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// All this needs to do is create and configure </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// an instance of our Coordinator class,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// then send it back.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// Right now our Coordinator class doesn’t do anything special,</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// so we can just send one back by adding this method to the ImagePicker struct:</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>///</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// and now we just told ImagePicker that</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// it should have a coordinator to handle communication</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// from that `PHPickerViewController`.</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>makeCoordinator</span>() -&gt; Coordinator {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// And now we can modify `makeCoordinator()`</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>/// so that it passes the ImagePicker struct into the coordinator, like this:</span>
+</span></span><span style=display:flex><span>        Coordinator(parent: <span style=color:#66d9ef>self</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=extended-reading-materials>Extended Reading Materials</h2><p><a href=https://developer.apple.com/forums/thread/120034>How do you pass SwiftUI Bindings to other objects in iOS 13 Beta 4?</a></p><p><a href=https://developer.apple.com/forums/thread/120034>SwiftUI: How to implement a custom init with @Binding variables</a></p><p><a href=https://www.fatbobman.com/posts/uikitInSwiftUI/>Use UIKit View in the SwiftUI</a></p></article></html>
