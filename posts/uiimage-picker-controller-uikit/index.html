@@ -1,0 +1,47 @@
+<!doctype html><html lang=en-us><title>UIImagePickerController in UIKit | Blog by Frank</title><meta charset=utf-8><meta name=generator content="Hugo 0.111.1"><meta name=description content="my blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/uiimage-picker-controller-uikit/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>UIImagePickerController in UIKit</h1><time datetime=2023-03-03T11:43:07+08:00>March 03, 2023</time></header><h2 id=keyword>Keyword</h2><ul><li>UIImagePickerController</li><li>NSObject</li></ul><h2 id=uiimagepickercontroller--phpickerviewcontroller>UIImagePickerController & PHPickerViewController</h2><blockquote><p>Reference: <a href=https://www.jianshu.com/p/5e7aacfa4374>JianShu</a></p><p>如何在 iOS 14 中使用新推出的 PhotoKit 框架中的 PHPickerViewController 类，并通过 Objective C 和Swift 语言从照片库中选择照片。</p><p>多年来，在 iOS 上选择照片和视频的最简单方法是使用 <code>UIImagePickerController</code> 类。该类允许你呈现一个内置的系统 UI 来选择照片或视频，并将其返回到你的应用程序中，而无需构建选择照片的 UI 页面或访问照片库的提示。</p><p>然而，<code>UIImagePickerController</code> 也有很多缺点：它相当基础，而且呈现给用户浏览照片库的 UI 也非常有限；一次只能选择一个（图片或者视频），而且只支持基本的过滤功能。在 iOS 14 中，<code>UIImagePickerController</code> 被 &ldquo;软废弃 &ldquo;了。虽然目前还没有被标记为废弃，但如果你看一下头文件，就会发现 API 标记有这个</p><p><code>API_TO_BE_DEPRECATED</code></p><p>iOS 14 中新的 <code>PHPicker</code> 类不是在 <code>UIKit</code> 框架中的，而是位于 <code>PhotosUI</code> 框架中</p></blockquote><h2 id=navigation-button--function-for-selection>Navigation Button & Function for selection</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>// inside viewDidLoad</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>self</span>.navigationItem.leftBarButtonItem = UIBarButton(barButtonSystemItem: .add, target: <span style=color:#66d9ef>self</span>, action: <span style=color:#66d9ef>#selector</span>(addNewPerson))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// inside class like ViewController</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@objc</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>addNewPerson</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// @MainActor class UIImagePickerController : UINavigationController</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> picker = UIImagePickerController()
+</span></span><span style=display:flex><span>    picker.allowsEditing = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    picker.delegate = <span style=color:#66d9ef>self</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Presents a view controller modally. </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// extension UIViewController {}</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>self</span>.present(picker, animated: <span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// let controller conform to these Delegate</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// second: telling us when the user either selected a picture or cancelled the picker</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// third: really is quite pointless here</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ViewController</span>: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+</span></span></code></pre></div><h2 id=uiimagepickercontrollerdelegate>UIImagePickerControllerDelegate</h2><ul><li>Extract the image from the dictionary that is passed as a parameter.</li><li>Generate a unique filename for it.</li><li>Convert it to a JPEG, then write that JPEG to disk.</li><li>Dismiss the view controller.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>// @protocol UIImagePickerControllerDelegate&lt;NSObject&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>imagePickerController</span>(<span style=color:#66d9ef>_</span> picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> image = info[.editedImage] <span style=color:#66d9ef>as</span>? UIImage <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>return</span> }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> imageName: String = UUID().uuidString
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> imagePath: URL = getDocumentsDirectory().appendingPathComponent(imageName)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> jpegData: Data = image.jpegData(compressionQuality: <span style=color:#ae81ff>0.8</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>try</span>? jpegData.write(to: imagePath)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> person = Person(name: <span style=color:#e6db74>&#34;Unknown&#34;</span>, image: imageName)
+</span></span><span style=display:flex><span>    people.append(person)
+</span></span><span style=display:flex><span>    collectionView.reloadData()
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// @MainActor open class UIViewController {}</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>self</span>.dismiss(animated: <span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>getDocumentsDirectory</span>() -&gt; URL {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// default: The shared file manager object for the process.</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// User home directories (/Users).</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// The user’s home directory—the place to install user’s personal items (~).</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> path = FileManager.<span style=color:#66d9ef>default</span>.urls(<span style=color:#66d9ef>for</span>: .userDirectory, <span style=color:#66d9ef>in</span>: .userDomainMask)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> path[<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=filemanager>FileManager</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>// default: The shared file manager object for the process.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Document directory.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// userDomainMask: The user’s home directory—the place to install user’s personal items (~).</span>
+</span></span><span style=display:flex><span>FileManager.<span style=color:#66d9ef>default</span>.urls(<span style=color:#66d9ef>for</span>: .documentDirectory, <span style=color:#66d9ef>in</span>: .userDomainMask)[<span style=color:#ae81ff>0</span>].appendingPathComponent(<span style=color:#e6db74>&#34;123.jpg&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>$</span>R3: Foundation.URL = <span style=color:#e6db74>&#34;file:///Users/yongfrank/Documents/123.jpg&#34;</span>
+</span></span></code></pre></div><h2 id=nsobject>NSObject</h2><h2 id=reference>Reference</h2><p><a href=https://www.hackingwithswift.com/100/43>HackingWithSwift</a></p></article></html>
