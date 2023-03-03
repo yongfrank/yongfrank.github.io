@@ -1,6 +1,6 @@
 ---
-title: "2023 02 28 Linux Tips"
-date: 2023-02-28T15:54:04+08:00
+title: "Linux Tips"
+date: 2023-01-18T15:54:04+08:00
 tags: []
 featured_image: ""
 description: ""

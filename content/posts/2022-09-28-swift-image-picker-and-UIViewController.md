@@ -28,17 +28,6 @@ title: 'Swift: Image Picker UIKit in the SwiftUI'
 </head>
 </html>
 
-<!--
- * @Author: Frank Chu
- * @Date: 2022-09-28 16:25:17
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-29 12:15:07
- * @FilePath: /blog/_posts/2022-09-28-swift-image-picker-and-UIViewController.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
-
 [Wrapping a UIViewController in a SwiftUI view](https://www.hackingwithswift.com/books/ios-swiftui/wrapping-a-uiviewcontroller-in-a-swiftui-view)
 
 [Using coordinators to manage SwiftUI view controllers](https://www.hackingwithswift.com/books/ios-swiftui/using-coordinators-to-manage-swiftui-view-controllers)

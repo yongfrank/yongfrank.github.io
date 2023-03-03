@@ -1,6 +1,6 @@
 ---
 categories: study
-date: "2022-10-11T16:37:00Z"
+date: "2022-12-11T16:37:00Z"
 title: Automatic Control Principles
 ---
 
@@ -8,8 +8,8 @@ title: Automatic Control Principles
  * @Author: Frank Chu
  * @Date: 2022-10-11 18:41:40
  * @LastEditors: Frank Chu
- * @LastEditTime: 2022-10-11 18:55:03
- * @FilePath: /blog/_posts/2022-10-11-Automatic-control-principles.md
+ * @LastEditTime: 2023-03-02 12:35:40
+ * @FilePath: /yongfrank.github.io/content/posts/Automatic-control-principles.md
  * @Description: 
  * 
  * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 

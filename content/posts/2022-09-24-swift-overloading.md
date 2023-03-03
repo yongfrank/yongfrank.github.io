@@ -4,17 +4,6 @@ date: "2022-09-24T14:28:00Z"
 title: Swift Overloading
 ---
 
-<!--
- * @Author: Frank Chu
- * @Date: 2022-09-24 14:28:27
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-25 10:17:24
- * @FilePath: /blog/_posts/2022-09-24-swift-overloading.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
-
 ## Operator Overloading
 
 [how to use operator overloading - Hacking With Swift](https://www.hackingwithswift.com/example-code/language/how-to-use-operator-overloading)
