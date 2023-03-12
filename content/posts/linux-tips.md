@@ -6,7 +6,6 @@ featured_image: ""
 description: ""
 ---
 <!-- https://github.com/DavidAnson/markdownlint/issues/199 -->
-# Linux 小技巧
 
 ## 特殊符号
 
