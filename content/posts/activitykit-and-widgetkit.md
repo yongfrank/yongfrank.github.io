@@ -153,8 +153,30 @@ struct OrderStatusBundle: WidgetBundle {
 
 * [How to Build a Widget in Swift with WidgetKit](https://youtu.be/jucm6e9M6LA)
 * [【iOS】WidgetKit Intro](https://zenn.dev/naoya_maeda/articles/e5c5af8ec567c9)
+* [WidgetKit]
+* [SwiftUI WidgetKit Tutorials - Creating Widget And Displaying Data Parsed From JSON API - SwiftUI](https://kavsoft.dev/swiftui_2.0_widgets)
+* [WidgetKit 刷新策略](https://developer.apple.com/forums/thread/657518)
 
 ### 相关限制与使小组件保持更新 Keeping a widget up to date
+
+> [WidgetKit Apple Developer][WidgetKit]
+> 
+> WidgetKit 会尝试遵守指定的日期。
+> 
+> WidgetKit tries to respect the date you specify
+
+> [主屏幕小组件的更新频率 How often to Home Screen widgets update](https://help.whatsmyeta.co/article/43-how-often-to-home-screen-widgets-update)
+> 
+> 在我的个人测试中，更新时间可以长达 4-5 小时，短则只有 15 分钟。这像是黑匣子，我们会告诉 iOS 何时更新，但最终取决于您的手机。
+> 
+> In my own personal testing I've seen it go out to 4-5 hours, and sometimes it's a short as 15 minutes. These are a bit of a black box as we tell iOS when to update but it's ultimately up to your phone as to when it will. 
+
+* [Refreshing Widget Effectively](https://swiftsenpai.com/development/refreshing-widget/)
+* 时间线的影响因素
+
+WidgetKit 将尽力遵守时间线条目中给出的刷新日期。因此，请注意并避免在特定时间重新加载您的小部件，因为当多个设备尝试同时重新加载时，它可能会阻塞您的远程服务器。
+
+我们不能使用 AsyncImage 加载图像，因为小部件仅支持同步任务。不能执行异步任务。
 
 WidgetKit 在一个单独的进程中代表您呈现视图。因此，即使小部件在屏幕上，您的小部件扩展也不会一直处于活动状态。尽管您的小部件并不总是处于活动状态，但您可以通过多种方式使其内容保持最新。
 

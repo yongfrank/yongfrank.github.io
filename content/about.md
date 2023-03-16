@@ -35,6 +35,14 @@ Smart Speaker powered by OpenAI, MS Azure, Picovoice.ai
 
 ![Smart Speaker](https://github.com/yongfrank/SmartSpeaker/raw/master/resources/screenshot.png?raw=true)
 
+## [Run With Me - Running Assistance for the Visually Impaired](https://github.com/yongfrank/RunWithMe)
+
+![](https://img.shields.io/badge/CCCC_MAIC-Second_Prize-lightgrey)
+
+[China Collegiate Computing Contest, Mobile Application Innovation Contest](http://www.appcontest.net/)
+
+![Run with Me Poster](https://github.com/yongfrank/RunWithMe/raw/firebase-development/RunWithMePoster_en_revised.jpeg)
+
 ## [Blog Page - Based on Hugo, Power by GitHub Pages](https://yongfrank.github.io)
 
 [![Blog Page](https://img.shields.io/badge/Blog_Page-yongfrank.github.io-success)](https://yongfrank.github.io/)
