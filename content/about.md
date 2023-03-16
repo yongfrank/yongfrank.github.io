@@ -21,7 +21,8 @@ date: 2023-03-02T11:20:03+08:00
 [![About Frank](https://img.shields.io/badge/Find_More_Project-yongfrank.github.io/about-9ef)](https://yongfrank.github.io/about)
 [![Blog Page](https://img.shields.io/badge/Blog_Page-yongfrank.github.io-success)](https://yongfrank.github.io/)
 
-[![Banner for App Store](https://github.com/yongfrank/OhMyFlag-WWDC22/blob/main/resources/banner.jpeg?raw=true)](https://apps.apple.com/app/oh-my-flag/id6446227923)
+<!-- [![Banner for App Store](https://github.com/yongfrank/OhMyFlag-WWDC22/blob/main/resources/banner.jpeg?raw=true)](https://apps.apple.com/app/oh-my-flag/id6446227923) -->
+[![Banner for App Store](https://github.com/yongfrank/OhMyFlag-WWDC22/blob/main/resources/Metatag.jpeg?raw=true)](https://apps.apple.com/app/oh-my-flag/id6446227923)
 
 [![Download on the App Store](/img/download-on-the-app-store.svg)](https://apps.apple.com/app/oh-my-flag/id6446227923)
 
