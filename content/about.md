@@ -38,7 +38,7 @@ Smart Speaker powered by OpenAI, MS Azure, Picovoice.ai
 
 ## [Run With Me - Running Assistance for the Visually Impaired](https://github.com/yongfrank/RunWithMe)
 
-![](https://img.shields.io/badge/CCCC_MAIC-Second_Prize-lightgrey)
+[![second prize detail link](https://img.shields.io/badge/CCCC_MAIC-Second_Prize-lightgrey)](https://cc.moocollege.com/#/share/?mdPoolId=3d7e81111cd476c7c49a386fc9659550)
 
 [China Collegiate Computing Contest, Mobile Application Innovation Contest](http://www.appcontest.net/)
 
