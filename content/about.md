@@ -11,7 +11,6 @@ date: 2023-03-02T11:20:03+08:00
 - 🌱 I’m currently learning Swift / C / C++ / Python /  Programming
 - 💞️ I’m working on TOEFL
 - 📫 How to reach me [twitter](https://twitter.com/cyongfrank)
-
 ## My Project
 
 ### [Oh My Flag - Open Source App on the GitHub](https://github.com/yongfrank/OhMyFlag-WWDC22)
@@ -20,7 +19,6 @@ date: 2023-03-02T11:20:03+08:00
 [![Follow on twitter](https://img.shields.io/twitter/follow/cyongfrank)](https://twitter.com/intent/follow?screen_name=cyongfrank)
 [![About Frank](https://img.shields.io/badge/Find_More_Project-yongfrank.github.io/about-9ef)](https://yongfrank.github.io/about)
 [![Blog Page](https://img.shields.io/badge/Blog_Page-yongfrank.github.io-success)](https://yongfrank.github.io/)
-
 <!-- [![Banner for App Store](https://github.com/yongfrank/OhMyFlag-WWDC22/blob/main/resources/banner.jpeg?raw=true)](https://apps.apple.com/app/oh-my-flag/id6446227923) -->
 [![Banner for App Store](https://github.com/yongfrank/OhMyFlag-WWDC22/blob/main/resources/Metatag.jpeg?raw=true)](https://apps.apple.com/app/oh-my-flag/id6446227923)
 
