@@ -6,6 +6,12 @@ date: 2023-03-02T11:20:03+08:00
 <!-- https://github.com/DavidAnson/markdownlint -->
 <!-- markdownlint-disable MD033 -->
 
+<!-- <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.1.96/css/materialdesignicons.min.css">
+</head>
+
+<span class="mdi mdi-linkedin"></span> -->
+
 - 👋 Hi, I’m Frank @yongfrank
 - 👀 I’m interested in Programming
 - 🌱 I’m currently learning Swift / C / C++ / Python /  Programming
