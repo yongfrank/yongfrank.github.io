@@ -98,7 +98,11 @@ Our project participated in the selection of the Mobile Application Innovation C
 
 I consolidate and document relevant topics and issues encountered during my personal learning journey on my personal blog, which receives approximately 20 weekly views. This has enabled me to become proficient in website building and deployment processes, utilizing my knowledge of HTML/CSS/JavaScript, React, Docker, and other related technologies.
 
-### Example Article
+### Example Articles
+
+Article [Link](https://yongfrank.github.io/posts/2022-09-23-swift-network/)
+
+![Swift Network: URLSession](https://github.com/yongfrank/blog/blob/main/static/metadata_img/2022-09-23-swift-network.png?raw=true)
 
 Article [Link](https://yongfrank.github.io/posts/2022-09-28-swift-image-picker-and-uiviewcontroller/)
 
