@@ -25,7 +25,7 @@ date: 2023-03-02T11:20:03+08:00
 
 ## My Project
 
-### [Oh My Flag - Open Source App on the GitHub](https://github.com/yongfrank/OhMyFlag-WWDC22)
+## [Oh My Flag - Open Source App on the GitHub](https://github.com/yongfrank/OhMyFlag-WWDC22)
 
 [![GitHub Stars](https://img.shields.io/github/stars/yongfrank/OhMyFlag-WWDC22.svg?style=social)](https://github.com/yongfrank/OhMyFlag-WWDC22)
 [![Follow on twitter](https://img.shields.io/twitter/follow/cyongfrank)](https://twitter.com/intent/follow?screen_name=cyongfrank)
@@ -52,7 +52,7 @@ The App helps students get familiar with flags. It is both educating and enterta
 
 The project was starred by 10 developers on GitHub and was submitted to the App Store, receiving 1066 impressions in the first week.
 
-### [Smart Speaker - Open Source Embeded Project on GitHub](https://github.com/yongfrank/SmartSpeaker)
+## [Smart Speaker - Open Source Embeded Project on GitHub](https://github.com/yongfrank/SmartSpeaker)
 
 Video Link: [Twitter](https://twitter.com/i/status/1629315971977719808)
 
