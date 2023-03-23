@@ -18,7 +18,7 @@ date: 2023-03-02T11:20:03+08:00
 
 <span class="mdi mdi-linkedin"></span> -->
 
-- 👋 Hello, I'm Frank, also known as [@yongfrank on GitHub](https://github.com/).
+- 👋 Hello, I'm Frank, also known as [@yongfrank](https://github.com/) on GitHub.
 - 👀 I'm passionate about programming.
 - 🌱 Currently, I'm learning Swift, C/C++, Python, HTML/CSS/JavaScript.
 - 📫 You can reach me on [Twitter](https://twitter.com/cyongfrank).
@@ -38,7 +38,15 @@ date: 2023-03-02T11:20:03+08:00
 
 Video Link: [Twitter](https://twitter.com/cyongfrank/status/1518663840463872000?s=20)
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Swift Student Challenge - WWDC22<br>Oh My Flag Walk Through<br><br>The App Oh My Flag helps students get familiar with flags. It is both educating and entertaining with the design of multi-module and interactive tasks.<br><br>SwiftUI &amp; CoreData &amp; PencilKit &amp; DocC<a href="https://twitter.com/hashtag/wwdc22?src=hash&amp;ref_src=twsrc%5Etfw">#wwdc22</a> <a href="https://t.co/CfZfOSY75I">pic.twitter.com/CfZfOSY75I</a></p>&mdash; Frank Chu (@cyongfrank) <a href="https://twitter.com/cyongfrank/status/1518663840463872000?ref_src=twsrc%5Etfw">April 25, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> [Swift Student Challenge - WWDC22 on Twitter](https://twitter.com/cyongfrank/status/1518663840463872000)
+>
+> Oh My Flag Walk Through
+>
+> The App Oh My Flag helps students get familiar with flags. It is both educating and entertaining with the design of multi-module and interactive tasks.
+>
+> SwiftUI & CoreData & PencilKit & DocC #wwdc22
+>
+> — Frank Chu (@cyongfrank) April 25, 2022
 
 The App helps students get familiar with flags. It is both educating and entertaining with the design of multi-module and interactive tasks.
 
@@ -48,9 +56,13 @@ The project was starred by 10 developers on GitHub and was submitted to the App 
 
 Video Link: [Twitter](https://twitter.com/i/status/1629315971977719808)
 
-Smart Speaker powered by OpenAI, MS Azure, Picovoice.ai
+> [Smart Speaker on Twitter](https://twitter.com/i/status/1629315971977719808)
+>
+> Get ready to have your conversations taken to the next level with ChatGPT - the world's first smart speaker powered by AI! #ChatGPT #SmartSpeaker #Azure #picovoice
+>
+> — Frank Chu (@cyongfrank) February 25, 2023
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Get ready to have your conversations taken to the next level with ChatGPT - the world&#39;s first smart speaker powered by AI! <a href="https://twitter.com/hashtag/ChatGPT?src=hash&amp;ref_src=twsrc%5Etfw">#ChatGPT</a> <a href="https://twitter.com/hashtag/SmartSpeaker?src=hash&amp;ref_src=twsrc%5Etfw">#SmartSpeaker</a> <a href="https://twitter.com/hashtag/Azure?src=hash&amp;ref_src=twsrc%5Etfw">#Azure</a> <a href="https://twitter.com/hashtag/picovoice?src=hash&amp;ref_src=twsrc%5Etfw">#picovoice</a> <a href="https://t.co/bdO0GNPKPf">https://t.co/bdO0GNPKPf</a> <a href="https://t.co/xlDGUs0Da1">pic.twitter.com/xlDGUs0Da1</a></p>&mdash; Frank Chu (@cyongfrank) <a href="https://twitter.com/cyongfrank/status/1629315971977719808?ref_src=twsrc%5Etfw">February 25, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+Smart Speaker powered by OpenAI, MS Azure, Picovoice.ai
 
 ![Smart Speaker](https://github.com/yongfrank/SmartSpeaker/raw/master/resources/screenshot.png?raw=true)
 
@@ -64,7 +76,13 @@ We utilized Python Flask and React Socket.io to achieve seamless communication b
 
 [China Collegiate Computing Contest, Mobile Application Innovation Contest](http://www.appcontest.net/)
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Run With Me won the Second Prize in the CCCC - Mobile Application Innovation Contest.<a href="https://twitter.com/hashtag/SwiftUI?src=hash&amp;ref_src=twsrc%5Etfw">#SwiftUI</a> <a href="https://twitter.com/hashtag/accessibility?src=hash&amp;ref_src=twsrc%5Etfw">#accessibility</a> <a href="https://twitter.com/hashtag/iOS16?src=hash&amp;ref_src=twsrc%5Etfw">#iOS16</a> <a href="https://t.co/lpZflmLsIu">pic.twitter.com/lpZflmLsIu</a></p>&mdash; Frank Chu (@cyongfrank) <a href="https://twitter.com/cyongfrank/status/1569682341408407555?ref_src=twsrc%5Etfw">September 13, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+Video Link on [mooc college](https://oss.moocollege.com/12703/works/10225287/Bq7HIWaa_1662601039228.mp4)
+
+> [Run With Me on Twitter](https://twitter.com/cyongfrank/status/1569682341408407555)
+>
+> Run With Me won the Second Prize in the CCCC - Mobile Application Innovation Contest.#SwiftUI #accessibility #iOS16
+>
+> — Frank Chu (@cyongfrank) September 13, 2022
 
 ![Run with Me Poster](https://github.com/yongfrank/RunWithMe/raw/firebase-development/RunWithMePoster_en_revised.jpeg)
 
@@ -80,19 +98,33 @@ Our project participated in the selection of the Mobile Application Innovation C
 
 I consolidate and document relevant topics and issues encountered during my personal learning journey on my personal blog, which receives approximately 20 weekly views. This has enabled me to become proficient in website building and deployment processes, utilizing my knowledge of HTML/CSS/JavaScript, React, Docker, and other related technologies.
 
+### Example Article
+
+Article [Link](https://yongfrank.github.io/posts/2022-09-28-swift-image-picker-and-uiviewcontroller/)
+
+![Swift: Image Picker UIKit in the SwiftUI](https://github.com/yongfrank/blog/blob/main/static/metadata_img/2022-09-28-swift-image-picker.png?raw=true)
+
 ## [100 Days Of SwiftUI](https://github.com/yongfrank/100DaysOfSwiftUI)
 
 👨‍💻 Swift and SwiftUI code when I learned Swift. 🧑‍💻
+
+> [First Day at #100DaysOfSwiftUI on Twitter](https://twitter.com/cyongfrank/status/1497127695016075265?s=20)
+> 
+> I’ve started day 0 of #100DaysOfSwiftUI, here is the [introduction page](https://www.hackingwithswift.com/100/swiftui)
+>
+> where I know this https://t.co/TQ48c2ag1s
+>
+> — Frank Chu (@cyongfrank) February 25, 2022
 
 ## [Socks5 Proxy Server Based on Go](https://github.com/yongfrank/go-socks5)
 
 The server follows the RFC1928 and RFC1929 standards, and supports TCP No-auth and Username/Password authentication.
 
+## [Time Of River - ARKit Based iOS App](https://github.com/yongfrank/TimeOfRiver)
+
 ## [Fall Detection Researching and Utilization](https://github.com/yongfrank/FallDetection)
 
 ## [fullstackopen by Helsinki University](https://github.com/yongfrank/fullstackopen)
-
-## [Time Of River - ARKit Based iOS App](https://github.com/yongfrank/TimeOfRiver)
 
 ## [NarcissisticNumber - First Repo On GitHub in Sp2018](https://github.com/yongfrank/NarcissisticNumber)
 
