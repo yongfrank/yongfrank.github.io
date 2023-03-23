@@ -10,4 +10,15 @@
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>// Test SSH passwordless login. When using the ssh command to connect to the remote server, authentication is completed without entering a password.
 </span></span><span style=display:flex><span>ssh user@remote_host
+</span></span></code></pre></div><h2 id=rdp>RDP</h2><ul><li><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop?tabs=azure-cli">Install and configure xrdp to use Remote Desktop with Ubuntu</a></li></ul><p>Most Linux VMs in Azure do not have a desktop environment installed by default. Linux VMs are commonly managed using SSH connections rather than a desktop environment. There are various desktop environments in Linux that you can choose. Depending on your choice of desktop environment, it may consume one to 2 GB of disk space, and take 5 to 10 minutes to install and configure all the required packages.</p><p>This command installs the XFCE4 desktop environment on a Debian-based Linux system, with the following options:</p><ul><li>sudo: runs the command with superuser privileges</li><li>DEBIAN_FRONTEND=noninteractive: sets the DEBIAN_FRONTEND environment variable to noninteractive, which tells the package manager to run in non-interactive mode and assume the default answer for any prompts.<ul><li>DEBIAN_FRONTEND=noninteractive 是一个环境变量，用于告诉 Debian-based 操作系统的软件包管理器（例如 apt-get）以非交互模式运行。</li><li>在交互模式下，软件包管理器会向用户询问有关软件包安装的信息，例如软件包配置选项、默认值和授权等。如果在非交互模式下运行，软件包管理器会自动假定某些值，并绕过用户输入的提示。</li><li>因此，当我们在使用 apt-get 等软件包管理器时，设置 DEBIAN_FRONTEND=noninteractive 环境变量可以让软件包管理器在不需要用户交互的情况下自动完成软件包的安装、升级或删除操作。这在自动化脚本中非常有用。</li></ul></li><li>apt-get: the package manager for Debian-based systems</li><li>-y: automatically answers &ldquo;yes&rdquo; to any prompts</li><li>install xfce4: installs the XFCE4 desktop environment package and its dependencies. XFCE4 is a lightweight and customizable desktop environment for Linux.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>sudo apt-get update
+</span></span><span style=display:flex><span>sudo DEBIAN_FRONTEND<span style=color:#f92672>=</span>noninteractive apt-get -y install xfce4
+</span></span><span style=display:flex><span>sudo apt install xfce4-session
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Install and configure a remote desktop server</span>
+</span></span><span style=display:flex><span>sudo apt-get -y install xrdp
+</span></span><span style=display:flex><span>sudo systemctl enable xrdp
+</span></span><span style=display:flex><span>sudo adduser xrdp ssl-cert
+</span></span><span style=display:flex><span>echo xfce4-session &gt;~/.xsession
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>sudo service xrdp restart
 </span></span></code></pre></div></article></html>
