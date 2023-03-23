@@ -27,3 +27,36 @@ ssh-copy-id user@remote_host
 // Test SSH passwordless login. When using the ssh command to connect to the remote server, authentication is completed without entering a password.
 ssh user@remote_host
 ```
+
+## RDP
+
+* [Install and configure xrdp to use Remote Desktop with Ubuntu]
+
+Most Linux VMs in Azure do not have a desktop environment installed by default. Linux VMs are commonly managed using SSH connections rather than a desktop environment. There are various desktop environments in Linux that you can choose. Depending on your choice of desktop environment, it may consume one to 2 GB of disk space, and take 5 to 10 minutes to install and configure all the required packages.
+
+This command installs the XFCE4 desktop environment on a Debian-based Linux system, with the following options:
+
+* sudo: runs the command with superuser privileges
+* DEBIAN_FRONTEND=noninteractive: sets the DEBIAN_FRONTEND environment variable to noninteractive, which tells the package manager to run in non-interactive mode and assume the default answer for any prompts.
+  * DEBIAN_FRONTEND=noninteractive 是一个环境变量，用于告诉 Debian-based 操作系统的软件包管理器（例如 apt-get）以非交互模式运行。
+  * 在交互模式下，软件包管理器会向用户询问有关软件包安装的信息，例如软件包配置选项、默认值和授权等。如果在非交互模式下运行，软件包管理器会自动假定某些值，并绕过用户输入的提示。
+  * 因此，当我们在使用 apt-get 等软件包管理器时，设置 DEBIAN_FRONTEND=noninteractive 环境变量可以让软件包管理器在不需要用户交互的情况下自动完成软件包的安装、升级或删除操作。这在自动化脚本中非常有用。
+* apt-get: the package manager for Debian-based systems
+* -y: automatically answers "yes" to any prompts
+* install xfce4: installs the XFCE4 desktop environment package and its dependencies. XFCE4 is a lightweight and customizable desktop environment for Linux.
+
+```sh
+sudo apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install xfce4
+sudo apt install xfce4-session
+
+# Install and configure a remote desktop server
+sudo apt-get -y install xrdp
+sudo systemctl enable xrdp
+sudo adduser xrdp ssl-cert
+echo xfce4-session >~/.xsession
+
+sudo service xrdp restart
+```
+
+[Install and configure xrdp to use Remote Desktop with Ubuntu]: https://learn.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop?tabs=azure-cli
