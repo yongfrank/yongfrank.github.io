@@ -10,8 +10,9 @@ A Live Activity can be active for up to eight hours unless your app or a person 
 API_TO_BE_DEPRECATED
 iOS 14 中新的 PHPicker 类不是在 UIKit 框架中的，而是位于 PhotosUI 框架中
 Navigation Button &amp;amp; Function for selection // inside viewDidLoad self.navigationItem.leftBarButtonItem = UIBarButton(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson)) // inside class like ViewController @objc func addNewPerson() { // @MainActor class UIImagePickerController : UINavigationController let picker = UIImagePickerController() picker.</description></item><item><title>Welcome 😀</title><link>https://yongfrank.github.io/about/</link><pubDate>Thu, 02 Mar 2023 11:20:03 +0800</pubDate><guid>https://yongfrank.github.io/about/</guid><description>👋 Hello, I&amp;rsquo;m Frank, also known as @yongfrank on GitHub. 👀 I&amp;rsquo;m passionate about programming. 🌱 Currently, I&amp;rsquo;m learning Swift, C/C++, Python, HTML/CSS/JavaScript. 📫 You can reach me on Twitter. My Project Oh My Flag - Open Source App on the GitHub Video Link: Twitter
-The App helps students get familiar with flags. It is both educating and entertaining with the design of multi-module and interactive tasks.
-The project was starred by 10 developers on GitHub and was submitted to the App Store, receiving 1066 impressions in the first week.</description></item><item><title>断舍离</title><link>https://yongfrank.github.io/second-hand/</link><pubDate>Thu, 02 Mar 2023 11:13:42 +0800</pubDate><guid>https://yongfrank.github.io/second-hand/</guid><description>更新时间 2022-09-25 10:31:48
+Swift Student Challenge - WWDC22 on Twitter
+Oh My Flag Walk Through
+The App Oh My Flag helps students get familiar with flags. It is both educating and entertaining with the design of multi-module and interactive tasks.</description></item><item><title>断舍离</title><link>https://yongfrank.github.io/second-hand/</link><pubDate>Thu, 02 Mar 2023 11:13:42 +0800</pubDate><guid>https://yongfrank.github.io/second-hand/</guid><description>更新时间 2022-09-25 10:31:48
 联系方式 绿色软件: Y3lvbmdmcmFuaw==
 Telegram: https://t.me/heindelssohn
 杭州自提优先
