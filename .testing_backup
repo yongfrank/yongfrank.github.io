@@ -1,0 +1,24 @@
+# .gitmodules
+# [submodule "themes/contrast-hugo"]
+# 	path = themes/contrast-hugo
+# 	url = https://github.com/niklasbuschmann/contrast-hugo
+
+# config 
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = https://github.com/yongfrank/yongfrank.github.io.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+# [submodule "themes/contrast-hugo"]
+# 	active = true
+# 	url = https://github.com/niklasbuschmann/contrast-hugo
+[pull]
+	rebase = true
