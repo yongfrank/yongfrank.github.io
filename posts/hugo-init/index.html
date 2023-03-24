@@ -46,4 +46,7 @@
 </span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
 </span></span><span style=display:flex><span>          <span style=color:#f92672>github_token</span>: <span style=color:#ae81ff>${{ secrets.GITHUB_TOKEN }}</span>
 </span></span><span style=display:flex><span>          <span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./public</span>
-</span></span></code></pre></div></article></html>
+</span></span></code></pre></div><h2 id=remove-submodule>Remove Submodule</h2><p><a href=https://www.littlezhang.com/2020/01/%E5%A6%82%E4%BD%95%E6%8A%8A-git-submodule-%E5%8F%98%E6%88%90%E6%99%AE%E9%80%9A%E6%96%87%E4%BB%B6%E5%A4%B9/>zh - Git Submodule</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>git rm --cached submodule_path  <span style=color:#75715e># delete reference to submodule HEAD </span>
+</span></span><span style=display:flex><span>git rm .gitmodules              <span style=color:#75715e># delete .gitmodule file</span>
+</span></span><span style=display:flex><span>rm -rf submodule_path/.git      <span style=color:#75715e># delete submodule path .git file</span>
+</span></span></code></pre></div><h2 id=google-analytics>Google Analytics</h2><p><a href=http://cloudywithachanceofdevops.com/posts/2018/05/17/setting-up-google-analytics-on-hugo/#step-2-getting-your-google-analytics-tracking-id-for-your-property>Setting Up Google Analytics on Hugo</a></p></article></html>
