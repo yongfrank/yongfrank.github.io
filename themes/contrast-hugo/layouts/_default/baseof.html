@@ -3,16 +3,6 @@
 <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
 <meta charset="utf-8">
 {{ template "_internal/google_analytics.html" . }}
-{{ template "_internal/google_analytics_async.html" . }}
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XZQ6YTCMN7');
-</script>
 {{ hugo.Generator }}
 {{- if or .Description .Site.Params.description }}
 <meta name="description" content="{{ .Description | default .Site.Params.description }}">
