@@ -42,13 +42,15 @@
 </span></span><span style=display:flex><span><span style=color:#75715e># new container</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># docker run [--name &lt;string&gt;] &lt;image&gt; &lt;command&gt; &lt;args&gt;</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># docker run -itd [--name ubuntu-test] ubuntu</span>
-</span></span><span style=display:flex><span>docker run -t -i ubuntu-testing ubuntu:18.04 /bin/bash
+</span></span><span style=display:flex><span>docker run -t -i --name ubuntu-testing ubuntu:18.04 /bin/bash
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># start existing container</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># docker start [-i --interactive] &lt;container&gt;</span>
 </span></span><span style=display:flex><span>docker start ubuntu-testing
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># execute command in running container</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># docker exec &lt;container&gt; &lt;command&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># -t Allocate a pseudo-TTY</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># -i Keep STDIN open even if not attached</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># docker exec --interactive --tty &lt;container&gt; &lt;command&gt;</span>
 </span></span><span style=display:flex><span>docker exec -it ubuntu-testing bash
 </span></span></code></pre></div></article></html>
