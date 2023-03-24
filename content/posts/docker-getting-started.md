@@ -63,13 +63,15 @@ docker pull ubuntu
 # new container
 # docker run [--name <string>] <image> <command> <args>
 # docker run -itd [--name ubuntu-test] ubuntu
-docker run -t -i ubuntu-testing ubuntu:18.04 /bin/bash
+docker run -t -i --name ubuntu-testing ubuntu:18.04 /bin/bash
 
 # start existing container
 # docker start [-i --interactive] <container>
 docker start ubuntu-testing
 
 # execute command in running container
-# docker exec <container> <command>
+# -t Allocate a pseudo-TTY
+# -i Keep STDIN open even if not attached
+# docker exec --interactive --tty <container> <command>
 docker exec -it ubuntu-testing bash
 ```
