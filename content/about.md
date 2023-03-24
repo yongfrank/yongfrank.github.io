@@ -113,10 +113,10 @@ Article [Link](https://yongfrank.github.io/posts/2022-09-28-swift-image-picker-a
 👨‍💻 Swift and SwiftUI code when I learned Swift. 🧑‍💻
 
 > [First Day at #100DaysOfSwiftUI on Twitter](https://twitter.com/cyongfrank/status/1497127695016075265?s=20)
-> 
+>
 > I’ve started day 0 of #100DaysOfSwiftUI, here is the [introduction page](https://www.hackingwithswift.com/100/swiftui)
 >
-> where I know this https://t.co/TQ48c2ag1s
+> where I know this [link](https://t.co/TQ48c2ag1s)
 >
 > — Frank Chu (@cyongfrank) February 25, 2022
 
