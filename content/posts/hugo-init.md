@@ -73,3 +73,17 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
+
+## Remove Submodule
+
+[zh - Git Submodule](https://www.littlezhang.com/2020/01/%E5%A6%82%E4%BD%95%E6%8A%8A-git-submodule-%E5%8F%98%E6%88%90%E6%99%AE%E9%80%9A%E6%96%87%E4%BB%B6%E5%A4%B9/)
+
+```sh
+git rm --cached submodule_path  # delete reference to submodule HEAD 
+git rm .gitmodules              # delete .gitmodule file
+rm -rf submodule_path/.git      # delete submodule path .git file
+```
+
+## Google Analytics
+
+[Setting Up Google Analytics on Hugo](http://cloudywithachanceofdevops.com/posts/2018/05/17/setting-up-google-analytics-on-hugo/#step-2-getting-your-google-analytics-tracking-id-for-your-property)
