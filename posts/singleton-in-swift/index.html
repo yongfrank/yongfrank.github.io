@@ -1,0 +1,140 @@
+<!doctype html><html lang=en-us><title>Singleton in Swift | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="my blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/singleton-in-swift/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Singleton in Swift</h1><time datetime=2023-03-25T01:39:04+08:00>March 25, 2023</time></header><h2 id=static-variable-and-class-variable>static variable and class variable</h2><blockquote><p><a href=https://www.hackingwithswift.com/example-code/language/whats-the-difference-between-a-static-variable-and-a-class-variable>What’s the difference between a static variable and a class variable?</a></p><p>Both the static and class keywords allow us to attach variables to a class rather than to instances of a class. For example, you might create a Student class with properties such as name and age, then create a static numberOfStudents property that is owned by the Student class itself rather than individual instances.</p><p>Where static and class differ is how they support <code>inheritance</code>: When you make a static property it becomes owned by the class and cannot be changed by subclasses, whereas when you use class it may be overridden if needed.</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Person</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>var</span> count: Int {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>250</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>var</span> averageAge: Double {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>30</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Student</span>: Person {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// THIS ISN&#39;T ALLOWED</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// override static var count: Int {</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//    return 150</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// }</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// THIS IS ALLOWED</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>var</span> averageAge: Double {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>19.5</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=mvc-and-singleton>MVC and Singleton</h2><blockquote><p><a href=https://onevcat.com/2018/05/mvc-wrong-use/>MVC Explain</a></p></blockquote><p><img src=https://onevcat.com/assets/images/2018/mvc.png alt="MVC standford university"></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ToDoStore</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>let</span> shared = ToDoStore()
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span>(<span style=color:#66d9ef>set</span>) <span style=color:#66d9ef>var</span> items: [ToDoItem] = []
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>init</span>() {}
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>append</span>(item: ToDoItem) {
+</span></span><span style=display:flex><span>        items.append(item)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> count: Int {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> items.count
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>item</span>(at index: Int) -&gt; ToDoItem {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> items[index]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ToDoListViewController</span>: UITableViewController {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>@objc</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>addButtonPressed</span>(<span style=color:#66d9ef>_</span> sender: Any) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> store = ToDoStore.shared
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> newCount = store.count <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> title = <span style=color:#e6db74>&#34;ToDo Item </span><span style=color:#e6db74>\(</span>newCount<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        store.append(item: .<span style=color:#66d9ef>init</span>(title: title))
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>extension</span> <span style=color:#a6e22e>ToDoListViewController</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>tableView</span>(<span style=color:#66d9ef>_</span> tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -&gt; UISwipeActionsConfiguration? {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> deleteAction = UIContextualAction(style: .destructive, title: <span style=color:#e6db74>&#34;Delete&#34;</span>) { <span style=color:#66d9ef>_</span>, <span style=color:#66d9ef>_</span>, done <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>            ToDoStore.shared.remove(at: indexPath.row)
+</span></span><span style=display:flex><span>            done(<span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> UISwipeActionsConfiguration(actions: [deleteAction])
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=stateobject-and-observedobject>@StateObject and @ObservedObject</h2><blockquote><p><a href=https://www.hackingwithswift.com/quick-start/swiftui/how-to-use-observedobject-to-manage-state-from-external-objects>How to use @ObservedObject to manage state from external objects</a></p><p>You should not use this property wrapper to create the initial instance of an observable object – that’s what @StateObject is for.</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>class</span> {
+</span></span><span style=display:flex><span>    @Published <span style=color:#66d9ef>var</span> score: Int = <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>InnerView</span>: View {
+</span></span><span style=display:flex><span>    @ObservedObject <span style=color:#66d9ef>var</span> progress: UserProgress
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> body: some View {
+</span></span><span style=display:flex><span>        Button(<span style=color:#e6db74>&#34;Increase Score&#34;</span>) {
+</span></span><span style=display:flex><span>            progress.score <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>ContentView</span>: View {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// This isn&#39;t recommended</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// @ObservedObject var progress = UserProgress()</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    @StateObject <span style=color:#66d9ef>var</span> progress = UserProgress()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> body: some View {
+</span></span><span style=display:flex><span>        VStack {
+</span></span><span style=display:flex><span>            Text(<span style=color:#e6db74>&#34;Your score is </span><span style=color:#e6db74>\(</span>progress.score<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>            InnerView(progress: progress)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><video loop muted autoplay playsinline>
+<source src=https://www.hackingwithswift.com/img/books/quick-start/swiftui/how-to-use-observedobject-to-manage-state-from-external-objects-1.mp4 type=video/mp4></video><blockquote><p><a href=https://onevcat.com/2020/06/stateobject/>StateObject & ObservedObject</a></p><p>Once you understand the issues with @ObservedObject, the significance of @StateObject becomes apparent. @StateObject is an upgrade of @State and is specifically designed to store ObservableObject class instances. While @State is created to store struct states, @StateObject is created to store ObservableObject class instances. It ensures that the instance of this class will not be recreated with the view, thus solving the problem.</p></blockquote><p><img src=https://onevcat.com/assets/images/2020/stateobject_reset.gif alt="@ObservedObject Problem"></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>ContentView</span>: View {
+</span></span><span style=display:flex><span>    @State <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> showRealName = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> body: some View {
+</span></span><span style=display:flex><span>        VStack {
+</span></span><span style=display:flex><span>            Button(<span style=color:#e6db74>&#34;Toggle Name&#34;</span>) {
+</span></span><span style=display:flex><span>                showRealName.toggle()
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            Text(<span style=color:#e6db74>&#34;Current User: </span><span style=color:#e6db74>\(</span>showRealName ? <span style=color:#e6db74>&#34;Wei Wang&#34;</span> : <span style=color:#e6db74>&#34;onevcat&#34;</span><span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>            ScorePlate().padding(.top, <span style=color:#ae81ff>20</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Model</span>: ObservableObject {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>init</span>() { print(<span style=color:#e6db74>&#34;Model Created&#34;</span>) }
+</span></span><span style=display:flex><span>    @Published <span style=color:#66d9ef>var</span> score: Int = <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>ScorePlate</span>: View {
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    @ObservedObject <span style=color:#66d9ef>var</span> model = Model()
+</span></span><span style=display:flex><span>    @State <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> niceScore = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> body: some View {
+</span></span><span style=display:flex><span>        VStack {
+</span></span><span style=display:flex><span>            Button(<span style=color:#e6db74>&#34;+1&#34;</span>) {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> model.score <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>3</span> {
+</span></span><span style=display:flex><span>                    niceScore = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                model.score <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            Text(<span style=color:#e6db74>&#34;Score: </span><span style=color:#e6db74>\(</span>model.score<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>            Text(<span style=color:#e6db74>&#34;Nice? </span><span style=color:#e6db74>\(</span>niceScore ? <span style=color:#e6db74>&#34;YES&#34;</span> : <span style=color:#e6db74>&#34;NO&#34;</span><span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>            ScoreText(model: model).padding(.top, <span style=color:#ae81ff>20</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>ScoreText</span>: View {
+</span></span><span style=display:flex><span>    @ObservedObject <span style=color:#66d9ef>var</span> model: Model
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> body: some View {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> model.score <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>10</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Text(<span style=color:#e6db74>&#34;Fantastic&#34;</span>)
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> model.score <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>3</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Text(<span style=color:#e6db74>&#34;Good&#34;</span>)
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Text(<span style=color:#e6db74>&#34;Ummmm...&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=custom-subclass-of-nsobject>Custom Subclass of NSObject</h2><blockquote><p><a href=https://www.hackingwithswift.com/read/10/5/custom-subclasses-of-nsobject>Custom subclasses of NSObject</a></p><p>NSObject is what&rsquo;s called a universal base class for all Cocoa Touch classes. That means all UIKit classes ultimately come from NSObject, including all of UIKit. You don&rsquo;t have to inherit from NSObject in Swift, but you did in Objective-C and in fact there are some behaviors you can only have if you do inherit from it. More on that in project 12, but for now just make sure you inherit from NSObject.</p><p><a href=https://www.hackingwithswift.com/read/12/3/fixing-project-10-nscoding>hws - project 12</a></p><p>Why do we need a class here when a struct will do just as well? (And in fact better, because structs come with a default initializer!)</p><p>Why do we need to inherit from NSObject?</p><p>It&rsquo;s time for the answers to become clear. You see, working with NSCoding requires you to use objects, or, in the case of strings, arrays and dictionaries, structs that are interchangeable with objects. If we made the Person class into a struct, we couldn&rsquo;t use it with NSCoding.</p><p>The reason we inherit from NSObject is again because it&rsquo;s required to use NSCoding – although cunningly Swift won&rsquo;t mention that to you, your app will just crash.</p></blockquote></article></html>
