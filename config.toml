@@ -15,3 +15,6 @@ googleAnalytics = 'G-XZQ6YTCMN7'
     name = "About"
     url = "/about/"
     weight = 10
+
+[markup.goldmark.renderer]
+  unsafe = true # Allow HTML in md files
