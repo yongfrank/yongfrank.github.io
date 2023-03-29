@@ -1,0 +1,157 @@
+<!doctype html><html lang=en-us><title>UIKit Intro in OC | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="my blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/uikit-intro/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>UIKit Intro in OC</h1><time datetime=2023-03-27T13:31:46+08:00>March 27, 2023</time></header><h2 id=quickstart>QuickStart</h2><ul><li><a href=https://supereasyapps.com/blog/2014/8/4/create-a-uibutton-in-code-with-objective-c>Create a UIButton in Code with Objective-C</a></li></ul><h3 id=button>Button</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// in file ViewController.m
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
+</span></span><span style=display:flex><span>    [super viewDidLoad];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    UIButton <span style=color:#f92672>*</span>button <span style=color:#f92672>=</span> [UIButton buttonWithType:
+</span></span><span style=display:flex><span>									UIButtonTypeSystem];
+</span></span><span style=display:flex><span>    [button setTitle:<span style=color:#e6db74>@&#34;Press Me&#34;</span> forState:UIControlStateNormal];
+</span></span><span style=display:flex><span>    [button sizeToFit];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Set a new (x,y) point for the button&#39;s center
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    button.center <span style=color:#f92672>=</span> CGPointMake(<span style=color:#ae81ff>320</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>60</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Add an action in current code file (i.e. target)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    [button addTarget:self 
+</span></span><span style=display:flex><span>			action:<span style=color:#66d9ef>@selector</span>(buttonPressed:<span style=color:#960050;background-color:#1e0010>）</span>
+</span></span><span style=display:flex><span>			forControlEvents:UIControlEventTouchUpInside];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    [self.view addSubview:button];
+</span></span><span style=display:flex><span>} 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>buttonPressed:</span>(UIButton <span style=color:#f92672>*</span>)button {
+</span></span><span style=display:flex><span>     NSLog(<span style=color:#e6db74>@&#34;Button Pressed&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=protocol--uicollectionview>Protocol & UICollectionView</h3><ul><li><a href=https://www.cnblogs.com/OranBlog/p/9208782.html>[OC] UIcollectionView and UIcollectionViewCell</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// ViewController.h
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>ViewController</span> : <span style=color:#a6e22e>UIViewController</span> <span style=color:#f92672>&lt;</span>UICollectionViewDelegate, UICollectionViewDataSource<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>ViewController</span> ()
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) UICollectionView <span style=color:#f92672>*</span>collectionView;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#66d9ef>@implementation</span> <span style=color:#a6e22e>ViewController</span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
+</span></span><span style=display:flex><span>	[super viewDidLoad];
+</span></span><span style=display:flex><span>	[self loadCollectioView];
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>loadCollectioView</span> {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Layout Init
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// let layout = UICollectionViewFlowLayout()
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    UICollectionViewFlowLayout <span style=color:#f92672>*</span>flowlayout <span style=color:#f92672>=</span> [[UICollectionViewFlowLayout alloc] init];
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    _collectionView <span style=color:#f92672>=</span> [[UICollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:flowlayout];
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Cell Size
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flowlayout.itemSize <span style=color:#f92672>=</span> CGSizeMake(<span style=color:#ae81ff>280</span>, <span style=color:#ae81ff>280</span>);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// head Size
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flowlayout.headerReferenceSize <span style=color:#f92672>=</span> CGSizeMake(self.view.frame.size.width, <span style=color:#ae81ff>40</span>);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Cell vertical spacing
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flowlayout.minimumLineSpacing <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Cell horizontal spacing
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flowlayout.minimumInteritemSpacing <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Cell to container edge
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flowlayout.sectionInset <span style=color:#f92672>=</span> UIEdgeInsetsMake(<span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>20</span>); <span style=color:#75715e>// Up left down right
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// collectionView init
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Register Cell
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: &#34;cell&#34;)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    [_collectionView registerClass:[UICollectionViewCell <span style=color:#66d9ef>class</span>] forCellWithReuseIdentifier:<span style=color:#e6db74>@&#34;cell&#34;</span>];
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Set delegate
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// collectionView.dataSource = self
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// collectionView.delegate = self
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    _collectionView.dataSource <span style=color:#f92672>=</span> self;
+</span></span><span style=display:flex><span>    _collectionView.delegate <span style=color:#f92672>=</span> self;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Background color
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    _collectionView.backgroundColor <span style=color:#f92672>=</span> [UIColor greenColor];
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Felxible Width &amp; Height
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    _collectionView.autoresizingMask <span style=color:#f92672>=</span> UIViewAutoresizingFlexibleWidth <span style=color:#f92672>|</span> UIViewAutoresizingFlexibleHeight;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Add View
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    [self.view addSubview:_collectionView];
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Size settings
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    [_collectionView setFrame:self.view.frame];
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (__kindof UICollectionViewCell <span style=color:#f92672>*</span>)<span style=color:#a6e22e>collectionView:</span>(UICollectionView <span style=color:#f92672>*</span>)collectionView <span style=color:#a6e22e>cellForItemAtIndexPath:</span>(NSIndexPath <span style=color:#f92672>*</span>)indexPath {
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Cell Reuse, identifier is same as the registration(@&#34;cell&#34;)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// let cell = collectionView.dequeueReusableCell(withReuseIdentifier: &#34;cell&#34;, for: indexPath)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    UICollectionViewCell <span style=color:#f92672>*</span>cell <span style=color:#f92672>=</span> [collectionView dequeueReusableCellWithReuseIdentifier:<span style=color:#e6db74>@&#34;cell&#34;</span> forIndexPath:indexPath];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>cell) {
+</span></span><span style=display:flex><span>        cell <span style=color:#f92672>=</span> [[UICollectionViewCell alloc] init];
+</span></span><span style=display:flex><span><span style=color:#75715e>//        [cell.contentView setBackgroundColor:[UIColor systemBlueColor]];
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// cell.contentView.backgroundColor = .systemBlue
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    [cell.contentView setBackgroundColor:[UIColor systemBlueColor]];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> cell;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (NSInteger)<span style=color:#a6e22e>collectionView:</span>(UICollectionView <span style=color:#f92672>*</span>)collectionView <span style=color:#a6e22e>numberOfItemsInSection:</span>(NSInteger)section {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>120</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span></code></pre></div><h2 id=loading-method-of-appdelegate-scenedelegate-and-controller-appdelegatescenedelegate控制器的加载方式>Loading Method of AppDelegate, SceneDelegate and Controller AppDelegate、SceneDelegate、控制器的加载方式</h2><ul><li><a href=https://blog.csdn.net/weixin_46926959/article/details/120076013>AppDelegate, SceneDelegate, Controller</a></li></ul><blockquote><p>iOS13 之前，AppDelegate的职责是：全权处理App生命周期和UI生命周期</p><p>Before iOS13, the AppDelegate is responsible for handling the entire App lifecycle and the UI lifecycle.</p><p>iOS 13 之后，AppDelegate的职责是：处理App生命周期和SceneDelegate 生命周期</p><p>After iOS 13, the AppDelegate is responsible for handling the App lifecycle and the SceneDelegate lifecycle.</p></blockquote><h3 id=startup-process-启动过程>StartUp Process 启动过程</h3><p>main函数 -> 自动释放池 -> UIApplicationMain（永不返回，保证程序不会被销毁）-> 创建应用程序对象UIApplication ->创建应用程序的代理对象AppDelegate -> IOS13之前，将AppDelegate的window实例化，设置为keyWindow主窗口 -> 加载配置文件指定的storyboard</p><p>main function -> autorelease pool -> UIApplicationMain (never returns, to ensure that the program will not be destroyed) -> create the application object UIApplication -> create the application delegate object AppDelegate -> IOS13 before, instantiate the AppDelegate&rsquo;s window, set it as the keyWindow main window -> load the storyboard specified in the configuration file</p><h2 id=target-for-project-in-xcode>Target for Project in Xcode</h2><ul><li><a href=https://ioscoachfrank.com/remove-main-storyboard.html>How to Properly Remove Main.Storyboard (for iOS 13+)</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#75715e>&lt;!-- Info.plist --&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>&lt;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;plist</span> <span style=color:#a6e22e>version=</span><span style=color:#e6db74>&#34;1.0&#34;</span><span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;dict&gt;</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>&lt;key&gt;</span>UIApplicationSceneManifest<span style=color:#f92672>&lt;/key&gt;</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>&lt;dict&gt;</span>
+</span></span><span style=display:flex><span>		<span style=color:#f92672>&lt;key&gt;</span>UIApplicationSupportsMultipleScenes<span style=color:#f92672>&lt;/key&gt;</span>
+</span></span><span style=display:flex><span>		<span style=color:#f92672>&lt;false/&gt;</span>
+</span></span><span style=display:flex><span>		<span style=color:#f92672>&lt;key&gt;</span>UISceneConfigurations<span style=color:#f92672>&lt;/key&gt;</span>
+</span></span><span style=display:flex><span>		<span style=color:#f92672>&lt;dict&gt;</span>
+</span></span><span style=display:flex><span>			<span style=color:#f92672>&lt;key&gt;</span>UIWindowSceneSessionRoleApplication<span style=color:#f92672>&lt;/key&gt;</span>
+</span></span><span style=display:flex><span>			<span style=color:#f92672>&lt;array&gt;</span>
+</span></span><span style=display:flex><span>				<span style=color:#f92672>&lt;dict&gt;</span>
+</span></span><span style=display:flex><span>					<span style=color:#f92672>&lt;key&gt;</span>UISceneConfigurationName<span style=color:#f92672>&lt;/key&gt;</span>
+</span></span><span style=display:flex><span>					<span style=color:#f92672>&lt;string&gt;</span>Default Configuration<span style=color:#f92672>&lt;/string&gt;</span>
+</span></span><span style=display:flex><span>					<span style=color:#f92672>&lt;key&gt;</span>UISceneDelegateClassName<span style=color:#f92672>&lt;/key&gt;</span>
+</span></span><span style=display:flex><span>					<span style=color:#f92672>&lt;string&gt;</span>SceneDelegate<span style=color:#f92672>&lt;/string&gt;</span>
+</span></span><span style=display:flex><span>				<span style=color:#f92672>&lt;/dict&gt;</span>
+</span></span><span style=display:flex><span>			<span style=color:#f92672>&lt;/array&gt;</span>
+</span></span><span style=display:flex><span>		<span style=color:#f92672>&lt;/dict&gt;</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>&lt;/dict&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;/dict&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;/plist&gt;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;key&gt;</span>Storyboard Name<span style=color:#f92672>&lt;/key&gt;</span>
+</span></span></code></pre></div><h2 id=delegate>Delegate</h2><ul><li><a href=https://medium.com/@armanabkar/delegate-pattern-in-ios-a26f2b329097>Delegate Pattern In Swift</a></li><li><a href=https://tarikdahic.com/posts/the-holy-grail-of-uikit-delegate-pattern/>The Holy Grail of UIKit: Delegate Pattern</a></li><li><a href=https://zhuanlan.zhihu.com/p/402897951>UIKit in SwiftUI</a></li></ul><h2 id=swiftui-in-uikitobjective-c>SwiftUI In UIKit(Objective-C)</h2><ul><li><a href=https://www.jianshu.com/p/549facb59caf>Using SwiftUI in Objective-C</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>SwiftUI</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>MainViewInterface</span>: View {
+</span></span><span style=display:flex><span>     <span style=color:#66d9ef>var</span> body: some View {
+</span></span><span style=display:flex><span>          Text(<span style=color:#e6db74>&#34;Hello, World!&#34;</span>)
+</span></span><span style=display:flex><span>   }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@objc</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MainView</span>: NSObject {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>@objc</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>makeMainView</span>() -&gt; UIViewController {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> UIHostingController(rootView:  MainViewInterface())
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// #import &#34;&lt;projectName&gt;-Swift.h&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// Lookup in Targets - Build Settings - Search for Swift - Objective-C Generated Interface Header Name
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#import &#34;testSwift-Swift.h&#34; 
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@implementation</span> <span style=color:#a6e22e>ViewController</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
+</span></span><span style=display:flex><span>	[super viewDidLoad];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	UIViewController <span style=color:#f92672>*</span>vc <span style=color:#f92672>=</span> [[MainView new] makeMainView];
+</span></span><span style=display:flex><span>	vc.view.frame <span style=color:#f92672>=</span> CGRectMake(<span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>400</span>, <span style=color:#ae81ff>200</span>, <span style=color:#ae81ff>100</span>);
+</span></span><span style=display:flex><span>	[self.view addSubview:vc.view];
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span></code></pre></div></article></html>
