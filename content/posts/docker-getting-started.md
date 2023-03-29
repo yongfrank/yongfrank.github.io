@@ -4,7 +4,6 @@ date: 2023-03-21T13:19:38+08:00
 ---
 
 ```sh
-
 # 运行以下命令在 Docker 容器中克隆 GitHub 仓库：
 # 该命令的含义是，以 alpine/git 镜像为基础，
 # 启动一个名为 repo 的容器，并在容器内执行 git clone 命令，
@@ -52,7 +51,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # 这个指令通常会在 Dockerfile 中的一开始设置，以确保后续操作中时间信息的正确性。
 ```
 
-## Ubuntu
+## Docker CLI
 
 * [Unbuntu Started](https://yeasy.gitbook.io/docker_practice/container/run)
 * [Ubuntu Proxy](https://docs.docker.com.zh.xy2401.com/network/proxy/)
@@ -60,18 +59,25 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ```sh
 docker pull ubuntu
 
-# new container
+# Run a command in a new container
 # docker run [--name <string>] <image> <command> <args>
 # docker run -itd [--name ubuntu-test] ubuntu
 docker run -t -i --name ubuntu-testing ubuntu:18.04 /bin/bash
 
-# start existing container
+# Start existing container
 # docker start [-i --interactive] <container>
-docker start ubuntu-testing
+docker start ubuntu-testing -i
 
-# execute command in running container
+# Execute command in running container
 # -t Allocate a pseudo-TTY
 # -i Keep STDIN open even if not attached
 # docker exec --interactive --tty <container> <command>
 docker exec -it ubuntu-testing bash
+
+# List containers
+docker ps
+
+# Remove one or more containers
+# docker rm <containers...>
+docker rm ubuntu-testing
 ```
