@@ -1,0 +1,342 @@
+<!doctype html><html lang=en-us><title>Objc Snippet | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="my blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/objc-snippet/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Objc Snippet</h1><time datetime=2023-03-29T21:18:40+08:00>March 29, 2023</time></header><h2 id=class-in-objective-c>Class in Objective-C</h2><h3 id=quickstarthttpswwwtutorialspointcomobjective_cobjective_c_quick_guidehtm><a href=https://www.tutorialspoint.com/objective_c/objective_c_quick_guide.htm>QuickStart</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>Person</span> : <span style=color:#a6e22e>NSObject</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSString <span style=color:#f92672>*</span>name;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) NSInteger age;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) <span style=color:#66d9ef>int</span> birthYear;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>instancetype</span>)<span style=color:#a6e22e>initWithName:</span>(NSString <span style=color:#f92672>*</span>)name <span style=color:#a6e22e>age:</span>(NSInteger)age;
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>sayHello</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@implementation</span> <span style=color:#a6e22e>Person</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@synthesize</span> birthYear;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>instancetype</span>)<span style=color:#a6e22e>initWithName:</span>(NSString <span style=color:#f92672>*</span>)name <span style=color:#a6e22e>age:</span>(NSInteger)age {
+</span></span><span style=display:flex><span>    self <span style=color:#f92672>=</span> [super init];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (self) {
+</span></span><span style=display:flex><span>        _name <span style=color:#f92672>=</span> name;
+</span></span><span style=display:flex><span>        _age <span style=color:#f92672>=</span> age;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> self;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>sayHello</span> {
+</span></span><span style=display:flex><span>    NSLog(<span style=color:#e6db74>@&#34;Hello, my name is %@ and I am %ld years old.&#34;</span>, self.name, (<span style=color:#66d9ef>long</span>)self.age);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> main(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span> argv[]) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>@autoreleasepool</span> {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// insert code here...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        NSLog(<span style=color:#e6db74>@&#34;Hello, World!&#34;</span>);
+</span></span><span style=display:flex><span>        Person <span style=color:#f92672>*</span>person <span style=color:#f92672>=</span> [[Person alloc] initWithName:<span style=color:#e6db74>@&#34;John Doe&#34;</span> age:<span style=color:#ae81ff>25</span>];
+</span></span><span style=display:flex><span>        person.birthYear <span style=color:#f92672>=</span> <span style=color:#ae81ff>2022</span>;
+</span></span><span style=display:flex><span>        [person sayHello];
+</span></span><span style=display:flex><span>        NSLog(<span style=color:#e6db74>@&#34;%d&#34;</span>, person.birthYear);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=synthesize>@synthesize</h3><p>@synthesize height;</p><p>@synthesize is an Objective-C directive used to automatically generate getter and setter methods for a class property.</p><p>Before the release of Objective-C 2.0, developers had to write both the getter and setter methods themselves, which could be quite verbose and repetitive. However, with @synthesize, the compiler can generate these methods automatically based on the declared property, greatly simplifying the code.</p><p>For example, suppose you have a property height declared in a class Person. Instead of writing the getter and setter methods yourself, you can simply write:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#66d9ef>@implementation</span> <span style=color:#a6e22e>Person</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@synthesize</span> height;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span></code></pre></div><p>This will automatically generate the getter and setter methods for the height property.</p><p>Note that with the release of Objective-C 2.0, @synthesize is no longer strictly necessary. Instead, you can use the @property directive to declare the property and the compiler will automatically generate the getter and setter methods by default. However, @synthesize can still be useful in some cases, such as when you need to customize the behavior of the generated methods.</p><h2 id=property-in-objc>Property in objc</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>MyObject</span> : <span style=color:#a6e22e>NSObject</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> memberVar1; <span style=color:#75715e>// 显式地声明实例变量
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>id</span>  memberVar2;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>HotDiscussionModel</span> : <span style=color:#a6e22e>NSObject</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) NSString <span style=color:#f92672>*</span>guid;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) NSString <span style=color:#f92672>*</span>picUrl;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) NSString <span style=color:#f92672>*</span>hotLink;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span></code></pre></div><p>这两段代码的区别在于定义实例变量的方式不同。</p><p>第一段代码在 @interface 语句中声明了实例变量 memberVar1 和 memberVar2。这种方式是早期 Objective-C 的写法，在现代 Objective-C 中不太常见了。</p><p>而第二段代码则使用了现代 Objective-C 的属性声明方式，使用 @property 来定义属性，不需要显式地声明实例变量。编译器会自动为属性生成对应的实例变量 _guid、_picUrl 和 _hotLink。</p><p>需要注意的是，在第二段代码中，属性的 assign 关键字表示该属性的 setter 方法会直接将传入的参数赋值给实例变量，不会进行内存管理。而 retain 和 copy 则会自动处理内存管理，retain 表示 setter 方法会对传入的对象进行引用计数 +1 的操作，而 copy 表示 setter 方法会对传入的对象进行一份拷贝，然后进行引用计数的操作。通常情况下，对于对象类型的属性，我们应该使用 copy 或 strong 来进行内存管理，而对于基本数据类型的属性，我们可以使用 assign。</p><h2 id=initializationhttpsdeveloperapplecomlibraryarchivedocumentationcocoaconceptualprogrammingwithobjectivecworkingwithobjectsworkingwithobjectshtmlapple_refdocuidtp40011210-ch4-sw1><a href=https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithObjects/WorkingwithObjects.html#//apple_ref/doc/uid/TP40011210-CH4-SW1>Initialization</a></h2><p>Use new to Create an Object If No Arguments Are Needed for Initialization
+It’s also possible to create an instance of a class using the new class method. This method is provided by NSObject and doesn’t need to be overridden in your own subclasses.</p><p>It’s effectively the same as calling alloc and init with no arguments:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span>XYZObject <span style=color:#f92672>*</span>object <span style=color:#f92672>=</span> [XYZObject new];
+</span></span><span style=display:flex><span><span style=color:#75715e>// is effectively the same as:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>XYZObject <span style=color:#f92672>*</span>object <span style=color:#f92672>=</span> [[XYZObject alloc] init];
+</span></span></code></pre></div><h2 id=struct-in-objective-c>Struct in Objective-C</h2><ul><li><a href=https://blog.csdn.net/srn214/article/details/47788231>OC中定义了一个结构体(struct)，设置结构体的值</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// main.m 文件
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#import &lt;Foundation/Foundation.h&gt;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#import &#34;Dog.h&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#import &#34;Person.h&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#import &#34;Student.h&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span> argv[]) {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>@autoreleasepool</span> {
+</span></span><span style=display:flex><span>        Person <span style=color:#f92672>*</span>p1 <span style=color:#f92672>=</span> [[Person alloc] init];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 给对象中的结构体(struct)赋值
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>// 如果直接用c语言的方式直接赋值就会报错，如s-&gt;birthday={1990,12,11};就会抛出错误
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>// 声明并初始化一个struct类型临时变量，再整个赋值给birthday成员。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>        Date d <span style=color:#f92672>=</span> {<span style=color:#ae81ff>2015</span>, <span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>22</span>};
+</span></span><span style=display:flex><span>        p1.birthday <span style=color:#f92672>=</span> d;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Person.h 文件
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#import &lt;Foundation/Foundation.h&gt;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>// 生日
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> year; <span style=color:#75715e>// 年
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> month; <span style=color:#75715e>// 月
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> day; <span style=color:#75715e>// 日
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>} Date;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 性别
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>enum</span> {
+</span></span><span style=display:flex><span>    XingBieMan,
+</span></span><span style=display:flex><span>    XingBieWoman
+</span></span><span style=display:flex><span>} XingBie;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>Person</span> : <span style=color:#a6e22e>NSObject</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 姓名的setter和getter
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>retain</span>) NSString <span style=color:#f92672>*</span>name;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 生日的setter和getter
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) Date birthday;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 年龄的setter和getter
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) <span style=color:#66d9ef>int</span> age;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 性别
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) XingBie sex;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 身高
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) <span style=color:#66d9ef>double</span> height;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 体重
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) <span style=color:#66d9ef>double</span> weight;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span></code></pre></div><h2 id=turn-json-file-into-model-object>Turn JSON File into Model Object</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;John Doe&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;age&#34;</span>: <span style=color:#ae81ff>30</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// Person.h 文件内容：
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#import &lt;Foundation/Foundation.h&gt;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>Person</span> : <span style=color:#a6e22e>NSObject</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSString <span style=color:#f92672>*</span>name;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>assign</span>) NSInteger age;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>instancetype</span>)<span style=color:#a6e22e>initWithDictionary:</span>(NSDictionary <span style=color:#f92672>*</span>)dictionary;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// Person.m 文件内容：
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#import &#34;Person.h&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@implementation</span> <span style=color:#a6e22e>Person</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>instancetype</span>)<span style=color:#a6e22e>initWithDictionary:</span>(NSDictionary <span style=color:#f92672>*</span>)dictionary {
+</span></span><span style=display:flex><span>    self <span style=color:#f92672>=</span> [super init];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (self) {
+</span></span><span style=display:flex><span>        _name <span style=color:#f92672>=</span> dictionary[<span style=color:#e6db74>@&#34;name&#34;</span>];
+</span></span><span style=display:flex><span>        _age <span style=color:#f92672>=</span> [dictionary[<span style=color:#e6db74>@&#34;age&#34;</span>] integerValue];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> self;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// main.m 文件内容：
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#import &lt;Foundation/Foundation.h&gt;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#import &#34;Person.h&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span> argv[]) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>@autoreleasepool</span> {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 1. 读取 JSON 文件
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>// If you use Xcode CLI
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        NSString <span style=color:#f92672>*</span>filePath <span style=color:#f92672>=</span> <span style=color:#e6db74>@&#34;/Users/frank/Example/CLITesting/CLITesting/person.json&#34;</span>;
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// If you use Xcode App
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>// NSString *filePath = [[NSBundle mainBundle] pathForResource:@&#34;data&#34; ofType:@&#34;json&#34;];
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        NSData <span style=color:#f92672>*</span>jsonData <span style=color:#f92672>=</span> [NSData dataWithContentsOfFile:filePath];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//        NSLog(@&#34;%@&#34;, jsonData);
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#75715e>// 2. 使用 NSJSONSerialization 将 JSON 数据转换为字典
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        NSError <span style=color:#f92672>*</span>error;
+</span></span><span style=display:flex><span>        NSDictionary <span style=color:#f92672>*</span>jsonDictionary <span style=color:#f92672>=</span> [NSJSONSerialization
+</span></span><span style=display:flex><span>                                        JSONObjectWithData:jsonData
+</span></span><span style=display:flex><span>                                        options:kNilOptions
+</span></span><span style=display:flex><span>                                        error:<span style=color:#f92672>&amp;</span>error];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 3. 判断是否转换成功
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        <span style=color:#66d9ef>if</span> (error) {
+</span></span><span style=display:flex><span>            NSLog(<span style=color:#e6db74>@&#34;Error converting JSON to NSDictionary: %@&#34;</span>, error.localizedDescription);
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// 4. 使用字典初始化 Person 对象
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>            Person <span style=color:#f92672>*</span>person <span style=color:#f92672>=</span> [[Person alloc] initWithDictionary:jsonDictionary];
+</span></span><span style=display:flex><span>            NSLog(<span style=color:#e6db74>@&#34;Person name: %@, age: %ld&#34;</span>, person.name, (<span style=color:#66d9ef>long</span>)person.age);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=array-of-json-objects>Array of JSON Objects</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>[
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;John Doe&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;age&#34;</span>: <span style=color:#ae81ff>30</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Frank Doe&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;age&#34;</span>: <span style=color:#ae81ff>330</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>]
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// 1. 读取 JSON 文件
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>NSString <span style=color:#f92672>*</span>filePath <span style=color:#f92672>=</span> <span style=color:#e6db74>@&#34;/Users/frank/Example/CLITesting/CLITesting/person.json&#34;</span>;
+</span></span><span style=display:flex><span>NSData <span style=color:#f92672>*</span>jsonData <span style=color:#f92672>=</span> [NSData dataWithContentsOfFile:filePath];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//        NSLog(@&#34;%@&#34;, jsonData);
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 2. 使用 NSJSONSerialization 将 JSON 数据转换为字典
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>NSError <span style=color:#f92672>*</span>error;
+</span></span><span style=display:flex><span>NSDictionary <span style=color:#f92672>*</span>jsonDictionary <span style=color:#f92672>=</span> [NSJSONSerialization
+</span></span><span style=display:flex><span>                                JSONObjectWithData:jsonData
+</span></span><span style=display:flex><span>                                options:kNilOptions
+</span></span><span style=display:flex><span>                                error:<span style=color:#f92672>&amp;</span>error];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 3. 判断是否转换成功
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>if</span> (error) {
+</span></span><span style=display:flex><span>    NSLog(<span style=color:#e6db74>@&#34;Error converting JSON to NSDictionary: %@&#34;</span>, error.localizedDescription);
+</span></span><span style=display:flex><span>} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 4. 使用字典初始化 Person 对象
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//            Person *person = [[Person alloc] initWithDictionary:jsonDictionary];
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//            NSLog(@&#34;Person name: %@, age: %ld&#34;, person.name, (long)person.age);
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    NSMutableArray <span style=color:#f92672>*</span>personArray <span style=color:#f92672>=</span> [NSMutableArray array];
+</span></span><span style=display:flex><span>    NSLog(<span style=color:#e6db74>@&#34;%@&#34;</span>, jsonDictionary);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (NSDictionary <span style=color:#f92672>*</span>dict <span style=color:#66d9ef>in</span> jsonDictionary) {
+</span></span><span style=display:flex><span>        Person <span style=color:#f92672>*</span>person <span style=color:#f92672>=</span> [[Person alloc] init];
+</span></span><span style=display:flex><span>        person.age <span style=color:#f92672>=</span> [dict[<span style=color:#e6db74>@&#34;age&#34;</span>] integerValue];
+</span></span><span style=display:flex><span>        person.name <span style=color:#f92672>=</span> dict[<span style=color:#e6db74>@&#34;name&#34;</span>];
+</span></span><span style=display:flex><span>        [personArray addObject:person];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    NSLog(<span style=color:#e6db74>@&#34;%@&#34;</span>, personArray);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=another-example>Another Example</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>//
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//  main.m
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//  CLITesting
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//  Created by hb24155 on 3/30/23.
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#import &lt;Foundation/Foundation.h&gt;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>HotDetail</span> : <span style=color:#a6e22e>NSObject</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSString <span style=color:#f92672>*</span>contentId;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSArray<span style=color:#f92672>&lt;</span>NSString <span style=color:#f92672>*&gt;</span> <span style=color:#f92672>*</span>headImageList;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSString <span style=color:#f92672>*</span>pvCount;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSString <span style=color:#f92672>*</span>iconUrl;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSString <span style=color:#f92672>*</span>title;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSString <span style=color:#f92672>*</span>jumpUrl;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>instancetype</span>)<span style=color:#a6e22e>initWithDictionary:</span>(NSDictionary <span style=color:#f92672>*</span>)dictionary;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@implementation</span> <span style=color:#a6e22e>HotDetail</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>instancetype</span>)<span style=color:#a6e22e>initWithDictionary:</span>(NSDictionary <span style=color:#f92672>*</span>)dictionary {
+</span></span><span style=display:flex><span>    self <span style=color:#f92672>=</span> [super init];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (self) {
+</span></span><span style=display:flex><span>        _contentId <span style=color:#f92672>=</span> dictionary[<span style=color:#e6db74>@&#34;contentId&#34;</span>];
+</span></span><span style=display:flex><span>        _headImageList <span style=color:#f92672>=</span> dictionary[<span style=color:#e6db74>@&#34;headImageList&#34;</span>];
+</span></span><span style=display:flex><span>        _pvCount <span style=color:#f92672>=</span> dictionary[<span style=color:#e6db74>@&#34;pvCount&#34;</span>];
+</span></span><span style=display:flex><span>        _iconUrl <span style=color:#f92672>=</span> dictionary[<span style=color:#e6db74>@&#34;iconUrl&#34;</span>];
+</span></span><span style=display:flex><span>        _title <span style=color:#f92672>=</span> dictionary[<span style=color:#e6db74>@&#34;title&#34;</span>];
+</span></span><span style=display:flex><span>        _jumpUrl <span style=color:#f92672>=</span> dictionary[<span style=color:#e6db74>@&#34;jumpUrl&#34;</span>];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> self;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>HotDiscussion</span> : <span style=color:#a6e22e>NSObject</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSString <span style=color:#f92672>*</span>guid;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSString <span style=color:#f92672>*</span>picUrl;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSString <span style=color:#f92672>*</span>hotLink;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSArray<span style=color:#f92672>&lt;</span>HotDetail <span style=color:#f92672>*&gt;</span> <span style=color:#f92672>*</span>hotDetailList;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>instancetype</span>)<span style=color:#a6e22e>initWithDictionary:</span>(NSDictionary <span style=color:#f92672>*</span>)dictionary;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@implementation</span> <span style=color:#a6e22e>HotDiscussion</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- (<span style=color:#66d9ef>instancetype</span>)<span style=color:#a6e22e>initWithDictionary:</span>(NSDictionary <span style=color:#f92672>*</span>)dictionary {
+</span></span><span style=display:flex><span>    self <span style=color:#f92672>=</span> [super init];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (self) {
+</span></span><span style=display:flex><span>        _guid <span style=color:#f92672>=</span> dictionary[<span style=color:#e6db74>@&#34;guid&#34;</span>];
+</span></span><span style=display:flex><span>        _picUrl <span style=color:#f92672>=</span> dictionary[<span style=color:#e6db74>@&#34;picUrl&#34;</span>];
+</span></span><span style=display:flex><span>        _hotLink <span style=color:#f92672>=</span> dictionary[<span style=color:#e6db74>@&#34;hotLink&#34;</span>];
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        NSMutableArray <span style=color:#f92672>*</span>details <span style=color:#f92672>=</span> [NSMutableArray array];
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (NSDictionary <span style=color:#f92672>*</span>detailDict <span style=color:#66d9ef>in</span> dictionary[<span style=color:#e6db74>@&#34;hotDetailList&#34;</span>]) {
+</span></span><span style=display:flex><span>            HotDetail <span style=color:#f92672>*</span>detail <span style=color:#f92672>=</span> [[HotDetail alloc] initWithDictionary:detailDict];
+</span></span><span style=display:flex><span>            [details addObject:detail];
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        _hotDetailList <span style=color:#f92672>=</span> [details <span style=color:#66d9ef>copy</span>];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> self;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> main(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span> argv[]) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>@autoreleasepool</span> {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// insert code here...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        NSLog(<span style=color:#e6db74>@&#34;Hello, World!&#34;</span>);
+</span></span><span style=display:flex><span>        NSString <span style=color:#f92672>*</span>jsonString <span style=color:#f92672>=</span> <span style=color:#e6db74>@&#34;{</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>hotDiscussion</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: {</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>guid</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>do mollit pro</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>picUrl</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>adipisicing deserunt ea ex</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>hotLink</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>occaecat</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>hotDetailList</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: [{</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>contentId</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>quis mollit sit</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>headImageList</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: [</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>labore deserunt sint</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>cup</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>aliqua sint magna</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>],</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>pvCount</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>laboris id adipisicing</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>iconUrl</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>ut non</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>title</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>aute exercitation nisi tempor</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>jumpUrl</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>ut ut eu cupidatat</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>},{</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>contentId</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>nostrud exercitation quis cupidatat eiusmod</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>headImageList</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: [</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>incididunt sunt</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>exercitation enim officia aute</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>],</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>pvCount</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>labore</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>iconUrl</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>sed tempor magna nulla</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>title</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>in amet dolor minim</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>,</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>jumpUrl</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>: </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>amet</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>}]}}&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        NSData <span style=color:#f92672>*</span>jsonData <span style=color:#f92672>=</span> [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+</span></span><span style=display:flex><span>        NSError <span style=color:#f92672>*</span>error;
+</span></span><span style=display:flex><span>        NSDictionary <span style=color:#f92672>*</span>jsonDict <span style=color:#f92672>=</span> [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:<span style=color:#f92672>&amp;</span>error];
+</span></span><span style=display:flex><span>        NSLog(<span style=color:#e6db74>@&#34;%@&#34;</span>, jsonDict);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/*
+</span></span></span><span style=display:flex><span><span style=color:#75715e> &#34;hotDiscussion&#34;: {
+</span></span></span><span style=display:flex><span><span style=color:#75715e>     &#34;guid&#34;: &#34;do mollit pro&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>     &#34;picUrl&#34;: &#34;adipisicing deserunt ea ex&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>     &#34;hotLink&#34;: &#34;occaecat&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>     &#34;hotDetailList&#34;: [
+</span></span></span><span style=display:flex><span><span style=color:#75715e>         {
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;contentId&#34;: &#34;quis mollit sit&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;headImageList&#34;: [
+</span></span></span><span style=display:flex><span><span style=color:#75715e>                 &#34;labore deserunt sint&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>                 &#34;cup&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>                 &#34;aliqua sint magna&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             ],
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;pvCount&#34;: &#34;laboris id adipisicing&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;iconUrl&#34;: &#34;ut non&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;title&#34;: &#34;aute exercitation nisi tempor&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;jumpUrl&#34;: &#34;ut ut eu cupidatat&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>         },
+</span></span></span><span style=display:flex><span><span style=color:#75715e>         {
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;contentId&#34;: &#34;nostrud exercitation quis cupidatat eiusmod&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;headImageList&#34;: [
+</span></span></span><span style=display:flex><span><span style=color:#75715e>                 &#34;incididunt sunt&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>                 &#34;exercitation enim officia aute&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             ],
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;pvCount&#34;: &#34;labore&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;iconUrl&#34;: &#34;sed tempor magna nulla&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;title&#34;: &#34;in amet dolor minim&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>             &#34;jumpUrl&#34;: &#34;amet&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>         },
+</span></span></span><span style=display:flex><span><span style=color:#75715e>     ]
+</span></span></span><span style=display:flex><span><span style=color:#75715e> }
+</span></span></span><span style=display:flex><span><span style=color:#75715e> */</span>
+</span></span></code></pre></div></article></html>
