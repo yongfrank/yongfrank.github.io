@@ -107,3 +107,23 @@ If any line matches the tags or errors, it is displayed as a warning or error me
 > Its purpose is to tell the Xcode compiler to separate the code in the editor window top method and function pop-up menu, as shown in the following figure:
 
 ![#pragma mark -](https://ucc.alicdn.com/pic/developer-ecology/269a1ac714b14b42b3abb0088dc79549.png)
+
+## DISAMBIGUATOR for Downloadable Project 
+
+* [建立方便大家安裝到手機的 Xcode 專案 — 搭配 xcconfig & Team ID](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/建立方便大家安裝到手機的-xcode-專案-搭配-xcconfig-team-id-fb072ed08b2f)
+
+```
+//
+// See the LICENSE.txt file for this sample’s licensing information.
+//
+// SampleCode.xcconfig
+//
+
+// The `SAMPLE_CODE_DISAMBIGUATOR` configuration is to make it easier to build
+// and run a sample code project. Once you set your project's development team,
+// you'll have a unique bundle identifier. This is because the bundle identifier
+// is derived based on the 'SAMPLE_CODE_DISAMBIGUATOR' value. Do not use this
+// approach in your own projects—it's only useful for sample code projects because
+// they are frequently downloaded and don't have a development team set.
+SAMPLE_CODE_DISAMBIGUATOR=${DEVELOPMENT_TEAM}
+```

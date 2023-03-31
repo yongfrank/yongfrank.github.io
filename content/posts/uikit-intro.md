@@ -38,6 +38,8 @@ date: 2023-03-27T13:31:46+08:00
 ### Protocol & UICollectionView
 
 * [[OC] UIcollectionView and UIcollectionViewCell](https://www.cnblogs.com/OranBlog/p/9208782.html)
+* [[Swift] UICollectionView data source and delegates](https://xuebaonline.com/UICollectionView%20data%20source%20and%20delegates/)
+* [纯代码创建UICollectionView步骤以及简单使用](https://www.jianshu.com/p/16c9d466f88c)
 
 ```objc
 // ViewController.h
@@ -125,6 +127,10 @@ date: 2023-03-27T13:31:46+08:00
 }
 @end
 ```
+
+## No Storyboard
+
+* [Day-11 使用UIKit框架建立iOS App專案(不使用storyboard)](https://ithelp.ithome.com.tw/m/articles/10298398)
 
 ## Loading Method of AppDelegate, SceneDelegate and Controller AppDelegate、SceneDelegate、控制器的加载方式
 

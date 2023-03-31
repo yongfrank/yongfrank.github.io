@@ -5,6 +5,9 @@ date: 2023-03-29T21:18:40+08:00
 
 ## Class in Objective-C
 
+* [Apple Developer: Programming With Objective-C](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html)
+* [Apple Developer: Start Developing Mac Apps Today](https://developer.apple.com/library/archive/referencelibrary/GettingStarted/RoadMapOSX/chapters/01_Introduction.html)
+
 ### [QuickStart](https://www.tutorialspoint.com/objective_c/objective_c_quick_guide.htm)
 
 ```objc

@@ -29,3 +29,102 @@ Proceeds	        0	    -
 SessionsOpt-in Only	23	    -
 CrashesOpt-in Only	0	    -
 ```
+
+## App Store Page Details
+
+* [FROM: Creating your product page](https://developer.apple.com/app-store/product-page/)
+
+### App name
+
+Your app’s name plays a critical role in how users discover it on the App Store. Choose a simple, memorable name that is easy to spell and hints at what your app does. Be distinctive. Avoid names that use generic terms or are too similar to existing app names. An app name can be up to 30 characters long.
+
+### Subtitle
+
+Your app’s subtitle is intended to summarize your app in a concise phrase. Consider using this, rather than your app’s name, to explain the value of your app in greater detail. Avoid generic descriptions such as “world’s best app.” Instead, highlight features or typical uses of your app that resonate with your audience. You can update your subtitle when submitting a new version of your app to help you determine the subtitle that’s most effective for engaging users. A subtitle can be up to 30 characters long and appears below your app’s name throughout the App Store.
+
+### Description
+
+Provide an engaging description that highlights the features and functionality of your app. The ideal description is a concise, informative paragraph followed by a short list of main features. Let potential users know what makes your app unique and why they’ll love it. Communicate in the tone of your brand, and use terminology your target audience will appreciate and understand. The first sentence of your description is the most important — this is what users can read without having to tap to read more. Every word counts, so focus on your app’s unique features.
+
+If you choose to mention an accolade, we recommend putting it at the end of your description or as part of your promotional text. Don’t add unnecessary keywords to your description in an attempt to improve search results. Also avoid including specific prices in your app description. Pricing is already shown on the product page, and references within the description may not be accurate in all regions.
+
+You can update your app’s description when you submit a new version of your app. If you want to share important updates more frequently, consider using your promotional text instead.
+
+### Promotional text
+
+Your app’s promotional text appears at the top of the description and is up to 170 characters long. You can update promotional text at any time without having to submit a new version of your app. Consider using this to share the latest news about your app, such as limited-time sales or upcoming features.
+
+### Keywords
+
+Keywords help determine where your app displays in search results, so choose them carefully to ensure your app is easily discoverable. Choose keywords based on words you think your audience will use to find an app like yours. Be specific when describing your app’s features and functionality to help the search algorithm surface your app in relevant searches. Consider the trade-off between ranking well for less common terms versus ranking lower for popular terms. Popular, functional terms, such as “jobs” or “social”, may drive a lot of traffic, but are highly competitive in the rankings. Less common terms drive lower traffic, but are less competitive.
+
+Keywords are limited to 100 characters total, with terms separated by commas and no spaces. (Note that you can use spaces to separate words within keyword phrases. For example: Property,House,Real Estate.) Maximize the number of words that fit in this character limit by avoiding the following:
+
+* Plurals of words that you’ve already included in singular form
+* Names of categories or the word “app”
+* Duplicate words
+* Special characters — such as # or @ — unless they’re part of your brand identity. Special characters don’t carry extra weight when users search for your app.
+
+Improper use of keywords is a common reason for App Store rejections. Do not use the following in your keywords:
+
+* Unauthorized use of trademarked terms, celebrity names, and other protected words and phrases
+* Terms that are not relevant to the app
+* Competing app names
+* Irrelevant, inappropriate, offensive, or objectionable terms
+In addition, keep in mind that promotional text doesn’t affect your app’s search ranking so it should not be used to display keywords.
+
+### What’s New
+
+When you update your app, you can use What’s New to communicate changes to users. This text appears on your product page and on the Updates tab.
+
+If you added a feature or fixed a bug based on feedback, use What’s New to let users know that you’ve listened to them. List new features, content, or functionality in order of importance, and add call-to-action messaging that gets users excited about the update.
+
+## Developer.apple.com Global Localization
+
+```js
+// https://developer.apple.com/app-store/product-page/
+// Builds and appends Developer's Breadcrumbs HTML
+function developerBreadcrumbsInit(breadcrumbsElem) {
+    setTimeout(() => {
+        const defaultLang = document.querySelector("html").getAttribute("lang") ? document.querySelector("html").getAttribute("lang").replace("_", "-") : "en";
+
+        const { appleURL, developerURL } = createLocalizedAppleWebsiteLinks(defaultLang);
+        //Listens for changes to HTML lang attribute on single page apps
+        const developerBreadcrumbsObserver = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (mutation.type === "attributes" && mutation.attributeName === "lang") {
+                    const updatedLang = document.querySelector("html").getAttribute("lang") ? document.querySelector("html").getAttribute("lang").replace("_", "-") : "en";
+                    const { appleURL, developerURL } = createLocalizedAppleWebsiteLinks(updatedLang);
+                    appleLink.setAttribute("href", appleURL);
+                    developerLink.setAttribute("href", developerURL);
+                }
+            });
+        });
+
+        developerBreadcrumbsObserver.observe(document.querySelector("HTML"), {
+            attributes: true,
+        });
+    });
+}
+function createLocalizedAppleWebsiteLinks(language) {
+    let appleURL, developerURL;
+
+    switch (language) {
+        case "zh-CN":
+            appleURL = "https://www.apple.com.cn/";
+            developerURL = "/cn/";
+            return { appleURL, developerURL };
+        ...
+     }
+}
+```
+
+```css
+:lang(zh) .screen-search {
+    background-image: url(/cn/app-store/product-page/images/cn-screen-search-medium_2x.jpg);
+}
+```
+
+* Added a new feature in the "Add New Flag" section that allows you to select any flag from around the world by clicking on the large flag.
+* Improved app functionality and performance to ensure a smoother experience.
+* Fixed minor bugs to further enhance the app's stability.
