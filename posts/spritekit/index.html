@@ -1,0 +1,41 @@
+<!doctype html><html lang=en-us><title>SpriteKit | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="my blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/spritekit/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>SpriteKit</h1><time datetime=2023-03-29T01:36:34+08:00>March 29, 2023</time></header><h3 id=heading></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>SpriteKit</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>GameplayKit</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>GameScene</span>: SKScene {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>didMove</span>(to view: SKView) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> background = SKSpriteNode(imageNamed: <span style=color:#e6db74>&#34;background&#34;</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// https://developer.apple.com/design/human-interface-guidelines/foundations/layout#platform-considerations</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// Remember, unlike UIKit SpriteKit positions things based on their center</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// – i.e., the point 0,0 refers to the horizontal and vertical center of a node.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// iPad mini screen size: 1024x768</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// var position: CGPoint { get set } .position The default value is (0.0,0.0).</span>
+</span></span><span style=display:flex><span>        background.position = CGPoint(x: <span style=color:#ae81ff>512</span>, y: <span style=color:#ae81ff>384</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// The blend mode used to draw the sprite into the parent’s framebuffer.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// The source color replaces the destination color.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// The .replace option means &#34;just draw it, ignoring any alpha values,&#34;</span>
+</span></span><span style=display:flex><span>        background.blendMode = .replace
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        background.zPosition = <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// Adds a node to the end of the receiver’s list of child nodes.</span>
+</span></span><span style=display:flex><span>        addChild(background)
+</span></span><span style=display:flex><span>        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>touchesBegan</span>(<span style=color:#66d9ef>_</span> touches: Set&lt;UITouch&gt;, with event: UIEvent?) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> touch = touches.first {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> location = touch.location(<span style=color:#66d9ef>in</span>: <span style=color:#66d9ef>self</span>)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> box = SKSpriteNode(imageNamed: <span style=color:#e6db74>&#34;ballBlue&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e>//            let box = SKSpriteNode(color: .red, size: CGSize(width: 64, height: 64))</span>
+</span></span><span style=display:flex><span>            box.position = location
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            <span style=color:#75715e>// img @2x 88 x 88 ==&gt; 44 x 44 ==&gt; dimensions = 22</span>
+</span></span><span style=display:flex><span>            box.physicsBody = SKPhysicsBody(circleOfRadius: <span style=color:#ae81ff>22</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e>//            box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 64, height: 64))</span>
+</span></span><span style=display:flex><span>            addChild(box)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></article></html>
