@@ -79,7 +79,7 @@ When you update your app, you can use What’s New to communicate changes to use
 
 If you added a feature or fixed a bug based on feedback, use What’s New to let users know that you’ve listened to them. List new features, content, or functionality in order of importance, and add call-to-action messaging that gets users excited about the update.
 
-## Developer.apple.com Global Localization
+## Developer.apple.com [Global Localization](https://developer.apple.com/app-store/product-page/)
 
 ```js
 // https://developer.apple.com/app-store/product-page/
@@ -124,7 +124,3 @@ function createLocalizedAppleWebsiteLinks(language) {
     background-image: url(/cn/app-store/product-page/images/cn-screen-search-medium_2x.jpg);
 }
 ```
-
-* Added a new feature in the "Add New Flag" section that allows you to select any flag from around the world by clicking on the large flag.
-* Improved app functionality and performance to ensure a smoother experience.
-* Fixed minor bugs to further enhance the app's stability.
