@@ -127,3 +127,70 @@ If any line matches the tags or errors, it is displayed as a warning or error me
 // they are frequently downloaded and don't have a development team set.
 SAMPLE_CODE_DISAMBIGUATOR=${DEVELOPMENT_TEAM}
 ```
+
+## Xcode 14.3 Bug for Pod
+
+[Unable to build project in Xcode 14.3 beta due to missing arc dir at /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib](https://developer.apple.com/forums/thread/725300)
+
+```podfile
+post_install do |installer|
+  installer.generated_projects.each do |project|
+    project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+         end
+    end
+  end
+end
+```
+
+## Swift Package Manager through Proxy
+
+* [Xcode SPM Problem in mainland CN](https://www.v2ex.com/t/864822#r_11859057)
+
+[ClashX](https://github.com/yichengchen/clashX#install) Pro 开增强已解决!(这个免费)
+
+Download ClashX Pro With enhanced mode and Native Apple Silicon support at [AppCenter](https://install.appcenter.ms/users/clashx/apps/clashx-pro/distribution_groups/public) for free permanently.
+
+* [Swift Package Manager through Proxy](https://juejin.cn/post/6946451335948697636)
+* [Xcode SPM](https://gist.github.com/liang2kl/15237e23b06e737f036b8c1c3e5c0102)
+* [Xcode SPM 走代理抓取package](https://www.jianshu.com/p/c3d565c8be98)
+
+```sh
+export all_proxy=<your_proxy>:<your_port>
+
+xcodebuild -resolvePackageDependencies -scmProvider system
+
+export https_proxy=http://127.0.0.1:YOURPORT http_proxy=http://127.0.0.1:YOURPORT all_proxy=socks5://127.0.0.1:YOURPORT
+
+# 如果是project 使用以下命令
+xcodebuild -resolvePackageDependencies -scmProvider system -project YOURPROJECT.xcodeproj
+
+# 如果是workspace 需要指定scheme，或者使用-list
+xcodebuild -resolvePackageDependencies -scmProvider system -list -workspace HackrNewsApp.xcworkspace
+```
+
+* [xcode spm with proxy](https://www.bolee.fun/xcode-spm-with-proxy.html)
+
+经过查询Xcode的使用的自带 `git` 程序为 `com.apple.dt.Xcode.sourcecontrol.Git`，在 Xcode 里面的 SPM 下载 github 时候可以到控制台查看具体程序`ps aux|grep com.apple.dt.Xcode`，显示结果如下：
+
+![xcode spm proxy git](https://www.bolee.fun/images/post/xcode-spm-proxy-git-show.jpg)
+
+* [解决swift package manager fetch慢的问题](https://www.cnblogs.com/vlucht/p/15015875.html)
+
+```sh
+# 前提: 你有一个代理
+
+# 因为直接打开Xcode是不会走代理的。
+
+# 以你需要现退出Xcode，然后在命令行里输入
+
+open -a Xcode.app
+
+# 保险起见你还可以在这之前加一句
+export ALL_PROXY=http://127.0.0.1:<PORT>
+```
+
+### Local SPM
+
+* [Getting 'no such module' error when importing a Swift Package Manager dependency](https://stackoverflow.com/questions/57165778/getting-no-such-module-error-when-importing-a-swift-package-manager-dependency)
