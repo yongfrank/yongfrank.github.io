@@ -1,5 +1,5 @@
 ---
-title: "Clash Config File"
+title: "Clash & Config File"
 date: 2023-03-20T10:26:07+08:00
 ---
 
@@ -86,4 +86,8 @@ rules:
     - MATCH, Rule
 ```
 
+## Tutorials
+
+* [ClashX Pro 使用教程 最好用的Mac苹果电脑科学上网工具](https://heaid.top/index.php/archives/34/)
+* [Mac 电脑使用 ClashX Pro 作为网关旁路由](https://qust.me/post/clashxProMac/)
 
