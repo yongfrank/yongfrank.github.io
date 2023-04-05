@@ -1,0 +1,35 @@
+<!doctype html><html lang=en-us><title>Combine | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="my blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/combine/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Combine</h1><time datetime=2023-04-03T00:34:18+08:00>April 03, 2023</time></header><h2 id=sink>Sink</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>// 每秒增加 10 % 进度条的代码</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Combine</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>@MainActor
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RegularExpressionModel</span>: ObservableObject {
+</span></span><span style=display:flex><span>    @Published <span style=color:#66d9ef>var</span> progress = <span style=color:#ae81ff>0.0</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>var</span> cancellable: AnyCancellable?
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>init</span>() {
+</span></span><span style=display:flex><span>        startProgressUpdate()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>startProgressUpdate</span>() {
+</span></span><span style=display:flex><span>        cancellable = Timer.publish(every: <span style=color:#ae81ff>1</span>, on: .main, <span style=color:#66d9ef>in</span>: .common)
+</span></span><span style=display:flex><span>            .autoconnect()
+</span></span><span style=display:flex><span>            .sink { [<span style=color:#66d9ef>weak</span> <span style=color:#66d9ef>self</span>] <span style=color:#66d9ef>_</span> <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>self</span>?.updateProgress()
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>updateProgress</span>() {
+</span></span><span style=display:flex><span>        progress <span style=color:#f92672>+=</span> <span style=color:#ae81ff>0.1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> progress == <span style=color:#ae81ff>1.0000</span> {
+</span></span><span style=display:flex><span>            cancellable?.cancel()
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>deinit</span> {
+</span></span><span style=display:flex><span>        cancellable?.cancel()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>在英语中，sink 这个词有许多不同的意思，包括“水槽”，“下沉”，“降低”，“沉没”等等。在 Combine 框架中，sink 表示订阅者将从源发布者接收新的事件，并执行一个闭包，因此，我们可以将 sink 视为一个“接收器”，用于接收流中的新值并进行后续处理。这个单词可能被用来表示值“下沉”或“降低”到更低级别的代码中进行处理，或者表示订阅者正在“吸收”发布者发出的事件。在 Combine 中，sink 是订阅一个发布者的一种方式，因此这个术语可能也反映了这一点，即“吸收”或“消耗”流中的事件。</p></article></html>

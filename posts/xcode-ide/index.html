@@ -46,4 +46,34 @@
 // approach in your own projects—it&#39;s only useful for sample code projects because
 // they are frequently downloaded and don&#39;t have a development team set.
 SAMPLE_CODE_DISAMBIGUATOR=${DEVELOPMENT_TEAM}
-</code></pre></article></html>
+</code></pre><h2 id=xcode-143-bug-for-pod>Xcode 14.3 Bug for Pod</h2><p><a href=https://developer.apple.com/forums/thread/725300>Unable to build project in Xcode 14.3 beta due to missing arc dir at /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib</a></p><pre tabindex=0><code class=language-podfile data-lang=podfile>post_install do |installer|
+  installer.generated_projects.each do |project|
+    project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings[&#39;IPHONEOS_DEPLOYMENT_TARGET&#39;] = &#39;11.0&#39;
+         end
+    end
+  end
+end
+</code></pre><h2 id=swift-package-manager-through-proxy>Swift Package Manager through Proxy</h2><ul><li><a href=https://www.v2ex.com/t/864822#r_11859057>Xcode SPM Problem in mainland CN</a></li></ul><p><a href=https://github.com/yichengchen/clashX#install>ClashX</a> Pro 开增强已解决!(这个免费)</p><p>Download ClashX Pro With enhanced mode and Native Apple Silicon support at <a href=https://install.appcenter.ms/users/clashx/apps/clashx-pro/distribution_groups/public>AppCenter</a> for free permanently.</p><ul><li><a href=https://juejin.cn/post/6946451335948697636>Swift Package Manager through Proxy</a></li><li><a href=https://gist.github.com/liang2kl/15237e23b06e737f036b8c1c3e5c0102>Xcode SPM</a></li><li><a href=https://www.jianshu.com/p/c3d565c8be98>Xcode SPM 走代理抓取package</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>export all_proxy<span style=color:#f92672>=</span>&lt;your_proxy&gt;:&lt;your_port&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>xcodebuild -resolvePackageDependencies -scmProvider system
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>export https_proxy<span style=color:#f92672>=</span>http://127.0.0.1:YOURPORT http_proxy<span style=color:#f92672>=</span>http://127.0.0.1:YOURPORT all_proxy<span style=color:#f92672>=</span>socks5://127.0.0.1:YOURPORT
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 如果是project 使用以下命令</span>
+</span></span><span style=display:flex><span>xcodebuild -resolvePackageDependencies -scmProvider system -project YOURPROJECT.xcodeproj
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 如果是workspace 需要指定scheme，或者使用-list</span>
+</span></span><span style=display:flex><span>xcodebuild -resolvePackageDependencies -scmProvider system -list -workspace HackrNewsApp.xcworkspace
+</span></span></code></pre></div><ul><li><a href=https://www.bolee.fun/xcode-spm-with-proxy.html>xcode spm with proxy</a></li></ul><p>经过查询Xcode的使用的自带 <code>git</code> 程序为 <code>com.apple.dt.Xcode.sourcecontrol.Git</code>，在 Xcode 里面的 SPM 下载 github 时候可以到控制台查看具体程序<code>ps aux|grep com.apple.dt.Xcode</code>，显示结果如下：</p><p><img src=https://www.bolee.fun/images/post/xcode-spm-proxy-git-show.jpg alt="xcode spm proxy git"></p><ul><li><a href=https://www.cnblogs.com/vlucht/p/15015875.html>解决swift package manager fetch慢的问题</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># 前提: 你有一个代理</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 因为直接打开Xcode是不会走代理的。</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 以你需要现退出Xcode，然后在命令行里输入</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>open -a Xcode.app
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 保险起见你还可以在这之前加一句</span>
+</span></span><span style=display:flex><span>export ALL_PROXY<span style=color:#f92672>=</span>http://127.0.0.1:&lt;PORT&gt;
+</span></span></code></pre></div><h3 id=local-spm>Local SPM</h3><ul><li><a href=https://stackoverflow.com/questions/57165778/getting-no-such-module-error-when-importing-a-swift-package-manager-dependency>Getting &rsquo;no such module&rsquo; error when importing a Swift Package Manager dependency</a></li></ul></article></html>
