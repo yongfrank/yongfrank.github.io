@@ -18,3 +18,9 @@ googleAnalytics = 'G-XZQ6YTCMN7'
 
 [markup.goldmark.renderer]
   unsafe = true # Allow HTML in md files
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2

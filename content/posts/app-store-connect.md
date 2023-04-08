@@ -11,7 +11,8 @@ date: 2023-03-30T00:12:53+08:00
 * Sessions Opt-in Only: The number of times the application was opened within a specific time period (only calculated if the user opts-in to data analytics).
 * Crashes Opt-in Only: The number of times the application crashed within a specific time period (only calculated if the user opts-in to data analytics).
 
-```
+<!-- markdownlint-disable MD010 -->
+```txt
 App Analytics Weekly Summary
 March 20-26, 2023
 Impressions	        297	    -72%

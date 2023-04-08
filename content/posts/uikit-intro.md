@@ -1,5 +1,5 @@
 ---
-title: "UIKit Intro in OC"
+title: "UIKit Intro in Objective-C & Swift"
 date: 2023-03-27T13:31:46+08:00
 ---
 
@@ -8,7 +8,7 @@ date: 2023-03-27T13:31:46+08:00
 * [Create a UIButton in Code with Objective-C](https://supereasyapps.com/blog/2014/8/4/create-a-uibutton-in-code-with-objective-c)
 
 ### Button
-
+<!-- markdownlint-disable MD010 -->
 ```objc
 // in file ViewController.m
 - (void)viewDidLoad {
@@ -126,6 +126,83 @@ date: 2023-03-27T13:31:46+08:00
     return 120;
 }
 @end
+```
+
+```swift
+import UIKit
+
+class ViewController: UIViewController {
+    
+    var collectionView: UICollectionView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        self.view.backgroundColor = .green
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        self.collectionView = UICollectionView(frame: self.view.safeAreaLayoutGuide.layoutFrame, collectionViewLayout: flowLayout)
+        
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = CGSizeMake(180, 180)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(ExampleCell.self, forCellWithReuseIdentifier: String(describing: type(of: ExampleCell.self)))
+        
+        self.view.addSubview(collectionView)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+}
+
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: type(of: ExampleCell.self)), for: indexPath) as! ExampleCell
+        cell.titleLabel.text = String(indexPath.row)
+        return cell
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        10
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected item at index: \(indexPath.row)")
+    }
+}
+
+class ExampleCell: UICollectionViewCell {
+    let titleLabel = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.initUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func initUI() {
+        self.backgroundColor = .red
+        
+        // Text for index
+        titleLabel.frame = CGRect(x: 50, y: 50, width: 50, height: 20)
+        self.addSubview(titleLabel)
+    }
+}
 ```
 
 ## No Storyboard
