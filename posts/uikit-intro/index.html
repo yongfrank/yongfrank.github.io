@@ -1,5 +1,5 @@
-<!doctype html><html lang=en-us><title>UIKit Intro in OC | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="my blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/uikit-intro/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>UIKit Intro in OC</h1><time datetime=2023-03-27T13:31:46+08:00>March 27, 2023</time></header><h2 id=quickstart>QuickStart</h2><ul><li><a href=https://supereasyapps.com/blog/2014/8/4/create-a-uibutton-in-code-with-objective-c>Create a UIButton in Code with Objective-C</a></li></ul><h3 id=button>Button</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// in file ViewController.m
+<!doctype html><html lang=en-us><title>UIKit Intro in Objective-C & Swift | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="my blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/uikit-intro/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>UIKit Intro in Objective-C & Swift</h1><time datetime=2023-03-27T13:31:46+08:00>March 27, 2023</time></header><nav id=TableOfContents><ul><li><a href=#quickstart>QuickStart</a><ul><li><a href=#button>Button</a></li><li><a href=#protocol--uicollectionview>Protocol & UICollectionView</a></li></ul></li><li><a href=#no-storyboard>No Storyboard</a></li><li><a href=#loading-method-of-appdelegate-scenedelegate-and-controller-appdelegatescenedelegate控制器的加载方式>Loading Method of AppDelegate, SceneDelegate and Controller AppDelegate、SceneDelegate、控制器的加载方式</a><ul><li><a href=#startup-process-启动过程>StartUp Process 启动过程</a></li></ul></li><li><a href=#target-for-project-in-xcode>Target for Project in Xcode</a></li><li><a href=#delegate>Delegate</a></li><li><a href=#swiftui-in-uikitobjective-c>SwiftUI In UIKit(Objective-C)</a></li></ul></nav><h2 id=quickstart>QuickStart</h2><ul><li><a href=https://supereasyapps.com/blog/2014/8/4/create-a-uibutton-in-code-with-objective-c>Create a UIButton in Code with Objective-C</a></li></ul><h3 id=button>Button</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// in file ViewController.m
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
 </span></span><span style=display:flex><span>    [super viewDidLoad];
 </span></span><span style=display:flex><span>
@@ -100,6 +100,80 @@
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>120</span>;
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>UIKit</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ViewController</span>: UIViewController {
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> collectionView: UICollectionView!
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>viewDidLoad</span>() {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>super</span>.viewDidLoad()
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// Do any additional setup after loading the view, typically from a nib.</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.view.backgroundColor = .green
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> flowLayout = UICollectionViewFlowLayout()
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.collectionView = UICollectionView(frame: <span style=color:#66d9ef>self</span>.view.safeAreaLayoutGuide.layoutFrame, collectionViewLayout: flowLayout)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        flowLayout.scrollDirection = .horizontal
+</span></span><span style=display:flex><span>        flowLayout.itemSize = CGSizeMake(<span style=color:#ae81ff>180</span>, <span style=color:#ae81ff>180</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        collectionView.delegate = <span style=color:#66d9ef>self</span>
+</span></span><span style=display:flex><span>        collectionView.dataSource = <span style=color:#66d9ef>self</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        collectionView.register(ExampleCell.<span style=color:#66d9ef>self</span>, forCellWithReuseIdentifier: String(describing: type(of: ExampleCell.<span style=color:#66d9ef>self</span>)))
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.view.addSubview(collectionView)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>didReceiveMemoryWarning</span>() {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>super</span>.didReceiveMemoryWarning()
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// Dispose of any resources that can be recreated.</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>extension</span> <span style=color:#a6e22e>ViewController</span>: UICollectionViewDataSource {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>collectionView</span>(<span style=color:#66d9ef>_</span> collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -&gt; UICollectionViewCell {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: type(of: ExampleCell.<span style=color:#66d9ef>self</span>)), <span style=color:#66d9ef>for</span>: indexPath) <span style=color:#66d9ef>as</span>! ExampleCell
+</span></span><span style=display:flex><span>        cell.titleLabel.text = String(indexPath.row)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> cell
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>numberOfSections</span>(<span style=color:#66d9ef>in</span> collectionView: UICollectionView) -&gt; Int {
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>collectionView</span>(<span style=color:#66d9ef>_</span> collectionView: UICollectionView, numberOfItemsInSection section: Int) -&gt; Int {
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>10</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>extension</span> <span style=color:#a6e22e>ViewController</span>: UICollectionViewDelegate {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>collectionView</span>(<span style=color:#66d9ef>_</span> collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;Selected item at index: </span><span style=color:#e6db74>\(</span>indexPath.row<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExampleCell</span>: UICollectionViewCell {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> titleLabel = UILabel()
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>init</span>(frame: CGRect) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>super</span>.<span style=color:#66d9ef>init</span>(frame: frame)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.initUI()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>required</span> <span style=color:#66d9ef>init</span>?(coder: NSCoder) {
+</span></span><span style=display:flex><span>        fatalError(<span style=color:#e6db74>&#34;init(coder:) has not been implemented&#34;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>initUI</span>() {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.backgroundColor = .red
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// Text for index</span>
+</span></span><span style=display:flex><span>        titleLabel.frame = CGRect(x: <span style=color:#ae81ff>50</span>, y: <span style=color:#ae81ff>50</span>, width: <span style=color:#ae81ff>50</span>, height: <span style=color:#ae81ff>20</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.addSubview(titleLabel)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
 </span></span></code></pre></div><h2 id=no-storyboard>No Storyboard</h2><ul><li><a href=https://ithelp.ithome.com.tw/m/articles/10298398>Day-11 使用UIKit框架建立iOS App專案(不使用storyboard)</a></li></ul><h2 id=loading-method-of-appdelegate-scenedelegate-and-controller-appdelegatescenedelegate控制器的加载方式>Loading Method of AppDelegate, SceneDelegate and Controller AppDelegate、SceneDelegate、控制器的加载方式</h2><ul><li><a href=https://blog.csdn.net/weixin_46926959/article/details/120076013>AppDelegate, SceneDelegate, Controller</a></li></ul><blockquote><p>iOS13 之前，AppDelegate的职责是：全权处理App生命周期和UI生命周期</p><p>Before iOS13, the AppDelegate is responsible for handling the entire App lifecycle and the UI lifecycle.</p><p>iOS 13 之后，AppDelegate的职责是：处理App生命周期和SceneDelegate 生命周期</p><p>After iOS 13, the AppDelegate is responsible for handling the App lifecycle and the SceneDelegate lifecycle.</p></blockquote><h3 id=startup-process-启动过程>StartUp Process 启动过程</h3><p>main函数 -> 自动释放池 -> UIApplicationMain（永不返回，保证程序不会被销毁）-> 创建应用程序对象UIApplication ->创建应用程序的代理对象AppDelegate -> IOS13之前，将AppDelegate的window实例化，设置为keyWindow主窗口 -> 加载配置文件指定的storyboard</p><p>main function -> autorelease pool -> UIApplicationMain (never returns, to ensure that the program will not be destroyed) -> create the application object UIApplication -> create the application delegate object AppDelegate -> IOS13 before, instantiate the AppDelegate&rsquo;s window, set it as the keyWindow main window -> load the storyboard specified in the configuration file</p><h2 id=target-for-project-in-xcode>Target for Project in Xcode</h2><ul><li><a href=https://ioscoachfrank.com/remove-main-storyboard.html>How to Properly Remove Main.Storyboard (for iOS 13+)</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#75715e>&lt;!-- Info.plist --&gt;</span>
 </span></span><span style=display:flex><span><span style=color:#75715e>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 </span></span><span style=display:flex><span><span style=color:#75715e>&lt;!DOCTYPE plist PUBLIC &#34;-//Apple//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;</span>
