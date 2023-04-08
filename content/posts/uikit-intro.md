@@ -304,3 +304,7 @@ class MainView: NSObject {
 
 @end
 ```
+
+## Lazy Instantiation
+
+> See more in [objc-snippet](../objc-snippet#lazy-instantiation)

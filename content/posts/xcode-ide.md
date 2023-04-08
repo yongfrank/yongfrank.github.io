@@ -3,6 +3,30 @@ title: "Xcode IDE"
 date: 2023-03-27T21:31:43+08:00
 ---
 
+## Xcode History
+
+> * [Xcode是如何诞生的？How did Xcode come into being](https://developer.aliyun.com/article/254338?spm=a2c6h.13262185.profile.341.699e167e7REVuk)
+
+Xcode是一款用于开发Mac和iOS应用程序的综合性开发工具，它由苹果公司开发和维护。Xcode最初的版本于2003年发布，自那时以来，它已经成为Mac和iOS开发的标准工具之一。
+
+Xcode的诞生可以追溯到1997年，当时苹果计算机公司正在寻求一款更好的工具来开发它的操作系统和应用程序。此时，苹果正在使用CodeWarrior和MPW等开发工具，但它们并不完全满足苹果的需求。
+
+苹果的开发团队决定开发一款自己的集成开发环境（IDE），旨在更好地支持苹果的开发工作流程。于是，在1997年，苹果成立了一个名为Project Builder的团队，该团队的任务是开发一款全新的IDE。
+
+Project Builder最初基于NeXTSTEP操作系统的工具，但随着苹果收购NeXT，它也开始使用Mac OS X技术。2003年，苹果发布了Xcode 1.0版本，这是一款全新的IDE，它汇集了Project Builder和一些其他开发工具的功能。随着时间的推移，Xcode的版本不断更新和改进，逐渐成为苹果开发的标准工具。
+
+今天，Xcode仍然是苹果开发应用程序的主要工具之一。它提供了一个综合性的工作环境，支持多种编程语言和开发框架，帮助开发人员更快、更高效地开发和部署应用程序。
+
+> * [LLVM和Clang背后的故事 Story of LLVM & Clang](https://developer.aliyun.com/article/254333?spm=a2c6h.13262185.profile.345.699e167e7REVuk)
+
+LLVM是Apple官方支持的编译器，而该编译器的前端是Clang，这两个工具都被集成到了Xcode里面。在这篇文章中，我们来了解一下LLVM和Clang背后的故事。
+
+此外，Clang有一个重要的衍生项目是静态分析工具，能够通过自动分析程序的逻辑，在编译时就找出程序可能的bug，这个功能叫做ARC。ARC的实现让当时的广大开发者们大为惊愕。
+
+除了LLVM核心和Clang以外，LLVM还包括一些重要的子项目，比如一个原生支持调试多线程程序的调试器LLDB和一个C++的标准库libstdc++。不光是Apple，很多的项目和编程语言都从LLVM中取得了关键性的技术。
+
+> [苹果用户界面Aqua背后的故事](https://developer.aliyun.com/article/254330?spm=a2c6h.13262185.profile.348.699e167e7REVuk)
+
 ## IDE Tutorials
 
 > * [Xcode 6 Articles: Shortcut ...](https://www.cnblogs.com/lxlx1798/category/1262403.html)
@@ -50,7 +74,6 @@ MARK: 标记，和#pragma mark效果相同，使用方法：// MARK:
 
 ### Building Phase - Generating Warnings and Errors with Comments
 
-
 ![Select the project, then move to the build phases](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*8nnN5Fkh97Vqbdy6uDDwBA.jpeg)
 
 ![The run script box - Buiding Phases Instruction](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*rsw9Lzpa-lR6xpHNEAy9ag.jpeg)
@@ -80,7 +103,7 @@ This script is used for searching and highlighting specific tags and errors in s
 If any line matches the tags or errors, it is displayed as a warning or error message using the perl command. The warning or error message is then displayed with the file name, line number, and the actual line containing the tag or error.
 
 > Now maybe you’re thinking, what’s the point? Don’t I still have to dig through the program, going file by file, clicking the dropdown menu, trying to find that TODO tag? What if the project has dozens of files? Won’t my TODO and FIXME tags get lost in the mess and forgotten? If only there was a way to get Xcode to give you a warning if a TODO tag is left unanswered!
-> 
+>
 > Click on the little plus sign at the trop right and select Run New Script Phase. The idea here is that you’re adding another step to the build process when Xcode builds your project. If you unwrap the arrow for the run script item, you’ll see a black box that will hold script that Xcode will run on every build.
 >
 > Now build your program. If you have any //TODO: or //FIXME: tags, Xcode will throw you a warning. If you write in an //ERROR: tag, Xcode will throw you an error and not run. (Note: you may have to move your script up in the build order.)
@@ -97,7 +120,7 @@ If any line matches the tags or errors, it is displayed as a warning or error me
 ```
 
 > [Xcode中那些让人焕然一新的特殊注释#pragma mark、TODO、FIXME、MARK](https://developer.aliyun.com/article/937303?accounttraceid=ba9d921bd3b745bfafb39602c62ad321gjpa)
-> 
+>
 > 从技术角度讲，以 #pragma 开头的代码是一条编译器指令，一个特定于程序或编译器的指令。它们不一定适用于其它编译器或其它环境。如果编译器不能识别该指令，则会将其忽略。
 >
 > 其作用是，告诉Xcode编译器，要在编辑器窗格顶部的方法和函数弹出菜单中将代码分隔开，如下图所示：
@@ -108,11 +131,11 @@ If any line matches the tags or errors, it is displayed as a warning or error me
 
 ![#pragma mark -](https://ucc.alicdn.com/pic/developer-ecology/269a1ac714b14b42b3abb0088dc79549.png)
 
-## DISAMBIGUATOR for Downloadable Project 
+## DISAMBIGUATOR for Downloadable Project
 
 > * [建立方便大家安裝到手機的 Xcode 專案 — 搭配 xcconfig & Team ID](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/建立方便大家安裝到手機的-xcode-專案-搭配-xcconfig-team-id-fb072ed08b2f)
 
-```
+```txt
 //
 // See the LICENSE.txt file for this sample’s licensing information.
 //
@@ -158,7 +181,8 @@ Download ClashX Pro With enhanced mode and Native Apple Silicon support at [AppC
 此 [openradar](http://ww.openradar.appspot.com/FB9447729) 中提出者指出了原因：Xcode 调用 libgit2 时传入了 GIT_PROXY_NONE，无视了 git config 中的 proxy 配置。作者说用了自己打的 libgit2 包可以解决问题，但没说具体怎么操作。
 
 看了一下 libgit2 里的声明：
-```
+<!-- markdownlint-disable md010 -->
+```txt
 	/**
 	 * Do not attempt to connect through a proxy
 	 *
@@ -167,9 +191,10 @@ Download ClashX Pro With enhanced mode and Native Apple Silicon support at [AppC
 	 */
 	GIT_PROXY_NONE,
 ```
+
 里面说如果构建时使用了 curl （一般都会使用 curl？）会遵循 curl 的配置，于是在 ~/.curlrc 中加入一行（具体 proxy 依你自己的配置来指定）：
 
-```
+```txt
 proxy = socks5://127.0.0.1:1080
 ```
 
@@ -228,7 +253,7 @@ export ALL_PROXY=http://127.0.0.1:<PORT>
 > [Xcode 中使用 SPM 和 Build Configuration 的一些坑](https://onevcat.com/2022/10/spm-in-xcode/#%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E5%92%8C-apple-silicon)
 >
 > 在模拟器上排除 arm64 导致的问题
-> 
+>
 > 在 Apple Silicon 的时代，默认情况下 Xcode 会使用 arm64 架构运行。这时候，自带的 iOS 模拟器也会跑在 arm64 下。如果你在项目里使用了一些老旧的以二进制发布的库，比如 fat binary 做的 framework，或者是不包含模拟器 arm64 的 .a 的文件，那么很可能在 Apple Silicon 的 mac 上，以模拟器为目标进行链接时，看到类似这样的错误：
 >
 > `building for iOS Simulator, but linking in object file built for iOS, for architecture arm64`
@@ -240,8 +265,9 @@ export ALL_PROXY=http://127.0.0.1:<PORT>
 > 这是一个治标不治本的“快速疗法”，加入这个设定可以让你编译通过并运行，但是你需要清楚了解到这么做的弊端：因为 arm64 被排除了，所以在 iOS 模拟器上，只有 x86_64 这一个架构选择。这意味着你的整个 app 都会以 x86_64 进行编译，然后跑在 x86_64 的模拟器上。而在 Apple Silicon 的 mac 上，这个模拟器其实是使用 Rosetta 2 跑起来的，这意味着性能的大幅下降。
 >
 > 对于 .debug，ONLY_ACTIVE_ARCH 为 true，编译目标为 arm64 的 iOS 模拟器，因此 SPM 只会给出 arm64-apple-ios-simulator 版本的编译结果。但是项目本身设定了 EXCLUDED_ARCHS arm64，它在链接包时，需要的其实是 x86_64 模拟器版本的包。砰！
-> 
+>
 > 对于老旧二进制的依赖，最正确的做法是催促维护者赶快适配 xcframework。另一种可行的方案，是 hack 一下二进制，修改 arm64 slice 的目标字段，“欺骗” Xcode 让它认为这个二进制的 arm64 就是为模拟器编译的。这种方法在这里有详细解释，作者也发布了相关的 arm64-to-sim 工具，如有需要，可以暂时酌情使用。
 
+## App icon in Xcode
 
-
+> [App Icon Generator is no longer needed with Xcode 14](https://www.avanderlee.com/xcode/replacing-app-icon-generators/)
