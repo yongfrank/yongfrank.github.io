@@ -3,6 +3,24 @@ title: "Objc Snippet"
 date: 2023-03-29T21:18:40+08:00
 ---
 
+## Type unsafe
+
+* [isEqual](https://developer.apple.com/documentation/objectivec/1418956-nsobject/1418795-isequal)
+* [isEqualTo](https://developer.apple.com/documentation/objectivec/nsobject/1393823-isequalto)
+* [OC底层原理之isEqual](https://juejin.cn/post/7127912661714468872)
+* [isEqual](https://existorlive.github.io/2020/05/26/isEqual-AND-hash-of-NSObject.html)
+
+```objc
+NSLog(@"%d", false == 0);
+NSLog(@"%d", nil == 0);
+NSLog(@"%d", 0 == 0);
+NSLog(@"%d", [false isEqual:0]);
+
+if (nil == 0) {
+    NSLog(@"equal");
+}
+```
+
 ## Class in Objective-C
 
 * [Apple Developer: Programming With Objective-C](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html)

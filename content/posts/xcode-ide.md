@@ -131,6 +131,55 @@ If any line matches the tags or errors, it is displayed as a warning or error me
 
 ![#pragma mark -](https://ucc.alicdn.com/pic/developer-ecology/269a1ac714b14b42b3abb0088dc79549.png)
 
+## Xcode Doc
+
+### Old Version
+
+> * [Markup Formatting Reference](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/Links.html)
+> * [xcode 高端花样注释](https://blog.csdn.net/allanGold/article/details/73164551)
+
+```swift
+/**
+ 
+这里就是我们的文档内容,这里是第一段的文字
+ 
+如果有多段描述,需要分段,需要在段落之间添加一个空行
+ 
+如果有分类,无序列表可使用-或+或*后跟一个空格来书写,如下:
+- 第一项
+- 第二项
++ 第三项
+* 第四项
+ 
+有序列表可直接按如下方式书写:
+1. 第一项
+2. 第二项
+3. 第三项
+ 
+插入代码段:
+`` `
+let a = 1
+let name = "注释"
+print("\(name)"
+`` `
+*/
+func SomeFunc(name: String) -> String {
+ 
+  return "文档注释"
+}
+```
+
+![Markdown语法](https://img-blog.csdn.net/20170613112608116)
+
+### DocC
+
+> * [Xcode DocC - Getting Started](https://useyourloaf.com/blog/xcode-docc-getting-started/)
+> * [Xcode中代码注释编写小技巧](https://juejin.cn/post/7020590213361565726)
+
+我个人建议是：以前代码注释就让它去吧，现在就都是用这个统一风格。
+
+![注释风格](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/baf5e1e41ab049959fe7de90b255dcd1~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
+
 ## DISAMBIGUATOR for Downloadable Project
 
 > * [建立方便大家安裝到手機的 Xcode 專案 — 搭配 xcconfig & Team ID](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/建立方便大家安裝到手機的-xcode-專案-搭配-xcconfig-team-id-fb072ed08b2f)
