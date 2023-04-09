@@ -308,3 +308,58 @@ class MainView: NSObject {
 ## Lazy Instantiation
 
 > See more in [objc-snippet](../objc-snippet#lazy-instantiation)
+
+## Border
+
+```objc
+@interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *secondImgView;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.imageView.layer.cornerRadius = self.imageView.frame.size.width / 2;
+    self.imageView.layer.masksToBounds = true;
+    self.imageView.layer.borderWidth = 2.0;
+    self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.secondImgView.layer.cornerRadius = self.imageView.frame.size.width / 2;
+    self.secondImgView.layer.borderWidth = 2.0;
+    self.secondImgView.layer.borderColor = [UIColor whiteColor].CGColor;
+}
+
+@end
+```
+
+```swift
+import SwiftUI
+struct ContentView: View {
+    
+    var body: some View {
+        HStack {
+            ForEach(0..<3, id: \.self) { i in
+                Image("icon")
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .overlay {
+                        Circle()
+                            .stroke(.blue, lineWidth: 5)
+                    }
+                //.cornerRadius(50)
+                    .offset(x: CGFloat(-i * 50), y: 0)
+            }
+        }
+    }
+    
+}
+```
+
+在 SwiftUI 中，视图的修改器是一种声明式方法，用于描述视图的外观和行为。在这种情况下，为了实现与 UIKit 类似的效果，我们需要将边框绘制为一个圆形视图的叠加层。
+
+SwiftUI 与 UIKit 的设计理念有很大差异。在 UIKit 中，我们直接操作视图的层（layer）来实现边框、圆角等效果。而在 SwiftUI 中，我们通过组合和修改视图来实现所需的效果。这种声明式的方式允许 SwiftUI 更好地优化渲染过程，并提供更易读、更易维护的代码。
+
+在上面的 SwiftUI 示例中，我们使用了 overlay 修改器来添加一个描边圆形，从而实现了类似于 UIKit 中的边框效果。虽然这种方法与 UIKit 的操作方式不同，但它非常符合 SwiftUI 的设计原则，并能很好地满足需求。
