@@ -311,6 +311,8 @@ class MainView: NSObject {
 
 ## Border
 
+> [kingfisher - onevcat on twitter](https://twitter.com/onevcat/status/1600020125746311168?s=20)
+
 ```objc
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;

@@ -185,7 +185,7 @@ XYZObject *object = [XYZObject new];
 XYZObject *object = [[XYZObject alloc] init];
 ```
 
-## Lazy instantiation
+## Lazy instantiation & 下划线变量
 
 > [Objective-C 懒加载没有调用？](https://www.jianshu.com/p/986adc6fe3ca)
 

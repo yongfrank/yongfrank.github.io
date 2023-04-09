@@ -86,6 +86,11 @@ rules:
     - MATCH, Rule
 ```
 
+## Help Desk
+
+* [Help Desk for WestData](https://gleaming-fedora-39d.notion.site/WestData-280992c869574200b910ced779f93e9b)
+* [Subscription Converter](https://api.nameless13.com/)
+
 ## Tutorials
 
 * [ClashX Pro 使用教程 最好用的Mac苹果电脑科学上网工具](https://heaid.top/index.php/archives/34/)

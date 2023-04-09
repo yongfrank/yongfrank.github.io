@@ -180,6 +180,17 @@ func SomeFunc(name: String) -> String {
 
 ![注释风格](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/baf5e1e41ab049959fe7de90b255dcd1~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
 
+> [Cocoa 代码注释与文档生成](https://juejin.cn/post/6844904191526191118)
+
+摘要和说明
+文档注释的开头部分将成为 “摘要“ Summary，余下的其他内容将一起归入 “讨论” Discussion。
+
+如果文档注释以段落以外的任何内容开头，则其所有内容都将放入讨论中。
+
+## Code Snippet
+
+> [iOS Xcode 代码块(Code Snippet)](https://www.jianshu.com/p/f4036da2e48d)
+
 ## DISAMBIGUATOR for Downloadable Project
 
 > * [建立方便大家安裝到手機的 Xcode 專案 — 搭配 xcconfig & Team ID](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/建立方便大家安裝到手機的-xcode-專案-搭配-xcconfig-team-id-fb072ed08b2f)
