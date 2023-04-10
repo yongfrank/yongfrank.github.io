@@ -367,3 +367,9 @@ struct ContentView: View {
 SwiftUI 与 UIKit 的设计理念有很大差异。在 UIKit 中，我们直接操作视图的层（layer）来实现边框、圆角等效果。而在 SwiftUI 中，我们通过组合和修改视图来实现所需的效果。这种声明式的方式允许 SwiftUI 更好地优化渲染过程，并提供更易读、更易维护的代码。
 
 在上面的 SwiftUI 示例中，我们使用了 overlay 修改器来添加一个描边圆形，从而实现了类似于 UIKit 中的边框效果。虽然这种方法与 UIKit 的操作方式不同，但它非常符合 SwiftUI 的设计原则，并能很好地满足需求。
+
+## ResponsiveScaleWidth
+
+```objc
+#define ResponsiveScaleWidth(length) (((length)/375.0f) * [[UIScreen mainScreen] bounds].size.width)
+```

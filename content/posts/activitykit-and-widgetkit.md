@@ -6,6 +6,8 @@ date: 2023-03-13T17:23:10+08:00
 [ActivityKit]: https://developer.apple.com/documentation/activitykit
 [WidgetKit]: https://developer.apple.com/documentation/widgetkit
 
+> My apps were featured on the App Store a few times during the year because of lock screen widgets. Check my guide on lock screen widgets if you still don't have them in your app. [twitter](https://twitter.com/mecid/status/1645349627951034369?s=12&t=qBx4jrzcBhVR7gAQAZeV2Q)
+
 ## Live Activity
 
 ### 相关限制

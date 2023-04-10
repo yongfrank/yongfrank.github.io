@@ -331,3 +331,19 @@ export ALL_PROXY=http://127.0.0.1:<PORT>
 ## App icon in Xcode
 
 > [App Icon Generator is no longer needed with Xcode 14](https://www.avanderlee.com/xcode/replacing-app-icon-generators/)
+
+## Regex with Xcode Find & Replace
+
+> [Xcode + Regular Expression = 🤯](https://youtu.be/c_0Q2rsnuLo)
+
+```swift
+firstNameTextField.placeholder = NSLocalizedString("person.firstName.placeholder", comment: "")
+lastNameTextField.placeholder = NSLocalizedString("person.lastName.placeholder", comment: "")
+ageTextField.placeholder = NSLocalizedString("person.lastName.placeholder", comment: "")
+```
+
+```regex
+firstNameTextField.placeholder = NSLocalizedString\((".*"), comment: ""\)
+
+$1.localized
+```
