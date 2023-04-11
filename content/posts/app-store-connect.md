@@ -1,6 +1,7 @@
 ---
 title: "App Store Connect"
 date: 2023-03-30T00:12:53+08:00
+custom_head: <meta name='apple-itunes-app' content='app-id=6446227923'>
 ---
 
 ## App Store Connect Statistics
@@ -79,6 +80,22 @@ In addition, keep in mind that promotional text doesn’t affect your app’s se
 When you update your app, you can use What’s New to communicate changes to users. This text appears on your product page and on the Updates tab.
 
 If you added a feature or fixed a bug based on feedback, use What’s New to let users know that you’ve listened to them. List new features, content, or functionality in order of importance, and add call-to-action messaging that gets users excited about the update.
+
+## WebKit App Banner
+
+* [my AppStoreID App Store Marketing Tools for Oh My Flag](https://tools.applemediaservices.com/app/6446227923?country=us)
+* [Apple Services Marketing Tools](https://tools.applemediaservices.com/)
+
+> [Promoting Apps with Smart App Banners](https://developer.apple.com/documentation/webkit/promoting_apps_with_smart_app_banners?language=objc)
+
+```html
+<meta name="apple-itunes-app" content="app-id=myAppStoreID, app-argument=myURL">
+
+<!-- Example - Access Page from your iPhone -->
+<head>
+    <meta name='apple-itunes-app' content='app-id=6446227923, app-argument=myURL'>
+</head>
+```
 
 ## Developer.apple.com [Global Localization](https://developer.apple.com/app-store/product-page/)
 

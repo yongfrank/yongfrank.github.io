@@ -17,6 +17,9 @@
 <script defer src="{{ .Site.BaseURL }}katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
 {{- end }}
 
+<!-- partial head -->
+{{ partial "head.html" . }}
+
 <header>
   {{ if not (gt (len .Site.Menus) 1) }}
     <a href="{{ .Site.BaseURL }}" class="title">{{ .Site.Title }}</a>

@@ -761,3 +761,8 @@ protocol Equatable {
 它用来判断两个 AnyObject 是否是同一个引用。
 
 对于判等，和它紧密相关的一个话题就是哈希，因为哈希是一个稍微复杂的话题，所以我将它分成了一个单节。但是如果在实际项目中你需要重载 == 或者重写 -isEqual: 来进行判等的话，很可能你也会想看看有关哈希的内容，重载了判等的话，我们还需要提供一个可靠的哈希算法使得判等的对象在字典中作为 key 时不会发生奇怪的事情。
+
+## Category
+
+* [深入理解Objective-C：Category](https://tech.meituan.com/2015/03/03/diveintocategory.html)
+* [【iOS面试粮食】OC语言—Category(分类)和类扩展(extension)、关联对象](https://juejin.cn/post/6844903968691191815)

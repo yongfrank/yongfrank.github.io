@@ -87,3 +87,14 @@ rm -rf submodule_path/.git      # delete submodule path .git file
 ## Google Analytics
 
 [Setting Up Google Analytics on Hugo](http://cloudywithachanceofdevops.com/posts/2018/05/17/setting-up-google-analytics-on-hugo/#step-2-getting-your-google-analytics-tracking-id-for-your-property)
+
+## Local Area Network Access Hugo
+
+> [设置局域网内访问 hugo 本地服务 server](https://it-boyer.github.io/post/old/设置局域网内访问hugo本地服务server/)
+
+```sh
+hugo server --bind="0.0.0.0"
+
+# specific port
+hugo server --bind="0.0.0.0" -p 1234
+```
