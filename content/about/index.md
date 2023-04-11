@@ -1,6 +1,7 @@
 ---
 title: "Welcome 😀"
 date: 2023-03-02T11:20:03+08:00
+disable_toc: true
 ---
 
 <!-- https://github.com/DavidAnson/markdownlint -->
