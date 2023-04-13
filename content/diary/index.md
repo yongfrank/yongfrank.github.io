@@ -5,9 +5,10 @@ date: 2023-04-08T15:11:23+08:00
 
 ## Week 15 4/10 - 4/16
 
-* Mon Debug for Community
+* Mon Tue Wed Debug for Community
+* Thu KickOff for Platform
 
-> [[Offer 25: Merge Ascending List]](https://leetcode.cn/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/) [[Offer 26: Sub Structure of a tree]]
+> [[Offer 25: Merge Ascending List]](https://leetcode.cn/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/) [[Offer 26: Sub Structure of a tree]](https://leetcode.cn/problems/shu-de-zi-jie-gou-lcof/) [[Offer 27: Mirror Tree]]()
 
 ## Week 14 4/3 - 4/9
 

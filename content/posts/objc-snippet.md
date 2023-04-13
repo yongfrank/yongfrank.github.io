@@ -766,3 +766,146 @@ protocol Equatable {
 
 * [深入理解Objective-C：Category](https://tech.meituan.com/2015/03/03/diveintocategory.html)
 * [【iOS面试粮食】OC语言—Category(分类)和类扩展(extension)、关联对象](https://juejin.cn/post/6844903968691191815)
+
+## iOS Constant - `static NSString * const kStr = @""`
+
+> [iOS 不要用宏来定义你的常量](https://toutiao.io/posts/kw76e7/preview)
+
+iOS 不要用宏来定义你的常量
+
+最近在工程里看到很多不规范的使用，于是来写一篇博客来让不是很清楚的小朋友们，少埋点坑。
+
+首先，预处理命令他不是一个常量！！！！
+
+我们来看一段代码
+
+```objc
+#define avatar @"60"
+if (false) {
+#define avatar @"80"
+}
+NSLog(avatar);
+```
+
+### 首先，预处理命令他不是一个常量！！！！
+
+这段代码会输出多少，我们将“avatar”定义为了60，然后在一个永远不会执行的代码里面重新定义了“avatar”为80，if语句中的代码永远不会执行，但是在编译时期，编译器会编译这段代码，而这个时候编译器就会将avatar这个名字替换为@“80”，所以这段代码最后的输出结果就是80。
+
+当然这个时候编译器是会有一个警告的，但是不知道有多少同学会忽略这个警告。或者你会告诉我你对警告十分敏感，不会放过他的，但是记住你不是一个人在写代码，可能在别人的页面他给你重新定义了你的define，给你挖了一个大坑，还找不着………
+
+### 用const来定义一个常量
+
+const修饰符定义的变量是不可变的，比如说你需要定义一个动画时间的常量，你可以这么做：
+
+```objc
+static const NSTimeInterval kAnimateDuration = 0.3;
+```
+
+当你试图去修改“ kAnimateDuration”的值的时候，编译器会报错。更加重要的是用这种方法定义的常量是带有类型信息的，而这点则是define不具备的。
+
+也许你已经发现了，如果你像这样定义：
+
+```objc
+static const NSString * kUserName = @"StrongX";
+```
+
+你是可以修改userName的值的，（说好的常量呢～～～）
+
+首先我们需要确定的是以下两种写法是一样的：
+
+```objc
+static NSString const * kUserName = @"StrongX";
+static const NSString * kUserName = @"StrongX";
+```
+
+也就是说const放在类型前还是类型后是一样的效果。然后不同效果的是下面这种写法：
+
+```objc
+static NSString * const kUserName = @"StrongX";
+```
+
+const 修饰的是他右边的部分，也就是说：
+
+```objc
+static NSString const * kUserName = static NSString const (* kUserName )
+
+static NSString * const kUserName = static NSString * const (kUserName)
+```
+
+当const修饰的是(userName)的时候，不可变的是userName;星号在C语言中表示指针指向符，也就是说这个时候userName指向的内存块地址不可变，而内存保存的内容是可变的，我们来做个尝试：
+
+```objc
+NSLog(@"内存地址： %x",& kUserName);
+kUserName = @"superXLX";
+NSLog(@"内存地址： %x",& kUserName);
+```
+
+以上NSLog会打印*userName指向的内存块地址，而他的输出是：
+
+我们已经发现当我们改变内存的内存的时候他的地址并没有发生改变，也就是说这是符合“const”修饰符的规定的。
+而当我们的修饰符是这样的时候：
+
+```objc
+static NSString * const kUserName = @"StrongX";
+```
+
+我们则无法改变userName的值。
+
+所以当我们需要定义一个不可变的常量的时候 ，我们还是需要将“const”修饰符放到“*”指针指向符后边才对。
+
+### 一定要同时使用static和const来定义你的变量
+
+上面已经说了const是用来定义一个常量。而static在C语言中（OC中延用）则表明此变量只在改变量的输出文件中可用(.m文件)，如果你不加“static”符号，那么编译器就会对该变量创建一个“外部符号”，后果是什么呢？
+
+你可以尝试在不同编译文件中加入以下代码：
+
+```objc
+NSString * const kUserName = @"StrongX";
+```
+
+可能尽管文件之间并没有相互引用，不存在属性名重复的问题（因为这并不是一个属性，这是一个外部符号）,但是编译器还是报错了:
+
+他会告诉你在两个目标文件(.0文件是.m文件编译后的输出文件)有一个重复的符号。(OC中没有类似C++中的名字空间的概念)
+
+所以当你在你自己的.m文件中需要声明一个只有你自己可见的局部变量(k开头)的变量的时候一定要同时使用“static”和“const”两个符号。
+
+### 定义工程中的全局变量
+
+在我们的工程中一定会定义很多全局常量，很多人的做法是会创建一个“ constant.h”文件，在这个文件中用#define声明许多常量，然后将这个头文件引入“pch”文件中，不能说这么做不对，但是如同上面说的那样define可能被修改，当然在命名规范的情况下这种情况很少出现，并且这样做的效率很高。
+
+然而苹果更推荐另外一种做法:”extern”，这样做的优势是保持常量绝对不会被修改，并且一定初始化还带有类型信息。
+
+我们在”constants.h”文件中，声明常量：
+
+```objc
+extern NSString *const XUserName;
+```
+
+然后在“constants.m”中定义他：
+
+```objc
+NSString *const XUserName = @"StrongX";
+```
+
+用“extern”定义的常量必须也只能初始化一次，不满足必须以及只能一次的条件那么编译器就会提醒你。在定义全局变量的时候需要要注意你的命名，你可以使用规定好的前缀来命名。
+
+“define”和“extern”各有各的优势，不过我个人还是比较推荐使用“extern”.(因为之前在一个工程中被define坑惨了——！)。
+
+> [what's the different between const NSString and static NSString](https://stackoverflow.com/questions/12815189/whats-the-different-between-const-nsstring-and-static-nsstring)
+
+I want to use class variable. the following two approaches work well, but I don't know what's the different between them.
+
+```objc
+static NSString *str1 = @"str1";
+NSString *const str2 = @"str2";
+```
+
+you can change the location to where str1 is pointing to but cannot do the same for str2 as it is a const pointer
+
+```objc
+// this will work :
+str1 = @"Hello";
+
+// while this won't:
+str2 = @"Hello"; 
+```

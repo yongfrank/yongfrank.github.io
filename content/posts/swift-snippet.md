@@ -7,6 +7,82 @@ date: 2023-04-08T11:44:42+08:00
 
 > [Swift---一门智能型的编程语言](https://developer.aliyun.com/article/254320?spm=a2c6h.13262185.profile.358.699e167e7REVuk)
 
+## Common Problem
+
+### safe subsript
+
+> [5 个让 Swift 更优雅的扩展——Pt.1](https://juejin.cn/post/7026271045652840461)
+> [Swift 经常数组越界？教你一招，一劳永逸的解决数组越界的问题](https://www.bilibili.com/video/BV1ZT4y1V7Rs/?share_source=copy_web&vd_source=bf4952280cde801b178268abc99a7047)
+
+```swift
+extension Array {
+    subscript (safe index: Int) -> Element? {
+        guard index >= 0 && index < self.count else {
+            return nil
+        }
+        return self[index]
+    }
+}
+
+values[safe: 2] // "C"
+values[safe: 3] // nil
+```
+
+## UIKit Preview
+
+> [UIKit Preview](https://ruipfcosta.github.io/UIKitPreviewsGenerator-Website/index.html)
+
+<!-- markdownlint-disable MD033 -->
+<video style="max-width: 100%;box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 1) 0px 30px 60px -30px;" loop muted autoplay playsinline>
+    <source src="https://ruipfcosta.github.io/UIKitPreviewsGenerator-Website/assets/video/demo.mov">
+</video>
+
+```swift
+import UIKit
+
+class ViewController: UINavigationController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        var text = UILabel(frame: CGRect(x: 20, y: 20, width: 300, height: 300))
+        text.text = "UIKit Preview Testing"
+        self.view.addSubview(text)
+    }
+}
+
+#if DEBUG
+
+import SwiftUI
+
+struct ViewControllerRepresentable: UIViewControllerRepresentable {
+    typealias UIViewControllerType = ViewController
+
+    func makeUIViewController(context: Context) -> UIViewControllerType {
+        ViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        
+    }
+}
+
+struct ViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewControllerRepresentable()
+    }
+}
+```
+
+### Swift Guard
+
+> [关于swift的guard使用一定要慎用](https://www.cnblogs.com/xuruofan/p/9967754.html)
+>
+> 使用if判断保护的变量，使用返回仅限于if的括号范围内，这就导致使用这个变量的代码，只能写在if括号范围之内，十分不方便，也不够优美。对，不够优美，但这并不表示可以随便使用guard这个关键字，因为，因为....上代码。
+> 
+> 在for，while，do-while等循环语句中使用guard，一旦变量不存在，就会直接跳出函数方法，导致剩下循环没办法进行，当程序使用数组的时候，容易造成数组越界，从而发生crash，这个问题很低级，但是我确实脑抽的发生了，造成很严重的后果，所以，写这边博客，一是记录一下自己的错误，二是提醒其他iOS开发者，尽量避免与我同样的错误。
+
+
 ## Swift REPL
 
 > * [Introduction to the Swift REPL](https://developer.apple.com/swift/blog/?id=18)
@@ -336,3 +412,8 @@ for i in stride(from: 0, through: 1000, by: 100) {
 ## Lazy
 
 > See more in [objc-snippet](../objc-snippet#swift--objc-lazy)
+
+## functionBuilder
+
+> [Trees in Swift](https://www.hackingwithswift.com/plus/data-structures/trees)
+

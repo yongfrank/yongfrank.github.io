@@ -187,6 +187,10 @@ func SomeFunc(name: String) -> String {
 
 如果文档注释以段落以外的任何内容开头，则其所有内容都将放入讨论中。
 
+### DocC Deploy on GitHub
+
+> [如何把 Swift DocC 文檔託管到 Web Server 或 GitHub](https://www.appcoda.com.tw/swift-docc/)
+
 ## Code Snippet
 
 > [iOS Xcode 代码块(Code Snippet)](https://www.jianshu.com/p/f4036da2e48d)
