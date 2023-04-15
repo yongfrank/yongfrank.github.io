@@ -909,3 +909,62 @@ str1 = @"Hello";
 // while this won't:
 str2 = @"Hello"; 
 ```
+
+## @weakify 和 @strongify
+
+@weakify 是一个宏，用于创建一个指向自身的弱引用。在这种情况下，它用于避免闭包中的循环引用。循环引用会导致内存泄漏，因为对象不能正确释放。@weakify 和 @strongify 通常在 Objective-C 中与 ReactiveCocoa 和 ReactiveObjC 库一起使用。
+
+在闭包中，当你需要引用 self 时，通常需要考虑到循环引用的问题。使用 @weakify(self)，您可以在闭包内部创建一个弱引用的自身。然后，您需要使用 @strongify(self) 宏将弱引用转换回强引用，以便在闭包内部安全地使用 self。
+
+以下是一个完整的示例，说明了如何在 Objective-C 中使用 @weakify 和 @strongify：
+
+```objc
+#import <ReactiveObjC/ReactiveObjC.h>
+#import "YourClass.h"
+
+@implementation YourClass
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup {
+    @weakify(self)
+    [[RACObserve(self, someProperty) skip:1] subscribeNext:^(id x) {
+        @strongify(self)
+        // 在这里安全地使用 self，而不会导致循环引用
+        [self doSomething];
+    }];
+}
+
+- (void)doSomething {
+    // ...
+}
+
+@end
+```
+
+在此示例中，我们使用 RACObserve 监听名为 someProperty 的属性的变化。当属性发生变化时，我们的闭包会被调用。在闭包中，我们使用 @strongify(self) 将弱引用转换回强引用，以便安全地使用 self。这种方法避免了循环引用问题。
+
+## Type Size
+
+> Values of type 'NSUInteger' should not be used as format arguments; add an explicit cast to 'unsigned long' instead
+>
+> Replace '%d", ' with '%lu", (unsigned long)'
+
+NSUInteger 是 Objective-C 中的一个无符号整数类型，用于表示对象的数量或容器中的元素数量。在使用 NSUInteger 作为格式化字符串的参数时，您需要使用 %lu 格式化符号来指定它的类型。这是因为在 64 位架构下，NSUInteger 的大小为 8 个字节，而 %d 只能处理 4 个字节的有符号整数。
+
+以下是一个示例，展示了如何使用 %lu 格式化符号来输出 NSUInteger 值：
+
+```objc
+NSUInteger count = 10;
+NSLog(@"The count is: %lu", count);
+```
+
+在上面的示例中，我们首先创建了一个名为 count 的 NSUInteger 变量，其值为 10。然后，我们使用 NSLog 函数输出一个带有格式化字符串的消息，并使用 %lu 格式化符号将 count 变量的值输出为一个无符号长整型。这将确保在 64 位架构下正确处理 NSUInteger 类型的值。
+
+请注意，在 32 位架构下，NSUInteger 的大小为 4 个字节，因此您可以使用 %u 格式化符号来指定它的类型。

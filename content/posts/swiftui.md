@@ -123,6 +123,51 @@ TextField("regex", text: $regexResearch, axis: .vertical)
     }
 ```
 
+## Responding to events
+
+## Tap and gestures
+
+## Advanced state
+
+Learn how to bind objects and query the environment
+
+> [How to use @ObservedObject to manage state from external objects](https://www.hackingwithswift.com/quick-start/swiftui/how-to-use-observedobject-to-manage-state-from-external-objects)
+
+```swift
+class UserProgress: ObservableObject {
+    @Published var score = 0 {
+        didSet {
+            if score > highScore {
+                highScore = score
+            }
+        }
+    }
+
+    @AppStorage("HighScore") var highScore = 0
+}
+
+struct InnerView: View {
+    @ObservedObject var progress: UserProgress
+
+    var body: some View {
+        Button("Increase Score") {
+            progress.score += 1
+        }
+    }
+}
+
+struct ContentView: View {
+    @StateObject var progress = UserProgress()
+
+    var body: some View {
+        VStack {
+            Text("Your score is \(progress.score)")
+            InnerView(progress: progress)
+        }
+    }
+}
+```
+
 ## Lists
 
 Create scrolling tables of data
