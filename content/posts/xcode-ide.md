@@ -72,6 +72,11 @@ MARK: 标记，和#pragma mark效果相同，使用方法：// MARK:
 
 ![TODO](https://miro.medium.com/v2/resize:fit:638/format:webp/1*_LdkLsLMuLDQPiHNLmLyGA.jpeg)
 
+## Code Snippet
+
+> * [How to create code snippets in Xcode](https://sarunw.com/posts/how-to-create-code-snippets-in-xcode/)
+> * [Xcode - Code Snippets 自定义代码块](https://cloud.tencent.com/developer/article/1615615)
+
 ### Building Phase - Generating Warnings and Errors with Comments
 
 ![Select the project, then move to the build phases](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*8nnN5Fkh97Vqbdy6uDDwBA.jpeg)

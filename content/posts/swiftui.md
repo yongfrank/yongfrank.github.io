@@ -181,3 +181,127 @@ Direct your user through data in your app
 * [Programmatically hide and show sidebar in split view](https://nilcoalescing.com/blog/ProgrammaticallyHideAndShowSidebarInSplitView/)
 * [How to hide and show the sidebar programmatically](https://www.hackingwithswift.com/quick-start/swiftui/how-to-hide-and-show-the-sidebar-programmatically)
 * [How to customize a view’s width in NavigationSplitView](https://www.hackingwithswift.com/quick-start/swiftui/how-to-customize-a-views-width-in-navigationsplitview)
+
+
+## Alerts and menus
+
+## Presenting Views
+
+Move your user from one view to another
+
+## Transforming views
+Clip, size, scale, spin, and more
+
+## Drawing
+
+Take control of rendering using custom shapes
+
+## Animation
+
+Bring your views to life with movement
+
+> [How to add and remove views with a transition](https://www.hackingwithswift.com/quick-start/swiftui/how-to-add-and-remove-views-with-a-transition)
+
+<video src="https://www.hackingwithswift.com/img/books/quick-start/swiftui/how-to-add-and-remove-views-with-a-transition-1.mp4" width=100% autoplay loop autopictureinpicture>
+
+</video>
+
+```swift
+struct ContentView: View {
+    @State private var showDetails = false
+
+    var body: some View {
+        VStack {
+            Button("Press to show details") {
+                withAnimation {
+                    showDetails.toggle()
+                }
+            }
+
+            if showDetails {
+                Text("Details go here.")
+            }
+        }
+    }
+}
+```
+
+> [View Transitions and Animations](https://designcode.io/swiftui-handbook-view-transition)
+> 
+> To show a new view with transition, you can use the if statement with a show boolean state. On that new view, apply a transition modifier. The zIndex modifier ensures that when dismissing, the new view stays on top.
+
+```swift
+@State var show = false
+ZStack {
+    if !show {
+        Text("View transition")
+    } else {
+        VStack { Text("New View") }
+            .transition(.move(edge: .bottom))
+            .zIndex(1)
+    }
+}
+.onTapGesture {
+    show.toggle()
+}
+```
+
+## Composing views
+
+Make your UI structure easier to understand
+
+## Cross-platform SwiftUI
+
+learn 
+
+> * [Swift - How to detect orientation changes](https://stackoverflow.com/questions/38894031/swift-how-to-detect-orientation-changes)
+> * [SwiftUI如何在iOS16中优雅的检测和适配横竖屏 - 青颜君的文章 - 知乎](https://zhuanlan.zhihu.com/p/568441109)
+> * [Food Truck: Building a SwiftUI multiplatform app](https://developer.apple.com/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app)
+
+```swift
+// Deprecated
+guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation 
+else { return true }
+
+if orientation == .landscapeRight || orientation == .landscapeLeft {
+    return false
+}
+
+// Food Truck By Apple
+#if os(iOS)
+@Environment (\.verticalSizeClass) var verticalSizeClass
+@Environment(\.horizontalSizeClass) private var sizeClass
+#endif
+@Environment(\.dynamicTypeSize) private var dynamicType
+
+func isCompact(width: Double) -> Bool {
+    #if os(iOS)
+    if self.sizeClass == .compact {
+        if verticalSizeClass == .compact {
+            return false
+        }
+    }
+    #endif
+    if self.dynamicType >= dynamicTypeThreshold {
+        return true
+    }
+    if width < self.widthThreshold {
+        return true
+    }
+    return false
+}
+```
+
+| Device                  | Landscape/Portrait | horizontalSizeClass | verticalSizeClass |
+| ------------------- | ------- | ------------------- | ---------------- |
+| All iPhone          |  Portrait    | compact             | regular          |
+| iPhone (except Max、Plus) | Landscape    | compact             | compact          |
+| iPhone (Max、Plus)   | Landscape    | regular             | compact          |
+| All iPad            | Landscape & Portrait  | regular             | regular          |
+
+| 设备                  | 横/竖屏 | horizontalSizeClass | verticalSizeClass |
+| ------------------- | ------- | ------------------- | ---------------- |
+| 所有 iPhone          | 竖屏    | compact             | regular          |
+| iPhone (Max、Plus 除外) | 横屏    | compact             | compact          |
+| iPhone (Max、Plus)   | 横屏    | regular             | compact          |
+| 所有 iPad            | 横、竖屏  | regular             | regular          |
