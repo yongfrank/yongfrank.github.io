@@ -60,3 +60,6 @@ let package = Package(
     ]
 )
 ```
+
+> * [Swift Playgrounds](https://support.apple.com/en-gb/guide/playgrounds-ipad/itc65b2d9a15/ipados)
+> * [Uploading app using Swift Playground](https://developer.apple.com/forums/thread/706220)

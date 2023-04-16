@@ -57,11 +57,77 @@ struct ContentView: View {
 
 [How to let users select text](https://www.hackingwithswift.com/quick-start/swiftui/)
 
+## Stacks, grids, scrollviews
+
+Position views in a structured way
+
+> [hws - How to position views in a grid using LazyVGrid and LazyHGrid](https://www.hackingwithswift.com/quick-start/swiftui/how-to-position-views-in-a-grid-using-lazyvgrid-and-lazyhgrid)
+
+![LazyVGrid](https://www.hackingwithswift.com/img/books/quick-start/swiftui/how-to-position-views-in-a-grid-using-lazyvgrid-and-lazyhgrid-1@2x.png)
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    let columnLayout = [GridItem(.adaptive(minimum: 100, maximum: 100))]
+
+    let allColors: [Color] = [.pink, .red, .orange, .yellow, .green, .mint, .teal, .cyan, .blue, .indigo, .purple, .brown, .gray]
+
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columnLayout) {
+                ForEach(allColors.indices, id: \.self) { index in
+                    RoundedRectangle(cornerRadius: 4.0)
+                        .aspectRatio(1.0, contentMode: ContentMode.fit)
+                        .foregroundColor(allColors[index])
+                }
+            }
+        }
+        .padding()
+    }
+}
+```
+
+> [hws - How to dismiss the keyboard when the user scrolls](https://www.hackingwithswift.com/quick-start/swiftui/how-to-dismiss-the-keyboard-when-the-user-scrolls)
+
+SwiftUI’s scrollDismissesKeyboard() modifier gives us precise control over how the keyboard should dismiss when the user scrolls around.
+
+For example, we could place a TextField and TextEditor into a scroll view, and have them both dismiss the keyboard interactively like this:
+
+```swift
+struct ContentView: View {
+    @State private var username = "Anonymous"
+    @State private var bio = ""
+
+    var body: some View {
+        ScrollView {
+            VStack {
+                TextField("Name", text: $username)
+                    .textFieldStyle(.roundedBorder)
+                TextEditor(text: $bio)
+                    .frame(height: 400)
+                    .border(.quaternary, width: 1)
+            }
+            .padding(.horizontal)
+        }
+        .scrollDismissesKeyboard(.interactively)
+    }
+}
+```
+
+* Use `.automatic` to let SwiftUI judge what’s the best thing to do based on the context of the scroll.
+* Use `.immediately` to make the keyboard dismiss fully as soon as any scroll happens.
+* Use `.interactively` to make the keyboard dismiss inline with the user’s gesture – they need to scroll further to make it dismiss fully.
+* Use `.never` if you want the keyboard to remain present during scrolling.
+
+
 ## User interface controls
 
 Respond to interaction and control your program state
 
 > [How to customize the submit button for TextField, SecureField, and TextEditor](https://www.hackingwithswift.com/quick-start/swiftui/how-to-customize-the-submit-button-for-textfield-securefield-and-texteditor)
+
+![keyboard customize](https://www.hackingwithswift.com/img/books/quick-start/swiftui/how-to-customize-the-submit-button-for-textfield-securefield-and-texteditor-1@2x.png)
 
 ```swift
 struct ContentView: View {
@@ -92,7 +158,7 @@ struct MultilineTextFieldExample: View {
 ```
 
 > * How to make a TextField or TextEditor have default focus
-> * [How to dismiss the keyboard for a TextField](https://www.hackingwithswift.com/quick-start/swiftui/how-to-dismiss-the-keyboard-for-a-textfield)
+> * [hws - How to dismiss the keyboard for a TextField](https://www.hackingwithswift.com/quick-start/swiftui/how-to-dismiss-the-keyboard-for-a-textfield)
 
 ```swift
 struct ContentView: View {
@@ -106,6 +172,66 @@ struct ContentView: View {
 
             Button("Submit") {
                 nameIsFocused = false
+            }
+        }
+    }
+}
+```
+
+> * [Apple Developers -  Keyboard toolbar](https://developer.apple.com/documentation/swiftui/toolbaritemplacement/keyboard)
+> * [How to hide keyboard when using SwiftUI?](https://stackoverflow.com/questions/56491386/how-to-hide-keyboard-when-using-swiftui)
+> * [FocusedValue and FocusedBinding property wrappers in SwiftUI](https://swiftwithmajid.com/2021/03/03/focusedvalue-and-focusedbinding-property-wrappers-in-swiftui/)
+> * [Focus Management in SwiftUI: Getting Started](https://www.kodeco.com/31569019-focus-management-in-swiftui-getting-started)
+
+![keyboard toolbar](https://i.stack.imgur.com/7oFYC.gif)
+
+```swift
+// ♣️♥️♠️♦️ appear above the keyboard
+enum Field {
+    case suit
+    case rank
+}
+
+struct FieldKey: FocusedValueKey {
+    typealias Value = Field
+}
+
+extension FocusedValues {
+    var field: Field? {
+        get { self[FieldKey.self] }
+        set { self[FieldKey.self] = newValue }
+    }
+}
+
+struct KeyboardBarDemo: View {
+    @FocusedValue(\.field) var field: Field?
+    @FocusState private var focusedField: Field?
+    @State private var suitText = ""
+    @State private var rankText = ""
+    
+    var body: some View {
+        HStack {
+            TextField("Suit", text: $suitText)
+                .focusedValue(\.field, .suit)
+                .focused($focusedField, equals: .suit)
+                .textFieldStyle(.roundedBorder)
+            TextField("Rank", text: $rankText)
+                .focusedValue(\.field, .rank)
+                .focused($focusedField, equals: .rank)
+                .textFieldStyle(.roundedBorder)
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                if field == .suit {
+                    Button("♣️", action: { self.suitText += "♣️" })
+                    Button("♥️", action: { self.suitText += "♥️" })
+                    Button("♠️", action: { self.suitText += "♠️" })
+                    Button("♦️", action: { self.suitText += "♦️" })
+                }
+                Spacer()
+                Button("Done") {
+                    focusedField = nil
+                }
             }
         }
     }
@@ -126,6 +252,12 @@ TextField("regex", text: $regexResearch, axis: .vertical)
 ## Responding to events
 
 ## Tap and gestures
+
+> * [stackoverflow - SwiftUI TapGesture and LongPressGesture in ScrollView with tap indication not working](https://stackoverflow.com/questions/62733633/swiftui-tapgesture-and-longpressgesture-in-scrollview-with-tap-indication-not-wo)
+> * [Apple Developers - Longpress and list scrolling](https://developer.apple.com/forums/thread/127277)
+>
+> Thank you very much for pointing this out. It solved my problem. I didn't considder having an empty onTapGesture handler would have any impact on the scrolling, but it does. Maybe the common use is to have the tap handler and then add longtap as an additional gesture (makes sense).
+Thanks again :-)
 
 ## Advanced state
 
@@ -184,6 +316,11 @@ Direct your user through data in your app
 
 
 ## Alerts and menus
+
+> [How to recommend another app using appStoreOverlay()](https://www.hackingwithswift.com/quick-start/swiftui/how-to-recommend-another-app-using-appstoreoverlay)
+
+<video width="100%" src="https://www.hackingwithswift.com/img/books/quick-start/swiftui/how-to-recommend-another-app-using-appstoreoverlay-1.mp4" autoplay loop>
+</video>
 
 ## Presenting Views
 
