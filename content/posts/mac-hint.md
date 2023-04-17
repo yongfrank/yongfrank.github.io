@@ -14,3 +14,17 @@ date: 2023-04-14T16:50:52+08:00
 ![system data](https://pic.liuzaoqi.com/picgo/202211061642821.png)
 
 > [Search Result with V2EX and google](https://www.google.com/search?q=mac+%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE+site%3Av2ex.com&rlz=1C5CHFA_en__1048__1048&oq=mac+%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE+site%3Av2ex.com&aqs=chrome..69i57.3306j0j4&sourceid=chrome&ie=UTF-8)
+
+## Mac Keyboard
+
+> [mac按键难回弹（按下去软软的）](https://blog.csdn.net/Castlehe/article/details/124538924)
+
+原因
+
+一般是键盘里面有一些东西塞住了。
+
+操作
+
+* 以按键A为例，把键盘与桌面垂直放着（左侧电源插孔朝着桌面），然后不断去按A键，
+* 如果这个方向不行，换另一侧，即把键盘放置成耳机孔朝着桌面的方向，再去按A键
+* 按的时候看手感，差不多就行

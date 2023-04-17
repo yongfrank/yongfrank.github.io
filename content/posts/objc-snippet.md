@@ -968,3 +968,21 @@ NSLog(@"The count is: %lu", count);
 在上面的示例中，我们首先创建了一个名为 count 的 NSUInteger 变量，其值为 10。然后，我们使用 NSLog 函数输出一个带有格式化字符串的消息，并使用 %lu 格式化符号将 count 变量的值输出为一个无符号长整型。这将确保在 64 位架构下正确处理 NSUInteger 类型的值。
 
 请注意，在 32 位架构下，NSUInteger 的大小为 4 个字节，因此您可以使用 %u 格式化符号来指定它的类型。
+
+## Ternary Operator
+
+```objc
+NSString *content = searchContent ?: kDefaultSearchText;
+
+// equation
+NSString *content;
+if (searchContent) {
+    content = searchContent;
+} else {
+    content = kDefaultSearchText;
+}
+```
+
+This is also called the null coalescing operator, and it is used to simplify conditional assignment. If searchContent is not nil, then it is assigned to content, otherwise kDefaultSearchText is assigned to content.
+
+这个语法也被称为 null coalescing operator，用于简化条件赋值操作，如果 searchContent 不为空，则将其赋值给 content，否则将 kDefaultSearchText 赋值给 content。

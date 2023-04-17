@@ -55,7 +55,13 @@ struct ContentView: View {
 }
 ```
 
+### Working with AttributedString
+
 [How to let users select text](https://www.hackingwithswift.com/quick-start/swiftui/)
+
+![attributed string](https://www.appcoda.com/wp-content/uploads/2022/03/swiftui-markdown-3.png)
+
+SwiftUI’s text component has a built-in support for AttributedString. You can simply pass it to the Text view for rendering.
 
 ## Stacks, grids, scrollviews
 
