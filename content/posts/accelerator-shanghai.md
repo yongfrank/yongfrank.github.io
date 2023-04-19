@@ -3,7 +3,9 @@ title: "Accelerator April Shanghai"
 date: 2023-04-18T15:40:25+08:00
 ---
 
-This page is open source. [Improve this page](https://github.com/yongfrank/yongfrank.github.io/blob/main/content/posts/accelerator-shanghai.md)
+This page is open source. [Improve this page][opensource].
+
+> [Steve Jobs Archive - Make Something Wonderful - Steve Jobs in his own words](https://stevejobsarchive.com/)
 
 ## SwiftUI Layout and rendering Luo Shuang
 
@@ -94,6 +96,21 @@ View Redrawing
 * [Apple Developer - Hello Swift Charts](https://developer.apple.com/videos/play/wwdc2022/10136/)
 * [Apple Developer - Swift Charts: Raise the bar](https://developer.apple.com/videos/play/wwdc2022/10137/)
 * [Apple Developer - Creating a chart using Swift Charts](https://developer.apple.com/documentation/charts/creating-a-chart-using-swift-charts)
+
+## Developers
+
+* [@aloveric - woo-interactive.com](https://woo-interactive.com/)
+* [@caiyue5 - Music Mate](https://musicmate.fun/)
+* [@cyongfrank - Oh My Flags](https://yongfrank.github.io/OhMyFlag-WWDC22/)
+* [@harryworld - Sorted](https://www.sortedapp.com/)
+* [@hzlzh - Lock Launcher](https://locklauncher.com/)
+* [@liuyi0922 - miidii.tech](https://www.miidii.tech/)
+* [@MapleShadow - justinyan.me](https://justinyan.me/)
+* [Wei Li - WinkNotes](https://www.appnice.cn/)
+
+This page is open source. [Improve this page][opensource].
+
+[opensource]: https://github.com/yongfrank/yongfrank.github.io/edit/main/content/posts/accelerator-shanghai.md
 
 <!-- ```txt
 活动安排 ｜2023 年 4 月 18 日：
