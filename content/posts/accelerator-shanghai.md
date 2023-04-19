@@ -3,11 +3,13 @@ title: "Accelerator April Shanghai"
 date: 2023-04-18T15:40:25+08:00
 ---
 
+This page is open source. [Improve this page](https://github.com/yongfrank/yongfrank.github.io/blob/main/content/posts/accelerator-shanghai.md)
+
 ## SwiftUI Layout and rendering Luo Shuang
 
 ## Layout by Harry Ng, Sorted
 
-[Sorted 3 by Harry Ng](https://apps.apple.com/us/app/sorted-calendar-notes-tasks/id1306893526?itsct=apps_box_link&itscg=30200)
+[About Sorted3](https://www.sortedapp.com/about-us)
 
 * [ViewThatFits](https://developer.apple.com/documentation/swiftui/viewthatfits)
 * [AnyLayout](https://developer.apple.com/documentation/swiftui/anylayout)
@@ -29,22 +31,29 @@ Performance Hitches
 * [import WeatherKit - SF Symbols](https://developer.apple.com/documentation/weatherkit)
 * [import MusicKit & HealthKit](https://developer.apple.com/documentation/musickit)
 * [WKWebView - Notion](https://developer.apple.com/documentation/webkit/wkwebview)
-* Advertisement SDK
+* Advertisement SDK - Size matters
 * [AVKit](https://developer.apple.com/documentation/avkit)
-* Multi-language: twitter = weibo
+* [Localization](https://developer.apple.com/documentation/xcode/localization): twitter = weibo
 * AIGC - ChatGPT, [Copilot for Xcode](https://github.com/intitni/CopilotForXcode)
 * Marketing Skills
   * TestFlight, Media, App Store, PressKit, contact in App KOL
   * [Crisp](https://crisp.chat/), [WeCom](https://www.tencent.com/en-us/responsibility/combat-covid-19-wecom.html)
-  * Iteration: meet customers' requirements
+  * Iteration: meet customers' requirements aka 「用户许愿，我们实现」
   * daily operations: ChatGPT bot webpage footer - traffic acquisition
 
 ## SwiftUI Mac App by Justin Yan
 
 Elepic
 
-[Mach-O otool](https://www.jianshu.com/p/fc67f95eee41)
+[justinyan.app](https://justinyan.app/)
 
+* [Keynote: gamma.app](https://gamma.app)
+* [Justin Yan - Access own window in SwiftUI](https://justinyan.me/post/5656)
+* [Mach-O otool](https://www.jianshu.com/p/fc67f95eee41)
+
+### Mac App
+
+* [Justin Yan - SwiftUI Study Notes. The best way to build an App?](https://twitter.com/MapleShadow/status/1641690615015694336?s=20)
 * TestFlight: Pure SwiftUI
 * Weather: Catalyst
 * Music: Pure AppKit
@@ -56,7 +65,7 @@ Elepic
 3. Preferences: enum
 4. Multiple Windows: openWindowWithId
 
-### Drawbacks
+### Drawbacks and Workarounds
 
 * [NSViewRepresentable](https://developer.apple.com/documentation/swiftui/nsviewrepresentable) is powerful
 * [GeometryReader](https://developer.apple.com/documentation/swiftui/geometryreader) -> Customized WindowReader
@@ -78,17 +87,15 @@ View Redrawing
 
 ## Swift Charts by Eric Woo
 
-[Pixel Weather](https://apps.apple.com/us/app/pixel-weather-forecast/id1278650505?itsct=apps_box_link&itscg=30200)
+[Pixel Weather at App Store](https://apps.apple.com/us/app/pixel-weather-forecast/id1278650505?itsct=apps_box_link&itscg=30200)
 
-[W2Solo](https://www.w2solo.com/topics/3750)
+* Chalkduster, [Apple Developer - System Font](https://developer.apple.com/fonts/system-fonts/)
+* [`interpolationMethod(.catmullRom)`](https://developer.apple.com/documentation/charts/interpolationmethod/catmullrom?language=_8)
+* [Apple Developer - Hello Swift Charts](https://developer.apple.com/videos/play/wwdc2022/10136/)
+* [Apple Developer - Swift Charts: Raise the bar](https://developer.apple.com/videos/play/wwdc2022/10137/)
+* [Apple Developer - Creating a chart using Swift Charts](https://developer.apple.com/documentation/charts/creating-a-chart-using-swift-charts)
 
-* Chalkduster
-* `interpolationMethod(.catmullRom)`
-* Hello Swift Charts
-* Swift Charts: Raise the bar
-* Creating a a chart using Swift Charts
-
-```
+<!-- ```txt
 活动安排 ｜2023 年 4 月 18 日：
 13:30 - 14:00 签到
 14:00 - 14:05 欢迎致辞 Jason Wang
@@ -99,4 +106,4 @@ View Redrawing
                     - SwiftUI 高效开发 Mac App；
                     - Swift Charts 实践分享。
 16:30 - 17:00 茶歇 / 自由讨论
-```
+``` -->
