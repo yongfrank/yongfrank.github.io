@@ -30,8 +30,8 @@ Performance Hitches
 * [Details polishing - Always on Display](https://developer.apple.com/documentation/activitykit)
 * [LazyVGrid](https://developer.apple.com/documentation/swiftui/lazyvgrid)
 * [ScrollViewReader](https://developer.apple.com/documentation/swiftui/scrollviewreader)
-* [import WeatherKit - SF Symbols](https://developer.apple.com/documentation/weatherkit)
-* [import MusicKit & HealthKit](https://developer.apple.com/documentation/musickit)
+* [`import WeatherKit` - SF Symbols](https://developer.apple.com/documentation/weatherkit)
+* [`import MusicKit` & `import HealthKit`](https://developer.apple.com/documentation/musickit)
 * [WKWebView - Notion](https://developer.apple.com/documentation/webkit/wkwebview)
 * Advertisement SDK - Size matters
 * [AVKit](https://developer.apple.com/documentation/avkit)
@@ -63,7 +63,7 @@ Elepic
 ### SwiftUI Advantages
 
 1. Navigation: [NavigationSplitView](https://developer.apple.com/documentation/swiftui/navigationsplitview)
-2. Drag and Drop: onDrag, onDrop
+2. Drag and Drop: [`.onDrag`](https://developer.apple.com/documentation/swiftui/path/ondrag(_:)), [`.onDrop`](https://developer.apple.com/documentation/swiftui/renamebutton/ondrop(of:delegate:)-88jo6)
 3. Preferences: enum
 4. Multiple Windows: openWindowWithId
 
@@ -71,7 +71,7 @@ Elepic
 
 * [NSViewRepresentable](https://developer.apple.com/documentation/swiftui/nsviewrepresentable) is powerful
 * [GeometryReader](https://developer.apple.com/documentation/swiftui/geometryreader) -> Customized WindowReader
-* viewModifier -> .getWindow
+* viewModifier -> `.getWindow`
 
 ### Debug SwiftUI
 
