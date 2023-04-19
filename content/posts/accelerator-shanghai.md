@@ -103,7 +103,7 @@ View Redrawing
 14:50 - 16:30 SwiftUI 实践
                     - 开始使用 Layout 协议；Harry Ng, Sorted
                     - SwiftUI 快速响应产品设计； ZiLi, 
-                    - SwiftUI 高效开发 Mac App；
-                    - Swift Charts 实践分享。
+                    - SwiftUI 高效开发 Mac App；Justin
+                    - Swift Charts 实践分享。 Eric Woo
 16:30 - 17:00 茶歇 / 自由讨论
 ``` -->
