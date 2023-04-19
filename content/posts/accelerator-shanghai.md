@@ -101,7 +101,7 @@ View Redrawing
 
 * [@aloveric - woo-interactive.com](https://woo-interactive.com/)
 * [@caiyue5 - Music Mate](https://musicmate.fun/)
-* [@cyongfrank - Oh My Flags](https://yongfrank.github.io/OhMyFlag-WWDC22/)
+* [@cyongfrank - Oh My Flag](https://yongfrank.github.io/OhMyFlag-WWDC22/)
 * [@harryworld - Sorted](https://www.sortedapp.com/)
 * [@hzlzh - Lock Launcher](https://locklauncher.com/)
 * [@liuyi0922 - miidii.tech](https://www.miidii.tech/)
