@@ -82,7 +82,7 @@ View Redrawing
 
 ### What's next?
 
-* Transform from ObservableObject to Combine
+* Transform from ObservableObject to Combine, see also [fatbobman.com](https://www.fatbobman.com/)
 * Single Source of Truth
 
 ## Swift Charts by Eric Woo
