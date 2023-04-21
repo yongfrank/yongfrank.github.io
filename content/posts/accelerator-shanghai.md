@@ -75,6 +75,8 @@ Elepic
 
 ### Debug SwiftUI
 
+> [Justin Yan - How to debug SwiftUI](https://twitter.com/MapleShadow/status/1648578771803598849?s=20)
+
 View Redrawing
 
 * [Instruments](https://developer.apple.com/videos/play/wwdc2019/411/)
@@ -113,6 +115,7 @@ This page is open source. [Improve this page][opensource].
 [opensource]: https://github.com/yongfrank/yongfrank.github.io/edit/main/content/posts/accelerator-shanghai.md
 
 <!-- ```txt
+SwiftUI 技术沙龙(上海站）
 活动安排 ｜2023 年 4 月 18 日：
 13:30 - 14:00 签到
 14:00 - 14:05 欢迎致辞 Jason Wang
@@ -124,3 +127,24 @@ This page is open source. [Improve this page][opensource].
                     - Swift Charts 实践分享。 Eric Woo
 16:30 - 17:00 茶歇 / 自由讨论
 ``` -->
+
+<!-- 
+SwiftUI 技术沙龙(北京站）
+2023年4月20日
+本次活动将在北京线下举办，在活动中你可以学习 SwiftUI 并与 SwiftUI 开发者社区建立联系。
+SwiftUI 借助 Swift 的强大功能，能帮助你用极少的代码在所有的 Apple 平台上构建外观精美的 App。我们将分享
+SwiftUI 理念的核心原则，还会邀请多位社区内活跃开发者和大家分享 SwiftUl 实践经验。现在就加入我们，共同组建
+SwiftUI 开发者社区吧！
+
+日程安排
+13:30 - 14:00 签到
+14:00 - 14:05 欢迎致辞
+14:05 - 14:40 解密 Swiftul
+14:50 - 16:30 
+- SwiftUI 社区开发者实践分享
+- 使用 SwiftUI 开发一个 RSS 阅读器
+- SwiftUI 自定义布局技术实践
+- 打造可适配多平台的 SwiftUI App
+- SwiftUI 与 UIkit 的互通技巧
+16:30 - 17:00 茶歇/自由讨论
+-->
