@@ -1,0 +1,95 @@
+<!-- https://github.com/praveenjuge/hugo-SEO-meta-tags -->
+<!-- To make sure this renders only in the article page, we check the section -->
+{{ if eq .Section "posts" }}
+
+<!-- https://discourse.gohugo.io/t/markdown-content-renders-as-regular-text-in-summary/1396/5 -->
+
+<!-- {{- $rawDescription := .Description -}}
+{{- $description := ($rawDescription | plainify | markdownify) -}} -->
+<!-- {{- $description := .Summary | safeHTML -}} -->
+
+<!-- Hugo: End content summary at first paragraph break https://stackoverflow.com/questions/72875947/hugo-end-content-summary-at-first-paragraph-break -->
+{{ $summary := index (split .Content "</p>") 0 }}
+
+<meta name="description" content="{{ $description }}" />
+<meta itemprop="description" content="{{ $description }}" />
+<meta property="og:description" content="{{ $description }}" />
+<meta name="twitter:description" content="{{ $description }}" />
+
+<!-- twitter card -->
+{{ if isset .Params "cover" }}
+<!-- be aware that in this context, .RelPermalink is $.Page.RelPermalink -->
+{{ printf "<!-- .ResourceType=%#v .File.LogicalName=%#v .RelPermalink=%#v .Permalink=%#v .Params.cover=%#v -->" .ResourceType $.Page.File.LogicalName .RelPermalink .Permalink .Params.cover | safeHTML }}
+{{ if eq "index.md" $.Page.File.LogicalName }}
+  <meta property="og:image" content="{{ printf "%s%s" .Permalink .Params.cover }}">
+{{ else }}
+  <meta property="og:image" content="{{ .Param "cover" | absURL }}">
+{{ end }}
+{{ else }}
+<!-- get first image as featured image in post if no cover is set -->
+{{ with (index (.Resources.ByType "image") 0) }}
+  <!-- be aware that in this context, .RelPermalink is resource.RelPermalink -->
+  {{ printf "<!-- .ResourceType=%#v .File.LogicalName=%#v .Resources.ByType image .RelPermalink=%#v .Permalink=%#v -->" .ResourceType $.Page.File.LogicalName  .RelPermalink .Permalink | safeHTML }}
+  <meta property="og:image" content="{{ .Permalink }}">
+{{ end }}
+{{ end }} 
+
+
+<!-- Pagination meta tags for list pages only -->
+{{ $paginator := .Paginate (where .Pages "Section" "blog") }} 
+{{ if $paginator }}
+  <link rel="first" href="{{ $paginator.First.URL }}" />
+  <link rel="last" href="{{ $paginator.Last.URL }}" />
+  {{ if $paginator.HasPrev }}
+    <link rel="prev" href="{{ $paginator.Prev.URL }}" />
+  {{end }}
+  {{ if $paginator.HasNext }}
+    <link rel="next" href="{{ $paginator.Next.URL }}" />
+  {{end }}
+{{end }}
+
+<meta property="og:type" content="article" />
+<meta property="article:publisher" content="{{ .Site.Params.facebook }}" />
+<meta property="og:article:published_time" content={{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
+<meta property="article:published_time" content={{ .Date.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
+
+{{ with.Params.author }}
+  <meta property="og:article:author" content="{{humanize . }}" />
+  <meta property="article:author" content="{{humanize . }}" />
+  <meta name="author" content="{{humanize . }}" />
+{{ end }}
+
+{{ with.Params.category }}
+  <meta name="news_keywords" content="{{ index . 0 }}" />
+  <meta property="article:section" content="{{ index . 0 }}" />
+{{ end }}
+
+<script defer type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": {{ .Title }},
+    "author": {
+      "@type": "Person",
+      "name": "{{ .Site.Params.github }}"
+    },
+    "datePublished": "{{ .Date.Format "2006-01-02" }}",
+    "description": {{ .Description }},
+    "wordCount": {{ .WordCount }},
+    "mainEntityOfPage": "True",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+    "image": {
+      "@type": "imageObject",
+      "url": "{{ with .Params.image }}{{ .Permalink }}{{ end }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ .Site.Title }}",
+      "logo": {
+        "@type": "imageObject",
+        "url": "https://www.example.com/images/brand/favicon.png"
+      }
+    }
+  }
+</script>
+{{ end }}

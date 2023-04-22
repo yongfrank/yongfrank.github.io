@@ -4,6 +4,10 @@ date: 2023-03-30T00:12:53+08:00
 custom_head: <meta name='apple-itunes-app' content='app-id=6446227923'>
 ---
 
+How to deal with Data and Analytics in App Store Connect?
+
+<!--more-->
+
 ## App Store Connect Statistics
 
 * Impressions: The number of times the application was displayed on the App Store.

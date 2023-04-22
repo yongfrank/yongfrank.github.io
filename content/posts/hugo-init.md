@@ -3,6 +3,15 @@ title: "Hugo Init"
 date: 2023-03-02T11:06:36+08:00
 ---
 
+This article is about how to init a hugo site.
+
+<!--more-->
+
+## Hugo QuickStart
+
+> [Hugo 基础知识](https://github.com/heartnn/hugo-theme-test/blob/master/README.md)
+> [Content Summaries Hugo generates summaries of your content.](https://gohugo.io/content-management/summaries/)
+
 ## Init hugo site
 
 * [Hugo Article](https://gohugo.io/getting-started/quick-start/)
