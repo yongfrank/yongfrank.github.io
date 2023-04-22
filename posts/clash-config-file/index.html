@@ -1,5 +1,365 @@
 <!doctype html><html lang=en-us><title>Clash & Config File | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=description content="infrastructure port hosts dns mode: Rule proxies: proxy name, server, Password proxies-groups: name, type, proxies rules: Match RULE, DOMAIN, Request Rule port: 7890 socks-port: 7891 redir-port: 7892 mixed-port: 7893 allow-lan: false mode: Rule log-level: info ipv6: false hosts: services.googleapis.cn: 142.250.196.131 www.google.cn: 142.250.196.131 external-controller: 0.0.0.0:9090 clash-for-android: append-system-dns: false profile: tracing: true experimental: sniff-tls-sni: true dns: enable: true listen: 127.0.0.1:8853 default-nameserver: - 223.5.5.5 - 8.8.4.4 ipv6: false enhanced-mode: fake-ip fake-ip-filter: {- &#34;*.lan&#34;} nameserver: {- &#34;114."><meta itemprop=description content="infrastructure port hosts dns mode: Rule proxies: proxy name, server, Password proxies-groups: name, type, proxies rules: Match RULE, DOMAIN, Request Rule port: 7890 socks-port: 7891 redir-port: 7892 mixed-port: 7893 allow-lan: false mode: Rule log-level: info ipv6: false hosts: services.googleapis.cn: 142.250.196.131 www.google.cn: 142.250.196.131 external-controller: 0.0.0.0:9090 clash-for-android: append-system-dns: false profile: tracing: true experimental: sniff-tls-sni: true dns: enable: true listen: 127.0.0.1:8853 default-nameserver: - 223.5.5.5 - 8.8.4.4 ipv6: false enhanced-mode: fake-ip fake-ip-filter: {- &#34;*.lan&#34;} nameserver: {- &#34;114."><meta property="og:description" content="infrastructure port hosts dns mode: Rule proxies: proxy name, server, Password proxies-groups: name, type, proxies rules: Match RULE, DOMAIN, Request Rule port: 7890 socks-port: 7891 redir-port: 7892 mixed-port: 7893 allow-lan: false mode: Rule log-level: info ipv6: false hosts: services.googleapis.cn: 142.250.196.131 www.google.cn: 142.250.196.131 external-controller: 0.0.0.0:9090 clash-for-android: append-system-dns: false profile: tracing: true experimental: sniff-tls-sni: true dns: enable: true listen: 127.0.0.1:8853 default-nameserver: - 223.5.5.5 - 8.8.4.4 ipv6: false enhanced-mode: fake-ip fake-ip-filter: {- &#34;*.lan&#34;} nameserver: {- &#34;114."><meta name=twitter:description content="infrastructure port hosts dns mode: Rule proxies: proxy name, server, Password proxies-groups: name, type, proxies rules: Match RULE, DOMAIN, Request Rule port: 7890 socks-port: 7891 redir-port: 7892 mixed-port: 7893 allow-lan: false mode: Rule log-level: info ipv6: false hosts: services.googleapis.cn: 142.250.196.131 www.google.cn: 142.250.196.131 external-controller: 0.0.0.0:9090 clash-for-android: append-system-dns: false profile: tracing: true experimental: sniff-tls-sni: true dns: enable: true listen: 127.0.0.1:8853 default-nameserver: - 223.5.5.5 - 8.8.4.4 ipv6: false enhanced-mode: fake-ip fake-ip-filter: {- &#34;*.lan&#34;} nameserver: {- &#34;114."><meta property="og:type" content="article"><meta property="article:publisher" content><meta property="og:article:published_time" content="2023-03-20T10:26:07+0800"><meta property="article:published_time" content="2023-03-20T10:26:07+0800"><script defer type=application/ld+json>{"@context":"http://schema.org","@type":"Article","headline":"Clash \u0026 Config File","author":{"@type":"Person","name":""},"datePublished":"2023-03-20","description":"","wordCount":158,"mainEntityOfPage":"True","dateModified":"2023-03-20","image":{"@type":"imageObject","url":""},"publisher":{"@type":"Organization","name":"Blog by Frank","logo":{"@type":"imageObject","url":"https://www.example.com/images/brand/favicon.png"}}}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/clash-config-file/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Clash & Config File</h1><time datetime=2023-03-20T10:26:07+08:00>March 20, 2023</time></header><h2 id=infrastructure>infrastructure</h2><ul><li>port</li><li>hosts</li><li>dns</li><li>mode: Rule</li><li>proxies: proxy name, server, Password</li><li>proxies-groups: name, type, proxies</li><li>rules: Match RULE, DOMAIN, Request Rule</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>port</span>: <span style=color:#ae81ff>7890</span>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=description content="<h2 id=&#34;infrastructure&#34;>infrastructure</h2>
+<ul>
+<li>port</li>
+<li>hosts</li>
+<li>dns</li>
+<li>mode: Rule</li>
+<li>proxies: proxy name, server, Password</li>
+<li>proxies-groups: name, type, proxies</li>
+<li>rules: Match RULE, DOMAIN, Request Rule</li>
+</ul>
+<div class=&#34;highlight&#34;><pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;><code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>port</span>: <span style=&#34;color:#ae81ff&#34;>7890</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>socks-port</span>: <span style=&#34;color:#ae81ff&#34;>7891</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>redir-port</span>: <span style=&#34;color:#ae81ff&#34;>7892</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>mixed-port</span>: <span style=&#34;color:#ae81ff&#34;>7893</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>allow-lan</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>mode</span>: <span style=&#34;color:#ae81ff&#34;>Rule</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>log-level</span>: <span style=&#34;color:#ae81ff&#34;>info</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>ipv6</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>hosts</span>: 
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>services.googleapis.cn</span>: <span style=&#34;color:#ae81ff&#34;>142.250.196.131</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>www.google.cn</span>: <span style=&#34;color:#ae81ff&#34;>142.250.196.131</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>external-controller</span>: <span style=&#34;color:#ae81ff&#34;>0.0.0.0</span>:<span style=&#34;color:#ae81ff&#34;>9090</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>clash-for-android</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>append-system-dns</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>profile</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>tracing</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>experimental</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>sniff-tls-sni</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>dns</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>enable</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>listen</span>: <span style=&#34;color:#ae81ff&#34;>127.0.0.1</span>:<span style=&#34;color:#ae81ff&#34;>8853</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>default-nameserver</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        - <span style=&#34;color:#ae81ff&#34;>223.5.5.5</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        - <span style=&#34;color:#ae81ff&#34;>8.8.4.4</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>ipv6</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>enhanced-mode</span>: <span style=&#34;color:#ae81ff&#34;>fake-ip</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fake-ip-filter</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#e6db74&#34;>&amp;#34;*.lan&amp;#34;</span>}
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>nameserver</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#e6db74&#34;>&amp;#34;114.114.114.114&amp;#34;</span>}
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fallback</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#ae81ff&#34;>https://1.0.0.1/dns-query}</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fallback-filter</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>geoip</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>ipcidr</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            {- <span style=&#34;color:#ae81ff&#34;>240.0.0.0</span><span style=&#34;color:#ae81ff&#34;>/4}</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>domain</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            {- <span style=&#34;color:#ae81ff&#34;>+.facebook.com}</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    {
+</span></span><span style=&#34;display:flex;&#34;><span>        - 
+</span></span><span style=&#34;display:flex;&#34;><span>        {
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#e6db74&#34;>&amp;#34;Hong Kong&amp;#34;</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>server</span>: <span style=&#34;color:#ae81ff&#34;>abc.top,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>port</span>: <span style=&#34;color:#ae81ff&#34;>200001</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>trojan,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>password</span>: <span style=&#34;color:#ae81ff&#34;>123456</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>sni</span>: <span style=&#34;color:#ae81ff&#34;>abcde.top,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>skip-cert-verify</span>: <span style=&#34;color:#66d9ef&#34;>true</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>udp</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        }
+</span></span><span style=&#34;display:flex;&#34;><span>        -
+</span></span><span style=&#34;display:flex;&#34;><span>        {
+</span></span><span style=&#34;display:flex;&#34;><span>
+</span></span><span style=&#34;display:flex;&#34;><span>        }
+</span></span><span style=&#34;display:flex;&#34;><span>    }
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>proxy-groups</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    -   <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#ae81ff&#34;>Rule</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>select</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            - <span style=&#34;color:#ae81ff&#34;>Hong Kong</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            -
+</span></span><span style=&#34;display:flex;&#34;><span>    -   <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#ae81ff&#34;>YouTuBe</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>select</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            - <span style=&#34;color:#ae81ff&#34;>Hong Kong</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            -
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>rules</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    - <span style=&#34;color:#ae81ff&#34;>DOMAIN-SUFFIX, local, DIRECT</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    - <span style=&#34;color:#ae81ff&#34;>MATCH, Rule</span>
+</span></span></code></pre></div><h2 id=&#34;help-desk&#34;>Help Desk</h2>
+<ul>
+<li><a href=&#34;https://gleaming-fedora-39d.notion.site/WestData-280992c869574200b910ced779f93e9b&#34;>Help Desk for WestData</a></li>
+<li><a href=&#34;https://api.nameless13.com/&#34;>Subscription Converter</a></li>
+</ul>
+<h2 id=&#34;tutorials&#34;>Tutorials</h2>
+<ul>
+<li><a href=&#34;https://heaid.top/index.php/archives/34/&#34;>ClashX Pro 使用教程 最好用的Mac苹果电脑科学上网工具</a></li>
+<li><a href=&#34;https://qust.me/post/clashxProMac/&#34;>Mac 电脑使用 ClashX Pro 作为网关旁路由</a></li>
+</ul>
+"><meta itemprop=description content="<h2 id=&#34;infrastructure&#34;>infrastructure</h2>
+<ul>
+<li>port</li>
+<li>hosts</li>
+<li>dns</li>
+<li>mode: Rule</li>
+<li>proxies: proxy name, server, Password</li>
+<li>proxies-groups: name, type, proxies</li>
+<li>rules: Match RULE, DOMAIN, Request Rule</li>
+</ul>
+<div class=&#34;highlight&#34;><pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;><code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>port</span>: <span style=&#34;color:#ae81ff&#34;>7890</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>socks-port</span>: <span style=&#34;color:#ae81ff&#34;>7891</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>redir-port</span>: <span style=&#34;color:#ae81ff&#34;>7892</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>mixed-port</span>: <span style=&#34;color:#ae81ff&#34;>7893</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>allow-lan</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>mode</span>: <span style=&#34;color:#ae81ff&#34;>Rule</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>log-level</span>: <span style=&#34;color:#ae81ff&#34;>info</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>ipv6</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>hosts</span>: 
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>services.googleapis.cn</span>: <span style=&#34;color:#ae81ff&#34;>142.250.196.131</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>www.google.cn</span>: <span style=&#34;color:#ae81ff&#34;>142.250.196.131</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>external-controller</span>: <span style=&#34;color:#ae81ff&#34;>0.0.0.0</span>:<span style=&#34;color:#ae81ff&#34;>9090</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>clash-for-android</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>append-system-dns</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>profile</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>tracing</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>experimental</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>sniff-tls-sni</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>dns</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>enable</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>listen</span>: <span style=&#34;color:#ae81ff&#34;>127.0.0.1</span>:<span style=&#34;color:#ae81ff&#34;>8853</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>default-nameserver</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        - <span style=&#34;color:#ae81ff&#34;>223.5.5.5</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        - <span style=&#34;color:#ae81ff&#34;>8.8.4.4</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>ipv6</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>enhanced-mode</span>: <span style=&#34;color:#ae81ff&#34;>fake-ip</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fake-ip-filter</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#e6db74&#34;>&amp;#34;*.lan&amp;#34;</span>}
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>nameserver</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#e6db74&#34;>&amp;#34;114.114.114.114&amp;#34;</span>}
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fallback</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#ae81ff&#34;>https://1.0.0.1/dns-query}</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fallback-filter</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>geoip</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>ipcidr</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            {- <span style=&#34;color:#ae81ff&#34;>240.0.0.0</span><span style=&#34;color:#ae81ff&#34;>/4}</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>domain</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            {- <span style=&#34;color:#ae81ff&#34;>+.facebook.com}</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    {
+</span></span><span style=&#34;display:flex;&#34;><span>        - 
+</span></span><span style=&#34;display:flex;&#34;><span>        {
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#e6db74&#34;>&amp;#34;Hong Kong&amp;#34;</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>server</span>: <span style=&#34;color:#ae81ff&#34;>abc.top,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>port</span>: <span style=&#34;color:#ae81ff&#34;>200001</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>trojan,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>password</span>: <span style=&#34;color:#ae81ff&#34;>123456</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>sni</span>: <span style=&#34;color:#ae81ff&#34;>abcde.top,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>skip-cert-verify</span>: <span style=&#34;color:#66d9ef&#34;>true</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>udp</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        }
+</span></span><span style=&#34;display:flex;&#34;><span>        -
+</span></span><span style=&#34;display:flex;&#34;><span>        {
+</span></span><span style=&#34;display:flex;&#34;><span>
+</span></span><span style=&#34;display:flex;&#34;><span>        }
+</span></span><span style=&#34;display:flex;&#34;><span>    }
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>proxy-groups</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    -   <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#ae81ff&#34;>Rule</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>select</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            - <span style=&#34;color:#ae81ff&#34;>Hong Kong</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            -
+</span></span><span style=&#34;display:flex;&#34;><span>    -   <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#ae81ff&#34;>YouTuBe</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>select</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            - <span style=&#34;color:#ae81ff&#34;>Hong Kong</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            -
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>rules</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    - <span style=&#34;color:#ae81ff&#34;>DOMAIN-SUFFIX, local, DIRECT</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    - <span style=&#34;color:#ae81ff&#34;>MATCH, Rule</span>
+</span></span></code></pre></div><h2 id=&#34;help-desk&#34;>Help Desk</h2>
+<ul>
+<li><a href=&#34;https://gleaming-fedora-39d.notion.site/WestData-280992c869574200b910ced779f93e9b&#34;>Help Desk for WestData</a></li>
+<li><a href=&#34;https://api.nameless13.com/&#34;>Subscription Converter</a></li>
+</ul>
+<h2 id=&#34;tutorials&#34;>Tutorials</h2>
+<ul>
+<li><a href=&#34;https://heaid.top/index.php/archives/34/&#34;>ClashX Pro 使用教程 最好用的Mac苹果电脑科学上网工具</a></li>
+<li><a href=&#34;https://qust.me/post/clashxProMac/&#34;>Mac 电脑使用 ClashX Pro 作为网关旁路由</a></li>
+</ul>
+"><meta property="og:description" content="<h2 id=&#34;infrastructure&#34;>infrastructure</h2>
+<ul>
+<li>port</li>
+<li>hosts</li>
+<li>dns</li>
+<li>mode: Rule</li>
+<li>proxies: proxy name, server, Password</li>
+<li>proxies-groups: name, type, proxies</li>
+<li>rules: Match RULE, DOMAIN, Request Rule</li>
+</ul>
+<div class=&#34;highlight&#34;><pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;><code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>port</span>: <span style=&#34;color:#ae81ff&#34;>7890</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>socks-port</span>: <span style=&#34;color:#ae81ff&#34;>7891</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>redir-port</span>: <span style=&#34;color:#ae81ff&#34;>7892</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>mixed-port</span>: <span style=&#34;color:#ae81ff&#34;>7893</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>allow-lan</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>mode</span>: <span style=&#34;color:#ae81ff&#34;>Rule</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>log-level</span>: <span style=&#34;color:#ae81ff&#34;>info</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>ipv6</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>hosts</span>: 
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>services.googleapis.cn</span>: <span style=&#34;color:#ae81ff&#34;>142.250.196.131</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>www.google.cn</span>: <span style=&#34;color:#ae81ff&#34;>142.250.196.131</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>external-controller</span>: <span style=&#34;color:#ae81ff&#34;>0.0.0.0</span>:<span style=&#34;color:#ae81ff&#34;>9090</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>clash-for-android</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>append-system-dns</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>profile</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>tracing</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>experimental</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>sniff-tls-sni</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>dns</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>enable</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>listen</span>: <span style=&#34;color:#ae81ff&#34;>127.0.0.1</span>:<span style=&#34;color:#ae81ff&#34;>8853</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>default-nameserver</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        - <span style=&#34;color:#ae81ff&#34;>223.5.5.5</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        - <span style=&#34;color:#ae81ff&#34;>8.8.4.4</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>ipv6</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>enhanced-mode</span>: <span style=&#34;color:#ae81ff&#34;>fake-ip</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fake-ip-filter</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#e6db74&#34;>&amp;#34;*.lan&amp;#34;</span>}
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>nameserver</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#e6db74&#34;>&amp;#34;114.114.114.114&amp;#34;</span>}
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fallback</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#ae81ff&#34;>https://1.0.0.1/dns-query}</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fallback-filter</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>geoip</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>ipcidr</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            {- <span style=&#34;color:#ae81ff&#34;>240.0.0.0</span><span style=&#34;color:#ae81ff&#34;>/4}</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>domain</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            {- <span style=&#34;color:#ae81ff&#34;>+.facebook.com}</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    {
+</span></span><span style=&#34;display:flex;&#34;><span>        - 
+</span></span><span style=&#34;display:flex;&#34;><span>        {
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#e6db74&#34;>&amp;#34;Hong Kong&amp;#34;</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>server</span>: <span style=&#34;color:#ae81ff&#34;>abc.top,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>port</span>: <span style=&#34;color:#ae81ff&#34;>200001</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>trojan,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>password</span>: <span style=&#34;color:#ae81ff&#34;>123456</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>sni</span>: <span style=&#34;color:#ae81ff&#34;>abcde.top,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>skip-cert-verify</span>: <span style=&#34;color:#66d9ef&#34;>true</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>udp</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        }
+</span></span><span style=&#34;display:flex;&#34;><span>        -
+</span></span><span style=&#34;display:flex;&#34;><span>        {
+</span></span><span style=&#34;display:flex;&#34;><span>
+</span></span><span style=&#34;display:flex;&#34;><span>        }
+</span></span><span style=&#34;display:flex;&#34;><span>    }
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>proxy-groups</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    -   <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#ae81ff&#34;>Rule</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>select</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            - <span style=&#34;color:#ae81ff&#34;>Hong Kong</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            -
+</span></span><span style=&#34;display:flex;&#34;><span>    -   <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#ae81ff&#34;>YouTuBe</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>select</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            - <span style=&#34;color:#ae81ff&#34;>Hong Kong</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            -
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>rules</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    - <span style=&#34;color:#ae81ff&#34;>DOMAIN-SUFFIX, local, DIRECT</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    - <span style=&#34;color:#ae81ff&#34;>MATCH, Rule</span>
+</span></span></code></pre></div><h2 id=&#34;help-desk&#34;>Help Desk</h2>
+<ul>
+<li><a href=&#34;https://gleaming-fedora-39d.notion.site/WestData-280992c869574200b910ced779f93e9b&#34;>Help Desk for WestData</a></li>
+<li><a href=&#34;https://api.nameless13.com/&#34;>Subscription Converter</a></li>
+</ul>
+<h2 id=&#34;tutorials&#34;>Tutorials</h2>
+<ul>
+<li><a href=&#34;https://heaid.top/index.php/archives/34/&#34;>ClashX Pro 使用教程 最好用的Mac苹果电脑科学上网工具</a></li>
+<li><a href=&#34;https://qust.me/post/clashxProMac/&#34;>Mac 电脑使用 ClashX Pro 作为网关旁路由</a></li>
+</ul>
+"><meta name=twitter:description content="<h2 id=&#34;infrastructure&#34;>infrastructure</h2>
+<ul>
+<li>port</li>
+<li>hosts</li>
+<li>dns</li>
+<li>mode: Rule</li>
+<li>proxies: proxy name, server, Password</li>
+<li>proxies-groups: name, type, proxies</li>
+<li>rules: Match RULE, DOMAIN, Request Rule</li>
+</ul>
+<div class=&#34;highlight&#34;><pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;><code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>port</span>: <span style=&#34;color:#ae81ff&#34;>7890</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>socks-port</span>: <span style=&#34;color:#ae81ff&#34;>7891</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>redir-port</span>: <span style=&#34;color:#ae81ff&#34;>7892</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>mixed-port</span>: <span style=&#34;color:#ae81ff&#34;>7893</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>allow-lan</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>mode</span>: <span style=&#34;color:#ae81ff&#34;>Rule</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>log-level</span>: <span style=&#34;color:#ae81ff&#34;>info</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>ipv6</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>hosts</span>: 
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>services.googleapis.cn</span>: <span style=&#34;color:#ae81ff&#34;>142.250.196.131</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>www.google.cn</span>: <span style=&#34;color:#ae81ff&#34;>142.250.196.131</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>external-controller</span>: <span style=&#34;color:#ae81ff&#34;>0.0.0.0</span>:<span style=&#34;color:#ae81ff&#34;>9090</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>clash-for-android</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>append-system-dns</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>profile</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>tracing</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>experimental</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>  <span style=&#34;color:#f92672&#34;>sniff-tls-sni</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>dns</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>enable</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>listen</span>: <span style=&#34;color:#ae81ff&#34;>127.0.0.1</span>:<span style=&#34;color:#ae81ff&#34;>8853</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>default-nameserver</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        - <span style=&#34;color:#ae81ff&#34;>223.5.5.5</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        - <span style=&#34;color:#ae81ff&#34;>8.8.4.4</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>ipv6</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>enhanced-mode</span>: <span style=&#34;color:#ae81ff&#34;>fake-ip</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fake-ip-filter</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#e6db74&#34;>&amp;#34;*.lan&amp;#34;</span>}
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>nameserver</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#e6db74&#34;>&amp;#34;114.114.114.114&amp;#34;</span>}
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fallback</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        {- <span style=&#34;color:#ae81ff&#34;>https://1.0.0.1/dns-query}</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    <span style=&#34;color:#f92672&#34;>fallback-filter</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>geoip</span>: <span style=&#34;color:#66d9ef&#34;>false</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>ipcidr</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            {- <span style=&#34;color:#ae81ff&#34;>240.0.0.0</span><span style=&#34;color:#ae81ff&#34;>/4}</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>domain</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            {- <span style=&#34;color:#ae81ff&#34;>+.facebook.com}</span>
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    {
+</span></span><span style=&#34;display:flex;&#34;><span>        - 
+</span></span><span style=&#34;display:flex;&#34;><span>        {
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#e6db74&#34;>&amp;#34;Hong Kong&amp;#34;</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>server</span>: <span style=&#34;color:#ae81ff&#34;>abc.top,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>port</span>: <span style=&#34;color:#ae81ff&#34;>200001</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>trojan,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>password</span>: <span style=&#34;color:#ae81ff&#34;>123456</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>sni</span>: <span style=&#34;color:#ae81ff&#34;>abcde.top,</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>skip-cert-verify</span>: <span style=&#34;color:#66d9ef&#34;>true</span>,
+</span></span><span style=&#34;display:flex;&#34;><span>            <span style=&#34;color:#f92672&#34;>udp</span>: <span style=&#34;color:#66d9ef&#34;>true</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        }
+</span></span><span style=&#34;display:flex;&#34;><span>        -
+</span></span><span style=&#34;display:flex;&#34;><span>        {
+</span></span><span style=&#34;display:flex;&#34;><span>
+</span></span><span style=&#34;display:flex;&#34;><span>        }
+</span></span><span style=&#34;display:flex;&#34;><span>    }
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>proxy-groups</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    -   <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#ae81ff&#34;>Rule</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>select</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            - <span style=&#34;color:#ae81ff&#34;>Hong Kong</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            -
+</span></span><span style=&#34;display:flex;&#34;><span>    -   <span style=&#34;color:#f92672&#34;>name</span>: <span style=&#34;color:#ae81ff&#34;>YouTuBe</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>type</span>: <span style=&#34;color:#ae81ff&#34;>select</span>
+</span></span><span style=&#34;display:flex;&#34;><span>        <span style=&#34;color:#f92672&#34;>proxies</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>            - <span style=&#34;color:#ae81ff&#34;>Hong Kong</span>
+</span></span><span style=&#34;display:flex;&#34;><span>            -
+</span></span><span style=&#34;display:flex;&#34;><span><span style=&#34;color:#f92672&#34;>rules</span>:
+</span></span><span style=&#34;display:flex;&#34;><span>    - <span style=&#34;color:#ae81ff&#34;>DOMAIN-SUFFIX, local, DIRECT</span>
+</span></span><span style=&#34;display:flex;&#34;><span>    - <span style=&#34;color:#ae81ff&#34;>MATCH, Rule</span>
+</span></span></code></pre></div><h2 id=&#34;help-desk&#34;>Help Desk</h2>
+<ul>
+<li><a href=&#34;https://gleaming-fedora-39d.notion.site/WestData-280992c869574200b910ced779f93e9b&#34;>Help Desk for WestData</a></li>
+<li><a href=&#34;https://api.nameless13.com/&#34;>Subscription Converter</a></li>
+</ul>
+<h2 id=&#34;tutorials&#34;>Tutorials</h2>
+<ul>
+<li><a href=&#34;https://heaid.top/index.php/archives/34/&#34;>ClashX Pro 使用教程 最好用的Mac苹果电脑科学上网工具</a></li>
+<li><a href=&#34;https://qust.me/post/clashxProMac/&#34;>Mac 电脑使用 ClashX Pro 作为网关旁路由</a></li>
+</ul>
+"><meta property="og:type" content="article"><meta property="article:publisher" content><meta property="og:article:published_time" content="2023-03-20T10:26:07+0800"><meta property="article:published_time" content="2023-03-20T10:26:07+0800"><script defer type=application/ld+json>{"@context":"http://schema.org","@type":"Article","headline":"Clash \u0026 Config File","author":{"@type":"Person","name":""},"datePublished":"2023-03-20","description":"","wordCount":158,"mainEntityOfPage":"True","dateModified":"2023-03-20","image":{"@type":"imageObject","url":""},"publisher":{"@type":"Organization","name":"Blog by Frank","logo":{"@type":"imageObject","url":"https://www.example.com/images/brand/favicon.png"}}}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/clash-config-file/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Clash & Config File</h1><time datetime=2023-03-20T10:26:07+08:00>March 20, 2023</time></header><h2 id=infrastructure>infrastructure</h2><ul><li>port</li><li>hosts</li><li>dns</li><li>mode: Rule</li><li>proxies: proxy name, server, Password</li><li>proxies-groups: name, type, proxies</li><li>rules: Match RULE, DOMAIN, Request Rule</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>port</span>: <span style=color:#ae81ff>7890</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>socks-port</span>: <span style=color:#ae81ff>7891</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>redir-port</span>: <span style=color:#ae81ff>7892</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>mixed-port</span>: <span style=color:#ae81ff>7893</span>
