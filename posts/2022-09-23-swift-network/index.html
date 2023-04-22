@@ -1,133 +1,97 @@
 <!doctype html><html lang=en-us><title>Swift Network URLSession | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=description content="<!-- markdownlint-disable -->
-<html>
-<head>
-<!-- Primary Meta Tags -->
-<title>Swift Network URLSession</title>
-<meta name=&#34;title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta name=&#34;description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<!-- Open Graph / Facebook -->
-<meta property=&#34;og:type&#34; content=&#34;website&#34;>
-<meta property=&#34;og:url&#34; content=&#34;https://yongfrank.github.io/blog/study/2022/09/23/swift-network&#34;>
-<meta property=&#34;og:title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta property=&#34;og:description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<meta property=&#34;og:image&#34; content=&#34;https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png&#34;>
-<!-- Twitter -->
-<meta property=&#34;twitter:card&#34; content=&#34;summary_large_image&#34;>
-<meta property=&#34;twitter:url&#34; content=&#34;https://yongfrank.github.io/blog/study/2022/09/23/swift-network&#34;>
-<meta property=&#34;twitter:title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta property=&#34;twitter:description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<meta property=&#34;twitter:image&#34; content=&#34;https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png&#34;>
-</head>
-</html>
-<!--
- * @Author: Frank Chu
- * @Date: 2022-09-23 08:23:03
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-26 09:44:49
- * @FilePath: /blog/_posts/2022-09-23-swift-network.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
-<!-- The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended. You can use the related URLSessionDelegate and URLSessionTaskDelegate to support authentication and receive events like redirection and task completion. -->
-<p><a href=&#34;https://www.hackingwithswift.com/books/ios-swiftui/sending-and-receiving-codable-data-with-urlsession-and-swiftui&#34;>Sending and receiving Codable data with URLSession and SwiftUI</a>"><meta itemprop=description content="<!-- markdownlint-disable -->
-<html>
-<head>
-<!-- Primary Meta Tags -->
-<title>Swift Network URLSession</title>
-<meta name=&#34;title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta name=&#34;description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<!-- Open Graph / Facebook -->
-<meta property=&#34;og:type&#34; content=&#34;website&#34;>
-<meta property=&#34;og:url&#34; content=&#34;https://yongfrank.github.io/blog/study/2022/09/23/swift-network&#34;>
-<meta property=&#34;og:title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta property=&#34;og:description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<meta property=&#34;og:image&#34; content=&#34;https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png&#34;>
-<!-- Twitter -->
-<meta property=&#34;twitter:card&#34; content=&#34;summary_large_image&#34;>
-<meta property=&#34;twitter:url&#34; content=&#34;https://yongfrank.github.io/blog/study/2022/09/23/swift-network&#34;>
-<meta property=&#34;twitter:title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta property=&#34;twitter:description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<meta property=&#34;twitter:image&#34; content=&#34;https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png&#34;>
-</head>
-</html>
-<!--
- * @Author: Frank Chu
- * @Date: 2022-09-23 08:23:03
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-26 09:44:49
- * @FilePath: /blog/_posts/2022-09-23-swift-network.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
-<!-- The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended. You can use the related URLSessionDelegate and URLSessionTaskDelegate to support authentication and receive events like redirection and task completion. -->
-<p><a href=&#34;https://www.hackingwithswift.com/books/ios-swiftui/sending-and-receiving-codable-data-with-urlsession-and-swiftui&#34;>Sending and receiving Codable data with URLSession and SwiftUI</a>"><meta property="og:description" content="<!-- markdownlint-disable -->
-<html>
-<head>
-<!-- Primary Meta Tags -->
-<title>Swift Network URLSession</title>
-<meta name=&#34;title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta name=&#34;description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<!-- Open Graph / Facebook -->
-<meta property=&#34;og:type&#34; content=&#34;website&#34;>
-<meta property=&#34;og:url&#34; content=&#34;https://yongfrank.github.io/blog/study/2022/09/23/swift-network&#34;>
-<meta property=&#34;og:title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta property=&#34;og:description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<meta property=&#34;og:image&#34; content=&#34;https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png&#34;>
-<!-- Twitter -->
-<meta property=&#34;twitter:card&#34; content=&#34;summary_large_image&#34;>
-<meta property=&#34;twitter:url&#34; content=&#34;https://yongfrank.github.io/blog/study/2022/09/23/swift-network&#34;>
-<meta property=&#34;twitter:title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta property=&#34;twitter:description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<meta property=&#34;twitter:image&#34; content=&#34;https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png&#34;>
-</head>
-</html>
-<!--
- * @Author: Frank Chu
- * @Date: 2022-09-23 08:23:03
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-26 09:44:49
- * @FilePath: /blog/_posts/2022-09-23-swift-network.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
-<!-- The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended. You can use the related URLSessionDelegate and URLSessionTaskDelegate to support authentication and receive events like redirection and task completion. -->
-<p><a href=&#34;https://www.hackingwithswift.com/books/ios-swiftui/sending-and-receiving-codable-data-with-urlsession-and-swiftui&#34;>Sending and receiving Codable data with URLSession and SwiftUI</a>"><meta name=twitter:description content="<!-- markdownlint-disable -->
-<html>
-<head>
-<!-- Primary Meta Tags -->
-<title>Swift Network URLSession</title>
-<meta name=&#34;title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta name=&#34;description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<!-- Open Graph / Facebook -->
-<meta property=&#34;og:type&#34; content=&#34;website&#34;>
-<meta property=&#34;og:url&#34; content=&#34;https://yongfrank.github.io/blog/study/2022/09/23/swift-network&#34;>
-<meta property=&#34;og:title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta property=&#34;og:description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<meta property=&#34;og:image&#34; content=&#34;https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png&#34;>
-<!-- Twitter -->
-<meta property=&#34;twitter:card&#34; content=&#34;summary_large_image&#34;>
-<meta property=&#34;twitter:url&#34; content=&#34;https://yongfrank.github.io/blog/study/2022/09/23/swift-network&#34;>
-<meta property=&#34;twitter:title&#34; content=&#34;Swift Network URLSession&#34;>
-<meta property=&#34;twitter:description&#34; content=&#34;The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs.&#34;>
-<meta property=&#34;twitter:image&#34; content=&#34;https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png&#34;>
-</head>
-</html>
-<!--
- * @Author: Frank Chu
- * @Date: 2022-09-23 08:23:03
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-26 09:44:49
- * @FilePath: /blog/_posts/2022-09-23-swift-network.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
-<!-- The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended. You can use the related URLSessionDelegate and URLSessionTaskDelegate to support authentication and receive events like redirection and task completion. -->
-<p><a href=&#34;https://www.hackingwithswift.com/books/ios-swiftui/sending-and-receiving-codable-data-with-urlsession-and-swiftui&#34;>Sending and receiving Codable data with URLSession and SwiftUI</a>"><meta property="og:type" content="article"><meta property="article:publisher" content><meta property="og:article:published_time" content="2022-09-23T09:50:00Z"><meta property="article:published_time" content="2022-09-23T09:50:00Z"><script defer type=application/ld+json>{"@context":"http://schema.org","@type":"Article","headline":"Swift Network URLSession","author":{"@type":"Person","name":""},"datePublished":"2022-09-23","description":"","wordCount":723,"mainEntityOfPage":"True","dateModified":"2022-09-23","image":{"@type":"imageObject","url":""},"publisher":{"@type":"Organization","name":"Blog by Frank","logo":{"@type":"imageObject","url":"https://www.example.com/images/brand/favicon.png"}}}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/2022-09-23-swift-network/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Swift Network URLSession</h1><time datetime=2022-09-23T09:50:00Z>September 23, 2022</time></header><nav id=TableOfContents><ul><li><a href=#extended-reading-materials>Extended Reading Materials</a></li></ul></nav><html><head><title>Swift Network URLSession</title><meta name=title content="Swift Network URLSession"><meta name=description content="The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs."><meta property="og:type" content="website"><meta property="og:url" content="https://yongfrank.github.io/blog/study/2022/09/23/swift-network"><meta property="og:title" content="Swift Network URLSession"><meta property="og:description" content="The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs."><meta property="og:image" content="https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://yongfrank.github.io/blog/study/2022/09/23/swift-network"><meta property="twitter:title" content="Swift Network URLSession"><meta property="twitter:description" content="The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs."><meta property="twitter:image" content="https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png"></head></html><p><a href=https://www.hackingwithswift.com/books/ios-swiftui/sending-and-receiving-codable-data-with-urlsession-and-swiftui>Sending and receiving Codable data with URLSession and SwiftUI</a></p><p><a href=https://www.hackingwithswift.com/books/ios-swiftui/loading-an-image-from-a-remote-server>Loading an image from a remote server</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>SwiftUI</span>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=description content="
+
+
+
+Swift Network URLSession
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sending and receiving Codable data with URLSession and SwiftUI"><meta itemprop=description content="
+
+
+
+Swift Network URLSession
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sending and receiving Codable data with URLSession and SwiftUI"><meta property="og:description" content="
+
+
+
+Swift Network URLSession
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sending and receiving Codable data with URLSession and SwiftUI"><meta name=twitter:description content="
+
+
+
+Swift Network URLSession
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sending and receiving Codable data with URLSession and SwiftUI"><meta property="og:type" content="article"><meta property="article:publisher" content><meta property="og:article:published_time" content="2022-09-23T09:50:00Z"><meta property="article:published_time" content="2022-09-23T09:50:00Z"><script defer type=application/ld+json>{"@context":"http://schema.org","@type":"Article","headline":"Swift Network URLSession","author":{"@type":"Person","name":""},"datePublished":"2022-09-23","description":"","wordCount":723,"mainEntityOfPage":"True","dateModified":"2022-09-23","image":{"@type":"imageObject","url":""},"publisher":{"@type":"Organization","name":"Blog by Frank","logo":{"@type":"imageObject","url":"https://www.example.com/images/brand/favicon.png"}}}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/2022-09-23-swift-network/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Swift Network URLSession</h1><time datetime=2022-09-23T09:50:00Z>September 23, 2022</time></header><nav id=TableOfContents><ul><li><a href=#extended-reading-materials>Extended Reading Materials</a></li></ul></nav><html><head><title>Swift Network URLSession</title><meta name=title content="Swift Network URLSession"><meta name=description content="The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs."><meta property="og:type" content="website"><meta property="og:url" content="https://yongfrank.github.io/blog/study/2022/09/23/swift-network"><meta property="og:title" content="Swift Network URLSession"><meta property="og:description" content="The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs."><meta property="og:image" content="https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://yongfrank.github.io/blog/study/2022/09/23/swift-network"><meta property="twitter:title" content="Swift Network URLSession"><meta property="twitter:description" content="The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs."><meta property="twitter:image" content="https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png"></head></html><p><a href=https://www.hackingwithswift.com/books/ios-swiftui/sending-and-receiving-codable-data-with-urlsession-and-swiftui>Sending and receiving Codable data with URLSession and SwiftUI</a></p><p><a href=https://www.hackingwithswift.com/books/ios-swiftui/loading-an-image-from-a-remote-server>Loading an image from a remote server</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>SwiftUI</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>InternetNetwork</span>: View {
 </span></span><span style=display:flex><span>    

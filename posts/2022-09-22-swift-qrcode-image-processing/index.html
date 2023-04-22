@@ -1,49 +1,13 @@
 <!doctype html><html lang=en-us><title>Swift QRCode and Image Processing | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=description content="<!--
- * @Author: Frank Chu
- * @Date: 2022-09-22 15:49:57
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-22 18:02:05
- * @FilePath: /blog/_posts/2022-09-22-swift-qrcode-image-processing.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
-<h2 id=&#34;qrcode-generator&#34;>QRCode Generator</h2>
-<p><a href=&#34;https://www.hackingwithswift.com/books/ios-swiftui/generating-and-scaling-up-a-qr-code&#34;>Generating and scaling up a QR code</a>"><meta itemprop=description content="<!--
- * @Author: Frank Chu
- * @Date: 2022-09-22 15:49:57
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-22 18:02:05
- * @FilePath: /blog/_posts/2022-09-22-swift-qrcode-image-processing.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
-<h2 id=&#34;qrcode-generator&#34;>QRCode Generator</h2>
-<p><a href=&#34;https://www.hackingwithswift.com/books/ios-swiftui/generating-and-scaling-up-a-qr-code&#34;>Generating and scaling up a QR code</a>"><meta property="og:description" content="<!--
- * @Author: Frank Chu
- * @Date: 2022-09-22 15:49:57
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-22 18:02:05
- * @FilePath: /blog/_posts/2022-09-22-swift-qrcode-image-processing.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
-<h2 id=&#34;qrcode-generator&#34;>QRCode Generator</h2>
-<p><a href=&#34;https://www.hackingwithswift.com/books/ios-swiftui/generating-and-scaling-up-a-qr-code&#34;>Generating and scaling up a QR code</a>"><meta name=twitter:description content="<!--
- * @Author: Frank Chu
- * @Date: 2022-09-22 15:49:57
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-09-22 18:02:05
- * @FilePath: /blog/_posts/2022-09-22-swift-qrcode-image-processing.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
-<h2 id=&#34;qrcode-generator&#34;>QRCode Generator</h2>
-<p><a href=&#34;https://www.hackingwithswift.com/books/ios-swiftui/generating-and-scaling-up-a-qr-code&#34;>Generating and scaling up a QR code</a>"><meta property="og:type" content="article"><meta property="article:publisher" content><meta property="og:article:published_time" content="2022-09-22T15:50:00Z"><meta property="article:published_time" content="2022-09-22T15:50:00Z"><script defer type=application/ld+json>{"@context":"http://schema.org","@type":"Article","headline":"Swift QRCode and Image Processing","author":{"@type":"Person","name":""},"datePublished":"2022-09-22","description":"","wordCount":761,"mainEntityOfPage":"True","dateModified":"2022-09-22","image":{"@type":"imageObject","url":""},"publisher":{"@type":"Organization","name":"Blog by Frank","logo":{"@type":"imageObject","url":"https://www.example.com/images/brand/favicon.png"}}}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/2022-09-22-swift-qrcode-image-processing/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Swift QRCode and Image Processing</h1><time datetime=2022-09-22T15:50:00Z>September 22, 2022</time></header><nav id=TableOfContents><ul><li><a href=#qrcode-generator>QRCode Generator</a><ul><li><a href=#extended-reading-materials>Extended Reading Materials</a></li></ul></li><li><a href=#image-processing-with-core-image-and-swiftui>Image Processing with Core Image and SwiftUI</a><ul><li><a href=#why-we-need-these-complex-procedure>Why we need these complex procedure?</a></li></ul></li></ul></nav><h2 id=qrcode-generator>QRCode Generator</h2><p><a href=https://www.hackingwithswift.com/books/ios-swiftui/generating-and-scaling-up-a-qr-code>Generating and scaling up a QR code</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>//  First, we need to bring in all the Core Image filters using a new import:</span>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=description content="
+QRCode Generator
+Generating and scaling up a QR code"><meta itemprop=description content="
+QRCode Generator
+Generating and scaling up a QR code"><meta property="og:description" content="
+QRCode Generator
+Generating and scaling up a QR code"><meta name=twitter:description content="
+QRCode Generator
+Generating and scaling up a QR code"><meta property="og:type" content="article"><meta property="article:publisher" content><meta property="og:article:published_time" content="2022-09-22T15:50:00Z"><meta property="article:published_time" content="2022-09-22T15:50:00Z"><script defer type=application/ld+json>{"@context":"http://schema.org","@type":"Article","headline":"Swift QRCode and Image Processing","author":{"@type":"Person","name":""},"datePublished":"2022-09-22","description":"","wordCount":761,"mainEntityOfPage":"True","dateModified":"2022-09-22","image":{"@type":"imageObject","url":""},"publisher":{"@type":"Organization","name":"Blog by Frank","logo":{"@type":"imageObject","url":"https://www.example.com/images/brand/favicon.png"}}}</script><meta name=generator content="Hugo 0.111.3"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/2022-09-22-swift-qrcode-image-processing/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Swift QRCode and Image Processing</h1><time datetime=2022-09-22T15:50:00Z>September 22, 2022</time></header><nav id=TableOfContents><ul><li><a href=#qrcode-generator>QRCode Generator</a><ul><li><a href=#extended-reading-materials>Extended Reading Materials</a></li></ul></li><li><a href=#image-processing-with-core-image-and-swiftui>Image Processing with Core Image and SwiftUI</a><ul><li><a href=#why-we-need-these-complex-procedure>Why we need these complex procedure?</a></li></ul></li></ul></nav><h2 id=qrcode-generator>QRCode Generator</h2><p><a href=https://www.hackingwithswift.com/books/ios-swiftui/generating-and-scaling-up-a-qr-code>Generating and scaling up a QR code</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>//  First, we need to bring in all the Core Image filters using a new import:</span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>SwiftUI</span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>CoreImage</span>.<span style=color:#a6e22e>CIFilterBuiltins</span>
 </span></span><span style=display:flex><span>
