@@ -1,0 +1,47 @@
+<!-- from: https://ttys3.dev/post/optimize-og-image-meta-tag/ -->
+<!-- debug: https://dev.to/iamscottcab/debugging-meta-tags-on-localhost-413c -->
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary" />
+{{ with $.Site.Params.Twitter.site }}
+  <meta name="twitter:site" content="{{ $.Site.Params.Twitter.site }}" />
+{{ end }}
+{{ with $.Site.Params.Twitter.creator }}
+  <meta name="twitter:creator" content="{{ if .IsHome }}{{ $.Site.Params.Twitter.creator }}{{ else if isset .Params "authortwitter" }}{{ .Params.authorTwitter }}{{ else }}{{ .Params.Author }}{{ end }}" />
+{{ end }}
+<!-- OG data -->
+<!-- <meta property="og:locale" content="{{ $.Site.Language.Lang }}" /> -->
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:title" content="{{ if .IsHome }}{{ $.Site.Title }}{{ else }}{{ .Title }} :: {{ $.Site.Title }}{{ end }}">
+<meta property="og:description" content="{{ if .IsHome }}{{ $.Site.Params.Subtitle }}{{ else if .Description}}{{ .Description | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:site_name" content="{{ $.Site.Title }}" />
+{{ if not .IsHome }}
+
+  {{ if isset .Params "cover" }}
+      <!-- be aware that in this context, .RelPermalink is $.Page.RelPermalink -->
+      {{ printf "<!-- .ResourceType=%#v .File.LogicalName=%#v .RelPermalink=%#v .Permalink=%#v .Params.cover=%#v -->" .ResourceType $.Page.File.LogicalName .RelPermalink .Permalink .Params.cover | safeHTML }}
+      {{ if eq "index.md" $.Page.File.LogicalName }}
+        <meta property="og:image" content="{{ printf "%s%s" .Permalink .Params.cover }}">
+      {{ else }}
+        <meta property="og:image" content="{{ .Param "cover" | absURL }}">
+      {{ end }}
+  {{ else }}
+      <!-- get first image as featured image in post if no cover is set -->
+      {{ with (index (.Resources.ByType "image") 0) }}
+        <!-- be aware that in this context, .RelPermalink is resource.RelPermalink -->
+        {{ printf "<!-- .ResourceType=%#v .File.LogicalName=%#v .Resources.ByType image .RelPermalink=%#v .Permalink=%#v -->" .ResourceType $.Page.File.LogicalName  .RelPermalink .Permalink | safeHTML }}
+        <meta property="og:image" content="{{ .Permalink }}">
+      {{ end }}
+  {{ end }} 
+
+{{ else }}
+
+  {{ if isset $.Site.Params "favicon" }}
+    <meta property="og:image" content="{{ $.Site.Params.favicon | absURL }}">
+  {{ else }}
+    <meta property="og:image" content="{{ printf "img/favicon/%s.png" $.Site.Params.ThemeColor | absURL }}">
+  {{ end }}
+
+{{ end }}
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">

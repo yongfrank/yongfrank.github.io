@@ -3,8 +3,7 @@ title: "Hugo Init"
 date: 2023-03-02T11:06:36+08:00
 ---
 
-
-# Init hugo site
+## Init hugo site
 
 * [Hugo Article](https://gohugo.io/getting-started/quick-start/)
 * [Hugo Host on GitHub Article](https://gohugo.io/hosting-and-deployment/hosting-on-github/#types-of-github-pages)
@@ -97,4 +96,6 @@ hugo server --bind="0.0.0.0"
 
 # specific port
 hugo server --bind="0.0.0.0" -p 1234
+
+hugo server --baseURL=http://192.168.1.7 --bind=192.168.1.7   
 ```

@@ -32,6 +32,10 @@ SessionsOpt-in Only	23	    -
 CrashesOpt-in Only	0	    -
 ```
 
+## App Launcher
+
+> [Screenshot generator](https://screenshots.pro/)
+
 ## App Store Page Details
 
 * [FROM: Creating your product page](https://developer.apple.com/app-store/product-page/)

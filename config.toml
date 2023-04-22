@@ -7,7 +7,7 @@ googleAnalytics = 'G-XZQ6YTCMN7'
 [params]
   minimal = false
   excerpts = false
-  description = "my blog"
+  description = "Explorations, Reflections, and More on My Blog"
 
 [menu]
   [[menu.main]]
