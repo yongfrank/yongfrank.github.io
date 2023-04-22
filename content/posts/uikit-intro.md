@@ -9,6 +9,14 @@ date: 2023-03-27T13:31:46+08:00
 
 * [Create a UIButton in Code with Objective-C](https://supereasyapps.com/blog/2014/8/4/create-a-uibutton-in-code-with-objective-c)
 
+## Debug Tools
+
+> * [FLEX - Flipboard Explorer](https://github.com/FLEXTool/FLEX)
+> * [FLEX 一个轻量级App多维分析工具](https://www.jianshu.com/p/1d8fc9206204)
+> * [1.2 万 Star！一个 iOS 应用调试利器](https://zhuanlan.zhihu.com/p/434459667)
+
+![Flex](https://user-images.githubusercontent.com/8371943/70185687-e842c800-16af-11ea-8ef9-9e071380a462.gif)
+
 ### Button
 <!-- markdownlint-disable MD010 -->
 ```objc

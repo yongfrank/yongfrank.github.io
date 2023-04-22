@@ -3,6 +3,10 @@ title: "SwiftUI Example"
 date: 2023-04-03T01:39:20+08:00
 ---
 
+[opensource]: https://github.com/yongfrank/yongfrank.github.io/edit/main/content/posts/swiftui.md
+
+This page is open source. [Improve this page][opensource].
+
 > * [SwiftUI by Example](https://www.hackingwithswift.com/quick-start/swiftui/)
 > * [SwiftUI 参考手册](https://www.cocoaz.com/swiftui/swiftui-vs-uikit-cheat-sheet/)
 
@@ -448,3 +452,95 @@ func isCompact(width: Double) -> Bool {
 | iPhone (Max、Plus 除外) | 横屏    | compact             | compact          |
 | iPhone (Max、Plus)   | 横屏    | regular             | compact          |
 | 所有 iPad            | 横、竖屏  | regular             | regular          |
+
+
+## PreferenceKey
+
+> [SwiftUI 小技巧：透過 PreferenceKey 簡單對齊視圖](https://www.appcoda.com.tw/swiftui-preferencekey/)
+
+![before preference key](https://www.appcoda.com.tw/content/images/2019/12/1_QY4RlNdXQUq5owuQqrwvEw.png)
+
+![after preference key](https://www.appcoda.com.tw/content/images/2019/12/1_wkJwKpz4CqmWmirN4uRYpg.png)
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    @State var value1 = ""
+    @State var value2 = ""
+    @State var value3 = ""
+    @State var width: CGFloat? = nil
+    var body: some View {
+        Form {
+            HStack {
+                Text("First Item")
+                    .frame(width: width, alignment: .leading)
+                    .background(ColumnWidthEqualiserView())
+                TextField("Enter first item", text: $value1)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            HStack {
+                Text("Second Item")
+                    .frame(width: width, alignment: .leading)
+                    .background(ColumnWidthEqualiserView())
+                TextField("Enter second item", text: $value2)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            HStack {
+                Text("Final  Item")
+                    .frame(width: width, alignment: .leading)
+                    .background(ColumnWidthEqualiserView())
+                TextField("Enter third item", text: $value3)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+        }.modifier(ColumnWidth(width:$width))
+    }
+}
+
+struct ColumnWidthPreference: Equatable {
+    let width: CGFloat
+}
+
+struct ColumnWidthPreferenceKey: PreferenceKey {
+    typealias Value = [ColumnWidthPreference]
+    
+    static var defaultValue: [ColumnWidthPreference] = []
+    
+    static func reduce(value: inout [ColumnWidthPreference], nextValue: () -> [ColumnWidthPreference]) {
+        value.append(contentsOf: nextValue())
+    }
+}
+
+struct ColumnWidthEqualiserView: View {
+    var body: some View {
+        GeometryReader { geometry in
+            Rectangle()
+                .fill(Color.clear)
+                .preference(
+                    key: ColumnWidthPreferenceKey.self,
+                    value: [ColumnWidthPreference(width: geometry.frame(in: CoordinateSpace.global).width)]
+                )
+        }
+    }
+}
+
+struct ColumnWidth: ViewModifier {
+    @Binding var width: CGFloat?
+    func body(content: Content) -> some View {
+        content
+            .onPreferenceChange(ColumnWidthPreferenceKey.self) { preferences in
+                for p in preferences {
+                    let oldWidth = self.width ?? CGFloat.zero
+                    if p.width > oldWidth {
+                        self.width = p.width + 20
+                    }
+                }
+            }
+    }
+}
+```
+
+## UIKit Integration
+
+> [访问 SwiftUI 内部的 UIKit 组件 - 猫克杯的文章 - 知乎](https://zhuanlan.zhihu.com/p/133444068)
+

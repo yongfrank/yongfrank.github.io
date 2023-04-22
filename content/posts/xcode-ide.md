@@ -3,6 +3,10 @@ title: "Xcode IDE"
 date: 2023-03-27T21:31:43+08:00
 ---
 
+[opensource]: https://github.com/yongfrank/yongfrank.github.io/edit/main/content/posts/xcode-ide.md
+
+This page is open source. [Improve this page][opensource].
+
 ## Xcode History
 
 > * [Xcode是如何诞生的？How did Xcode come into being](https://developer.aliyun.com/article/254338?spm=a2c6h.13262185.profile.341.699e167e7REVuk)
@@ -31,6 +35,60 @@ LLVM是Apple官方支持的编译器，而该编译器的前端是Clang，这两
 
 > * [Xcode 6 Articles: Shortcut ...](https://www.cnblogs.com/lxlx1798/category/1262403.html)
 > * [Xcode overview](https://www.cnblogs.com/lxlx1798/p/9369458.html)
+
+## Collaboration with Individual Teams
+
+> [How to share an Individual Apple iOS Developer Account](https://stackoverflow.com/questions/11309656/how-to-share-an-individual-apple-ios-developer-account)
+>
+> There should be at least 2 files you need to import in Keychain: - development certificate - distribution certificate Also, not sure, but it might help: - the original self-signed certificate you submitted to apple (the CSR)
+> 
+> The certificates need to be generated from the computer that originally signed the CSR and imported in the second computer's keychain. Also, be sure to import the certificates in the login keychain.
+> 
+> ps. close XCode before importing the certificates - or close/restart after importing.
+
+### Certificate Signing Request for Mac
+
+Create a certificate signing request
+
+1. Launch Keychain Access located in /Applications/Utilities.
+2. Choose Keychain Access > Certificate Assistant > Request a Certificate from a Certificate Authority.
+3. In the Certificate Assistant dialog, enter an email address in the User Email Address field.
+4. In the Common Name field, enter a name for the key (for example, Gita Kumar Dev Key).
+5. Leave the CA Email Address field empty.
+6. Choose “Saved to disk,” then click Continue.
+
+![Certificate Assistant](https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request/images/c-create-csr_2x.png)
+
+[certificates at developer.apple.com](https://developer.apple.com/account/resources/certificates/list), sign the certificate request, then download the certificate. You can then import the certificate into your keychain.
+
+### UDID on iPhone 
+
+Finding the UDID using Mac:
+
+1. Connect your device to a Mac device using a USB cable and tap on your device name in the sidebar menu. Next, simply click on the tab under the device name.
+2. Now, you will see the UDID of your iOS device (it will also display other information like the serial number, etc.). Right click on this info and copy the UDID.
+
+> [How to find iPhone’s UDID](https://messapps.com/allcategories/development/finding-ios-devices-udid-via-itunes-2/)
+
+![UDID on iPhone](https://static.wixstatic.com/media/16fa7f_168f84d5feee4e819de923b18376c247~mv2.png/v1/fill/w_1480,h_934,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/16fa7f_168f84d5feee4e819de923b18376c247~mv2.png)
+
+### Provisioning File
+
+> [Apple Developer 憑證與Provisioning Profile更新](https://ithelp.ithome.com.tw/articles/10273300)
+>
+> Apple開發者帳號登入之後，選擇Certificates, Identifiers & Profiles設定會看到”Certificates”，”Identifiers“，”Devices“，”Profiles“，”Keys“的側邊欄
+> 
+> Certificates：憑證管理，主要是推播憑證(Apple Push Services)、開發者的mac電腦的憑證(Development)和這個開發者帳號的發佈憑證(iOS Distribution)
+> 
+> Identifiers：App的Bundle id ，自己創的或是同帳號在XCode同步創建的App id都會列在此表列出
+> 
+> Devices：App測試和Ad Hoc分發配置可以在此添加該測試機的UUID
+> 
+> Profiles：配置文件，就是有關於使用這個Provisioning Profile的app被合法准許的使用期間、創建的團隊、簽署的開發憑證有效期到何時等等的資訊一併打包進這個檔案裡
+> 
+> Keys：可以提供apple推播、地圖、音樂服務的金鑰(P8憑證就是在此產出)
+
+
 
 ## Mark Tricks
 
