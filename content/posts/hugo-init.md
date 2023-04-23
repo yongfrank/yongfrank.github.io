@@ -114,11 +114,11 @@ hugo server --baseURL=http://192.168.1.7 --bind=192.168.1.7
 
 These are meta tags used for social media sharing, specifically for Facebook's Open Graph Protocol.
 
-<meta property="og:url" content="{{ .Permalink }}" /> sets the URL of the page being shared. .Permalink is a Hugo variable that holds the permanent link (URL) to the current page being rendered.
+`<meta property="og:url" content="{{ .Permalink }}" />` sets the URL of the page being shared. .Permalink is a Hugo variable that holds the permanent link (URL) to the current page being rendered.
 
-<meta property="og:site_name" content="{{ $.Site.Title }}" /> sets the name of the website or app that the content is being shared from. $.Site.Title is a Hugo variable that holds the title of the website or app.
+`<meta property="og:site_name" content="{{ $.Site.Title }}" />` sets the name of the website or app that the content is being shared from. $.Site.Title is a Hugo variable that holds the title of the website or app.
 
-The og: prefix stands for "Open Graph" and is a protocol developed by Facebook to standardize metadata for social media sharing. By including these meta tags in the <head> section of your HTML, you are providing social media platforms with specific information about your website's content, which can improve the appearance and accuracy of shared links.
+The og: prefix stands for "Open Graph" and is a protocol developed by Facebook to standardize metadata for social media sharing. By including these meta tags in the `<head>` section of your HTML, you are providing social media platforms with specific information about your website's content, which can improve the appearance and accuracy of shared links.
 
 ### open graph in iMessage
 
@@ -132,26 +132,30 @@ The og: prefix stands for "Open Graph" and is a protocol developed by Facebook t
 <meta property="og:image" content="https://example.com/image.png" />
 ```
 
-### open graph Preview Tools
+### Summary Large Summary Image in Twitter
+
+> [Summary Card with Large Image](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image)
+
+### Open Graph Preview Tools
 
 > * [The Easiest Way to Preview and Generate Open Graph Meta Tags](https://www.opengraph.xyz/)
 > * [Meta Tags](https://metatags.io/)
 
-### favicon
+## Favicon
 
 > * [利用 Favicon 为 Hugo 静态站点添加图标](https://ibrights.github.io/post/blog20210527/)
 > * [Favicon Generator. For real.](https://realfavicongenerator.net/)
 
-### Page bundles
+## Page bundles
 
 > [Put multi-content.md into one folder](https://discourse.gohugo.io/t/put-multiple-content-md-files-into-one-file/26198)
 
-### Page Organization 
+### Page Organization
 
 > * [Content Organization](https://gohugo.io/content-management/organization/)
 > * [Subpages without _index.md file](https://discourse.gohugo.io/t/subpages-without-index-md-file/32358/3)
 
-### disable list in _index.md
+## disable list in _index.md
 
 在Hugo中，要禁用一个_index.md文件中的列表页面，您可以通过在页面前置参数（front matter）中设置layout参数为"single"来实现。这将使Hugo使用单页布局模板渲染此页面，而不是默认的列表模板。
 

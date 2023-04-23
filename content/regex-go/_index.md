@@ -16,6 +16,7 @@ Master Regex with Regex Go!
 [![cover image](cover.png)](https://yongfrank.github.io/about)
 
 <!-- https://blog.csdn.net/lishimin1012/article/details/88949602 -->
+<!-- markdownlint-disable MD033 -->
 <style>
 @media screen and (max-width: 960px){
     ul#container
