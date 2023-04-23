@@ -1,7 +1,7 @@
 ---
 title: "Regex Go is Available on App Store"
 date: 2023-04-22T20:54:05+08:00
-custom_head: <meta name='apple-itunes-app' content='app-id=6446227923'>
+custom_head: <meta name='apple-itunes-app' content='app-id=6447801504'>
 disable_toc: true
 layout: "single"
 # url: "/regex-go/"
@@ -13,7 +13,7 @@ Master Regex with Regex Go!
 
 <!--more-->
 
-[![cover image](cover.png)](https://yongfrank.github.io/about)
+[![cover image](cover.png)](https://apps.apple.com/app/regex-go/id6447801504)
 
 <!-- https://blog.csdn.net/lishimin1012/article/details/88949602 -->
 <!-- markdownlint-disable MD033 -->
