@@ -13,6 +13,8 @@ Master Regex with Regex Go!
 
 <!--more-->
 
+[![cover image](cover.png)](https://yongfrank.github.io/about)
+
 <!-- https://blog.csdn.net/lishimin1012/article/details/88949602 -->
 <style>
 @media screen and (max-width: 960px){
@@ -38,7 +40,7 @@ Master Regex with Regex Go!
     {
     overflow: hidden;
     overflow-x: scroll;
-    width: 95%; /* or whatever */
+    width: 96%; /* or whatever */
     /* height: 100%; or whatever */
     white-space: nowrap;
     }
