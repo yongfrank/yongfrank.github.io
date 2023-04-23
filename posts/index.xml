@@ -27,7 +27,7 @@ Mac Keyboard mac按键难回弹（按下去软软的）
 以按键A为例，把键盘与桌面垂直放着（左侧电源插孔朝着桌面），然后不断去按A键， 如果这个方向不行，换另一侧，即把键盘放置成耳机孔朝着桌面的方向，再去按A键 按的时候看手感，差不多就行</description></item><item><title>Streaming Media</title><link>https://yongfrank.github.io/posts/streaming-media/</link><pubDate>Sat, 08 Apr 2023 23:50:40 +0800</pubDate><guid>https://yongfrank.github.io/posts/streaming-media/</guid><description>五种常见流媒体协议
 流媒体（streaming media）是指将一连串数据压缩后，经过网络分段发送，即时传输以供观看音视频的一种技术。
 通过使用 streaming media 技术，用户无需将文件下载到本地即可播放。由于媒体是以连续的数据流发送的，因此在媒体到达时即可播放。可以像下载的文件一样进行暂停、快进或后退操作。
-在这篇文章中，首先将说明什么是 video streaming protocol；其次会讨论流协议（streaming protocl）和编解码器之间的区别；最后，将介绍五种常见的流协议。</description></item><item><title>iOS Memory Mamagement</title><link>https://yongfrank.github.io/posts/ios-memory-mamagement/</link><pubDate>Sat, 08 Apr 2023 23:29:01 +0800</pubDate><guid>https://yongfrank.github.io/posts/ios-memory-mamagement/</guid><description>iOS Memory Mgmt / ARC iOS-[内存管理]
+在这篇文章中，首先将说明什么是 video streaming protocol；其次会讨论流协议（streaming protocl）和编解码器之间的区别；最后，将介绍五种常见的流协议。</description></item><item><title>iOS Memory Management</title><link>https://yongfrank.github.io/posts/ios-memory-management/</link><pubDate>Sat, 08 Apr 2023 23:29:01 +0800</pubDate><guid>https://yongfrank.github.io/posts/ios-memory-management/</guid><description>iOS Memory Mgmt / ARC iOS-[内存管理]
 在 Objective-C 中，“对象” 相当于办公室里的照明设备。在现实世界中办公室里的照明设备只有一个，但在 Objective-C 的世界里，虽然计算机的资源有限，但一台计算机可以同时处理好几个对象。
 此外，“对象的使用环境” 相当于上班进入办公室的人。虽然这里的 “环境” 有时也指在运行中的程序代码、变量、变量作用域、对象等，但在概念上就是使用对象的环境。上班进入办公室的人对办公室照明设备发出的动作，与 Objective-C 中的对应关系则如下表所示
 使用弱引用来避免 Retain Cycles retain对象会创建对该对象的强引用（即引用计数 +1）。一个对象在release它的所有强引用之后（即引用计数 =0）才会dealloc。如果两个对象相互retain强引用，或者多个对象，每个对象都强引用下一个对象直到回到第一个，就会出现 “Retain Cycles（循环引用）” 问题。循环引用会导致它们中的任何对象都无法dealloc，就产生了内存泄漏。
