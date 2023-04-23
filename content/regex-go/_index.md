@@ -75,14 +75,24 @@ Throughout the past year, from when I began learning iOS development to now, I h
 .links {
     text-align: center;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.2);
+    color: #424245;
+    font-size: 0.8em;
     margin-top: 50px;
     margin-bottom: 20px;
 }
 
 .links__item {
+    color: #424245;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+    .links {
+        color: rgba(255, 255, 255, 0.2);
+    }
+    .links__item {
+        color: rgba(255, 255, 255, 0.5);
+    }
 }
 
 .links__item:hover {
@@ -98,11 +108,11 @@ Throughout the past year, from when I began learning iOS development to now, I h
 }
 </style>
 <div class="links">
-    <a href="./privacy-policy/" title="privacy" class="links__item">Privacy</a>
+    <a href="./privacy-policy/" title="privacy" class="links__item" style="text-decoration: none;">Privacy</a>
     |
-    <a href="https://www.dropbox.com/sh/k43u1bkqd4lsrnc/AABQvkI5rkY8keLz2yAwj6Lta?dl=0" title="PressKit at Dropbox" class="links__item">PressKit</a>
+    <a href="https://www.dropbox.com/sh/k43u1bkqd4lsrnc/AABQvkI5rkY8keLz2yAwj6Lta?dl=0" title="PressKit at Dropbox" class="links__item" style="text-decoration: none;">PressKit</a>
     |
-    <a href="mailto:yongfrank@outlook.com" title="Mail" class="links__item">Contact</a>
+    <a href="mailto:yongfrank@outlook.com" title="Mail" class="links__item" style="text-decoration: none;">Contact</a>
     <br>
-    <a href="https://twitter.com/cyongfrank" title="Twitter at @cyongfrank" class="links__item">@cyongfrank</a>
+    <a href="https://twitter.com/cyongfrank" title="Twitter at @cyongfrank" class="links__item" style="text-decoration: none;">@cyongfrank</a>
 </div>
