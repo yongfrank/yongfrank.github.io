@@ -2,8 +2,9 @@
 title: "Regex Go Privacy Policy"
 date: 2023-04-22T20:54:05+08:00
 custom_head: <meta name='apple-itunes-app' content='app-id=6446227923'>
+url: "regex-go/privacy-policy"
 ---
-
+<!-- url: "regex-go/privacy-policy" -->
 ## Regex Go Privacy Policy
 
 Chu Yong built the Regex Go app as a Free app. This SERVICE is provided by Chu Yong at no cost and is intended for use as is.

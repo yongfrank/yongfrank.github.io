@@ -63,6 +63,12 @@ Make sure you
 
 [certificates at developer.apple.com](https://developer.apple.com/account/resources/certificates/list), sign the certificate request, then download the certificate. You can then import the certificate into your keychain.
 
+relevant link
+<!-- 你看 1.6 获取CSR文件，之前应该是没有证书的 -->
+* [iOS从开发者账号到上架App Store全攻略 - 守护旧时光的文章 - 知乎](https://zhuanlan.zhihu.com/p/147587531)
+* [iOS AppStore上架流程图文详解2021版 (上)](https://www.jianshu.com/p/c93ec3c8f7e5)
+* [上架App store的整体流程与建议](https://sspai.com/post/55489)
+
 ### UDID on iPhone 
 
 Finding the UDID using Mac:

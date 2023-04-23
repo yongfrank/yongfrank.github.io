@@ -108,3 +108,27 @@ hugo server --bind="0.0.0.0" -p 1234
 
 hugo server --baseURL=http://192.168.1.7 --bind=192.168.1.7   
 ```
+
+## MetaTags
+
+These are meta tags used for social media sharing, specifically for Facebook's Open Graph Protocol.
+
+<meta property="og:url" content="{{ .Permalink }}" /> sets the URL of the page being shared. .Permalink is a Hugo variable that holds the permanent link (URL) to the current page being rendered.
+
+<meta property="og:site_name" content="{{ $.Site.Title }}" /> sets the name of the website or app that the content is being shared from. $.Site.Title is a Hugo variable that holds the title of the website or app.
+
+The og: prefix stands for "Open Graph" and is a protocol developed by Facebook to standardize metadata for social media sharing. By including these meta tags in the <head> section of your HTML, you are providing social media platforms with specific information about your website's content, which can improve the appearance and accuracy of shared links.
+
+### open graph in iMessage
+
+> [Implementing iMessage Link Previews with Open Graph](https://scottbartell.com/2019/03/05/implementing-imessage-link-previews/)
+
+```html
+<meta property="og:title" content="iPhone" />
+<meta property="og:image" content="https://example.com/image.png" />
+```
+
+### favicon
+
+> * [利用 Favicon 为 Hugo 静态站点添加图标](https://ibrights.github.io/post/blog20210527/)
+> * [Favicon Generator. For real.](https://realfavicongenerator.net/)

@@ -8,13 +8,20 @@
 {{ with $.Site.Params.Twitter.creator }}
   <meta name="twitter:creator" content="{{ if .IsHome }}{{ $.Site.Params.Twitter.creator }}{{ else if isset .Params "authortwitter" }}{{ .Params.authorTwitter }}{{ else }}{{ .Params.Author }}{{ end }}" />
 {{ end }}
+
 <!-- OG data -->
 <!-- <meta property="og:locale" content="{{ $.Site.Language.Lang }}" /> -->
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:title" content="{{ if .IsHome }}{{ $.Site.Title }}{{ else }}{{ .Title }} :: {{ $.Site.Title }}{{ end }}">
-<meta property="og:description" content="{{ if .IsHome }}{{ $.Site.Params.Subtitle }}{{ else if .Description}}{{ .Description | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}" />
+<!-- <meta property="og:description" content="{{ if .IsHome }}{{ $.Site.Params.Subtitle }}{{ else if .Description}}{{ .Description | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}" /> -->
+
+<!-- Hugo: End content summary at first paragraph break https://stackoverflow.com/questions/72875947/hugo-end-content-summary-at-first-paragraph-break -->
+{{ $description:= index (split .Content "</p>") 0 | safeHTML }}
+<!-- Update for description -->
+<meta property="og:description" content="{{ if .IsHome }}{{ $.Site.Params.Subtitle }}{{ else if .Description}}{{ .Description | plainify }}{{ else }}{{ $description }}{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:site_name" content="{{ $.Site.Title }}" />
+
 {{ if not .IsHome }}
 
   {{ if isset .Params "cover" }}

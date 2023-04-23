@@ -1,6 +1,6 @@
 <!-- https://github.com/praveenjuge/hugo-SEO-meta-tags -->
 <!-- To make sure this renders only in the article page, we check the section -->
-{{ if eq .Section "posts" }}
+{{ if or (eq .Section "posts") (eq .Section "regex-go") (eq .Section "about") (eq .Section "diary") (eq .Section "music") }}
 
 <!-- https://discourse.gohugo.io/t/markdown-content-renders-as-regular-text-in-summary/1396/5 -->
 
@@ -16,24 +16,29 @@
 <meta property="og:description" content="{{ $description }}" />
 <meta name="twitter:description" content="{{ $description }}" />
 
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:site_name" content="{{ $.Site.Title }}" />
+
 <!-- twitter card -->
+<!-- from: https://ttys3.dev/post/optimize-og-image-meta-tag/ -->
+<!-- debug: https://dev.to/iamscottcab/debugging-meta-tags-on-localhost-413c -->
 {{ if isset .Params "cover" }}
 <!-- be aware that in this context, .RelPermalink is $.Page.RelPermalink -->
-{{ printf "<!-- .ResourceType=%#v .File.LogicalName=%#v .RelPermalink=%#v .Permalink=%#v .Params.cover=%#v -->" .ResourceType $.Page.File.LogicalName .RelPermalink .Permalink .Params.cover | safeHTML }}
-{{ if eq "index.md" $.Page.File.LogicalName }}
-  <meta property="og:image" content="{{ printf "%s%s" .Permalink .Params.cover }}">
+  {{ printf "<!-- .ResourceType=%#v .File.LogicalName=%#v .RelPermalink=%#v .Permalink=%#v .Params.cover=%#v -->" .ResourceType $.Page.File.LogicalName .RelPermalink .Permalink .Params.cover | safeHTML }}
+  {{ if eq "index.md" $.Page.File.LogicalName }}
+    <meta property="og:image" content="{{ printf "%s%s" .Permalink .Params.cover }}">
+  {{ else }}
+    <meta property="og:image" content="{{ .Param "cover" | absURL }}">
+  {{ end }}
 {{ else }}
-  <meta property="og:image" content="{{ .Param "cover" | absURL }}">
+  <!-- get first image as featured image in post if no cover is set -->
+  {{ with (index (.Resources.ByType "image") 0) }}
+    <!-- be aware that in this context, .RelPermalink is resource.RelPermalink -->
+    {{ printf "<!-- .ResourceType=%#v .File.LogicalName=%#v .Resources.ByType image .RelPermalink=%#v .Permalink=%#v -->" .ResourceType $.Page.File.LogicalName  .RelPermalink .Permalink | safeHTML }}
+    <meta property="og:image" content="{{ .Permalink }}">
 {{ end }}
-{{ else }}
-<!-- get first image as featured image in post if no cover is set -->
-{{ with (index (.Resources.ByType "image") 0) }}
-  <!-- be aware that in this context, .RelPermalink is resource.RelPermalink -->
-  {{ printf "<!-- .ResourceType=%#v .File.LogicalName=%#v .Resources.ByType image .RelPermalink=%#v .Permalink=%#v -->" .ResourceType $.Page.File.LogicalName  .RelPermalink .Permalink | safeHTML }}
-  <meta property="og:image" content="{{ .Permalink }}">
-{{ end }}
+<!-- .Section "posts" -->
 {{ end }} 
-
 
 <!-- Pagination meta tags for list pages only -->
 {{ $paginator := .Paginate (where .Pages "Section" "blog") }} 
