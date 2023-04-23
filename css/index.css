@@ -18,6 +18,13 @@ html {
   padding: 0 calc(38% - 21em);
 }
 
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background: #212228; /* 更改为适合夜间模式的背景颜色 */
+    /* 如有必要，可以在此处添加或覆盖其他属性 */
+  }
+}
+
 body {
   background: #ffffff;
   color: #212228;
