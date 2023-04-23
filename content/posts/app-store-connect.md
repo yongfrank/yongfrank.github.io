@@ -42,6 +42,14 @@ CrashesOpt-in Only	0	    -
 
 ## App Store Page Details
 
+### Screenshot
+
+> * [Apple Developer - Screenshot Specifications](https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications)
+> * [iOS Resolution](https://www.ios-resolution.com/)
+> * [Screenshot Pro](https://screenshots.pro/)
+
+### App Info
+
 * [FROM: Creating your product page](https://developer.apple.com/app-store/product-page/)
 
 ### App name

@@ -5,11 +5,11 @@ date: 2023-03-27T21:31:43+08:00
 
 [opensource]: https://github.com/yongfrank/yongfrank.github.io/edit/main/content/posts/xcode-ide.md
 
-This page is open source. [Improve this page][opensource].
+> This page is open source. [Improve this page][opensource].
 
 ## Xcode History
 
-> * [Xcode是如何诞生的？How did Xcode come into being](https://developer.aliyun.com/article/254338?spm=a2c6h.13262185.profile.341.699e167e7REVuk)
+> [Xcode是如何诞生的？How did Xcode come into being](https://developer.aliyun.com/article/254338?spm=a2c6h.13262185.profile.341.699e167e7REVuk)
 
 Xcode是一款用于开发Mac和iOS应用程序的综合性开发工具，它由苹果公司开发和维护。Xcode最初的版本于2003年发布，自那时以来，它已经成为Mac和iOS开发的标准工具之一。
 
@@ -38,6 +38,8 @@ LLVM是Apple官方支持的编译器，而该编译器的前端是Clang，这两
 
 ## Collaboration with Individual Teams
 
+Make sure you 
+
 > [How to share an Individual Apple iOS Developer Account](https://stackoverflow.com/questions/11309656/how-to-share-an-individual-apple-ios-developer-account)
 >
 > There should be at least 2 files you need to import in Keychain: - development certificate - distribution certificate Also, not sure, but it might help: - the original self-signed certificate you submitted to apple (the CSR)
@@ -48,7 +50,7 @@ LLVM是Apple官方支持的编译器，而该编译器的前端是Clang，这两
 
 ### Certificate Signing Request for Mac
 
-Create a certificate signing request
+[Create a certificate signing request](https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request/)
 
 1. Launch Keychain Access located in /Applications/Utilities.
 2. Choose Keychain Access > Certificate Assistant > Request a Certificate from a Certificate Authority.
@@ -88,7 +90,64 @@ Finding the UDID using Mac:
 > 
 > Keys：可以提供apple推播、地圖、音樂服務的金鑰(P8憑證就是在此產出)
 
+### git problem
 
+> [Git Xcode project.pbxproj](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/解決-xcode-project-pbxproj-麻煩的版本衝突問題-c8d84bcdad4a)
+>
+> project.pbxproj 檔的內容決定專案 Project navigator 顯示的檔案清單和順序，因此這也解釋了為何多人合作時它容易產生衝突。因為每個人會新增刪除檔案，有時還會調整檔案的順序，於是 git 就不知該如何合併，它不知該保留刪除哪個檔案，哪個檔案要在前面，哪個要在後面。
+>
+> 但是由於每個人都認真地寫著 App，新增了很多檔案，因此 project.pbxproj 往往會有很多衝突，一個個解決十分辛苦。
+> 
+> 其實 project.pbxproj 大部份的衝突解法都是同時保留本機端和遠端的檔案，畢竟你不想刪除自己辛苦寫的程式，也不敢刪除隊友辛苦寫的程式，所以我們可以透過 .gitattributes 檔，告訴 git 在 project.pbxproj 遇到衝突時，同時保留本機端和遠端的修改，如此即可解決 project.pbxproj 大部分的衝突。
+
+> [git ingore 忽略UserInterfaceState.xcuserstate xcschememanagement.plist](https://www.jianshu.com/p/1a8f14d09047)
+>
+> 项目开发中，经常遇见 xcuserstate 隔几秒就会变化的问题，由于这个文件包存放的数据并不重要，只是一些GUI状态，比如窗口位置，打开的标签页，在项目检查等展开的节点、 简单地调整大小的Xcode窗口将这个文件来改变和修改您的源代码控制系统进行标记。
+
+### .gitignore
+
+```sh
+git rm -r --cached .
+git add .
+git commit -m "Remove ignored files"
+```
+
+> [gitignore](https://github.com/apple/sample-food-truck/blob/main/.gitignore)
+
+```gitignore
+# Finder
+.DS_Store
+
+# Xcode - User files
+# Finder
+.DS_Store
+
+# Xcode - User files
+xcuserdata/
+
+**/*.xcodeproj/project.xcworkspace/*
+!**/*.xcodeproj/project.xcworkspace/xcshareddata
+
+**/*.xcodeproj/project.xcworkspace/xcshareddata/*
+!**/*.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+
+# For Swift Package Manager, Package.resolved file
+!**/*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm
+
+**/*.playground/playground.xcworkspace/*
+!**/*.playground/playground.xcworkspace/xcshareddata
+
+**/*.playground/playground.xcworkspace/xcshareddata/*
+!**/*.playground/playground.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+```
+
+这是一个典型的.gitignore文件，用于忽略特定的文件和文件夹，以便在Git仓库中不被追踪和提交。
+
+第一行指示Git忽略所有名为.DS_Store的文件。.DS_Store是MacOS Finder文件夹的元数据文件，通常不需要跟踪或提交到Git仓库中。
+
+第二行指示Git忽略所有名为xcuserdata/的文件夹。这是Xcode用户数据文件夹，它包含每个用户在Xcode项目中的个性化设置。它通常不应该跟踪或提交到Git仓库中，因为它不是项目本身的一部分。
+
+第三行指示Git忽略所有名为.xcodeproj/project.xcworkspace/*的文件，但保留.xcodeproj/project.xcworkspace/xcshareddata文件夹。这是Xcode项目的工作区文件，包括项目配置和其他元数据。通常，这些文件不应该跟踪或提交到Git仓库中，但是在一些情况下可能需要将xcshareddata文件夹包括进来，例如，当多个开发人员共享相同的项目设置时。
 
 ## Mark Tricks
 
