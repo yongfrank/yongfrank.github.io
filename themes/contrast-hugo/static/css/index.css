@@ -157,7 +157,9 @@ nav a {
 }
 
 @media (prefers-color-scheme: dark) {
-  html, body, body > header, body > footer {
+  /* html, body, body > header, body > footer { */
+  /* modified for iPhone */
+  article, body > header, body > footer {
     background: #212228;
     color: #ffffff;
     box-shadow: 0 0 0 1px #33353e;
