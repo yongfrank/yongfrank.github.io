@@ -125,6 +125,7 @@ The og: prefix stands for "Open Graph" and is a protocol developed by Facebook t
 > * [Implementing iMessage Link Previews with Open Graph](https://scottbartell.com/2019/03/05/implementing-imessage-link-previews/)
 > * [iMessage Link Preview Tool Article](https://renderform.io/blog/posts/imessage-link-preview/)
 > * [iMessage Link Preview Tool](https://renderform.io/tools/imessage-link-preview-tool/)
+> * [Best Practices for Link Previews in Messages](https://developer.apple.com/library/archive/technotes/tn2444/_index.html)
 
 ```html
 <meta property="og:title" content="iPhone" />
