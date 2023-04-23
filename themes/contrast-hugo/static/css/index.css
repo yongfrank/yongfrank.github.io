@@ -157,17 +157,13 @@ nav a {
 }
 
 @media (prefers-color-scheme: dark) {
-  /* html, body, body > header, body > footer { */
-  /* modified for iPhone */
-  html, body {
-    background: #212228; /* 更改为适合夜间模式的背景颜色 */
-    /* 如有必要，可以在此处添加或覆盖其他属性 */
-  }
-  article, body > header, body > footer {
+  html, body, body > header, body > footer {
     background: #212228;
     color: #ffffff;
+    box-shadow: 0 0 0 1px #33353e;
   }
 }
+
 @media (min-width: 32em) {
   body > header, body > article, body > footer {
     padding: 1.65em calc(22% - 6em);
