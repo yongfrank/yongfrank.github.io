@@ -1,5 +1,5 @@
 ---
-title: "iOS Memory Mamagement"
+title: "iOS Memory Management"
 date: 2023-04-08T23:29:01+08:00
 ---
 

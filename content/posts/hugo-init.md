@@ -9,8 +9,9 @@ This article is about how to init a hugo site.
 
 ## Hugo QuickStart
 
-> [Hugo 基础知识](https://github.com/heartnn/hugo-theme-test/blob/master/README.md)
-> [Content Summaries Hugo generates summaries of your content.](https://gohugo.io/content-management/summaries/)
+> * [Hugo 基础知识](https://github.com/heartnn/hugo-theme-test/blob/master/README.md)
+> * [Hugo 从入门到会用](https://olowolo.com/post/hugo-quick-start/)
+> * [Content Summaries Hugo generates summaries of your content.](https://gohugo.io/content-management/summaries/)
 
 ## Init hugo site
 
@@ -132,3 +133,40 @@ The og: prefix stands for "Open Graph" and is a protocol developed by Facebook t
 
 > * [利用 Favicon 为 Hugo 静态站点添加图标](https://ibrights.github.io/post/blog20210527/)
 > * [Favicon Generator. For real.](https://realfavicongenerator.net/)
+
+### Page bundles
+
+> [Put multi-content.md into one folder](https://discourse.gohugo.io/t/put-multiple-content-md-files-into-one-file/26198)
+
+### Page Organization 
+
+> * [Content Organization](https://gohugo.io/content-management/organization/)
+> * [Subpages without _index.md file](https://discourse.gohugo.io/t/subpages-without-index-md-file/32358/3)
+
+### disable list in _index.md
+
+在Hugo中，要禁用一个_index.md文件中的列表页面，您可以通过在页面前置参数（front matter）中设置layout参数为"single"来实现。这将使Hugo使用单页布局模板渲染此页面，而不是默认的列表模板。
+
+根据您使用的配置文件类型（TOML或YAML），以下是两个示例：
+
+TOML格式的_index.md前置参数：
+
+```makefile
+Copy code
++++
+title = "Your Page Title"
+date = 2023-04-23T00:00:00Z
+layout = "single"
++++
+```
+
+YAML格式的_index.md前置参数：
+```yaml
+---
+title: "Your Page Title"
+date: 2023-04-23T00:00:00Z
+layout: "single"
+---
+```
+
+这样，Hugo将使用"single"布局模板而不是列表模板渲染_index.md文件。请注意，如果您的主题没有提供名为"single"的布局模板，您可能需要自定义一个。在这种情况下，请查阅Hugo文档以了解如何创建自定义布局。
