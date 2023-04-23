@@ -9,6 +9,7 @@ googleAnalytics = 'G-XZQ6YTCMN7'
   excerpts = false
   description = "Explorations, Reflections, and More on My Blog"
 
+
 [menu]
   [[menu.main]]
     identifier = "about"
