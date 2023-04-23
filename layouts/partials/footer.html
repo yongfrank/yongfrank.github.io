@@ -1,0 +1,55 @@
+<style>
+.links {
+    text-align: center;
+    font-weight: 500;
+    color: #424245;
+    font-size: 0.8em;
+    margin-top: 50px;
+    padding-bottom: 20px;
+}
+
+.links__item {
+    color: #424245;
+    text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .links {
+        color: rgba(255, 255, 255, 0.2);
+    }
+    .links__item {
+        color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+.links__item:hover {
+    animation: colorChange 0.5s both;
+}
+@keyframes colorChange {
+    from {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    to {
+        color: #F2A33C;
+    }
+}
+
+</style>
+<footer style="
+display: table;
+text-align: center;
+margin-left: auto;
+margin-right: auto;"
+>
+<div class="links">
+    <a href="/about" title="about" class="links__item" style="text-decoration: none;">About</a>
+    |
+    <!-- <a href="https://www.dropbox.com/sh/k43u1bkqd4lsrnc/AABQvkI5rkY8keLz2yAwj6Lta?dl=0" title="PressKit at Dropbox" class="links__item" style="text-decoration: none;">PressKit</a>
+    | -->
+    <a href="mailto:yongfrank@outlook.com" title="Mail" class="links__item" style="text-decoration: none;">Contact</a>
+    <br>
+    <a href="https://twitter.com/cyongfrank" title="Twitter at @cyongfrank" class="links__item" style="text-decoration: none;">@cyongfrank</a>
+    <br>
+    Generated using Hugo
+</div>
+</footer>

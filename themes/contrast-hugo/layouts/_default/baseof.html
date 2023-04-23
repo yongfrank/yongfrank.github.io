@@ -47,4 +47,8 @@
 
 {{- block "main" . }}{{- end }}
 
+<!-- footer -->
+{{ if (.Params.disable_footer) }}
+  {{ partial "footer.html" . }}
+{{ end }}
 </html>

@@ -135,6 +135,13 @@ The og: prefix stands for "Open Graph" and is a protocol developed by Facebook t
 ### Summary Large Summary Image in Twitter
 
 > [Summary Card with Large Image](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image)
+> [Twitter not displaying summary_large_image card correctly](https://stackoverflow.com/questions/66819942/twitter-not-displaying-summary-large-image-card-correctly)
+
+```html
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Germania: An Introduction">
+<meta name="twitter:image" content="https://volkischexe.com/res/cards/germania-intro.png?605e46b26abc1">
+```
 
 ### Open Graph Preview Tools
 
