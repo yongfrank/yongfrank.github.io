@@ -13,7 +13,7 @@ Master Regex with Regex Go!
 
 <!--more-->
 
-[![cover image](cover.png)](https://apps.apple.com/app/regex-go/id6447801504)
+[![cover image](cover.jpg)](https://apps.apple.com/app/regex-go/id6447801504)
 
 <!-- https://blog.csdn.net/lishimin1012/article/details/88949602 -->
 <!-- markdownlint-disable MD033 -->
@@ -56,11 +56,11 @@ Master Regex with Regex Go!
 </style>
 <!-- https://stackoverflow.com/questions/2728715/iphone-scroll-images-horizontally-like-in-appstore -->
 <ul id="container">
-  <li><image src="./images/1.png"></image></li>
-  <li><image src="./images/2.png"></image></li>
-  <li><image src="./images/3.png"></image></li>
-  <li><image src="./images/4.png"></image></li>
-  <li><image src="./images/5.png"></image></li>
+  <li><image src="./images/1.jpg"></image></li>
+  <li><image src="./images/2.jpg"></image></li>
+  <li><image src="./images/3.jpg"></image></li>
+  <li><image src="./images/4.jpg"></image></li>
+  <li><image src="./images/5.jpg"></image></li>
 </ul>
 
 
