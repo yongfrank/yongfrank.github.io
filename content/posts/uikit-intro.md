@@ -21,6 +21,25 @@ Everything about UIKit in Objective-C & Swift when I was coding.
 
 ![Flex](https://user-images.githubusercontent.com/8371943/70185687-e842c800-16af-11ea-8ef9-9e071380a462.gif)
 
+```swift
+#if os(iOS)
+import FLEX
+#endif
+
+#if DEBUG
+//import FLEX
+#endif
+
+#if DEBUG
+ToolbarItemGroup {
+    Button("Flex") {
+        FLEXManager.shared.showExplorer()
+    }
+//                darkModeButton
+}
+#endif
+```
+
 ### Button
 <!-- markdownlint-disable MD010 -->
 ```objc

@@ -7,6 +7,8 @@ layout: "single"
 # url: "/regex-go/"
 ---
 
+[![GitHub Stars](https://img.shields.io/github/stars/yongfrank/RegexGo.svg?style=social)](https://github.com/yongfrank/RegexGo)
+
 Master Regex with Regex Go!
 
 🤗 Say goodbye to tedious text processing tasks with Regex Go - your ultimate tool for seamless string manipulation using Regex and user-friendly RegexBuilder 🤩.
@@ -72,6 +74,10 @@ At WWDC22, RegexBuilder was introduced as a DSL (domain-specific language) to co
 
 ## More Details
 
+[![Follow on twitter](https://img.shields.io/twitter/follow/cyongfrank)](https://twitter.com/intent/follow?screen_name=cyongfrank)
+[![About Frank](https://img.shields.io/badge/Find_More_Project-yongfrank.github.io/about-9ef)](https://yongfrank.github.io/about)
+[![Blog Page](https://img.shields.io/badge/Blog_Page-yongfrank.github.io-success)](https://yongfrank.github.io/)
+
 Throughout the past year, from when I began learning iOS development to now, I have not only gained knowledge and skills, but also a community of like-minded friends. Their support and assistance have prevented me from feeling alone during the learning process and have propelled me toward growth. With various salons and technology-sharing events, this journey has opened new doors to a world beyond the limitations of school curriculums, allowing me to freely explore and learn about topics of interest. From a state of naivety and ignorance to launching my first app, this year of personal development has made me feel incredibly fortunate.
 
 <style>
@@ -111,6 +117,10 @@ Throughout the past year, from when I began learning iOS development to now, I h
 }
 </style>
 <div class="links">
+    <!-- <a href="https://chat.nuxt.dev"><img width="20px" src="./images/discord.svg" alt="Discord"></a>&nbsp;&nbsp; -->
+    <a href="https://twitter.com/cyongfrank"><img width="20px" src="./images/twitter.svg" alt="Twitter"></a>&nbsp;&nbsp;
+    <a href="https://github.com/yongfrank"><img width="20px" src="./images/github.svg" alt="GitHub"></a>
+    <br>
     <a href="./privacy-policy/" title="privacy" class="links__item" style="text-decoration: none;">Privacy</a>
     |
     <a href="https://www.dropbox.com/sh/k43u1bkqd4lsrnc/AABQvkI5rkY8keLz2yAwj6Lta?dl=0" title="PressKit at Dropbox" class="links__item" style="text-decoration: none;">PressKit</a>
