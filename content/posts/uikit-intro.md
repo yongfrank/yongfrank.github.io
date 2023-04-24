@@ -76,6 +76,7 @@ ToolbarItemGroup {
 
 ```objc
 // ViewController.h
+// <> Means Controller conform delegate inside <>
 @interface ViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 @end
 ```

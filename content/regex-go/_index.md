@@ -7,7 +7,15 @@ layout: "single"
 # url: "/regex-go/"
 ---
 
-[![GitHub Stars](https://img.shields.io/github/stars/yongfrank/RegexGo.svg?style=social)](https://github.com/yongfrank/RegexGo)
+<!-- <div align-items="end"> -->
+<a href="https://github.com/yongfrank/RegexGo">
+    <img src="https://img.shields.io/github/stars/yongfrank/RegexGo.svg?style=social" alt="GitHub Stars">
+</a>
+
+<a href="https://apps.apple.com/app/regex-go/id6447801504" >
+    <img src="./images/download-on-the-app-store.svg" alt="download on app store" align="right" width="150px">
+</a>
+<!-- </div> -->
 
 Master Regex with Regex Go!
 
@@ -16,9 +24,9 @@ Master Regex with Regex Go!
 <!--more-->
 
 [![cover image](cover.jpg)](https://apps.apple.com/app/regex-go/id6447801504)
-
 <!-- https://blog.csdn.net/lishimin1012/article/details/88949602 -->
 <!-- markdownlint-disable MD033 -->
+
 <style>
 @media screen and (max-width: 960px){
     ul#container
@@ -77,6 +85,9 @@ At WWDC22, RegexBuilder was introduced as a DSL (domain-specific language) to co
 [![Follow on twitter](https://img.shields.io/twitter/follow/cyongfrank)](https://twitter.com/intent/follow?screen_name=cyongfrank)
 [![About Frank](https://img.shields.io/badge/Find_More_Project-yongfrank.github.io/about-9ef)](https://yongfrank.github.io/about)
 [![Blog Page](https://img.shields.io/badge/Blog_Page-yongfrank.github.io-success)](https://yongfrank.github.io/)
+<a href="https://apps.apple.com/app/regex-go/id6447801504">
+    <img src="./images/download-on-the-app-store.svg" alt="download on app store" style="float: right;">
+</a>
 
 Throughout the past year, from when I began learning iOS development to now, I have not only gained knowledge and skills, but also a community of like-minded friends. Their support and assistance have prevented me from feeling alone during the learning process and have propelled me toward growth. With various salons and technology-sharing events, this journey has opened new doors to a world beyond the limitations of school curriculums, allowing me to freely explore and learn about topics of interest. From a state of naivety and ignorance to launching my first app, this year of personal development has made me feel incredibly fortunate.
 

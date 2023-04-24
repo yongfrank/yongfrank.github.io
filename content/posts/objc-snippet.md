@@ -988,3 +988,47 @@ if (searchContent) {
 This is also called the null coalescing operator, and it is used to simplify conditional assignment. If searchContent is not nil, then it is assigned to content, otherwise kDefaultSearchText is assigned to content.
 
 这个语法也被称为 null coalescing operator，用于简化条件赋值操作，如果 searchContent 不为空，则将其赋值给 content，否则将 kDefaultSearchText 赋值给 content。
+
+## block
+
+> [Objective-C编程（第2版）](https://book.douban.com/subject/26613294/)
+>
+> 本书将 iOS 4.0 加入的语言特性 Blocks 翻译为 “Block 对象”，因为 Blocks 是简称，其正式名称为 Block Object。
+>
+> Block 对象是一段代码
+
+```objc
+^{
+    NSLog(@"This is an instruction within a block.");
+}
+
+^(double divident, double divisor) {
+    double quotient = dividend / divisor;
+    return quotient;
+}
+
+// Block 变量声明
+void (^devowelizer)(id, NSUInter, Bool*)
+void: block 对象的返回类型
+block: 变量的名称
+实参类型
+```
+
+`^(id _Nonnull sender){}` 是一个 Objective-C 语言中的语法，用于定义一个块对象（Block Object）。块对象是一种将代码块封装为对象的技术，在 Objective-C 中广泛应用于异步编程和事件处理等方面。
+
+在这个语法中，`^` 符号表示定义了一个块对象，后面的 `(id _Nonnull sender)` 则表示块对象的参数列表，这里只有一个类型为 id，并且不能为 nil 的参数 sender。括号中的 `_Nonnull` 表示该参数不能为 nil，这是 Objective-C 的一个空类型限定符（nullability qualifier）。
+
+```objc
+[self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+    if (actionBlock) {
+        actionBlock();
+    }
+}]];
+```
+
+```swift
+// swift like
+self.addGestureRecognizer(UITapGestureRecognizer { _ in
+    actionBlock?()
+})
+```

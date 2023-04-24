@@ -155,6 +155,22 @@ xcuserdata/
 
 第三行指示Git忽略所有名为.xcodeproj/project.xcworkspace/*的文件，但保留.xcodeproj/project.xcworkspace/xcshareddata文件夹。这是Xcode项目的工作区文件，包括项目配置和其他元数据。通常，这些文件不应该跟踪或提交到Git仓库中，但是在一些情况下可能需要将xcshareddata文件夹包括进来，例如，当多个开发人员共享相同的项目设置时。
 
+### Summary 
+
+> [iOS打包的那一些事情 - ios小袁君的文章 - 知乎](https://zhuanlan.zhihu.com/p/237388740)
+
+![Apple CSR](https://pic4.zhimg.com/v2-bd417451bdae724f2179648db6c45ad3_b.jpg)
+
+![Public-key cryptography, Asymmetric cryptography](https://pic1.zhimg.com/v2-51ccfbe25d4b49df127816eca93d46fc_b.jpg)
+
+![Apple CSR process](https://pic2.zhimg.com/v2-537acdf0e948d7b56735ab7b5bc6e5f5_b.jpg)
+
+![Apple CSR process 2](https://pic2.zhimg.com/v2-a0d890681910bef054aa3af0bc485821_b.jpg)
+
+![signature](https://pic2.zhimg.com/v2-ed237592fb47297c411fb696a0b0db19_b.jpg)
+
+![Signature and cert in ios device](https://pic4.zhimg.com/v2-ecfc6c0ec3e3980b562510b0905ad687_b.jpg)
+
 ## Mark Tricks
 
 > * [Xcode Mark](https://www.jianshu.com/p/3e136e660d27)
