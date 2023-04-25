@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog by Frank</title><link>https://yongfrank.github.io/</link><description>Recent content on Blog by Frank</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 23 Apr 2023 23:26:08 +0800</lastBuildDate><atom:link href="https://yongfrank.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Design Tutorials for Developers</title><link>https://yongfrank.github.io/posts/design-for-dev/</link><pubDate>Sun, 23 Apr 2023 23:26:08 +0800</pubDate><guid>https://yongfrank.github.io/posts/design-for-dev/</guid><description>&lt;blockquote>
-&lt;p>&lt;a href="https://xuyisheng.top/design_color_system/">不懂设计的产品不是好开发&lt;/a>&lt;/p>
-&lt;p>通过这篇文章，我将向大家介绍下关于设计的一些基本知识，让广大开发者在平时的开发中，可以更好的和设计、产品合作（撕逼）。&lt;/p>
-&lt;/blockquote></description></item><item><title>Regex Go Privacy Policy</title><link>https://yongfrank.github.io/regex-go/privacy-policy/</link><pubDate>Sat, 22 Apr 2023 20:54:05 +0800</pubDate><guid>https://yongfrank.github.io/regex-go/privacy-policy/</guid><description>Regex Go Privacy Policy Chu Yong built the Regex Go app as a Free app. This SERVICE is provided by Chu Yong at no cost and is intended for use as is.
-This page is used to inform visitors regarding my policies regarding the collection, use, and disclosure of Personal Information if anyone decides to use my Service.
-If you choose to use my Service, then you agree to the collection and use of information in relation to this policy.</description></item><item><title>Regex Go 已上架 App Store</title><link>https://yongfrank.github.io/regex-go/zh/</link><pubDate>Sat, 22 Apr 2023 20:54:05 +0800</pubDate><guid>https://yongfrank.github.io/regex-go/zh/</guid><description>&lt;!-- &lt;div align-items="end"> -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog by Frank</title><link>https://yongfrank.github.io/</link><description>Recent content on Blog by Frank</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 24 Apr 2023 20:54:05 +0800</lastBuildDate><atom:link href="https://yongfrank.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Regex Go 已上架 App Store</title><link>https://yongfrank.github.io/regex-go/zh-tw/</link><pubDate>Mon, 24 Apr 2023 20:54:05 +0800</pubDate><guid>https://yongfrank.github.io/regex-go/zh-tw/</guid><description>&lt;!-- &lt;div align-items="end"> -->
+&lt;a href="https://github.com/yongfrank/RegexGo">
+&lt;img src="https://img.shields.io/github/stars/yongfrank/RegexGo.svg?style=social" alt="GitHub Stars">
+&lt;/a>
+&lt;a href="https://apps.apple.com/app/regex-go/id6447801504" >
+&lt;img src="../images/download-on-the-app-store.svg" alt="download on app store" align="right" width="150px">
+&lt;/a>
+&lt;!-- &lt;/div> -->
+&lt;p>利用 Regex Go 掌握 Regex 正則表達式！&lt;/p>
+&lt;p>🤗 跟繁瑣的文本處理任務說再見吧，透過 Regex Go 的 RegexBuilder，輕鬆實現字符串操作。🤩.&lt;/p></description></item><item><title>Regex Go 已上架 App Store</title><link>https://yongfrank.github.io/regex-go/zh/</link><pubDate>Mon, 24 Apr 2023 20:54:05 +0800</pubDate><guid>https://yongfrank.github.io/regex-go/zh/</guid><description>&lt;!-- &lt;div align-items="end"> -->
 &lt;a href="https://github.com/yongfrank/RegexGo">
 &lt;img src="https://img.shields.io/github/stars/yongfrank/RegexGo.svg?style=social" alt="GitHub Stars">
 &lt;/a>
@@ -12,7 +16,12 @@ If you choose to use my Service, then you agree to the collection and use of inf
 &lt;/a>
 &lt;!-- &lt;/div> -->
 &lt;p>利用 Regex Go 掌握 Regex 正则表达式!&lt;/p>
-&lt;p>🤗 跟繁琐的文本处理任务说再见吧，通过 Regex Go 的 RegexBuilder，轻松实现字符串操作。🤩.&lt;/p></description></item><item><title>Swift Concurrency</title><link>https://yongfrank.github.io/posts/swift-concurrency/</link><pubDate>Sat, 22 Apr 2023 17:32:57 +0800</pubDate><guid>https://yongfrank.github.io/posts/swift-concurrency/</guid><description> Swift Concurrency by Example
+&lt;p>🤗 跟繁琐的文本处理任务说再见吧，通过 Regex Go 的 RegexBuilder，轻松实现字符串操作。🤩.&lt;/p></description></item><item><title>Design Tutorials for Developers</title><link>https://yongfrank.github.io/posts/design-for-dev/</link><pubDate>Sun, 23 Apr 2023 23:26:08 +0800</pubDate><guid>https://yongfrank.github.io/posts/design-for-dev/</guid><description>&lt;blockquote>
+&lt;p>&lt;a href="https://xuyisheng.top/design_color_system/">不懂设计的产品不是好开发&lt;/a>&lt;/p>
+&lt;p>通过这篇文章，我将向大家介绍下关于设计的一些基本知识，让广大开发者在平时的开发中，可以更好的和设计、产品合作（撕逼）。&lt;/p>
+&lt;/blockquote></description></item><item><title>Regex Go Privacy Policy</title><link>https://yongfrank.github.io/regex-go/privacy-policy/</link><pubDate>Sat, 22 Apr 2023 20:54:05 +0800</pubDate><guid>https://yongfrank.github.io/regex-go/privacy-policy/</guid><description>Regex Go Privacy Policy Chu Yong built the Regex Go app as a Free app. This SERVICE is provided by Chu Yong at no cost and is intended for use as is.
+This page is used to inform visitors regarding my policies regarding the collection, use, and disclosure of Personal Information if anyone decides to use my Service.
+If you choose to use my Service, then you agree to the collection and use of information in relation to this policy.</description></item><item><title>Swift Concurrency</title><link>https://yongfrank.github.io/posts/swift-concurrency/</link><pubDate>Sat, 22 Apr 2023 17:32:57 +0800</pubDate><guid>https://yongfrank.github.io/posts/swift-concurrency/</guid><description> Swift Concurrency by Example
 Introduction Async/await Sequences and streams Tasks and task groups Actors How to use @MainActor to run code on the main queue
 Error: Publishing changes from background threads is not allowed; make sure to publish values from the main thread (via operators like receive(on:)) on model updates.
 Solutions</description></item><item><title>Apple Media Services</title><link>https://yongfrank.github.io/posts/apple-media-services/</link><pubDate>Wed, 19 Apr 2023 19:27:35 +0800</pubDate><guid>https://yongfrank.github.io/posts/apple-media-services/</guid><description>Apple Music Marketing Apple Music Marketing Tools How to Embed Apple Music Playlists, Albums and Songs on a Webpage
