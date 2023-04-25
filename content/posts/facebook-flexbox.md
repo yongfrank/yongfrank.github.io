@@ -13,6 +13,49 @@ date: 2023-03-24T13:02:13+08:00
 
 ![Layout-align-items](https://koenig-media.raywenderlich.com/uploads/2017/05/flexbox_theory_4.png)
 
+## Code
+
+> [Online HTML CSS JavaScript](https://codepen.io/pen/)
+
+### `align-*`
+
+> [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items)
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Align-items Stretch Demo</title>
+    <style>
+        .container {
+            display: flex;
+            height: 200px;
+            align-items: stretch;
+            background-color: lightgray;
+        }
+
+        .item {
+            width: 100px;
+            margin: 10px;
+            background-color: #f1c40f;
+            text-align: center;
+            font-size: 24px;
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+</body>
+</html>
+```
+
 ## Yoga / Flexbox
 
 > [Juejin]
