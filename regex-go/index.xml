@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Regex Go is Available on App Store on Blog by Frank</title><link>https://yongfrank.github.io/regex-go/</link><description>Recent content in Regex Go is Available on App Store on Blog by Frank</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 20:54:05 +0800</lastBuildDate><atom:link href="https://yongfrank.github.io/regex-go/index.xml" rel="self" type="application/rss+xml"/><item><title>Regex Go Privacy Policy</title><link>https://yongfrank.github.io/regex-go/privacy-policy/</link><pubDate>Sat, 22 Apr 2023 20:54:05 +0800</pubDate><guid>https://yongfrank.github.io/regex-go/privacy-policy/</guid><description>Regex Go Privacy Policy Chu Yong built the Regex Go app as a Free app. This SERVICE is provided by Chu Yong at no cost and is intended for use as is.
 This page is used to inform visitors regarding my policies regarding the collection, use, and disclosure of Personal Information if anyone decides to use my Service.
-If you choose to use my Service, then you agree to the collection and use of information in relation to this policy.</description></item></channel></rss>
+If you choose to use my Service, then you agree to the collection and use of information in relation to this policy.</description></item><item><title>Regex Go 已上架 App Store</title><link>https://yongfrank.github.io/regex-go/zh/</link><pubDate>Sat, 22 Apr 2023 20:54:05 +0800</pubDate><guid>https://yongfrank.github.io/regex-go/zh/</guid><description>&lt;!-- &lt;div align-items="end"> -->
+&lt;a href="https://github.com/yongfrank/RegexGo">
+&lt;img src="https://img.shields.io/github/stars/yongfrank/RegexGo.svg?style=social" alt="GitHub Stars">
+&lt;/a>
+&lt;a href="https://apps.apple.com/app/regex-go/id6447801504" >
+&lt;img src="../images/download-on-the-app-store.svg" alt="download on app store" align="right" width="150px">
+&lt;/a>
+&lt;!-- &lt;/div> -->
+&lt;p>利用 Regex Go 掌握 Regex 正则表达式!&lt;/p>
+&lt;p>🤗 跟繁琐的文本处理任务说再见吧，通过 Regex Go 的 RegexBuilder，轻松实现字符串操作。🤩.&lt;/p></description></item></channel></rss>
