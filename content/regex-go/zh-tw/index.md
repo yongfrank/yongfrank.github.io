@@ -17,9 +17,9 @@ layout: "single"
 </a>
 <!-- </div> -->
 
-利用 Regex Go 掌握 Regex 正则表达式!
+利用 Regex Go 掌握 Regex 正則表達式！
 
-🤗 跟繁琐的文本处理任务说再见吧，通过 Regex Go 的 RegexBuilder，轻松实现字符串操作。🤩.
+🤗 跟繁瑣的文本處理任務說再見吧，透過 Regex Go 的 RegexBuilder，輕鬆實現字符串操作。🤩.
 
 <!--more-->
 
@@ -74,13 +74,13 @@ layout: "single"
 </ul>
 
 
-## App 里有什么
+## App 裡有什麼
 
-在 App 中，我使用了 Swift Regex 和 RegexBuilder，两个在 WWDC22 推出的框架。广为流传的 Regex 诞生于上世纪 60 - 70 年代，他在文字处理过程中起到了非常大的作用，但也因为他出现的比较早，所以有很多不足的地方，例如难以阅读，难以排错。
+在 App 中，我使用了 Swift Regex 和 RegexBuilder，兩個在 WWDC22 推出的框架。廣為流傳的 Regex 誕生於上世紀 60 - 70 年代，他在文字處理過程中起到了非常大的作用，但也因為他出現的比較早，所以有很多不足的地方，例如難以閱讀，難以排錯。
 
-而在 WWDC22，RegexBuilder 的诞生，以 DSL 的形式去构建 Regex，让 Regex 更加易读，易于维护。我希望通过 Regex Go，让不了解 Regex 的人，能够通过简单的拖拽，就能够使用 Regex，而不需要去学习 Regex 的语法，让更多的人享受到 coding 带来的乐趣，效率的提高。
+而在 WWDC22，RegexBuilder 的誕生，以 DSL 的形式去構建 Regex，讓 Regex 更加易讀，易於維護。我希望通過 Regex Go，讓不了解 Regex 的人，能夠通過簡單的拖拉，就能夠使用 Regex，而不需要去學習 Regex 的語法，讓更多的人享受到 coding 帶來的樂趣，效率的提高。
 
-## 更多细节
+## 更多細節
 
 [![Follow on twitter](https://img.shields.io/twitter/follow/cyongfrank)](https://twitter.com/intent/follow?screen_name=cyongfrank)
 [![About Frank](https://img.shields.io/badge/Find_More_Project-yongfrank.github.io/about-9ef)](https://yongfrank.github.io/about)
@@ -89,7 +89,7 @@ layout: "single"
     <img src="../images/download-on-the-app-store.svg" alt="download on app store" style="float: right;">
 </a>
 
-从去年开始学习 iOS 到今年，我不仅收获了知识上的成长，更多的是收获了一群志同道合的朋友，他们的帮助让我在学习过程中不再孤单，也让我在学习过程中不断的成长。各种沙龙活动，各种技术分享，是这段经历为我打开了新世界的大门，让我不再局限于学校的课程，而是能够自由的去学习自己感兴趣的知识。从懵懂无知，到上架第一个 App，这一年的成长，让我感到非常幸运。
+從去年開始學習 iOS 到今年，我不僅收穫了知識上的成長，更多的是收穫了一群志同道合的朋友，他們的幫助讓我在學習過程中不再孤單，也讓我在學習過程中不斷地成長。各種沙龍活動，各種技術分享，是這段經歷為我打開了新世界的大門，讓我不再局限於學校的課程，而是能夠自由地去學習自己感興趣的知識。從懵懂無知，到上架第一個 App，這一年的成長，讓我感到非常幸運。
 
 <style>
 .links {
