@@ -132,11 +132,11 @@ layout: "single"
     <a href="https://twitter.com/cyongfrank"><img width="20px" src="../images/twitter.svg" alt="Twitter"></a>&nbsp;&nbsp;
     <a href="https://github.com/yongfrank"><img width="20px" src="../images/github.svg" alt="GitHub"></a>
     <br>
-    <a href="../privacy-policy/" title="privacy" class="links__item" style="text-decoration: none;">协议</a>
+    <a href="../privacy-policy/" title="privacy" class="links__item" style="text-decoration: none;">協議</a>
     |
     <a href="https://www.dropbox.com/sh/k43u1bkqd4lsrnc/AABQvkI5rkY8keLz2yAwj6Lta?dl=0" title="PressKit at Dropbox" class="links__item" style="text-decoration: none;">素材</a>
     |
-    <a href="mailto:yongfrank@outlook.com" title="Mail" class="links__item" style="text-decoration: none;">联系</a>
+    <a href="mailto:yongfrank@outlook.com" title="Mail" class="links__item" style="text-decoration: none;">聯繫</a>
     <br>
     <a href="https://twitter.com/cyongfrank" title="Twitter at @cyongfrank" class="links__item" style="text-decoration: none;">@cyongfrank</a>
 </div>
