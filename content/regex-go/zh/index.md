@@ -4,24 +4,38 @@ date: 2023-04-24T20:54:05+08:00
 custom_head: <meta name='apple-itunes-app' content='app-id=6447801504'>
 disable_toc: true
 layout: "single"
-# url: "/regex-go/"
+description: "利用 Regex Go 掌握 Regex 正则表达式!"
 ---
-
-<!-- <div align-items="end"> -->
-<a href="https://github.com/yongfrank/RegexGo">
-    <img src="https://img.shields.io/github/stars/yongfrank/RegexGo.svg?style=social" alt="GitHub Stars">
-</a>
+<link rel="stylesheet" href="/regex-go/style.css">
+<div style="display: flex; align-items: flex-start; justify-content: space-between">
+    <a href="https://github.com/yongfrank/RegexGo">
+        <img src="https://img.shields.io/github/stars/yongfrank/RegexGo.svg?style=social" alt="GitHub Stars">
+    </a>
+    <select
+        data-placeholder="Choose a Language..."
+        onchange="
+            var value = this.value;
+            var url = '/regex-go/';
+            if (value == 'zh-tw') {
+            url += 'zh-tw/';
+            } else if (value == 'zh') {
+            url += 'zh/';
+            }
+            window.location.assign(url);
+        "    >
+        <option value="">English</option>
+        <option value="zh-tw">繁體中文</option>
+        <option value="zh" selected>简体中文</option>
+    </select>
+</div>
 
 <a href="https://apps.apple.com/app/regex-go/id6447801504" >
-    <img src="../images/download-on-the-app-store.svg" alt="download on app store" align="right" width="150px">
+    <img src="/regex-go/images/download-on-the-app-store.svg" alt="download on app store" align="right" width="120px">
 </a>
-<!-- </div> -->
 
 利用 Regex Go 掌握 Regex 正则表达式!
 
-🤗 跟繁琐的文本处理任务说再见吧，通过 Regex Go 的 RegexBuilder，轻松实现字符串操作。🤩.
-
-<!--more-->
+🤗 跟繁琐的文本处理任务说再见吧，通过 Regex Go 的 RegexBuilder，轻松实现字符串操作。🤩
 
 [![cover image](cover.jpg)](https://apps.apple.com/app/regex-go/id6447801504)
 <!-- https://blog.csdn.net/lishimin1012/article/details/88949602 -->

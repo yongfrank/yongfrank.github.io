@@ -31,7 +31,8 @@ ASSETWriterInput for making Video f..."> -->
 <!-- Hugo: End content summary at first paragraph break https://stackoverflow.com/questions/72875947/hugo-end-content-summary-at-first-paragraph-break -->
 {{ $description:= index (split .Content "</p>") 0 | safeHTML }}
 <!-- Update for description -->
-<meta property="og:description" content="{{ if .IsHome }}{{ $.Site.Params.Subtitle }}{{ else if .Description}}{{ .Description | plainify }}{{ else }}{{ $description }}{{ end }}" />
+<!--  else if .Summary .Summary -->
+<meta property="og:description" content="{{ if .IsHome }}{{ $.Site.Params.Subtitle }}{{ else if .Params.Description}}{{ .Description | plainify }}{{ else }}{{ $description }}{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:site_name" content="{{ $.Site.Title }}" />
 
