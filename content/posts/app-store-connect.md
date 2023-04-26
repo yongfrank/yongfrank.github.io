@@ -158,3 +158,7 @@ function createLocalizedAppleWebsiteLinks(language) {
     background-image: url(/cn/app-store/product-page/images/cn-screen-search-medium_2x.jpg);
 }
 ```
+
+## App Review
+
+[iOS App Review 建议 #1 | 2022-10-12](https://mp.weixin.qq.com/s/Yg5DDIfrz8_E6whnxWFyOg)
