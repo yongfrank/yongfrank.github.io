@@ -476,6 +476,20 @@ export ALL_PROXY=http://127.0.0.1:<PORT>
 >
 > 对于老旧二进制的依赖，最正确的做法是催促维护者赶快适配 xcframework。另一种可行的方案，是 hack 一下二进制，修改 arm64 slice 的目标字段，“欺骗” Xcode 让它认为这个二进制的 arm64 就是为模拟器编译的。这种方法在这里有详细解释，作者也发布了相关的 arm64-to-sim 工具，如有需要，可以暂时酌情使用。
 
+利用 `config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"` 排除 arm64 的模拟器，以让老代码能够在 x86_64 的环境下编译运行，最终以 Rosetta 的形式在 M-Chip 的 Mac 上运行。
+
+```podfile
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+        	...
+					config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+        	...
+    		end
+  		...
+		...
+end
+```
 
 ### arm64 / x86-64 和 intel/amd
 

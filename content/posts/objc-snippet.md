@@ -21,6 +21,16 @@ if (nil == 0) {
 }
 ```
 
+## Nil Safe Solution
+
+```objc
+[InterfaceName toGetNSDictionary:self.model.businessInfo?:@{}];
+```
+
+这行代码的意思是，首先检查 self.model.businessInfo 是否为 nil，如果不是 nil，则使用 self.model.businessInfo，否则返回一个空的 NSDictionary 对象 {}。
+
+这样写可以避免在访问 self.model.businessInfo 属性时出现空指针异常，因为如果该属性为 nil，则会返回一个空的 NSDictionary 对象，避免了后续的访问出现异常。
+
 ## Class in Objective-C
 
 * [Apple Developer: Programming With Objective-C](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html)
@@ -90,6 +100,36 @@ For example, suppose you have a property height declared in a class Person. Inst
 This will automatically generate the getter and setter methods for the height property.
 
 Note that with the release of Objective-C 2.0, @synthesize is no longer strictly necessary. Instead, you can use the @property directive to declare the property and the compiler will automatically generate the getter and setter methods by default. However, @synthesize can still be useful in some cases, such as when you need to customize the behavior of the generated methods.
+
+## NSDictionary in Objc
+
+```objc
+NSDictionary *dictionary = @{
+    @"name": @"John", 
+    @"age": @30, 
+    @"gender": @"male"
+};
+```
+
+这个 NSDictionary 包含了三个键值对，分别是 "name"、"age" 和 "gender"。其中，键都是 NSString 类型，而值可以是任意的对象，例如这里的 @"John" 是一个 NSString 对象，@30 是一个 NSNumber 对象，@"male" 也是一个 NSString 对象。
+
+你可以通过 key 来获取对应的 value，例如：
+
+```objc
+NSString *name = [dictionary objectForKey:@"name"];
+NSNumber *age = [dictionary objectForKey:@"age"];
+NSString *gender = [dictionary objectForKey:@"gender"];
+```
+
+这样就分别取到了对应 key 的 value 值。如果 key 不存在，那么 objectForKey 方法将返回 nil。
+
+除了使用 objectForKey 方法外，还可以使用下标语法来访问 NSDictionary 中的值，例如：
+
+```objc
+NSString *name = dictionary[@"name"];
+NSNumber *age = dictionary[@"age"];
+NSString *gender = dictionary[@"gender"];
+```
 
 ## Property in objc
 

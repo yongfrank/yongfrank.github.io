@@ -40,6 +40,23 @@ ToolbarItemGroup {
 #endif
 ```
 
+## Components QuickStart
+
+### Delegate，类扩展
+
+() 表示这是一个匿名分类（也叫类扩展或匿名类别），可以在其中添加实例变量和方法。`<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>` 表示这个类实现了 `UICollectionViewDelegate、UICollectionViewDataSource 和 UICollectionViewDelegateFlowLayout` 这三个协议。在 Objective-C 中，需要在类的声明中明确列出所实现的协议，这有助于编译器检查类是否实现了协议中规定的所有方法。
+
+```objc
+@interface TestingUICollectionViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@end
+```
+
+```swift
+class TestingUICollectionViewCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    // class implementation goes here
+}
+```
+
 ### Button
 <!-- markdownlint-disable MD010 -->
 ```objc
@@ -68,6 +85,16 @@ ToolbarItemGroup {
 }
 ```
 
+### UITableView & UICollectionView
+
+UITableView 和 UICollectionView 是 iOS 中常用的两种列表控件。
+
+UITableView 是一个列表控件，可以用来展示单行或多行数据。它是基于 Model-View-Controller 设计模式的。UITableView 中的每个 cell 都可以由一个 UITableViewCell 类型的实例表示，而这个实例通常包含了一些 UI 元素和一些用来展示数据的控件。UITableView 中可以设置 section 来分组显示数据。
+
+UICollectionView 是一个强大的集合控件，可以用来展示多行、多列的数据。它也是基于 Model-View-Controller 设计模式的。与 UITableView 不同，UICollectionView 的布局方式更加灵活，可以通过设置 layout 来控制每个 cell 的大小、位置、对齐方式等等。与 UITableView 相似，UICollectionView 也可以使用 section 来分组显示数据，而且它还支持一些特殊的布局方式，如流式布局等。
+
+总的来说，UITableView 适用于简单的列表展示，而UICollectionView 则更加适用于展示多样化、样式复杂的数据，同时它的布局方式更加灵活。
+
 ### Protocol & UICollectionView
 
 * [[OC] UIcollectionView and UIcollectionViewCell](https://www.cnblogs.com/OranBlog/p/9208782.html)
@@ -86,6 +113,10 @@ ToolbarItemGroup {
 @property (nonatomic, strong) UICollectionView *collectionView;
 @end
 ```
+
+> [collectionView:cellForItemAtIndexPath:](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource/1618029-collectionview?language=objc)
+>
+> Asks your data source object for the cell that corresponds to the specified item in the collection view.
 
 ```objc
 @implementation ViewController

@@ -7,6 +7,13 @@ date: 2023-04-08T15:11:23+08:00
 
 > [[Offer 27: Mirror Tree]]()
 
+* Sun App Store
+* Mon Search Show More
+* Tue Domain Specific Language 
+* Wed DSL
+* Thu Tracking
+* Fri Tracking
+
 ## Week 16 4/17 - 4/23
 
 * Mon Coupon
