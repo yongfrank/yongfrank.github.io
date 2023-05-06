@@ -2,3 +2,7 @@
 {{ with .Params.custom_head }}
   {{ . | safeHTML }}
 {{ end }}
+
+<head>
+  <script src="{{ "js/MathJax/es5/tex-chtml.js" | relURL }}"></script>
+</head>
