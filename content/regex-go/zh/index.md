@@ -6,6 +6,7 @@ disable_toc: true
 layout: "single"
 description: "利用 Regex Go 掌握 Regex 正则表达式!"
 ---
+<!-- markdownlint-disable md033 -->
 <link rel="stylesheet" href="/regex-go/style.css">
 <div style="display: flex; align-items: flex-start; justify-content: space-between">
     <a href="https://github.com/yongfrank/RegexGo">
@@ -87,12 +88,11 @@ description: "利用 Regex Go 掌握 Regex 正则表达式!"
   <li><image src="../images/5.jpg"></image></li>
 </ul>
 
-
 ## App 里有什么
 
-在 App 中，我使用了 Swift Regex 和 RegexBuilder，两个在 WWDC22 推出的框架。广为流传的 Regex 诞生于上世纪 60 - 70 年代，他在文字处理过程中起到了非常大的作用，但也因为他出现的比较早，所以有很多不足的地方，例如难以阅读，难以排错。
+Regex Go 使用了 Swift Regex 和 RegexBuilder，两个在 WWDC22 推出的框架。广为流传的 Regex 诞生于上世纪 60 - 70 年代，他在文字处理过程中起到了非常大的作用，但也因为他出现的比较早，所以有很多不足的地方，例如难以阅读，难以排错。
 
-而在 WWDC22，RegexBuilder 的诞生，以 DSL 的形式去构建 Regex，让 Regex 更加易读，易于维护。我希望通过 Regex Go，让不了解 Regex 的人，能够通过简单的拖拽，就能够使用 Regex，而不需要去学习 Regex 的语法，让更多的人享受到 coding 带来的乐趣，效率的提高。
+而在 WWDC22，RegexBuilder 的诞生，以 DSL 的形式去构建 Regex，让 Regex 更加易读，易于维护。Regex Go 希望让不了解 Regex 的人，能够通过简单的拖拽，就能够使用 Regex，而不需要去学习 Regex 的语法，让更多的人享受到 coding 带来的乐趣，效率的提高。
 
 ## 更多细节
 

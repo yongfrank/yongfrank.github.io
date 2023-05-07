@@ -551,3 +551,102 @@ firstNameTextField.placeholder = NSLocalizedString\((".*"), comment: ""\)
 
 $1.localized
 ```
+
+## Xcode Storage
+
+> * [SwiftUI preview 的檔案儲存路徑](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/swiftui-preview-的檔案儲存路徑-986f1aff34c7)
+> * [mac 系统数据 100 多 G 了，有什么清理的办法吗？](https://www.v2ex.com/t/893091)
+> * [Cleaner for Xcode](https://apps.apple.com/us/app/cleaner-for-xcode/id1296084683?mt=12)
+>
+> 看到你有 Xcode 。那么推荐你先试试八爷开发的 Cleaner For Xcode 。另外，一般的清理也可以使用 Disk Drill 以及 Cleaner One Pro ，这两个的免费版就足够使用了。
+
+## .xip file
+
+> * [从官网下载的 xcode 如何打开？ xip 格式？](https://www.v2ex.com/t/285959)
+> * [What is .xip format?](https://ktatsiu.wordpress.com/2016/10/28/how-to-download-xcode-8-x-with-xip-format/)
+>
+> A XIP file is analogous to zip file, but allows for a digital signature to be embedded and be verified on the receiving system, before the archive is expanded.
+
+## Xcode Copy if needed
+
+> [Xcode中拖入资源弹出的窗口](https://www.jianshu.com/p/6d78444bea96)
+
+## "Failed to prepare device for development."
+
+> [StackOverflow](https://stackoverflow.com/questions/71618452/failed-to-prepare-device-for-development-with-xcode-13-2-1-and-ios-15-4-devic)
+
+1. Check /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport/ for directory name 15.4 (your iOS version).
+2. If the directory is missing download support files for 15.4 (your iOS version) from https://github.com/filsv/iPhoneOSDeviceSupport and place it in the above path.
+3. Restart Xcode.
+
+## Localize
+
+```txt
+https://developer.apple.com/documentation/xcode/exporting-localizations
+
+https://zhiying.space/posts/ios-localization/
+Zhiying’s iOS Star
+iOS 项目国际化 Localization
+随着 Apple 对多语言用户使用体验的不断提升，从 iOS13 开始用户可以在应用设置中单独设置区别于系统的语言，同时对于开发者来说，对于多语言的适配体验也在不断的得到提升，本文将逐步说明如何对 iOS 项目做国际化支持。
+
+http://swiftcafe.io/post/ios-localize
+NSLocalizedString 多语言本地化 - SwiftCafe 享受代码的乐趣
+iOS 多语言的标准库，看看有多少你还不了解的。
+
+https://youtu.be/yZO-QTBwsNs
+YouTube
+Indently
+Adding Translations to iPhone Apps in SwiftUI (Tutorial)
+
+https://nilcoalescing.com/blog/ExportingAndImportingLocalizations/
+只有 infoplist 文件
+Button("Log in") { // localizable string
+    // perform login
+}
+
+Button {
+    // perform login
+} label: {
+    Text("Log in", comment: "A button to perform login")
+}
+```
+
+> [Multi Language SwiftUI App](https://www.hackingwithswift.com/forums/swiftui/multi-language-swiftui-app/18403)
+
+```swift
+Button("Change Language") {
+    if let url = URL(string: UIApplication.openSettingsURLString) {
+        UIApplication.shared.open(url)
+    }
+}
+```
+
+> * [How to manage Localizable Strings in Xcode project](https://www.youtube.com/watch?v=_PBA20ZVk1A)
+> * [3分钟实现iOS语言本地化/国际化（图文详解）](https://cloud.tencent.com/developer/article/1143302)
+
+## Private API Call
+
+> [FLEX on GitHub](https://github.com/FLEXTool/FLEX)
+
+Swift Package Manager
+
+In Xcode, navigate to Build Settings > Build Options > Excluded Source File Names. For your Release configuration, set it to FLEX* like this to exclude all files with the FLEX prefix:
+
+![Flex excoded Source File Names](https://user-images.githubusercontent.com/8371943/70281926-e21d1c00-1781-11ea-92eb-aee340791da8.png)
+
+> [PDiOS: Private API Call Detection in iOS Applications](https://www.jsjkx.com/CN/article/openArticlePDF.jsp?id=21)
+
+> [iOS14 时钟组件怎么做到实时更新](https://www.v2ex.com/t/763919)
+
+```txt
+私有 api:
+
+some View
+._clockHandRotationEffect(.hourHand, in: TimeZone, anchor: .center)
+
+只能帮你到这里了。
+```
+
+## Xcode Build Scheme
+
+> [Customizing the build schemes for a project](https://developer.apple.com/documentation/xcode/customizing-the-build-schemes-for-a-project)

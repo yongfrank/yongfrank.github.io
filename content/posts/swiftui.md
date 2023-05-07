@@ -393,6 +393,31 @@ ZStack {
 }
 ```
 
+### Confetti
+
+> [How to Create Confetti Animations in SwiftUI](https://www.appcoda.com/swiftui-confetti-animation/)
+
+![Confetti](https://github.com/simibac/ConfettiSwiftUI/raw/master/Gifs/default.gif)
+
+```swift
+// https://github.com/simibac/ConfettiSwiftUI.git
+
+import ConfettiSwiftUI
+import SwiftUI
+
+struct ContentView: View {
+    
+    @State private var counter: Int = 0
+    
+    var body: some View {
+        Button("🎉") {
+            counter += 1
+        }
+        .confettiCannon(counter: $counter)
+    }
+}
+```
+
 ## Composing views
 
 Make your UI structure easier to understand
@@ -544,3 +569,48 @@ struct ColumnWidth: ViewModifier {
 
 > [访问 SwiftUI 内部的 UIKit 组件 - 猫克杯的文章 - 知乎](https://zhuanlan.zhihu.com/p/133444068)
 
+## UIKit Preview
+
+> [UIKit Preview](https://ruipfcosta.github.io/UIKitPreviewsGenerator-Website/index.html)
+
+<!-- markdownlint-disable MD033 -->
+<video style="max-width: 100%;box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 1) 0px 30px 60px -30px;" loop muted autoplay playsinline>
+    <source src="https://ruipfcosta.github.io/UIKitPreviewsGenerator-Website/assets/video/demo.mov">
+</video>
+
+```swift
+import UIKit
+
+class ViewController: UINavigationController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        var text = UILabel(frame: CGRect(x: 20, y: 20, width: 300, height: 300))
+        text.text = "UIKit Preview Testing"
+        self.view.addSubview(text)
+    }
+}
+
+#if DEBUG
+
+import SwiftUI
+
+struct ViewControllerRepresentable: UIViewControllerRepresentable {
+    typealias UIViewControllerType = ViewController
+
+    func makeUIViewController(context: Context) -> UIViewControllerType {
+        ViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        
+    }
+}
+
+struct ViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewControllerRepresentable()
+    }
+}
+```

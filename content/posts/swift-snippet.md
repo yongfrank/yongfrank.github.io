@@ -417,3 +417,15 @@ for i in stride(from: 0, through: 1000, by: 100) {
 
 > [Trees in Swift](https://www.hackingwithswift.com/plus/data-structures/trees)
 
+## Codable & NSCoding
+
+> [Swift Codable 和 NSCoding协议，以及归档，JSON编码](https://www.jianshu.com/p/4876e94862e2)
+
+前面文章中 UserDefaults 的基本用法 中对UserDefaults 进行了简单的介绍，它可以将一些简单的数据类型存储在本地，需要使用的时候再去读取。
+
+如果对于复杂对象的存储则需要将其进行序列化，将对象转化为 NSData(Swift Data)类型之后再进行操作，比如，将其存在本地的某个文件（eg.people.plist, people.txt等）中。
+
+有2种序列化的方式：
+
+1. NSCoding： 老的Cocoa方式，OC的方式
+2. Codable： 新的swift方式

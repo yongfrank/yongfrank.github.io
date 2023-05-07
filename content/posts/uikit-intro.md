@@ -436,3 +436,49 @@ SwiftUI 与 UIKit 的设计理念有很大差异。在 UIKit 中，我们直接�
 ```objc
 #define ResponsiveScaleWidth(length) (((length)/375.0f) * [[UIScreen mainScreen] bounds].size.width)
 ```
+
+## UIKit Preview
+
+> [UIKit Preview](https://ruipfcosta.github.io/UIKitPreviewsGenerator-Website/index.html)
+
+<!-- markdownlint-disable MD033 -->
+<video style="max-width: 100%;box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 1) 0px 30px 60px -30px;" loop muted autoplay playsinline>
+    <source src="https://ruipfcosta.github.io/UIKitPreviewsGenerator-Website/assets/video/demo.mov">
+</video>
+
+```swift
+import UIKit
+
+class ViewController: UINavigationController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        var text = UILabel(frame: CGRect(x: 20, y: 20, width: 300, height: 300))
+        text.text = "UIKit Preview Testing"
+        self.view.addSubview(text)
+    }
+}
+
+#if DEBUG
+
+import SwiftUI
+
+struct ViewControllerRepresentable: UIViewControllerRepresentable {
+    typealias UIViewControllerType = ViewController
+
+    func makeUIViewController(context: Context) -> UIViewControllerType {
+        ViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        
+    }
+}
+
+struct ViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewControllerRepresentable()
+    }
+}
+```
