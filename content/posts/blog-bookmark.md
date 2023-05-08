@@ -3,6 +3,10 @@ title: "Blog Bookmark"
 date: 2023-04-08T14:53:56+08:00
 ---
 
+## Trip
+
+* [游记 | 在日照看到绝美的大海 | 房车](https://blog.ops-coffee.cn/r/city-china-shandong-rizhao)
+
 ## Personal Experience
 
 * [周兆熊: 从高考到程序员---一个五年程序员的回忆及建议](https://developer.aliyun.com/article/254285?spm=a2c6h.13262185.profile.386.699e167e7REVuk)
