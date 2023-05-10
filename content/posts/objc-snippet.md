@@ -1072,3 +1072,7 @@ self.addGestureRecognizer(UITapGestureRecognizer { _ in
     actionBlock?()
 })
 ```
+
+## _Nullable
+
+> [Objective-C 中 nullable、__nullable、_Nullable 的区别](https://kangzubin.com/nullability-and-objective-c/)

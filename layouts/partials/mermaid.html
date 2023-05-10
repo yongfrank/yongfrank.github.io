@@ -1,0 +1,13 @@
+<!-- https://github.com/adityatelange/hugo-PaperMod/discussions/850 -->
+<!-- 在最后一步中，guessSyntaxconfig.yaml 文件中的 goldmark 必须设置false或删除才能使 Mermaid 生效。 -->
+<!-- Mermaid Support -->
+{{ if .Params.hasMermaid }}
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script type="module">
+    mermaid.initialize({ 
+        startOnLoad: true, 
+        theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "default", // 自动匹配默认或夜间模式主题。
+    });
+    window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
+</script>
+{{ end }}

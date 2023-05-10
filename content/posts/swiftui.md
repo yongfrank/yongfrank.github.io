@@ -10,6 +10,11 @@ This page is open source. [Improve this page][opensource].
 > * [SwiftUI by Example](https://www.hackingwithswift.com/quick-start/swiftui/)
 > * [SwiftUI 参考手册](https://www.cocoaz.com/swiftui/swiftui-vs-uikit-cheat-sheet/)
 
+<!-- https://discord.com/channels/967978112509935657/967978112509935663/1105046781521305600 我购买了《Mastering SwiftUI》并将它汉化为简体中文，免费放在了我的 Github 静态服务器中，先读完 https://sspai.com/series/147 再继续阅读 https://ylqylq001.github.io/Mastering-SwiftUI 我相信你很快就能撸出漂亮的 SwiftUI App  -->
+
+<!-- 还有件事强调一下，我放在 Github 静态服务器上的这本书，本来是打算方便自己阅读，偷偷转译的，不要到处传播，哪天因为版权被删除就麻烦了
+https://ylqylq001.github.io/Mastering-SwiftUI  -->
+
 ## Working with static text (Laying out text neatly)
 
 > * [hws - How to add advanced text styling using AttributedString](https://www.hackingwithswift.com/quick-start/swiftui/how-to-add-advanced-text-styling-using-attributedstring)
