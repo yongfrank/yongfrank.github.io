@@ -1,0 +1,131 @@
+<!doctype html><html lang=en-us><title>HealthKit | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:title" content="HealthKit | Blog by Frank"><meta name=twitter:title content="HealthKit | Blog by Frank"><meta property="og:description" content="
+HealthKit"><meta property="og:url" content="https://yongfrank.github.io/posts/healthkit/"><meta property="og:site_name" content="Blog by Frank"><meta name=generator content="Hugo 0.111.3"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/healthkit/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><link rel=stylesheet href=https://yongfrank.github.io/katex/katex.min.css><link rel="shortcut icon" href=favicon.ico><script defer src=https://yongfrank.github.io/katex/katex.min.js></script>
+<script defer src=https://yongfrank.github.io/katex/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#578490><meta name=msapplication-TileColor content="#da532c"><head><script src=/js/MathJax/es5/tex-chtml.js></script></head><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>HealthKit</h1><time datetime=2023-05-10T15:02:18+08:00>May 10, 2023</time></header><nav id=TableOfContents><ul><li><a href=#healthkitprovider-类用于和-healthkit-交互>HealthKitProvider 类，用于和 HealthKit 交互</a></li></ul></nav><blockquote><p><a href="https://developer.apple.com/documentation/healthkit/about_the_healthkit_framework?language=objc">HealthKit</a></p><p><a href="https://github.com/z3bi/bikelog?ref=iosexample.com">Demo App</a></p></blockquote><pre tabindex=0><code class=language-mermaid data-lang=mermaid>sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice-&gt;&gt;John: Hello John, how are you?
+    loop Healthcheck
+        John-&gt;&gt;John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts &lt;br/&gt;prevail!
+    John--&gt;&gt;Alice: Great!
+    John-&gt;&gt;Bob: How about you?
+    Bob--&gt;&gt;John: Jolly good!
+</code></pre><pre tabindex=0><code class=language-mermaid data-lang=mermaid>graph LR;
+    HKObject --&gt; HKSample;
+    HKObject --&gt; HKSampleType;
+
+    HKSample --&gt; HKQuantitySample;
+    HKSample --&gt; HKCategorySample;
+
+    HKSampleType --&gt; HKQuantityType;
+    HKSampleType --&gt; HKCategoryType;
+
+    Parent --&gt; Children;
+</code></pre><p>HealthKit Store(HealthKit 商店):</p><ul><li>Characterstic Data 特征数据：生日，血型等</li><li>Sample Data 样本数据：</li><li>Workout Data 锻炼数据</li><li>Source Data 源数据</li><li>Deleted objects 删除的对象</li></ul><h2 id=healthkitprovider-类用于和-healthkit-交互>HealthKitProvider 类，用于和 HealthKit 交互</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>//</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  HealthKitProvider.swift</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  Bike Log</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//  Created by Ameir Al-Zoubi on 1/13/22.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>//</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>HealthKit</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Combine</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>HealthKitProvider</span>: HealthProvider {
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> store = HKHealthStore()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> publisher = CurrentValueSubject&lt;HealthResult, Never&gt;(.empty)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> updateTask: Task<span style=color:#f92672>&lt;</span>(), Error&gt;?
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> healthTypes: Set = [HKWorkoutType.workoutType(),
+</span></span><span style=display:flex><span>                            HKQuantityType.quantityType(forIdentifier: .distanceCycling)<span style=color:#f92672>!</span>,
+</span></span><span style=display:flex><span>                            HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)<span style=color:#f92672>!</span>,
+</span></span><span style=display:flex><span>                            HKQuantityType.quantityType(forIdentifier: .heartRate)<span style=color:#f92672>!</span>,
+</span></span><span style=display:flex><span>                            HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)<span style=color:#f92672>!</span>,
+</span></span><span style=display:flex><span>                            HKQuantityType.quantityType(forIdentifier: .basalEnergyBurned)<span style=color:#f92672>!</span>]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>requestAuthorization</span>() async {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span> await store.requestAuthorization(toShare: [], read: healthTypes)
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;Error requesting HealthKit authorization </span><span style=color:#e6db74>\(</span>error<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>queryWorkouts</span>(activity: Activity) {
+</span></span><span style=display:flex><span>        updateTask?.cancel()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> activityPredicate = HKSamplePredicate.workout(HKQuery.predicateForWorkouts(with: activity.hkActivityType))
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> query = HKAnchoredObjectQueryDescriptor(predicates: [activityPredicate], anchor: publisher.value.anchor)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> updatingResults = query.results(<span style=color:#66d9ef>for</span>: store)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        updateTask = Task {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> <span style=color:#66d9ef>try</span> await newResult <span style=color:#66d9ef>in</span> updatingResults {
+</span></span><span style=display:flex><span>                publishResult(newResult, activity: activity)
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>publishResult</span>(<span style=color:#66d9ef>_</span> result: HKAnchoredObjectQueryDescriptor&lt;HKWorkout&gt;.Result, activity: Activity) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> unit = publisher.value.unit
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> newWorkouts = result.addedSamples.compactMap { Workout(hkWorkout: $0, hkUnit: unit.hkUnit()) }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> deletedIDs = result.deletedObjects.map { $0.uuid }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> validWorkouts = publisher.value.workouts.filter { <span style=color:#f92672>!</span>deletedIDs.contains($0.id) }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> workouts = Array(Set(validWorkouts <span style=color:#f92672>+</span> newWorkouts))
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> newState = HealthResult(workouts: workouts,
+</span></span><span style=display:flex><span>                                    unit: publisher.value.unit,
+</span></span><span style=display:flex><span>                                    cached: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>                                    anchor: result.newAnchor)
+</span></span><span style=display:flex><span>        publisher.value = newState
+</span></span><span style=display:flex><span>        newState.save(<span style=color:#66d9ef>for</span>: activity)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>preferredUnit</span>(<span style=color:#66d9ef>for</span> type: HKQuantityType) async -&gt; HKUnit {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> units = <span style=color:#66d9ef>try</span> await store.preferredUnits(<span style=color:#66d9ef>for</span>: [type])
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> unit = units[type] {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> unit
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;Error retrieving preferredUnits </span><span style=color:#e6db74>\(</span>error<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> Locale.current.distanceUnit().hkUnit()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>monitorWorkouts</span>(activity: Activity) async {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> cachedResult = <span style=color:#66d9ef>try</span>? await HealthResult.load(activity: activity)
+</span></span><span style=display:flex><span>        publisher.value = cachedResult ?? .empty
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        await requestAuthorization()
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> hkUnit = await preferredUnit(<span style=color:#66d9ef>for</span>: HKWorkout.distanceType(<span style=color:#66d9ef>for</span>: activity.hkActivityType))
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> unit = hkUnit.lengthUnit()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> unit <span style=color:#f92672>!=</span> publisher.value.unit {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> workouts = Workout.updateWorkouts(publisher.value.workouts, unit: unit)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> updatedResult = HealthResult(workouts: workouts, unit: unit, cached: <span style=color:#66d9ef>true</span>, anchor: cachedResult?.anchor)
+</span></span><span style=display:flex><span>            publisher.value = updatedResult
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        queryWorkouts(activity: activity)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>workoutsPublisher</span>() -&gt; AnyPublisher&lt;HealthResult, Never&gt; {
+</span></span><span style=display:flex><span>        publisher
+</span></span><span style=display:flex><span>            .receive(on: RunLoop.main)
+</span></span><span style=display:flex><span>            .eraseToAnyPublisher()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script>
+<script type=module>
+    mermaid.initialize({ 
+        startOnLoad: true, 
+        theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "default", 
+    });
+    window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
+</script></article></html>
