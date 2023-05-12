@@ -101,6 +101,16 @@ This will automatically generate the getter and setter methods for the height pr
 
 Note that with the release of Objective-C 2.0, @synthesize is no longer strictly necessary. Instead, you can use the @property directive to declare the property and the compiler will automatically generate the getter and setter methods by default. However, @synthesize can still be useful in some cases, such as when you need to customize the behavior of the generated methods.
 
+### @interface & @class
+
+在 Objective-C 中，@interface 是用来声明一个类的接口部分的关键字。它通常用于头文件（.h 文件）中，在其中定义了类的属性、方法和实例变量的声明。
+
+@class 是另一个关键字，用于在接口部分中声明一个类的名称，但不提供详细的类定义。它通常用于解决循环引用的问题。当多个类相互引用时，可以使用 @class 来提前声明类的名称，从而避免循环引用导致的编译错误。
+
+例如，假设有两个类 A 和 B，彼此相互引用。在 A 的头文件中，可以使用 @class B; 来提前声明类 B 的名称，表示 A 类中会使用到 B 类。然后，在 A 类的实现文件中（.m 文件）或者需要访问 B 类的地方，再导入 B 类的头文件。
+
+总之，@interface 用于声明一个类的接口部分，而 @class 用于提前声明一个类的名称以解决循环引用的问题。
+
 ## NSDictionary in Objc
 
 ```objc
@@ -992,6 +1002,16 @@ str2 = @"Hello";
 
 在此示例中，我们使用 RACObserve 监听名为 someProperty 的属性的变化。当属性发生变化时，我们的闭包会被调用。在闭包中，我们使用 @strongify(self) 将弱引用转换回强引用，以便安全地使用 self。这种方法避免了循环引用问题。
 
+```objc
+[model setDidSelectRow:^{
+    // @strongify(self)：这是一个宏，用于避免在 block 内部出现循环引用的问题。它会创建一个强引用的 self 变量，以确保在 block 内部可以安全地访问 self 对象。
+    @strongify(self)
+    UIViewController *vc = [UIViewController new];
+    // 通过导航控制器将 vc 推入到当前视图控制器的导航堆栈中，实现页面的切换和导航。
+    [self.navigationController pushViewController:vc animated:YES];
+}];
+```
+
 ## Type Size
 
 > Values of type 'NSUInteger' should not be used as format arguments; add an explicit cast to 'unsigned long' instead
@@ -1076,3 +1096,147 @@ self.addGestureRecognizer(UITapGestureRecognizer { _ in
 ## _Nullable
 
 > [Objective-C 中 nullable、__nullable、_Nullable 的区别](https://kangzubin.com/nullability-and-objective-c/)
+
+## `NS_ASSUME_NONNULL_BEGIN` 和 `NS_ASSUME_NONNULL_END`
+
+> [NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END](https://www.jianshu.com/p/67aa3bbb68c6)
+>
+> 在swift中，可以使用!和?来表示一个对象是optional的还是non-optional，如view?和view!。而在Objective-C中则没有这一区分，view即可表示这个对象是optional，也可表示是non-optioanl。这样就会造成一个问题：在Swift与Objective-C混编时，Swift编译器并不知道一个Objective-C对象到底是optional还是non-optional，因此这种情况下编译器会隐式地将Objective-C的对象当成是non-optional。
+>
+> 为了解决这个问题，苹果在Xcode 6.3引入了一个Objective-C的新特性：nullability annotations。这一新特性的核心是两个新的类型注释：__nullable和__nonnull。从字面上我们可以猜到，__nullable表示对象可以是NULL或nil，而__nonnull表示对象不应该为空。当我们不遵循这一规则时，编译器就会给出警告。
+>
+> 如果需要每个属性或每个方法都去指定nonnull和nullable，是一件非常繁琐的事。苹果为了减轻我们的工作量，专门提供了两个宏：
+> 
+> NS_ASSUME_NONNULL_BEGIN和NS_ASSUME_NONNULL_END。这两个宏的定义是：
+> 
+> `#define NS_ASSUME_NONNULL_BEGIN _Pragma("clang assume_nonnull begin")`
+> 
+> `#define NS_ASSUME_NONNULL_END _Pragma("clang assume_nonnull end")`
+> 
+> 在这两个宏之间的代码，所有简单指针对象都被假定为nonnull，因此我们只需要去指定那些nullable的指针。
+
+
+`NS_ASSUME_NONNULL_END` 是在 Objective-C 代码中使用的一个预处理指令，用于帮助处理空值（null）的情况。
+
+在 Objective-C 中，默认情况下，所有的对象类型都可以是空值（null），即可以为 nil。这意味着你需要经常使用空值检查，以确保对象不是空值，然后再进行操作，以避免出现潜在的崩溃或错误。
+
+而 `NS_ASSUME_NONNULL_END` 的作用是假设在该指令之后声明的所有对象类型都不会是空值。换句话说，这个指令为代码中的对象类型添加了一个非空的假设，从而减少了空值检查的需要。在这种情况下，你可以假设对象都是非空的，并直接进行操作，而无需每次都进行空值检查。
+
+使用 `NS_ASSUME_NONNULL_END` 可以简化代码，并提高可读性和可维护性，特别是当你确定某些对象不会为空时。
+
+需要注意的是，你仍然需要对来自外部或不确定的源的对象进行空值检查，以确保代码的健壮性。
+
+以下是使用 `NS_ASSUME_NONNULL_END` 的示例：
+
+```objc
+NS_ASSUME_NONNULL_BEGIN
+
+// 在这里声明的对象类型默认为非空
+@property (nonatomic, strong) NSString *nonNullableString;
+@property (nonatomic, strong, nullable) NSString *nullableString;
+
+NS_ASSUME_NONNULL_END
+```
+
+在上述示例中，`nonNullable String` 被假设为非空，所以你可以直接使用它而无需进行空值检查。而 nullable String 则是一个可空的对象，你仍然需要进行空值检查。
+
+总而言之，`NS_ASSUME_NONNULL_END` 提供了一种简化空值检查的方式，但你仍然需要在适当的情况下进行空值检查，以确保代码的正确性和健壮性。
+
+## id type
+
+[OC中的id类型](https://www.jianshu.com/p/80ef5030e6c0)
+
+### 1. 静态类型和动态类型
+
+静态类型
+
+将一个指针变量定义为特定类的对象时,使用的是静态类型,在编译的时候就知道这个指针变量所属的类,这个变量总是存储特定类的对象。
+
+`Person *p = [Person new];`
+
+动态类型
+
+这一特性是程序直到执行时才确定对象所属的类
+
+`id obj = [Person new];`
+
+### 2. 为什么要有动态类型?
+
+* 我们知道 NSObject 是 OC 中的基类
+* 那么任何对象的 NSObject 类型的指针可以指向任意对象，都没有问题
+* 但是 NSObject 是静态类型，如果通过它直接调用 NSObject 上面不存在的方法，编译器会报错。
+* 你如果想通过 NSObject 的指针调用特定对象的方法，就必须把 `NSObject *` 这种类型强转成特定类型。然后调用。如下
+
+```objc
+//定义 NSObject * 类型
+NSObject* obj = [Cat new];
+Cat *c = (Cat*)obj;
+[c eat];
+```
+
+id 是一种通用的对象类型,它可以指向属于任何类的对象,也可以理解为万能指针 ,相当于C语言的 `void *`
+
+因为 id 是动态类型,所以可以通过 id 类型直接调用指向对象中的方法, 编译器不会报错
+
+```objc
+/// Represents an instance of a class.
+struct objc_object {
+    Class isa  OBJC_ISA_AVAILABILITY;
+};
+
+/// A pointer to an instance of a class.
+typedef struct objc_object *id;
+```
+
+```objc
+id obj = [C at new];
+[obj eat]; // 不用强制类型转换
+
+[obj test]; //可以调用私有方法
+```
+
+注意：
+* 在id的定义中,已经包好了*号。id指针只能指向OC中的对象
+  * 为了尽可能的减少编程中出错，Xcode做了一个检查，当使用id 类型的调用本项目中所有类中都没有的方法，编译器会报错
+  * id 类型不能使用.语法, 因为.语法是编译时特性, 而id是运行时特性
+
+### 3. id数据类型与静态类型
+
+虽然说id数据类型可以存储任何类型的对象，但是不要养成滥用这种通用类型
+
+* 如没有使用到多态尽量使用静态类型
+* 静态类型可以更早的发现错误(在编译阶段而不是运行阶段)
+* 静态类型能够提高程序的可读性
+* 使用动态类型前最好判断其真实类型
+
+动态类型判断类型
+
+`- (BOOL)isKindOfClass:classObj` 判断实例对象是否是这个类或者这个类的子类的实例
+
+```objc
+Person *p = [Person new];
+Student *stu = [Student new];
+
+BOOL res = [p isKindOfClass:[Person class]];
+NSLog(@"res = %i", res); // YES
+res = [stu isKindOfClass:[Person class]];
+NSLog(@"res = %i", res); // YES
+
+- (BOOL) isMemberOfClass: classObj 判断是否是这个类的实例
+
+Person *p = [Person new];
+Student *stu = [Student new];
+
+BOOL res = [p isMemberOfClass:[Person class]];
+NSLog(@"res = %i", res); // YES
+res = [stu isMemberOfClass:[Person class]];
+NSLog(@"res = %i", res); // NO
+
++ (BOOL) isSubclassOfClass:classObj 判断类是否是指定类的子类
+
+BOOL res = [Person isSubclassOfClass:[Student class]];
+NSLog(@"res = %i", res); // NO
+
+res = [Student isSubclassOfClass:[Person class]];
+NSLog(@"res = %i", res); // YES
+```

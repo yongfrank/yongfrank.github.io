@@ -650,3 +650,7 @@ some View
 ## Xcode Build Scheme
 
 > [Customizing the build schemes for a project](https://developer.apple.com/documentation/xcode/customizing-the-build-schemes-for-a-project)
+
+## iOS Device Model
+
+[iPhone/iPad苹果设备型号对应常用名称列表（2022更新至iPhone 14 Pro Max | iPad Air 5 | iPad10 | iPad Pro 12.9-inch 6）](https://blog.csdn.net/blog_jihq/article/details/80590767)

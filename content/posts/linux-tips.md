@@ -58,3 +58,11 @@ copy \<source> \<destination> [-r] [-v]
 Source: Conversation with Bing, 2/28/2023(1) Document command-line syntax - Google Developers. https://developers.google.com/style/code-syntax Accessed 2/28/2023.
 (2) cmd | Microsoft Learn. https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd Accessed 2/28/2023.
 (3) linux - bash: how to pass command line arguments containing special .... https://superuser.com/questions/163515/bash-how-to-pass-command-line-arguments-containing-special-characters Accessed 2/28/2023.
+
+## 远程控制
+
+[树莓派4B安装向日葵踩坑笔记](https://blog.csdn.net/Apple_Coco/article/details/124808558)
+
+```sh
+sudo dpkg -i SunloginClient_11.0.1.44968_kylin_arm.deb
+```

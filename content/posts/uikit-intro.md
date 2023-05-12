@@ -370,6 +370,8 @@ class MainView: NSObject {
 @end
 ```
 
+> [Presenting SwiftUI Views from ObjectiveC](https://levelup.gitconnected.com/presenting-swiftui-views-from-objectivec-12f49f88716e)
+
 ## Lazy Instantiation
 
 > See more in [objc-snippet](../objc-snippet#lazy-instantiation)
@@ -480,5 +482,23 @@ struct ViewController_Previews: PreviewProvider {
     static var previews: some View {
         ViewControllerRepresentable()
     }
+}
+```
+
+## IBAction
+
+```objc
+- (IBAction)showSwiftUIView:(id)sender {}
+```
+
+这段代码中的圈表示了方法的返回类型。在 Objective-C 中，方法的返回类型用圆括号括起来，并位于方法名称之前。在这种情况下，(IBAction) 表示该方法返回一个特殊的类型，用于在 Interface Builder 中与用户界面的操作进行关联。
+
+IBAction 是 Objective-C 中特有的关键字，用于表示该方法可以与用户界面的事件进行连接。在 Interface Builder 中，你可以将按钮、手势等与该方法关联起来，以在用户交互时触发该方法的执行。
+
+需要注意的是，IBAction 实际上只是一个宏定义，它将被转换为 void 类型，因此在 Swift 中不需要显示地指定返回类型。在 Swift 中，你可以将方法定义为 @IBAction，并省略返回类型的圆括号。例如，在 Swift 中定义一个类似的方法会更简洁：
+
+```swift
+@IBAction func showSwiftUIView(_ sender: Any) {
+    // 方法的具体实现
 }
 ```

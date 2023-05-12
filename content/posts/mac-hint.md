@@ -28,3 +28,53 @@ date: 2023-04-14T16:50:52+08:00
 * 以按键A为例，把键盘与桌面垂直放着（左侧电源插孔朝着桌面），然后不断去按A键，
 * 如果这个方向不行，换另一侧，即把键盘放置成耳机孔朝着桌面的方向，再去按A键
 * 按的时候看手感，差不多就行
+
+## Focus Stealer
+
+> [How do I tell which app stole my focus in OS X?](https://superuser.com/questions/734007/how-do-i-tell-which-app-stole-my-focus-in-os-x)
+>
+> [mac 使用时窗口经常无故自己切换](https://www.v2ex.com/t/626682#reply13)
+
+```python
+#!/usr/bin/python                                                                                                       
+    
+try:
+    from AppKit import NSWorkspace
+except ImportError:
+    print("Can't import AppKit -- try `pip install PyObjC`")
+    print("(see instructions for running in a venv with PyObjC)")
+    exit(1)
+    
+from datetime import datetime
+from time import sleep
+    
+last_active_name = None
+while True:
+    active_app = NSWorkspace.sharedWorkspace().activeApplication()
+    if active_app['NSApplicationName'] != last_active_name:
+        last_active_name = active_app['NSApplicationName']
+        print('%s: %s [%s]' % (
+            datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            active_app['NSApplicationName'],
+            active_app['NSApplicationPath']
+        ))
+    sleep(1)
+```
+
+1. Create a directory, and save the script above into it as "focus-stealer.py"
+2. In a terminal in that directory enter these commands:
+
+```sh
+/usr/bin/python3 -m venv venv
+./venv/bin/python -m pip install PyObjC
+```
+
+(This creates a new, isolated Python virtual environment, just for this script, and installs PyObjC into it. This avoids modifying your system Python installation or needing to use sudo.)
+
+3. Now you can run the script. In a terminal in that same directory run:
+
+```sh
+./venv/bin/python ./focus-stealer.py
+```
+
+(In the future, you can skip directly to this step—no need to reinstall things.)

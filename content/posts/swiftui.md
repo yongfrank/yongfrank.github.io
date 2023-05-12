@@ -332,6 +332,26 @@ Direct your user through data in your app
 
 ## Alerts and menus
 
+> [How to show an alert](https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-an-alert)
+
+<video width="100%" src="https://www.hackingwithswift.com/img/books/quick-start/swiftui/how-to-show-an-alert-1.mp4" autoplay loop>
+</video>
+
+```swift
+struct ContentView: View {
+    @State private var showingAlert = false
+
+    var body: some View {
+        Button("Show Alert") {
+            showingAlert = true
+        }
+        .alert("Important message", isPresented: $showingAlert) {
+            Button("OK", role: .cancel) { }
+        }
+    }
+}
+```
+
 > [How to recommend another app using appStoreOverlay()](https://www.hackingwithswift.com/quick-start/swiftui/how-to-recommend-another-app-using-appstoreoverlay)
 
 <video width="100%" src="https://www.hackingwithswift.com/img/books/quick-start/swiftui/how-to-recommend-another-app-using-appstoreoverlay-1.mp4" autoplay loop>
