@@ -272,7 +272,52 @@ class ExampleCell: UICollectionViewCell {
 
 ## No Storyboard
 
-* [Day-11 使用UIKit框架建立iOS App專案(不使用storyboard)](https://ithelp.ithome.com.tw/m/articles/10298398)
+* [Day-11 使用UIKit框架建立iOS App專案(不使用storyboard)](https://ithelp.ithome.com.tw/articles/10298398)
+* [抖音OC实战教程-前言（01）](https://www.bilibili.com/video/BV1xo4y1L72u)
+
+```swift
+guard let windowScene = (scene as? UIWindowScene) else { return }
+window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+window?.windowScene = windowScene
+window?.rootViewController = ViewController()
+window?.makeKeyAndVisible()
+```
+
+这段代码是使用 Objective-C 编写的。在 Objective-C 中，我们需要显式地进行类型转换，并使用方括号表示方法调用和消息发送的语法。同样，也需要手动创建 UIWindow 对象，并将其设置为应用程序的主窗口。注意，ViewController 是你应用程序中的视图控制器类的名称，你需要根据实际情况进行替换。
+
+```objc
+UIWindowScene *windowScene = (UIWindowScene *)scene;
+if (![windowScene isKindOfClass:[UIWindowScene class]]) {
+    return;
+}
+self.window = [[UIWindow alloc] initWithFrame:windowScene.coordinateSpace.bounds];
+self.window.windowScene = windowScene;
+self.window.rootViewController = [[ViewController alloc] init];
+[self.window makeKeyAndVisible];
+```
+* [Day-11 使用UIKit框架建立iOS App專案(不使用storyboard)](https://ithelp.ithome.com.tw/articles/10298398)
+* [抖音OC实战教程-前言（01）](https://www.bilibili.com/video/BV1xo4y1L72u)
+
+```swift
+guard let windowScene = (scene as? UIWindowScene) else { return }
+window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+window?.windowScene = windowScene
+window?.rootViewController = ViewController()
+window?.makeKeyAndVisible()
+```
+
+这段代码是使用 Objective-C 编写的。在 Objective-C 中，我们需要显式地进行类型转换，并使用方括号表示方法调用和消息发送的语法。同样，也需要手动创建 UIWindow 对象，并将其设置为应用程序的主窗口。注意，ViewController 是你应用程序中的视图控制器类的名称，你需要根据实际情况进行替换。
+
+```objc
+UIWindowScene *windowScene = (UIWindowScene *)scene;
+if (![windowScene isKindOfClass:[UIWindowScene class]]) {
+    return;
+}
+self.window = [[UIWindow alloc] initWithFrame:windowScene.coordinateSpace.bounds];
+self.window.windowScene = windowScene;
+self.window.rootViewController = [[ViewController alloc] init];
+[self.window makeKeyAndVisible];
+```
 
 ## Loading Method of AppDelegate, SceneDelegate and Controller AppDelegate、SceneDelegate、控制器的加载方式
 
@@ -368,6 +413,140 @@ class MainView: NSObject {
 }
 
 @end
+```
+
+> [Display SwiftUI views from Objective-C codebase](https://tarikdahic.com/posts/display-swiftui-views-from-objective-c-codebase/)
+
+```swift
+@objc class HelloWorldViewFactory: NSObject {
+    
+    @objc static func create(text: String) -> UIViewController {
+        let helloWorldView = HelloWorldView(text: text)
+        let hostingController = UIHostingController(rootView: helloWorldView)
+        
+        return hostingController
+    }
+}
+```
+
+```objc
+UIViewController *vc = [HelloWorldViewFactory createWithText:@"Hello from Obj-C!"];
+[self presentViewController:vc animated:YES completion:nil];
+```
+
+> [Presenting SwiftUI Views from ObjectiveC](https://levelup.gitconnected.com/presenting-swiftui-views-from-objectivec-12f49f88716e)
+
+```swift
+import Foundation
+import SwiftUI
+
+class SwiftUIViewFactory: NSObject {
+  @objc static func makeSwiftUIView(dismissHandler: @escaping (() -> Void)) -> UIViewController {
+    return UIHostingController(rootView: SwiftUIView(dismiss: dismissHandler))
+  }
+}
+```
+
+```objc
+- (IBAction)showSwiftUIView:(id)sender {
+  UIViewController *vc = [SwiftUIViewFactory makeSwiftUIViewWithDismissHandler:^{
+    [[self presentedViewController] dismissViewControllerAnimated:YES completion:nil];
+  }];
+  [self presentViewController:vc animated:YES completion:nil];
+}
+```
+
+### Full Code
+
+```objc
+UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+[btn setTitle:@"HI" forState:UIControlStateNormal];
+[btn addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+btn.frame = CGRectMake(100, 100, 200, 50);
+[self.view addSubview:btn];
+
+- (void)buttonClicked {
+    UIViewController* vc = [SwiftUIViewFactory makeSwiftUIViewWithDismissHandler:^{
+        [[self presentedViewController] dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+```
+
+```swift
+class SwiftUIViewFactory: NSObject {
+    @objc static func makeSwiftUIView(dismissHandler: @escaping (() -> Void)) -> UIViewController {
+        return UIHostingController(rootView: ContentView(dismiss: dismissHandler))
+    }
+}
+```
+
+> [Presenting SwiftUI Views from ObjectiveC](https://levelup.gitconnected.com/presenting-swiftui-views-from-objectivec-12f49f88716e)
+
+> [Display SwiftUI views from Objective-C codebase](https://tarikdahic.com/posts/display-swiftui-views-from-objective-c-codebase/)
+
+```swift
+@objc class HelloWorldViewFactory: NSObject {
+    
+    @objc static func create(text: String) -> UIViewController {
+        let helloWorldView = HelloWorldView(text: text)
+        let hostingController = UIHostingController(rootView: helloWorldView)
+        
+        return hostingController
+    }
+}
+```
+
+```objc
+UIViewController *vc = [HelloWorldViewFactory createWithText:@"Hello from Obj-C!"];
+[self presentViewController:vc animated:YES completion:nil];
+```
+
+> [Presenting SwiftUI Views from ObjectiveC](https://levelup.gitconnected.com/presenting-swiftui-views-from-objectivec-12f49f88716e)
+
+```swift
+import Foundation
+import SwiftUI
+
+class SwiftUIViewFactory: NSObject {
+  @objc static func makeSwiftUIView(dismissHandler: @escaping (() -> Void)) -> UIViewController {
+    return UIHostingController(rootView: SwiftUIView(dismiss: dismissHandler))
+  }
+}
+```
+
+```objc
+- (IBAction)showSwiftUIView:(id)sender {
+  UIViewController *vc = [SwiftUIViewFactory makeSwiftUIViewWithDismissHandler:^{
+    [[self presentedViewController] dismissViewControllerAnimated:YES completion:nil];
+  }];
+  [self presentViewController:vc animated:YES completion:nil];
+}
+```
+
+### Full Code
+
+```objc
+UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+[btn setTitle:@"HI" forState:UIControlStateNormal];
+[btn addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+btn.frame = CGRectMake(100, 100, 200, 50);
+[self.view addSubview:btn];
+
+- (void)buttonClicked {
+    UIViewController* vc = [SwiftUIViewFactory makeSwiftUIViewWithDismissHandler:^{
+        [[self presentedViewController] dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+```
+
+```swift
+class SwiftUIViewFactory: NSObject {
+    @objc static func makeSwiftUIView(dismissHandler: @escaping (() -> Void)) -> UIViewController {
+        return UIHostingController(rootView: ContentView(dismiss: dismissHandler))
+    }
+}
 ```
 
 > [Presenting SwiftUI Views from ObjectiveC](https://levelup.gitconnected.com/presenting-swiftui-views-from-objectivec-12f49f88716e)

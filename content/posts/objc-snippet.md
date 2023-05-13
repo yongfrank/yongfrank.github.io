@@ -111,6 +111,8 @@ Note that with the release of Objective-C 2.0, @synthesize is no longer strictly
 
 总之，@interface 用于声明一个类的接口部分，而 @class 用于提前声明一个类的名称以解决循环引用的问题。
 
+### Class Method & Instance Method
+
 ## NSDictionary in Objc
 
 ```objc

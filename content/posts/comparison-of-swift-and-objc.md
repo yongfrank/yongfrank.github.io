@@ -80,3 +80,23 @@ typedef double NSTimeInterval;
 * 与copy相反，只是reference，不是owner。只返回指针。
 * 用于float、int、BOOL等类型。
 * 释放后再发送消息会导致程序崩溃。
+
+## Class Init
+
+在 Objective-C 中，我们使用 alloc 和 init 方法来创建对象实例。alloc 方法分配内存空间，init 方法对对象进行初始化，并返回初始化后的对象实例。
+
+而在 Swift 中，我们可以使用简化的语法来创建对象实例。通过使用类名后跟一对空括号 ()，可以直接创建一个类的实例。
+
+在给定的代码示例中，ViewController() 使用的是 Swift 中的对象创建语法，它等同于 Objective-C 中的 alloc init。因此，它们的作用是相同的，都是用来创建 ViewController 类的实例。
+
+如果你的项目是使用 Objective-C 编写的，你应该使用 alloc init 的方式来创建对象实例。而如果你的项目是使用 Swift 编写的，你可以使用简化的语法 ViewController() 来创建对象实例。
+
+## Class Init
+
+在 Objective-C 中，我们使用 alloc 和 init 方法来创建对象实例。alloc 方法分配内存空间，init 方法对对象进行初始化，并返回初始化后的对象实例。
+
+而在 Swift 中，我们可以使用简化的语法来创建对象实例。通过使用类名后跟一对空括号 ()，可以直接创建一个类的实例。
+
+在给定的代码示例中，ViewController() 使用的是 Swift 中的对象创建语法，它等同于 Objective-C 中的 alloc init。因此，它们的作用是相同的，都是用来创建 ViewController 类的实例。
+
+如果你的项目是使用 Objective-C 编写的，你应该使用 alloc init 的方式来创建对象实例。而如果你的项目是使用 Swift 编写的，你可以使用简化的语法 ViewController() 来创建对象实例。
