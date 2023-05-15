@@ -39,9 +39,11 @@ center.requestAuthorization(options: [.alert, .sound, .badge, .provisional]) { g
 }
 ```
 
+Unlike explicitly requesting authorization, this code doesn’t prompt the user for permission to receive notifications. Instead, the first time you call this method, it automatically grants authorization. However, until the user either explicitly keeps or turns off the notification, the authorization status is UNAuthorizationStatus.provisional. Because users can change the authorization status at any point, you should still check the status before scheduling local notifications.
+
 ### Authorization Status
 
-Unlike explicitly requesting authorization, this code doesn’t prompt the user for permission to receive notifications. Instead, the first time you call this method, it automatically grants authorization. However, until the user either explicitly keeps or turns off the notification, the authorization status is UNAuthorizationStatus.provisional. Because users can change the authorization status at any point, you should still check the status before scheduling local notifications.
+> [Customize notifications based on the current authorizations](https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications#2941986)
 
 ```swift
 let center = UNUserNotificationCenter.current()
@@ -56,6 +58,8 @@ center.getNotificationSettings { settings in
     }
 }
 ```
+
+The above example uses a guard condition to prevent the scheduling of notifications if the app isn’t authorized. The code then configures the notification based on the types of interactions allowed, preferring the use of an alert-based notification whenever possible.
 
 ### Full Code
 
@@ -116,3 +120,25 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 ```
+
+## Open System Settings
+
+> * [iOS获取通知状态并跳转设置界面设置](https://www.jianshu.com/p/ddeebec23e90)
+>
+> * [How do I open phone settings when a button is clicked?](https://stackoverflow.com/questions/28152526/how-do-i-open-phone-settings-when-a-button-is-clicked)
+>
+> * [Opening app's notification settings in the settings app](https://stackoverflow.com/questions/42848539/opening-apps-notification-settings-in-the-settings-app)
+
+## Open App Settings From System Settings
+
+> [providesAppNotificationSettings](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/2990405-providesappnotificationsettings)
+
+iOS 12.0+
+
+An option indicating the system should display a button for in-app notification settings.
+
+> [Preparing Your App For iOS 12 Notifications](https://www.smashingmagazine.com/2018/09/preparing-your-app-for-ios-12-notifications/)
+
+![Deep link to to custom notification settings for NotificationTester from notification in the Notification Center.](https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c4ee20c1-ca99-419b-bfa4-4f5ebbffabf3/app-ios-12-notifications-turnoffnotifications.png)
+
+![System Notification Settings](https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/45e51038-8365-4064-ab03-feee8cc56eef/app-ios-12-notifications-systemnotificationsettings.png)

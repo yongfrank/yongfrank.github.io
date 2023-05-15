@@ -1,6 +1,7 @@
 ---
 title: "UIKit Intro in Objective-C & Swift"
 date: 2023-03-27T13:31:46+08:00
+hasMermaid: true
 ---
 
 Everything about UIKit in Objective-C & Swift when I was coding. 
@@ -42,7 +43,35 @@ ToolbarItemGroup {
 
 ## Components QuickStart
 
+```mermaid
+graph LR
+
+Button --> UIButton --> f2[Trigger action]
+
+Text --> UILabel --> f1[Display text]
+Text --> UITextField --> f3[Enter Signle Line Text]
+Text --> UITextView --> f4[Enter Multiple Line Text]
+
+Image --> UIImageView --> f5[Display Image]
+
+Scroll --> UIScrollView --> UITextView
+
+Gesture --> UIGestureRecognizer --> UITapGesture
+
+Effect --> UIBlurEffect
+
+UITableView
+UICollectioView
+UIStackView
+```
+
 ### Delegate，类扩展
+
+```objc
+@interface ViewController ()<UITextFieldDelegate, UITextViewDelegate>
+
+@end
+```
 
 () 表示这是一个匿名分类（也叫类扩展或匿名类别），可以在其中添加实例变量和方法。`<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>` 表示这个类实现了 `UICollectionViewDelegate、UICollectionViewDataSource 和 UICollectionViewDelegateFlowLayout` 这三个协议。在 Objective-C 中，需要在类的声明中明确列出所实现的协议，这有助于编译器检查类是否实现了协议中规定的所有方法。
 
@@ -83,6 +112,92 @@ class TestingUICollectionViewCell: UICollectionViewCell, UICollectionViewDelegat
 - (void)buttonPressed:(UIButton *)button {
      NSLog(@"Button Pressed");
 }
+
+// Another Button
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 200, 200)];
+    [button setTitle:@"hello" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
+- (void)buttonPressed {
+    NSLog(@"Hello world");
+}
+```
+
+### UILabel & UITextField & UITextView
+
+```objc
+//
+//  ViewController.m
+//  DouyinObjc
+//
+//  Created by Chu Yong on 5/13/23.
+//
+
+#import "ViewController.h"
+
+@interface ViewController ()<UITextFieldDelegate, UITextViewDelegate>
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor redColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    label.text = @"Hello World";
+    label.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:label];
+    
+    // TextFields
+    UITextField *textfield = [[UITextField alloc] initWithFrame:CGRectMake(0, 200, UIScreen.mainScreen.bounds.size.width, 200)];
+    textfield.text = @"Hello";
+    textfield.placeholder = @"Enter something";
+    textfield.delegate = self;
+    [self.view addSubview:textfield];
+    
+    // TextView
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 400, UIScreen.mainScreen.bounds.size.width, 200)];
+    textView.text = @"Hello";
+    textView.backgroundColor = [UIColor yellowColor];
+    textView.delegate = self;
+    [self.view addSubview:textView];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    NSLog(@"%@", textField.text);
+}
+@end
+```
+
+### UIImage
+
+```objc
+// UIImage
+UIImage *image = [UIImage systemImageNamed:@"plus"];
+UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+imageView.frame = CGRectMake(50, 50, 20, 200);
+imageView.contentMode = UIViewContentModeScaleAspectFill;
+imageView.layer.borderWidth = 1.0;
+imageView.layer.borderColor = [UIColor yellowColor].CGColor;
+[self.view addSubview:imageView];
 ```
 
 ### UITableView & UICollectionView
@@ -94,6 +209,66 @@ UITableView 是一个列表控件，可以用来展示单行或多行数据。�
 UICollectionView 是一个强大的集合控件，可以用来展示多行、多列的数据。它也是基于 Model-View-Controller 设计模式的。与 UITableView 不同，UICollectionView 的布局方式更加灵活，可以通过设置 layout 来控制每个 cell 的大小、位置、对齐方式等等。与 UITableView 相似，UICollectionView 也可以使用 section 来分组显示数据，而且它还支持一些特殊的布局方式，如流式布局等。
 
 总的来说，UITableView 适用于简单的列表展示，而UICollectionView 则更加适用于展示多样化、样式复杂的数据，同时它的布局方式更加灵活。
+
+```objc
+//
+//  ViewController.m
+//  DouyinObjc
+//
+//  Created by Chu Yong on 5/13/23.
+//
+
+#import "ViewController.h"
+
+@interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@property (nonatomic, strong) NSMutableArray <NSArray *>*sections;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // UICollectionView
+    self.sections = [NSMutableArray array];
+    [self.sections addObject:@[@"123"]];
+    [self.sections addObject:@[@"3", @"4"]];
+    [self.sections addObject:@[@"3", @"4", @"3", @"4"]];
+
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    
+    layout.itemSize = CGSizeMake(100, 200);
+    layout.minimumLineSpacing = 20;
+    layout.sectionInset = UIEdgeInsetsMake(0, 0, 50, 0);
+    [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    
+    collectionView.delegate = self;
+    collectionView.dataSource = self;
+    
+    [self.view addSubview:collectionView];
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return self.sections.count;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.sections[section].count;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 50, 50)];
+    label.text = self.sections[indexPath.section][indexPath.row];
+    [cell addSubview:label];
+    
+    cell.backgroundColor = [UIColor redColor];
+    return cell;
+}
+@end
+```
 
 ### Protocol & UICollectionView
 
@@ -150,7 +325,7 @@ UICollectionView 是一个强大的集合控件，可以用来展示多行、多
     
     // collectionView init
     
-    // Register Cell
+    // Register Cell !! IMPORTANT
     // collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     
@@ -178,6 +353,8 @@ UICollectionView 是一个强大的集合控件，可以用来展示多行、多
     // Cell Reuse, identifier is same as the registration(@"cell")
     // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+
+    // Optional
     if (!cell) {
         cell = [[UICollectionViewCell alloc] init];
 //        [cell.contentView setBackgroundColor:[UIColor systemBlueColor]];
@@ -337,6 +514,104 @@ self.window.rootViewController = [[ViewController alloc] init];
 main函数 -> 自动释放池 -> UIApplicationMain（永不返回，保证程序不会被销毁）-> 创建应用程序对象UIApplication ->创建应用程序的代理对象AppDelegate -> IOS13之前，将AppDelegate的window实例化，设置为keyWindow主窗口 -> 加载配置文件指定的storyboard
 
 main function -> autorelease pool -> UIApplicationMain (never returns, to ensure that the program will not be destroyed) -> create the application object UIApplication -> create the application delegate object AppDelegate -> IOS13 before, instantiate the AppDelegate's window, set it as the keyWindow main window -> load the storyboard specified in the configuration file
+
+## UIKit UIViewController Lifecycle
+
+```mermaid
+graph TD
+load --> loadView --> viewDidLoad --> viewWillAppear --> viewWillLayoutSubviews --> viewDidLayoutSubviews --> viewDidAppear
+viewDidAppear --> viewWillDisappear --> viewDidDisappear
+```
+
+```objc
+//
+//  ViewController.m
+//  DouyinObjc
+//
+//  Created by Chu Yong on 5/13/23.
+//
+
+#import "ViewController.h"
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
++ (void)load {
+    [super load];
+    NSLog(@"1");
+}
+
+- (void)loadView {
+    [super loadView];
+    NSLog(@"2");
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    NSLog(@"3");
+    
+    self.view.backgroundColor = [UIColor redColor];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"4");
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    NSLog(@"5");
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    NSLog(@"6");
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSLog(@"7");
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSLog(@"8");
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    NSLog(@"9");
+}
+
+- (void)dealloc {
+    NSLog(@"10");
+}
+
+@end
+```
+
+## MVC
+
+```mermaid
+graph LR
+UIViewController --> Model
+UIViewController --> UIView
+Model --X--> UIView
+```
+
+```objc
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor redColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    label.text = @"Hello World";
+    [self.view addSubview:label];
+}
+```
 
 ## Target for Project in Xcode
 
@@ -681,3 +956,57 @@ IBAction 是 Objective-C 中特有的关键字，用于表示该方法可以与�
     // 方法的具体实现
 }
 ```
+
+## `prepareForSegue`
+
+```objc
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+```
+
+`prepareForSegue:sender:` 方法是在使用基于Storyboard的应用程序中进行页面跳转前的准备工作的常用方法。当一个Segue（故事板中的跳转）被触发时，系统会自动调用该方法。
+
+在这个方法中，你可以通过 `[segue destinationViewController]` 获取目标视图控制器，然后根据需要进行一些准备工作。例如，你可以将数据传递给目标视图控制器，设置目标视图控制器的属性，或执行其他必要的操作。
+
+通常，你可以根据Segue的标识符（identifier）来区分不同的跳转，并根据需要进行相应的准备工作。例如：
+
+```objc
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"MySegueIdentifier"]) {
+        // 获取目标视图控制器
+        MyViewController *destinationViewController = [segue destinationViewController];
+        
+        // 进行一些准备工作，例如传递数据或设置属性
+        destinationViewController.myProperty = myData;
+    }
+}
+```
+
+通过在 prepareForSegue:sender: 方法中进行准备工作，你可以确保在进行页面跳转之前，目标视图控制器已经准备好接收数据或执行其他操作，以便在跳转后呈现所需的结果。
+
+## 头文件 import
+
+在 Objective-C 中，#import 是用于导入头文件的预处理指令。它有两种形式：#import <Framework/Module.h> 和 #import "LocalFile.h"。
+
+#import <Framework/Module.h>：这种形式用于导入系统框架或第三方库的头文件。<Framework/Module.h> 是一个相对于系统或第三方库的头文件路径。这种方式通常用于导入公共框架或库的头文件。例如：
+
+```objc
+#import <UIKit/UIKit.h>
+#import <AFNetworking/AFNetworking.h>
+```
+
+#import "LocalFile.h"：这种形式用于导入项目中的自定义头文件或本地文件的头文件。"LocalFile.h" 是一个相对于当前文件的头文件路径。这种方式通常用于导入自定义的类或其他文件的头文件。例如：
+
+```objc
+#import "MyCustomClass.h"
+#import "Constants.h"
+```
+
+总的来说，#import <Framework/Module.h> 用于导入系统框架或第三方库的头文件，而 #import "LocalFile.h" 用于导入项目中的自定义头文件或本地文件的头文件。
+
+需要注意的是，无论使用哪种形式，#import 指令都会在编译时将指定的头文件内容复制到当前文件中，以便在编译过程中能够访问导入的类、函数、常量等内容。

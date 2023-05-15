@@ -3,6 +3,10 @@ title: "Mac Hint"
 date: 2023-04-14T16:50:52+08:00
 ---
 
+## Username, Full Name, Local Network Name
+
+[YouTube - How To Set Up a New Mac (Step-By-Step Guide)](https://youtu.be/snZpO8rDq7U)
+
 ## Storage
 
 > [Reclaiming storage/space from 'System Data' in macOS: A tutorial on understanding the System Data usage.](https://blog.greggant.com/posts/2022/04/10/reclaiming-space-from-system-data-in-macos.html)
@@ -78,3 +82,13 @@ while True:
 ```
 
 (In the future, you can skip directly to this step—no need to reinstall things.)
+
+## .DS_Store
+
+.DS_Store 是 macOS 操作系统中的一个隐藏文件，用于存储目录的自定义属性和元数据。它通常在文件系统的每个文件夹中生成，并保存与该文件夹相关的视图选项、图标位置、背景图像等信息。.DS_Store 文件对于目录的正常功能没有直接影响，但它可能在文件传输、版本控制或共享文件夹时引起一些问题。
+
+在大多数情况下，.DS_Store 文件是不需要手动处理或修改的。它们会被 macOS 系统自动管理。然而，如果你需要在文件共享、版本控制或文件传输中排除 .DS_Store 文件，你可以使用一些方法来处理它们，例如：
+
+## Rename files, folders and disks on Mac
+
+> [Apple Support](https://support.apple.com/en-hk/guide/mac-help/mchlp1144/mac)

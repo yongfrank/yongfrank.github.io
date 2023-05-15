@@ -321,6 +321,62 @@ Create scrolling tables of data
 
 * [How to add a search bar to filter your data](https://www.hackingwithswift.com/quick-start/swiftui/how-to-add-a-search-bar-to-filter-your-data)
 
+### Toggle List
+
+> [Toggle selection in a list - SwiftUI](https://stackoverflow.com/questions/67064272/toggle-selection-in-a-list-swiftui)
+
+![Toggle List](https://i.stack.imgur.com/Fc4lv.gif)
+
+```swift
+import SwiftUI
+
+struct CellModel {
+    var id = UUID()
+    var title: String = ""
+    var content: String = ""
+    var desc: String = ""
+    var toggleState: Bool = false
+    
+    static var shared: [CellModel] = [
+        .init(title: "0", content: "", desc: "0")
+    ]
+    static var opened: [CellModel] = [
+        .init(title: "1", content: "1", desc: ""),
+        .init(title: "2", content: "2", desc: ""),
+        .init(title: "3", content: "", desc: "")
+    ]
+}
+
+struct ContentView: View {
+     @State private var opened: [CellModel] = [
+        .init(title: "1", content: "1", desc: ""),
+        .init(title: "2", content: "2", desc: ""),
+        .init(title: "3", content: "", desc: "")
+    ]
+    var body: some View {
+        List {
+            Section { 
+                ForEach(CellModel.shared, id: \.id) { item in
+                    Text(item.title)
+                }
+            }
+            
+            Section {
+                ForEach(self.opened.indices, id: \.self) { index in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Toggle(opened[index].title, isOn: $opened[index].toggleState)
+                            Text(opened[index].content)
+                                .font(.footnote)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
 ## Navigation
 
 Direct your user through data in your app
@@ -586,6 +642,83 @@ struct ColumnWidth: ViewModifier {
                     }
                 }
             }
+    }
+}
+```
+
+## Error Handling
+
+### Modifying State During View Update
+
+"Modifying state during view update, this will cause undefined behavior" 是 SwiftUI 中的一个警告信息，意思是在视图更新期间修改状态会导致未定义的行为。
+
+在 SwiftUI 中，视图是根据其状态（State）来自动更新和重新渲染的。当视图正在进行更新时，如果在该过程中修改了状态，会导致不一致的状态和行为，可能会引发错误或导致应用程序崩溃。
+
+为了避免这个问题，建议在视图更新期间不要直接修改状态。相反，您应该通过操作符号或函数等方式来处理状态的更改，或者使用 DispatchQueue.main.async 将状态更改推迟到视图更新完成后。
+
+示例：
+
+```swift
+struct ContentView: View {
+    @State private var count = 0
+    
+    var body: some View {
+        VStack {
+            Text("Count: \(count)")
+            Button("Increment") {
+                DispatchQueue.main.async {
+                    count += 1
+                }
+            }
+        }
+    }
+}
+```
+
+在上面的示例中，我们使用 DispatchQueue.main.async 将状态 count 的增量操作推迟到视图更新完成后执行，以避免在视图更新期间修改状态而导致的问题。
+
+总而言之，要避免 "Modifying state during view update, this will cause undefined behavior" 警告，应该确保在视图更新期间不直接修改状态，而是通过正确的方式来处理状态的更改。
+
+```swift
+// Error Code from: [DropUI WWDC23](https://github.com/NuPlay/DropUI)
+struct IconDrawingView: UIViewRepresentable {
+    @Binding var drawing: PKDrawing
+    @Binding var toolPickerIsActive: Bool
+    private let toolPicker = PKToolPicker()
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    func makeUIView(context: Context) -> PKCanvasView {
+        let canvasView = PKCanvasView()
+        canvasView.drawing = drawing
+        canvasView.delegate = context.coordinator
+        canvasView.drawingPolicy = .anyInput
+        canvasView.backgroundColor = UIColor.white
+
+        toolPicker.setVisible(true, forFirstResponder: canvasView)
+        toolPicker.addObserver(canvasView)
+        canvasView.becomeFirstResponder()
+
+        return canvasView
+    }
+
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {
+        uiView.drawing = drawing
+        toolPicker.setVisible(toolPickerIsActive, forFirstResponder: uiView)
+    }
+
+    class Coordinator: NSObject, PKCanvasViewDelegate {
+        var parent: IconDrawingView
+
+        init(_ parent: IconDrawingView) {
+            self.parent = parent
+        }
+
+        func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
+            parent.drawing = canvasView.drawing
+        }
     }
 }
 ```

@@ -15,6 +15,10 @@ date: 2023-05-12T13:24:58+08:00
 
 它虽然不如戴尔的 UltraThin 显示器那么时尚，但是P系列看起来也很现代。P2720DC不一定适合发烧友的照片编辑人员，因为颜色校准还不够完美。但是，它对于业余爱好者和大多数其他类型的计算任务非常有用，具有可靠的图像质量和便捷的可调整性。
 
+> [搜索 Dell P2720DC 支持信息](https://www.dell.com/support/home/zh-cn/product-support/product/dell-p2720dc-monitor/docs)
+>
+> [Dell 27 USB-C 显示器 - P2720DC 用户指南](https://dl.dell.com/manuals/all-products/esuprt_electronics_accessories/esuprt_electronics_accessories_monitor/esuprt_monitor_p_series/dell-p2720dc-monitor_user's-guide_zh-cn.pdf)
+
 ## Keyboard
 
 ## Adapter

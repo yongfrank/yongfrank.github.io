@@ -113,6 +113,34 @@ Note that with the release of Objective-C 2.0, @synthesize is no longer strictly
 
 ### Class Method & Instance Method
 
+### Init, alloc, new
+
+在 Objective-C 中，new 和 alloc init 都是用于创建对象的方式，但它们有一些区别。
+
+alloc init: 这是最常见的创建对象的方式。首先，使用 alloc 方法为对象分配内存空间，然后使用 init 方法进行初始化。例如：
+
+```objc
+MyClass *myObject = [[MyClass alloc] init];
+```
+
+new: new 是一个便捷方法，它一次性完成了对象的内存分配和初始化。它相当于调用 alloc 方法为对象分配内存空间，然后调用 init 方法进行初始化，并返回已初始化的对象。例如：
+
+```objc
+MyClass *myObject = [MyClass new];
+```
+
+尽管 new 是一种更简洁的写法，但实际上它只是 alloc init 的简化形式。因此，从功能上来说，它们是等效的。你可以根据个人偏好选择使用哪种方式。
+
+需要注意的是，使用 alloc init 或 new 创建的对象，都需要在不再使用时手动释放内存，通过调用 release 方法或使用自动引用计数（ARC）来管理内存。
+
+## Array
+
+在Objective-C中，@ 符号在不同的上下文中有不同的作用。在这个特定的代码行中，@ 符号表示了一个 Objective-C 字符串字面量。
+
+[self.sections addObject:@[modelToBeAddedInArray]] 这行代码将 modelToBeAddedInArray 对象添加到 self.sections 数组中。@[] 表示一个空的 NSArray 字面量，而 @[modelToBeAddedInArray] 则表示一个包含 modelToBeAddedInArray 对象的 NSArray。
+
+通过使用 @ 符号创建 NSArray 或 NSDictionary 等集合类型的字面量，可以更方便地创建和初始化这些集合对象。
+
 ## NSDictionary in Objc
 
 ```objc
