@@ -226,6 +226,10 @@ NSString *gender = dictionary[@"gender"];
 * 用于float、int、BOOL等类型。
 * 释放后再发送消息会导致程序崩溃。
 
+```objc
+@property (nonatomic, assign) BOOL isSystemNotificationOn;
+```
+
 ### strong
 
 * 默认属性
@@ -234,6 +238,10 @@ NSString *gender = dictionary[@"gender"];
 * strong特性表示两个对象内存地址相同（建立一个指针，进行指针拷贝），内容会一直保持相同，直到更改一方内存地址，或将其设置为nil。
 * 如果有多个对象同时引用一个属性，任一对象对该属性的修改都会影响其他对象获取的值。
 * 所有实例变量、局部变量默认都是strong。
+
+```objc
+@property (nonatomic, strong) UITableView *tableView;
+```
 
 ### weak
 

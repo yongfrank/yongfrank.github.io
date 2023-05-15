@@ -202,6 +202,8 @@ imageView.layer.borderColor = [UIColor yellowColor].CGColor;
 
 ### UITableView & UICollectionView
 
+> [【抖音OC实战教程-View讲解03（05）】 ](https://www.bilibili.com/video/BV1AL411a784/?share_source=copy_web&vd_source=bf4952280cde801b178268abc99a7047)
+
 UITableView 和 UICollectionView 是 iOS 中常用的两种列表控件。
 
 UITableView 是一个列表控件，可以用来展示单行或多行数据。它是基于 Model-View-Controller 设计模式的。UITableView 中的每个 cell 都可以由一个 UITableViewCell 类型的实例表示，而这个实例通常包含了一些 UI 元素和一些用来展示数据的控件。UITableView 中可以设置 section 来分组显示数据。

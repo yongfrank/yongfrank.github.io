@@ -129,6 +129,44 @@ struct ContentView_Previews: PreviewProvider {
 >
 > * [Opening app's notification settings in the settings app](https://stackoverflow.com/questions/42848539/opening-apps-notification-settings-in-the-settings-app)
 
+## System Notification Authorization Status
+
+```objc
+#pragma mark - Notifications
+/// 添加系统通知状态的观察者
+- (void)addObserverForSystemNotificationStatus {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkNotificationAuthorization)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+}
+// 在 checkNotificationAuthorization 方法中检查通知权限
+- (void)checkNotificationAuthorization {
+    [[UNUserNotificationCenter currentNotificationCenter] getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            BOOL newAuthorizationStatus = self.isSystemNotificationOn;
+            if (settings.authorizationStatus == UNAuthorizationStatusAuthorized) {
+                newAuthorizationStatus = YES;
+            } else {
+                newAuthorizationStatus = NO;
+            }
+            // iOS 12.0 新增了 Provisional 的状态，无需获得用户授权也可发送 Deliver Quietly 的通知
+            if (@available(iOS 12.0, *)) {
+                if (settings.authorizationStatus == UNAuthorizationStatusProvisional) {
+                    newAuthorizationStatus = YES;
+                }
+            }
+            
+            // 刷新表格
+            if (newAuthorizationStatus != self.isSystemNotificationOn) {
+                self.isSystemNotificationOn = newAuthorizationStatus;
+                [self.tableView reloadData];
+            }
+        });
+    }];
+}
+```
+
 ## Open App Settings From System Settings
 
 > [providesAppNotificationSettings](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/2990405-providesappnotificationsettings)
