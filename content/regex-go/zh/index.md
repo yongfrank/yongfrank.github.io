@@ -38,6 +38,11 @@ description: "利用 Regex Go 掌握 Regex 正则表达式!"
 
 🤗 跟繁琐的文本处理任务说再见吧，通过 Regex Go 的 RegexBuilder，轻松实现字符串操作。🤩
 
+<div style="position: relative; padding: 30% 45%;">
+    <iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="//player.bilibili.com/player.html?aid=528191215&bvid=BV1gM411V7r9&cid=1117513738&page=1&as_wide=1&high_quality=1&danmaku=0" frameborder="no" scrolling="no">
+    </iframe>
+</div>
+
 [![cover image](cover.jpg)](https://apps.apple.com/app/regex-go/id6447801504)
 <!-- https://blog.csdn.net/lishimin1012/article/details/88949602 -->
 <!-- markdownlint-disable MD033 -->

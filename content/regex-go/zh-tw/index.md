@@ -39,6 +39,10 @@ description: "利用 Regex Go 掌握 Regex 正規表示式！"
 
 🤗 跟繁瑣的文本處理任務說再見吧，透過 Regex Go 的 RegexBuilder，輕鬆實現字符串操作。🤩
 
+<div style="position: relative; padding: 30% 45%;">
+    <iframe style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" src="https://www.youtube.com/embed/nNWsuZMPHtk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
 [![cover image](cover.jpg)](https://apps.apple.com/app/regex-go/id6447801504)
 <!-- https://blog.csdn.net/lishimin1012/article/details/88949602 -->
 <!-- markdownlint-disable MD033 -->
