@@ -54,7 +54,7 @@ disable_toc: true
 
 ## My Project
 
-### Regex Go
+## [Regex Go - Open Source App on the GitHub](/regex-go/)
 
 <a href="https://apps.apple.com/app/regex-go/id6447801504" >
     <img src="/regex-go/images/download-on-the-app-store.svg" alt="download on app store" align="right" width="120px">
