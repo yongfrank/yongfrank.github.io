@@ -37,7 +37,7 @@ disable_toc: true
     <img src="https://is5-ssl.mzstatic.com/image/thumb/Purple126/v4/f2/12/9e/f2129e7f-aeac-1954-74e0-e09d3fe5da0b/AppIcon-1x_U007emarketing-0-7-0-85-220.png/540x540bb.jpg" alt="Oh My Flag" style="width: 170px; height: 170px; border-radius: 22%;">
   </a>
   <br>
-  <a href="https://apps.apple.com/us/app/oh-my-flag/id6446227923?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 170px"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1678665600" alt="Download on the App Store" style="width: 170px"></a>
+  <a href="https://apps.apple.com/us/app/oh-my-flag/id6446227923?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 170px"><img src="/regex-go/images/download-on-the-app-store.svg" alt="Download on the App Store" style="width: 170px"></a>
 </div>
 
 <div>
@@ -46,7 +46,7 @@ disable_toc: true
   </a>
   <br>
   <a href="https://apps.apple.com/us/app/regex-go/id6447801504?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 170px">
-    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1682294400" alt="Download on the App Store" style="width: 170px">
+    <img src="/regex-go/images/download-on-the-app-store.svg" alt="Download on the App Store" style="width: 170px">
   </a>
 </div>
 
