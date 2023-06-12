@@ -1131,6 +1131,10 @@ self.addGestureRecognizer(UITapGestureRecognizer { _ in
 })
 ```
 
+### Read More
+
+> [使用Blocks](http://www.bczl.xyz/objc/doc-zh/8.Working-with-Blocks.html)
+
 ## _Nullable
 
 > [Objective-C 中 nullable、__nullable、_Nullable 的区别](https://kangzubin.com/nullability-and-objective-c/)
@@ -1277,4 +1281,308 @@ NSLog(@"res = %i", res); // NO
 
 res = [Student isSubclassOfClass:[Person class]];
 NSLog(@"res = %i", res); // YES
+```
+
+## k Keyword
+
+在 Objective-C 中，以 k 开头的命名惯例表示常量。这是一种约定俗成的命名方式，用于标识在代码中具有固定值的常量变量。
+
+例如，你可能会看到像 kMaxItemCount、kDefaultAnimationDuration 这样的命名。这些变量通常用于表示固定不变的值，如最大数量、默认动画持续时间等。
+
+使用 k 开头的命名方式有助于在代码中更容易地识别和区分常量变量，使其与其他变量和方法名区分开来。此外，它还提醒开发者不要修改这些常量的值，以确保其始终保持不变。
+
+需要注意的是，k 开头只是一种约定，并没有特殊的语法或功能。因此，你可以根据自己的喜好和团队的约定来决定是否使用 k 开头的命名方式。
+
+## YES, NO, true, false
+
+在 Objective-C 中，BOOL 类型表示布尔值（true 或 false）。它是一个基本的 C 数据类型，可以存储 true 或 false 的值。在 Objective-C 中，BOOL 类型的值可以用两个预定义的宏来表示：YES 和 NO。
+
+* YES 表示 true，用于表示一个条件为真的情况。
+* NO 表示 false，用于表示一个条件为假的情况。
+
+这些宏在 Objective-C 中通常用于条件语句和布尔变量的赋值。
+
+例如，下面是一个示例，演示如何使用 BOOL 类型和 YES、NO 宏：
+
+```objc
+BOOL isReady = YES;
+
+if (isReady == YES) {
+    NSLog(@"Ready");
+} else {
+    NSLog(@"Not ready");
+}
+
+// 或者直接使用布尔值进行条件判断
+if (isReady) {
+    NSLog(@"Ready");
+} else {
+    NSLog(@"Not ready");
+}
+```
+在 Objective-C 中，BOOL 类型的变量可以直接使用 YES 或 NO 进行赋值和比较，也可以使用 true 和 false 的整数值 1 和 0 进行赋值和比较。但通常建议使用 YES 和 NO 宏，以提高代码的可读性和一致性。
+
+> [Objective-C中的YES / NO，TRUE / FALSE和true / false](https://www.imooc.com/wenda/detail/590463)
+
+```objc
+// 我对此进行了详尽的测试。我的结果应该说明一切：
+
+//These will all print "1"
+NSLog(@"%d", true == true);
+NSLog(@"%d", TRUE == true);
+NSLog(@"%d", YES  == true);
+NSLog(@"%d", true == TRUE);
+NSLog(@"%d", TRUE == TRUE);
+NSLog(@"%d", YES  == TRUE);
+NSLog(@"%d", true == YES);
+NSLog(@"%d", TRUE == YES);
+NSLog(@"%d", YES  == YES);
+
+
+
+NSLog(@"%d", false == false);
+NSLog(@"%d", FALSE == false);
+NSLog(@"%d", NO    == false);
+NSLog(@"%d", false == FALSE);
+NSLog(@"%d", FALSE == FALSE);
+NSLog(@"%d", NO    == FALSE);
+NSLog(@"%d", false == NO);
+NSLog(@"%d", FALSE == NO);
+NSLog(@"%d", NO    == NO);
+
+//These will all print "0"
+NSLog(@"%d", false == true);
+NSLog(@"%d", FALSE == true);
+NSLog(@"%d", NO    == true);
+NSLog(@"%d", false == TRUE);
+NSLog(@"%d", FALSE == TRUE);
+NSLog(@"%d", NO    == TRUE);
+NSLog(@"%d", false == YES);
+NSLog(@"%d", FALSE == YES);
+NSLog(@"%d", NO    == YES);
+NSLog(@"%d", true == false);
+NSLog(@"%d", TRUE == false);
+NSLog(@"%d", YES  == false);
+NSLog(@"%d", true == FALSE);
+NSLog(@"%d", TRUE == FALSE);
+NSLog(@"%d", YES  == FALSE);
+NSLog(@"%d", true == NO);
+NSLog(@"%d", TRUE == NO);
+NSLog(@"%d", YES  == NO);
+```
+
+## typedef
+
+### NS_ENUM
+
+typedef NS_ENUM(NSInteger, AppStatus) {
+    AppOpened = 0,
+    AppNotOpened = 1,
+};
+
+### NS_OPTIONS
+
+typedef NS_OPTIONS(NSUInteger, JYAlertControllerOptions) 和 typedef NS_ENUM(NSUInteger, AlertControllerOptions) 都是用于定义枚举类型的语法，但它们在处理枚举选项的方式上有一些区别。
+
+typedef NS_OPTIONS(NSUInteger, JYAlertControllerOptions)
+
+这种语法定义的枚举类型使用了NS_OPTIONS宏，表示这是一个位掩码枚举，即可以使用按位或运算符|组合多个选项值。它们的值应该是2的幂次方，可以独立或组合使用。
+
+例如，可以这样定义一个使用位掩码的枚举类型：
+
+```objc
+typedef NS_OPTIONS(NSUInteger, AlertControllerOptions) {
+    AlertControllerOptionNone      = 0,
+    AlertControllerOptionOption1   = 1 << 0,
+    AlertControllerOptionOption2   = 1 << 1,
+    AlertControllerOptionOption3   = 1 << 2,
+};
+```
+
+使用时可以按位或运算符组合选项值：
+
+```objc
+JYAlertControllerOptions options = AlertControllerOptionOption1 | AlertControllerOptionOption3;
+typedef NS_ENUM(NSUInteger, JYAlertControllerOptions)
+```
+
+这种语法定义的枚举类型是普通的枚举，表示每个选项是互斥的，不能进行位运算组合。
+
+例如，可以这样定义一个普通的枚举类型：
+
+```objc
+typedef NS_ENUM(NSUInteger, AlertControllerOptions) {
+    AlertControllerOptionNone,
+    AlertControllerOptionOption1,
+    AlertControllerOptionOption2,
+    AlertControllerOptionOption3,
+};
+```
+
+使用时可以直接赋值一个选项：
+
+```objc
+AlertControllerOptions option = AlertControllerOptionOption1;
+```
+
+总的来说，使用 NS_OPTIONS 宏定义的枚举类型适用于需要进行位运算组合的场景，而 NS_ENUM 定义的枚举类型适用于互斥的选项。选择使用哪种方式取决于具体的需求和语义。
+
+### typedef enum
+
+`typedef enum UNAuthorizationOptions : NSUInteger` 这种语法是用于定义UNAuthorizationOptions枚举类型，其底层的值类型为NSUInteger。
+
+在这种语法中，enum关键字用于定义一个枚举类型，而typedef关键字用于为该枚举类型创建一个别名。UNAuthorizationOptions是一个具体的枚举类型名称，NSUInteger指定了该枚举的底层值的数据类型。
+
+这种方式定义的枚举类型中的选项是互斥的，不能进行位运算组合。每个选项都对应一个唯一的整数值。
+
+例如，可以这样定义一个使用UNAuthorizationOptions枚举的类型：
+
+```objc
+typedef enum UNAuthorizationOptions : NSUInteger {
+    UNAuthorizationOptionNone    = 0,
+    UNAuthorizationOptionBadge   = 1 << 0,
+    UNAuthorizationOptionSound   = 1 << 1,
+    UNAuthorizationOptionAlert   = 1 << 2,
+} UNAuthorizationOptions;
+```
+
+使用时可以直接赋值一个选项：
+
+```objc
+UNAuthorizationOptions options = UNAuthorizationOptionBadge;
+```
+
+这种语法与普通的枚举语法（不使用typedef）功能上没有本质区别，只是为了创建一个简洁的别名，方便在代码中使用。
+
+### difference between enum and NS_ENUM
+
+在 Objective-C 中，typedef enum 和 typedef NS_ENUM 都是定义枚举的方式，但 typedef NS_ENUM 提供了更好的类型安全性和易用性。
+
+typedef enum 是C语言风格的枚举定义方式。例如：
+
+```objc
+typedef enum {
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
+} DaysOfWeek;
+```
+
+然后，你可以像这样使用它：
+
+```objc
+DaysOfWeek today = Monday;
+```
+
+typedef NS_ENUM 是Objective-C的枚举定义方式，它提供了更好的类型安全性和易用性。它有两个参数，第一个参数是要定义的新类型名，第二个参数是基础类型，通常是NSInteger。例如：
+
+```objc
+typedef NS_ENUM(NSInteger, AppStatus) {
+    AppStatusInactive,
+    AppStatusActive,
+    AppStatusBackground
+};
+```
+
+然后，你可以像这样使用它：
+
+```objc
+AppStatus status = AppStatusInactive;
+```
+
+优点：
+
+使用NS_ENUM定义的枚举类型，在编译器层面会有更强的类型检查，避免类型混淆的问题。
+
+NS_ENUM会自动支持 Swift 的语法糖，例如你可以在 Swift 中直接使用 .Inactive 而不是 AppStatusInactive。
+
+## NSDictionary to Class
+
+> [iOS MJExtension使用方法指南(Objective-C)](https://paaatrick.com/2019-02-03-mj-extension-guide/)
+
+
+```json
+(
+{
+    messagePushMethod = PUSH;
+    userCapsuleMessageSettings =         (
+        {
+            capsuleGroup =                 (
+                                    {
+                    capsuleKey = 6;
+                    capsuleKeyName = "对话消息";
+                    capsuleType = msgType;
+                    capsuleTypeStatus = open;
+                }
+            );
+            groupName = "互动通知";
+        },
+                    {
+            capsuleGroup =                 (
+                                    {
+                    capsuleKey = 5;
+                    capsuleKeyName = "订单通知";
+                    capsuleType = msgType;
+                    capsuleTypeStatus = open;
+                }
+            );
+            groupName = "订单通知";
+        },
+                    {
+            capsuleGroup =                 (
+                                    {
+                    capsuleKey = WelfareCenter;
+                    capsuleKeyName = "福利中心";
+                    capsuleType = msgSecene;
+                    capsuleTypeStatus = open;
+                },
+                                    {
+                    capsuleKey = OutSideWelfare;
+                    capsuleKeyName = "出行福利";
+                    capsuleType = msgSecene;
+                    capsuleTypeStatus = open;
+                },
+                                    {
+                    capsuleKey = LifeWelfare;
+                    capsuleKeyName = "生活福利";
+                    capsuleType = msgSecene;
+                    capsuleTypeStatus = open;
+                },
+                                    {
+                    capsuleKey = BorrowService;
+                    capsuleKeyName = "借贷服务";
+                    capsuleType = msgSecene;
+                    capsuleTypeStatus = open;
+                },
+                                    {
+                    capsuleKey = InsureService;
+                    capsuleKeyName = "保险服务";
+                    capsuleType = msgSecene;
+                    capsuleTypeStatus = open;
+                }
+            );
+            groupName = "优惠活动";
+        }
+    );
+}
+) 
+```
+
+
+## singleton
+
+```objc
+/// 单例
++ (instancetype)sharedInstance {
+    static JYUserNotificationManager *sharedObject = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedObject = [JYUserNotificationManager new];
+    });
+    return sharedObject;
+}
 ```

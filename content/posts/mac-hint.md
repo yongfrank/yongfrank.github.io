@@ -19,6 +19,12 @@ date: 2023-04-14T16:50:52+08:00
 
 > [Search Result with V2EX and google](https://www.google.com/search?q=mac+%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE+site%3Av2ex.com&rlz=1C5CHFA_en__1048__1048&oq=mac+%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE+site%3Av2ex.com&aqs=chrome..69i57.3306j0j4&sourceid=chrome&ie=UTF-8)
 
+> 清理硬碟我唯一推薦用 GrandPerspective。清一堆小檔案不如看哪塊最大來砍
+> 
+> https://grandperspectiv.sourceforge.net/ 直接下載免費、MAS 版要錢
+>
+> [Discord by ethanhuang13](https://discord.com/channels/967978112509935657/1106458279963529246/1107613634827391048)
+
 ## Mac Keyboard
 
 > [mac按键难回弹（按下去软软的）](https://blog.csdn.net/Castlehe/article/details/124538924)

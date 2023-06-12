@@ -280,7 +280,10 @@ If any line matches the tags or errors, it is displayed as a warning or error me
 ### Old Version
 
 > * [Markup Formatting Reference](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/Links.html)
+> * [Apple - Block Comment](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/ComentBlock.html)
+> * [Apple - Code Block](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/CodeBlocks.html#//apple_ref/doc/uid/TP40016497-CH12-SW1)
 > * [xcode 高端花样注释](https://blog.csdn.net/allanGold/article/details/73164551)
+> * [How to create rich and engaging documents like Apple in xcode](https://medium.com/@i.vikas/how-to-create-rich-and-engaging-documents-like-apple-in-xcode-209bb91ea9f1)
 
 ```swift
 /**
@@ -319,6 +322,8 @@ func SomeFunc(name: String) -> String {
 
 > * [Xcode DocC - Getting Started](https://useyourloaf.com/blog/xcode-docc-getting-started/)
 > * [Xcode中代码注释编写小技巧](https://juejin.cn/post/7020590213361565726)
+> * [Xcode Mark Line to improve readability using // Mark: comments](https://www.avanderlee.com/xcode/xcode-mark-line-comment/)
+> * [How to document your project with DocC](https://www.hackingwithswift.com/articles/238/how-to-document-your-project-with-docc)
 
 我个人建议是：以前代码注释就让它去吧，现在就都是用这个统一风格。
 
@@ -331,13 +336,73 @@ func SomeFunc(name: String) -> String {
 
 如果文档注释以段落以外的任何内容开头，则其所有内容都将放入讨论中。
 
+> [Twitter By Paul Hudson](https://twitter.com/twostraws/status/1338539499664662530)
+> 
+> Xcode tip #14: One of my most commonly used Xcode shortcuts is Cmd+/ to toggle comments for the current line or selection, but another useful one is Option+Cmd+/ – press that directly before a method to have Xcode generate a documentation comment, including its parameters.
+
+### Structure of documentation pages
+
+> [Adding structure to your documentation pages](https://developer.apple.com/documentation/xcode/adding-structure-to-your-documentation-pages)
+
+![Customize your documentation’s landing page](https://docs-assets.developer.apple.com/published/a74f79f916b266a904dae3cc899517ae/landing-page~dark@2x.png)
+
+### CLI Build Cocoapods
+
+```sh
+xcodebuild -workspace TestDocc.xcworkspace -parallelizeTargets docbuild
+
+2023-05-20 23:00:32.671 xcodebuild[50700:2620221] Writing error result bundle to /var/folders/81/srpknvzx31nctp39xxlvx_200000gn/T/ResultBundle_2023-20-05_23-00-0032.xcresult
+
+2023-05-20 23:00:32.694 xcodebuild[50700:2620221] Requested but did not find extension point with identifier Xcode.IDEFoundation.IDEResultKitSerializationConverter
+
+xcodebuild: error: If you specify a workspace then you must also specify a scheme.  Use -list to see the schemes in this workspace.
+```
+
+这个错误的原因是你在使用 xcodebuild 命令构建一个 Xcode workspace，但没有指定一个 scheme。每个 Xcode workspace 都可能有多个 scheme，每个 scheme 定义了如何构建一个或多个 target。
+
+你可以使用 -list 参数查看 workspace 中的所有 scheme：
+
+```bash
+xcodebuild -workspace TestDocc.xcworkspace -list
+```
+
+这会列出所有的 scheme。然后你可以选择一个 scheme，将其添加到你的 xcodebuild 命令中，如下所示：
+
+```bash
+xcodebuild -workspace TestDocc.xcworkspace -scheme YourSchemeName docbuild
+```
+
+其中，YourSchemeName 是你从 -list 输出中选择的 scheme 名称。这样 xcodebuild 就知道你想要构建哪个 scheme，以及如何构建它了。
+
 ### DocC Deploy on GitHub
 
 > [如何把 Swift DocC 文檔託管到 Web Server 或 GitHub](https://www.appcoda.com.tw/swift-docc/)
 
+### DocC for Cocoapods
+
+> [Host and Automate your DocC documentation](https://medium.com/kinandcartacreated/host-and-automate-your-docc-documentation-c6ac29dc0feb#b444)
+>
+> The docbuild command builds documentation as we might expect from the name, and we need the -parallelizeTargets flag to build modular workspaces.
+>
+> We’ve selected the -project flag rather than the -workspace flag for our project with the associated -scheme, however, you may need to change this on a case-by-case basis, for example with CocoaPods projects.
+
+[Is it possible to specify the build target for DocC? (I want to exclude libraries installed with CocoaPods)](https://developer.apple.com/forums/thread/682399)
+
+> DocC will generate documentation for all the Swift frameworks and libraries that are part of the scheme—either directly or as a dependency of another target—that you are building, including external dependencies for which you have the source code (such as SwiftPM checkouts or CocoaPods). Please submit feedback with a description of your use case on the Feedback Assistant website.
+
+### DocC for Objc
+
+[DocC for Objective-C static library](https://forums.swift.org/t/docc-for-objective-c-static-library/60588/5)
+
 ## Code Snippet
 
 > [iOS Xcode 代码块(Code Snippet)](https://www.jianshu.com/p/f4036da2e48d)
+
+## Xcode CLI
+
+```sh
+xcodebuild -project TestingProject.xcodeproj -derivedDataPath ../../docsData -scheme TestingProject -destination 'platform=iOS Simulator,name=iPhone 14 Pro'
+```
 
 ## DISAMBIGUATOR for Downloadable Project
 
@@ -656,3 +721,117 @@ some View
 [iPhone/iPad苹果设备型号对应常用名称列表（2022更新至iPhone 14 Pro Max | iPad Air 5 | iPad10 | iPad Pro 12.9-inch 6）](https://blog.csdn.net/blog_jihq/article/details/80590767)
 
 iPhone 10,3 iPhone X
+
+## Debug Technique
+
+### Xcode LLDB po
+
+> [How to print out a property's contents using Xcode debugger?](https://stackoverflow.com/questions/11513283/how-to-print-out-a-propertys-contents-using-xcode-debugger)
+
+### Attach Device
+
+> [xcode无线调试之attach](https://www.jianshu.com/p/1725b5d1d572)
+
+```
+试想以下如下两种场景：
+场景一：测试发现一个bug，需要debug追加断点
+场景二：需要反复断点调试涉及前后台切换，重启App、唤起App操作，但又不需要重新编译。
+
+我们是只能打开工程连上设备，一遍一遍的command+r吗？
+如此低效率怎能接受？！
+此时如果采用attach方式来将debugger连接到app姿势将足够帅，具体做法如下：
+
+1.把你的测试设备连接(无线或者数据线)到Mac上并打开xcode工程
+2.选择你的测试设备作为目标设备
+3.xcode左上角工具栏选择Debug --> Attach to Process by PID or Name
+在对话框表中，输入通过 需要调试的app进程名字即productname
+4.在测试设备上打开app并操作
+
+再试想场景一:如果发现了bug(非crash类型)，我们又担心重启app不能复现bug此时应该怎么办呢？
+此时我们可以用到Debug-->Attach to Process,具体操作如下：
+
+1.把你的测试设备连接(无线或者数据线)到Mac上并打开xcode工程
+2.选择你的测试设备作为目标设备
+3.xcode左上角工具栏选择Debug --> Attach to Process
+等待getting process list完成之后在列表中选择app对应的进程名
+4.在测试设备上继续操作
+```
+
+## Xcode shortcut
+
+> [Xcode Shortcut](https://peterfriese.dev/posts/xcode-shortcuts/)
+
+```txt
+Jump to Definition (⌃ + ⌘ + J or ⌃ + ⌘ + Click)
+Find Selected Symbol in Workspace (⇧ + ⌃ + ⌘ + F)
+```
+
+### Find Selected Symbol in Workspace (⇧ + ⌃ + ⌘ + F)
+
+This is essentially the opposite of Jump to definition, and it’s particularly helpful trying to understand how an API is used in the codebase. It also gives you an feeling for how much grief you’re going to cause your teammates (or other API consumers) when refactoring an API…!
+
+### Find Call Hierarchy (⇧ + ⌃ + ⌘ + H)
+
+Similar to Find selected symbol in workspace, but with a focus on methods, this shortcut will open the Call Hierarchy view to show any places in your code that call the specified method, as well as any methods that call those methods in turn, and so on.
+
+<video autoplay="" loop="" muted="" playsinline="">
+    <source src="https://peterfriese.dev/posts/xcode-shortcuts/call_hierarchy.mp4" type="video/mp4">
+</video>
+
+### Toggle Views
+
+Xcode has three main areas surrounding the code editor, which can be toggled to make more space for editing (or showing context information, just as required): Left: Navigator (⌘ + 0) Right: Inspectors (⌘ + ⌥ + 0) * Bottom: Debug (⇧ + ⌘ + Y)
+
+| Area        | Command                               | Shortcut           |
+|-------------|---------------------------------------|------------------- |
+| Editor      | Code completion                       | ⌃ + Space          |
+| Editor      | Move line up                          | ⌥ + ⌘ + [         |
+| Editor      | Move line down                        | ⌥ + ⌘ + ]         |
+| Editor      | Delete entire line (*)                 | ⌘ + D              |
+| Editor      | Comment line / selection               | ⌘ + /              |
+| Editor      | Balance indent                        | ⌃ + I              |
+| Navigation  | Go back                               | ⌃ + ⌘ + ←         |
+| Navigation  | Go forward                            | ⌃ + ⌘ + →         |
+| Navigation  | Jump to definition                    | ⌃ + ⌘ + J         |
+| Navigation  | Find selected symbol in workspace     | ⇧ + ⌃ + ⌘ + F   |
+| Navigation  | Find call hierarchy                   | ⇧ + ⌃ + ⌘ + H   |
+| Navigation  | Open quickly                          | ⇧ + ⌘ + O        |
+| Navigation  | Jump to line                          | ⌘ + L              |
+| Navigation  | Show document items                   | ⌃ + 6              |
+| Views       | Toggle canvas                         | ⌥ + ⌘ + ↩        |
+| Views       | Toggle Navigator                      | ⌘ + 0              |
+| Views       | Toggle Inspectors                     | ⌘ + ⌥ + 0        |
+| Views       | Toogle Debug area                      | ⇧ + ⌘ + Y         |
+| Settings    | Open settings dialog                   | ⌘ + ,              |
+
+## Warning 
+
+### IPHONEOS_DEPLOYMENT_TARGET
+
+> The iOS Simulator deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 10.0, but the range of supported deployment target versions is 11.0 to 16.4.99.
+
+该问题意味着你的项目或某些依赖项（在你的案例中是 Pods）设置的 iOS Deployment Target 版本（部署目标版本）过低，而 Xcode 支持的最低版本比这个设置高。在你的情况中，某个 Pod 的 Deployment Target 设置为了 10.0，而你当前的 Xcode 支持的最低 iOS Deployment Target 版本是 11.0。
+
+要解决此问题，你需要将低于 Xcode 支持的最低 iOS 版本的 Deployment Target 提升到至少 11.0。以下是操作步骤：
+
+打开你的 Xcode 项目或工作区。
+
+如果问题在 Pods 中出现，打开 Pods 项目，找到那个 Deployment Target 设置为 10.0 的 Pod target。
+
+在项目或 Pod target 的 General 或 Build Settings 面板中，找到 Deployment Info 或 Deployment Target 部分。
+
+将 iOS Deployment Target 改为至少 11.0。
+
+如果你无法确定是哪个 Pod 有问题，你可能需要查看一下 Podfile 文件，看看是否有全局的 platform 设置，如果有，更新这个设置可能会更简单。例如，你可以在 Podfile 中添加或更新如下行：
+
+```ruby
+platform :ios, '11.0'
+```
+
+然后重新运行 pod install。
+
+请注意，提升 Deployment Target 版本可能会影响你的 app 对旧设备的支持。在提升版本前，确保了解这个改变可能带来的影响。
+
+
+
+

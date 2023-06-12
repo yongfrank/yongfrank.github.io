@@ -187,6 +187,37 @@ class TestingUICollectionViewCell: UICollectionViewCell, UICollectionViewDelegat
 @end
 ```
 
+> [Masonry Constraint for UILabel](https://www.cnblogs.com/MrYU4/p/masonry-de-jin-jie-shi-yong-ji-qiao.html)
+
+#### layoutMargins
+
+> [Remove UILabel padding](https://stackoverflow.com/questions/28617452/remove-uilabel-padding)
+
+```objc
+//        _contentLabel.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(0, 0, 0, 0);
+//        _contentLabel.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
+```
+
+#### directionalLayoutMargins
+
+directionalLayoutMargins 是UIView的一个属性，用于指定在考虑当前语言方向时布局视图内容时使用的默认间距。这个属性的类型是NSDirectionalEdgeInsets，该结构具有leading，top，trailing和bottom四个方向的边距。
+
+leading和trailing的概念是相对的，并且依赖于用户界面的当前语言环境。在从左到右的语言环境中，leading边距位于左边，trailing边距位于右边；而在从右到左的语言环境中，这两者会互换位置。
+
+使用directionalLayoutMargins可以帮助您在支持右到左语言环境的应用中实现适应性布局。以下是一个使用directionalLayoutMargins的例子：
+
+objc
+Copy code
+// 创建一个新的视图
+UIView *newView = [[UIView alloc] init];
+
+// 设置视图的方向性边距
+newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);
+
+// 通过代码或者自动布局约束来进行布局
+// 当在一个从右到左的语言环境中查看这个视图时，leading边距会位于右边，trailing边距会位于左边
+当然，需要注意的是，directionalLayoutMargins并不会直接改变视图的内容布局。要使directionalLayoutMargins生效，还需要结合使用AutoLayout约束，特别是在创建约束时使用NSLayoutAnchor的leadingAnchor和trailingAnchor，而不是leftAnchor和rightAnchor。
+
 ### UIImage
 
 ```objc
@@ -199,6 +230,8 @@ imageView.layer.borderWidth = 1.0;
 imageView.layer.borderColor = [UIColor yellowColor].CGColor;
 [self.view addSubview:imageView];
 ```
+
+> [Aspect Fit](https://stackoverflow.com/questions/15499376/uiimageview-aspect-fit-and-center)
 
 ### UITableView & UICollectionView
 
@@ -270,6 +303,38 @@ UICollectionView 是一个强大的集合控件，可以用来展示多行、多
     return cell;
 }
 @end
+```
+
+> [Header footer for UITableView](https://developer.apple.com/documentation/uikit/views_and_controls/table_views/adding_headers_and_footers_to_table_sections?language=objc)
+>
+> [iOS-UITableViewCell自适应高度最优雅的方法](https://www.jianshu.com/p/5f5c550d61a0)
+
+#### 隐藏分割线
+
+> [iOS 中隐藏UITableView最后一条分隔线](https://juejin.cn/post/6844903887443345416)
+
+```objc
+// 分割线
+// _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+if (indexPath.row == _menuStringArray.count-1) {
+    menuCell.separatorInset = UIEdgeInsetsMake(0, self.bounds.size.width, 0, 0);
+} else{
+    menuCell.separatorInset = UIEdgeInsetsMake(0, FTDefaultMenuTextMargin, 0, 10+FTDefaultMenuTextMargin);
+}
+```
+
+> [Grouped UITableview remove outer separator line](https://stackoverflow.com/questions/29006311/grouped-uitableview-remove-outer-separator-line)
+
+![Grouped UITableview remove outer separator line](https://i.stack.imgur.com/nNUTQ.png)
+
+```objc
+// Get the width of tableview
+// https://stackoverflow.com/questions/29006311/grouped-uitableview-remove-outer-separator-line
+for (UIView *subview in cell.subviews) {
+    if (subview != cell.contentView && subview.frame.size.width == cell.width) {
+        [subview removeFromSuperview];
+    }
+}
 ```
 
 ### Protocol & UICollectionView
@@ -1012,3 +1077,73 @@ IBAction 是 Objective-C 中特有的关键字，用于表示该方法可以与�
 总的来说，#import <Framework/Module.h> 用于导入系统框架或第三方库的头文件，而 #import "LocalFile.h" 用于导入项目中的自定义头文件或本地文件的头文件。
 
 需要注意的是，无论使用哪种形式，#import 指令都会在编译时将指定的头文件内容复制到当前文件中，以便在编译过程中能够访问导入的类、函数、常量等内容。
+
+## NSString 判空
+
+> [NSString 判空的最佳方式](https://www.jianshu.com/p/2d01074bb867)
+>
+> [How to detect if NSString is null?](https://stackoverflow.com/questions/5684157/how-to-detect-if-nsstring-is-null)
+
+```objc
+if (str.length == 0) {
+
+NSLog(@"str is empty!!!");
+
+}
+```
+
+这句代码可以通吃上面case1、2、3；其实也是好理解的，nil本身也是一个对象，在ios中给nil
+
+发消息是不会崩溃的，只不过没啥反应而已，因此length也是默认的0了；
+
+至于类似于case4的情况，可以先将字符串中的空格"  " Trim掉，然后在进行判断：
+
+> [OC中的nil、Nil、NULL、NSNull的区别](https://cloud.tencent.com/developer/article/1537380)
+
+## SF Symbols
+
+> [How to use default iOS images?](https://stackoverflow.com/questions/23409610/how-to-use-default-ios-images)
+
+## Present an UIAlertController from an UIView
+
+> [How to present an UIAlertController from an UIView](https://medium.com/salvarlabs/how-to-present-an-uialertcontroller-from-an-uiview-8e456f287cdd)
+
+
+## Observer 观察者
+
+```objc
+/// 添加系统通知状态的观察者
+- (void)addObserverForSystemNotificationStatus {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkNotificationAuthorization)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+}
+```
+
+## MJExtension
+
+> [iOS 关于项目中经常用到的MJExtension函数](https://www.jianshu.com/p/0340bdc57ff3)
+>
+> [iOS MJExtension使用方法指南(Objective-C)](https://paaatrick.com/2019-02-03-mj-extension-guide/)
+
+## rootViewController
+
+```objc
+/// 展示 UIAlertController, Workaround
+/// - Parameter alertController:
+///
+/// [Stack Overflow](https://stackoverflow.com/questions/26554894/how-to-present-uialertcontroller-when-not-in-a-view-controller)
++ (id)rootViewController {
+    id rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+    if([rootViewController isKindOfClass:[UINavigationController class]])
+    {
+        rootViewController = ((UINavigationController *)rootViewController).viewControllers.firstObject;
+    }
+    if([rootViewController isKindOfClass:[UITabBarController class]])
+    {
+        rootViewController = ((UITabBarController *)rootViewController).selectedViewController;
+    }
+    return rootViewController;
+}
+```

@@ -19,7 +19,7 @@ disable_toc: true
 
 <span class="mdi mdi-linkedin"></span> -->
 
-- 👋 Hello, I'm Frank, also known as [@yongfrank](https://github.com/) on GitHub.
+- 👋 Hello, I'm Frank, also known as [@yongfrank](https://github.com/yongfrank) on GitHub.
 - 👀 I'm passionate about programming.
 - 🌱 Currently, I'm learning Swift, C/C++, Python, HTML/CSS/JavaScript.
 - 📫 You can reach me on [Twitter](https://twitter.com/cyongfrank).

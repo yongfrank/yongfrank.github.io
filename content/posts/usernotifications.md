@@ -171,6 +171,13 @@ struct ContentView_Previews: PreviewProvider {
 
 > [providesAppNotificationSettings](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/2990405-providesappnotificationsettings)
 
+```objc
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center openSettingsForNotification:(UNNotification *)notification {
+    NSURL *url = [NSURL URLWithString:@"https://google.com"];
+    [self openTrdPartyURL:url];
+}
+```
+
 iOS 12.0+
 
 An option indicating the system should display a button for in-app notification settings.

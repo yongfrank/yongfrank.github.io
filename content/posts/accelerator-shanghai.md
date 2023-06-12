@@ -5,6 +5,41 @@ date: 2023-04-18T15:40:25+08:00
 
 This page is open source. [Improve this page][opensource].
 
+<!-- # AAG May 21, 2023
+
+|时间|内容|主讲人/负责人|
+|--|--|--|
+|08:00-09:00|工作人员到场准备|/|
+|09:00-09:30|参会人员签到入场|/|
+|09:30-09:35|活动开场|主持：主持：刘雨萱 <br> 发言：Yuna， 张克俊（连麦）|
+|09:35-10:00|Community - Be Together|主持：Jason <br> 嘉宾主讲：张思琦|
+|10:00-10:30|破冰活动<br>（以组为单位介绍）|主持：刘雨萱|
+|10:30-10:45|茶歇|/|
+|10:45-11:15|发展路线|主持：刘雨萱<br>嘉宾主讲：Eric|
+|11:15-12:00|畅想未来（圆桌）|主持：Jason<br>嘉宾主讲：蔡天懿、Jason、待定|
+|12:00-13:00|午餐及自由交流|/|
+|13:00-14:00|分组讨论<br>（每轮30分钟，共四轮）|分四组，每组主持人：<br>罗爽、Jason、小曼、待定|
+|14:00-14:15|茶歇|/|
+|14:15-14:45|分组讨论（每轮30分钟，共四轮）|分四组，每组主持人：<br>罗爽、Jason、小曼、待定|
+|14:45-15:15|交流答疑＋总结|主持：刘雨萱|
+|15:15-15:30|闭幕/合影|/|
+
+## Books
+
+* Gumroad
+* Leanpub
+* Apple Book
+
+## 圆桌会议
+
+> 天懿
+
+格瓦拉 - 电影票
+
+!! GPT - 人生下注 -->
+
+# April
+
 > [Steve Jobs Archive - Make Something Wonderful - Steve Jobs in his own words](https://stevejobsarchive.com/)
 
 ## SwiftUI Layout and rendering Luo Shuang

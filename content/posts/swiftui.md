@@ -10,6 +10,12 @@ This page is open source. [Improve this page][opensource].
 > * [SwiftUI by Example](https://www.hackingwithswift.com/quick-start/swiftui/)
 > * [SwiftUI 参考手册](https://www.cocoaz.com/swiftui/swiftui-vs-uikit-cheat-sheet/)
 
+## Starred App
+
+[A Companion for SwiftUI](https://apps.apple.com/us/app/a-companion-for-swiftui/id1485436674?l=zh&mt=12)
+
+<a href="https://apps.apple.com/us/app/a-companion-for-swiftui/id1485436674?mt=12&amp;itscg=30200&amp;itsct=apps_box_appicon" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/3c/05/e9/3c05e92b-23a1-3d89-dee5-6bdf701c9bfa/AppIcon-0-85-220-0-4-2x.png/540x540bb.jpg" alt="A Companion for SwiftUI" style="width: 170px; height: 170px; border-radius: 22%; overflow: hidden; display: inline-block; vertical-align: middle;"></a>
+
 <!-- https://discord.com/channels/967978112509935657/967978112509935663/1105046781521305600 我购买了《Mastering SwiftUI》并将它汉化为简体中文，免费放在了我的 Github 静态服务器中，先读完 https://sspai.com/series/147 再继续阅读 https://ylqylq001.github.io/Mastering-SwiftUI 我相信你很快就能撸出漂亮的 SwiftUI App  -->
 
 <!-- 还有件事强调一下，我放在 Github 静态服务器上的这本书，本来是打算方便自己阅读，偷偷转译的，不要到处传播，哪天因为版权被删除就麻烦了
@@ -772,3 +778,9 @@ struct ViewController_Previews: PreviewProvider {
     }
 }
 ```
+
+## MainActor
+
+> [Swift 中的 MainActor 使用和主线程调度](https://www.jianshu.com/p/a91d1ceaf7ef)
+>
+> MainActor 是Swift 5.5中引入的一个新属性，它是一个全局 actor，提供一个在主线程上执行任务的执行器。在构建应用程序时，在主线程上执行UI更新任务是很重要的，在使用几个后台线程时，这有时会很有挑战性。使用@MainActor属性将帮助你确保你的UI总是在主线程上更新。
