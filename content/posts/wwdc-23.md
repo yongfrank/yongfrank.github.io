@@ -3,6 +3,18 @@ title: "WWDC 23 and Swift Updates"
 date: 2023-06-28T13:40:53+08:00
 ---
 
+## Vision Pro Simulator
+
+* [Download Link](https://developer.apple.com/download/)
+
+> [install with command line](https://developer.apple.com/documentation/xcode/installing-additional-simulator-runtimes)
+
+```
+xcode-select -s /Applications/Xcode-beta.app
+xcodebuild -runFirstLaunch
+xcrun simctl runtime add "~/Downloads/watchOS 9 beta Simulator Runtime.dmg"
+```
+
 ## Swift Macro
 
 > [Applying Macros](https://developer.apple.com/documentation/Swift/applying-macros)
@@ -56,6 +68,10 @@ date: 2023-06-28T13:40:53+08:00
 [iOS 温习之路 ”Other Linker Flags“](https://zhuanlan.zhihu.com/p/34232905)
 
 > 话又说回来了，Other Linker Flags 到底是干什么的呢？ 从文档上对这个参数的使用也大概能猜出一二，熟悉苹果的开发者应该都知道 XCode链接器man ld命令，通俗点讲，连接器的目的就是将目标文件连接为可执行程序，详细了解请阅读[源程序->可执行程序](https://zhuanlan.zhihu.com/p/31895059)
+
+[源程序->可执行程序 - 小萝卜的文章 - 知乎](https://zhuanlan.zhihu.com/p/31895059)
+
+> .c（源程序）->.obj（目标文件）的过程我们称之为编译，.obj（目标文件）->.exe（可执行文件）的过程我们称之为链接。
 
 ![源程序->可执行文件](https://pic1.zhimg.com/80/v2-f996490e3e745d2d91fcd01e28332074_1440w.webp)
 

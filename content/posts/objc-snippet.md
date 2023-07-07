@@ -857,6 +857,119 @@ protocol Equatable {
 * [深入理解Objective-C：Category](https://tech.meituan.com/2015/03/03/diveintocategory.html)
 * [【iOS面试粮食】OC语言—Category(分类)和类扩展(extension)、关联对象](https://juejin.cn/post/6844903968691191815)
 
+> [OC基础之类别（Category）和扩展（Extension）](https://www.jianshu.com/p/dc3196030a03)
+
+.h文件中的格式为
+
+```objc
+#import "类名.h"
+
+@interface 类名 (类别名)
+// 在此处声明方法
+@end
+```
+
+.m文件中的格式为
+
+```objc
+#import "类名+类别名.h"
+
+@implementation 类名 (类别名)
+// 在此处实现声明的方法
+@end
+```
+
+扩展文件格式 .h文件中的格式为
+
+```objc
+#import "类名.h"
+
+@interface 类名 ()
+// 在此添加私有成员变量、属性、声明方法
+@end
+```
+
+Objective-C的Category和Extension
+Category是Objective-C语言的一个特性，它主要用于为现有的类添加新的方法，无论这个类是系统类还是自定义类。你可以将类的实现分散到多个不同的源文件中，这使得你可以在不访问类源代码的情况下扩展类的功能。
+
+Extension在语法上看起来几乎和Category相同，但它只能为自己的类添加新的方法和属性，而不能为系统类或他人的类添加新的方法或属性。另外，Extension的方法和属性在编译器会检查是否实现，而Category则不会。
+
+Swift的Extension
+Swift中的Extension的功能比Objective-C中的Category和Extension更强大。它不仅可以向现有的类添加新的方法和计算属性，还可以向现有的类添加新的构造函数、下标、嵌套类型，甚至可以使现有类型遵循特定的协议。
+
+对比
+Category和Swift的Extension都可以为现有类添加新的方法，但是Swift的Extension可以为现有类添加更多的新特性，比如新的构造函数、下标、嵌套类型和遵循协议等。
+
+Category和Extension可以为系统类和他人的类添加新的方法，而Objective-C的Extension只能为自己的类添加新的方法和属性。
+
+在Objective-C中，你可以在Category中覆盖原有类的方法，而在Swift中，你不能在Extension中覆盖原有类的方法。
+
+Objective-C的Extension在编译器会检查方法和属性的实现，而Category则不会。在Swift中，你不能在Extension中添加新的存储属性，只能添加新的计算属性。
+
+### 实现
+
+```objc
+// NSString+MyCategory.h
+#import <Foundation/Foundation.h>
+
+@interface NSString (MyCategory)
+
+- (BOOL)isNotEmpty;
+
+@end
+
+// NSString+MyCategory.m
+#import "NSString+MyCategory.h"
+
+@implementation NSString (MyCategory)
+
+- (BOOL)isNotEmpty {
+    return ![self isEqualToString:@""];
+}
+
+@end
+```
+
+```objc
+// MyClass.m
+
+#import <Foundation/Foundation.h>
+
+@interface MyClass : NSObject
+- (void)myMethod;
+@end
+
+@implementation MyClass
+- (void)myMethod {
+    NSLog(@"Hello, world!");
+}
+@end
+
+int main() {
+    MyClass *myObject = [[MyClass alloc] init];
+    [myObject myMethod];
+    return 0;
+}
+```
+
+> `@implementation ObjcBaseViewController (Alert)` 括号里是什么
+
+在 Objective-C 中，圆括号 () 中的内容表示一个类别（Category）的名称。在你给出的这个例子中，Alert 是 ObjcBaseViewController 类的一个类别。
+
+类别是 Objective-C 中一种允许你添加新方法（但不能添加新属性或实例变量）到现有类的机制。你可以使用类别来添加方法到系统类，例如 NSString、NSArray、自己的自定义类等等。
+
+你的代码中 @implementation ObjcBaseViewController (Alert) 是 ObjcBaseViewController 类别 Alert 的实现部分的开始。在这里，你可以实现你希望添加到 ObjcBaseViewController 类中的方法。
+
+> `@implementation NSString (MyCategory)` 为什么要加 MyCategory，我看也没有用到
+
+在 Objective-C 中，使用 @implementation NSString (MyCategory) 的形式是为了声明一个名为 "MyCategory" 的 NSString 类别。在这里，"MyCategory" 是类别的名称，而不是要在代码中使用的一个变量。你可以将其视为给这个类别的标签或名称，用于区分其他可能存在的类别。
+
+类别（Category）的主要用途是为现有的类添加新的方法。你可能会想，为什么不直接在类的主要实现部分中添加这些方法呢？原因是类别提供了一种组织代码的方式，允许你将相关的方法分组，尤其是当这些方法是为了某一特定的功能或用途时。
+
+在你的示例中，"MyCategory" 可能是用来指示这些新方法的用途的。比如说，如果你添加的方法是用来处理字符串格式化的，你可能会选择命名为 "Formatting"。这样，当其他开发者看到 @implementation NSString (Formatting) 时，他们可以很快理解这些方法的用途。
+
+请注意，类别名在代码中并没有实际的功能性用途，它仅仅是一个标识，用于区分不同的类别。尽管如此，选择一个有意义的名字可以使你的代码更易于理解和维护。
+
 ## iOS Constant - `static NSString * const kStr = @""`
 
 > [iOS 不要用宏来定义你的常量](https://toutiao.io/posts/kw76e7/preview)
