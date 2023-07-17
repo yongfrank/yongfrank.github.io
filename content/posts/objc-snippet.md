@@ -1623,62 +1623,40 @@ NS_ENUM会自动支持 Swift 的语法糖，例如你可以在 Swift 中直接�
 {
     messagePushMethod = PUSH;
     userCapsuleMessageSettings =         (
-        {
-            capsuleGroup =                 (
-                                    {
-                    capsuleKey = 6;
-                    capsuleKeyName = "对话消息";
-                    capsuleType = msgType;
-                    capsuleTypeStatus = open;
-                }
-            );
-            groupName = "互动通知";
-        },
                     {
             capsuleGroup =                 (
                                     {
-                    capsuleKey = 5;
-                    capsuleKeyName = "订单通知";
-                    capsuleType = msgType;
+                    capsuleKey = Service5;
+                    capsuleKeyName = "服务5";
+                    capsuleType = service;
+                    capsuleTypeStatus = open;
+                },
+                                    {
+                    capsuleKey = Service4;
+                    capsuleKeyName = "服务4";
+                    capsuleType = service;
+                    capsuleTypeStatus = open;
+                },
+                                    {
+                    capsuleKey = Service3;
+                    capsuleKeyName = "服务3";
+                    capsuleType = service;
+                    capsuleTypeStatus = open;
+                },
+                                    {
+                    capsuleKey = Service2;
+                    capsuleKeyName = "服务2";
+                    capsuleType = service;
+                    capsuleTypeStatus = open;
+                },
+                                    {
+                    capsuleKey = Service1;
+                    capsuleKeyName = "服务1";
+                    capsuleType = service;
                     capsuleTypeStatus = open;
                 }
             );
-            groupName = "订单通知";
-        },
-                    {
-            capsuleGroup =                 (
-                                    {
-                    capsuleKey = WelfareCenter;
-                    capsuleKeyName = "福利中心";
-                    capsuleType = msgSecene;
-                    capsuleTypeStatus = open;
-                },
-                                    {
-                    capsuleKey = OutSideWelfare;
-                    capsuleKeyName = "出行福利";
-                    capsuleType = msgSecene;
-                    capsuleTypeStatus = open;
-                },
-                                    {
-                    capsuleKey = LifeWelfare;
-                    capsuleKeyName = "生活福利";
-                    capsuleType = msgSecene;
-                    capsuleTypeStatus = open;
-                },
-                                    {
-                    capsuleKey = BorrowService;
-                    capsuleKeyName = "借贷服务";
-                    capsuleType = msgSecene;
-                    capsuleTypeStatus = open;
-                },
-                                    {
-                    capsuleKey = InsureService;
-                    capsuleKeyName = "保险服务";
-                    capsuleType = msgSecene;
-                    capsuleTypeStatus = open;
-                }
-            );
-            groupName = "优惠活动";
+            groupName = "活动";
         }
     );
 }
@@ -1699,3 +1677,35 @@ NS_ENUM会自动支持 Swift 的语法糖，例如你可以在 Swift 中直接�
     return sharedObject;
 }
 ```
+
+## KVO
+
+### KVC
+
+[KVC和KVO学习笔记](https://github.com/pro648/tips/blob/master/sources/KVC和KVO学习笔记.md)
+
+在编程中，最常见的就是程序的流程取决于你所使用的各种变量和属性的值，根据变量和属性的值确定后面运行的代码，有时会检查对象是否已加入数组，或是否已被移除，因此，获取类中属性的变化是编程中重要部分。
+
+我们有多种方式获取对象的改变，如委托、通知等。如果需要观察多个属性的变化，为避免产生大量的代码，最好是使用键值观察（Key Value Observing，简称KVO），这也是Apple在自己的软件中大量使用的一种。
+
+使用键值观察跟踪单个属性或集合（如数组）的变化非常高效，它只需要在观察者方法中添加代码，不需要修改被观察文件内的代码，这一点和委托、通知不同。但需要注意的是，键值观察（KVO）是建立在键值编码（Key Value Coding，简称KVC）的基础上，也就是说任何你想使用KVO观察的属性必须符合键值编码。
+
+### isa-swizzling
+
+[](https://juejin.cn/post/6844903972528979976)
+
+> Key-Value Observing Implementation Details
+>
+> Automatic key-value observing is implemented using a technique called isa-swizzling.
+>
+> The isa pointer, as the name suggests, points to the object's class which maintains a dispatch table. This dispatch table essentially contains pointers to the methods the class implements, among other data.
+
+* [深度解读 Observation —— SwiftUI 性能提升的新途径](https://www.fatbobman.com/posts/mastering-Observation/)
+* [Observing a KVO compatible model in SwiftUI and MVVM](https://augmentedcode.io/2020/11/08/observing-a-kvo-compatible-model-in-swiftui-and-mvvm/)
+
+## 消息转发 - Message Forwarding
+
+* 方法：与一个类相关的一段实际代码，并给出一个特定的名字。例：`- (int)meaning { return 42; }`
+* 消息：发送给对象的名称和一组参数。示例：向0x12345678对象发送 `meaning` 并且没有参数。
+* 选择器：表示消息或方法名称的一种特殊方式，表示为类型 SEL。选择器本质上就是不透明的字符串，它们被管理，因此可以使用简单的指针相等来比较它们，从而提高速度。（实现可能会有所不同，但这基本上是他们在外部看起来的样子。）例如：`@selector(meaning)`。
+* 消息发送：接收信息并查找和执行适当方法的过程。
