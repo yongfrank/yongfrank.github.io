@@ -1663,7 +1663,6 @@ NS_ENUM会自动支持 Swift 的语法糖，例如你可以在 Swift 中直接�
 ) 
 ```
 
-
 ## singleton
 
 ```objc
@@ -1690,10 +1689,24 @@ NS_ENUM会自动支持 Swift 的语法糖，例如你可以在 Swift 中直接�
 
 使用键值观察跟踪单个属性或集合（如数组）的变化非常高效，它只需要在观察者方法中添加代码，不需要修改被观察文件内的代码，这一点和委托、通知不同。但需要注意的是，键值观察（KVO）是建立在键值编码（Key Value Coding，简称KVC）的基础上，也就是说任何你想使用KVO观察的属性必须符合键值编码。
 
+### isa
+
+> [iOS isa详解](https://juejin.cn/post/6844904134286524429)
+>
+> 有如下代码，在控制台输出obj的数据结构，排在第一位的就是isa的地址。
+
+![isa-address](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/21/1719d1e1b0d5b132~tplv-t2oaga2asx-zoom-in-crop-mark:4536:0:0:0.image)
+
+> 为什么呢？因为对象继承自NSObject，NSObject在底层的实现是结构体objc_object，里面只有一个isa成员变量，那么对象的首地址指向的第一块就是isa所在。
+
+![isa-sourcecode](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/22/1719d7bec80b8e5e~tplv-t2oaga2asx-zoom-in-crop-mark:4536:0:0:0.image)
+
 ### isa-swizzling
 
-[](https://juejin.cn/post/6844903972528979976)
+iOS中的Method Swizzling是一种技术，用于在运行时交换两个方法的实现。它允许开发者在不修改原始代码的情况下，动态改变方法的行为。
 
+> [Juejin](https://juejin.cn/post/6844903972528979976)
+>
 > Key-Value Observing Implementation Details
 >
 > Automatic key-value observing is implemented using a technique called isa-swizzling.
@@ -1703,7 +1716,15 @@ NS_ENUM会自动支持 Swift 的语法糖，例如你可以在 Swift 中直接�
 * [深度解读 Observation —— SwiftUI 性能提升的新途径](https://www.fatbobman.com/posts/mastering-Observation/)
 * [Observing a KVO compatible model in SwiftUI and MVVM](https://augmentedcode.io/2020/11/08/observing-a-kvo-compatible-model-in-swiftui-and-mvvm/)
 
+> [Juejin](https://www.jianshu.com/p/ce5bd1383a05)
+
+这里简单来说，就是KVO的实现使用了一种叫做isa-swizzling的技术，主要的原理是当观察一个对象的属性时，这个对象的isa指针将会被修改，isa指针会指向一个中间类，这个中间类是被观察对象的子类，它重写了被观察属性的setter方法。同时为了隐藏中间类，修改了这个中间类的class方法，使它返回的是被观察对象的类而不是这个中间类。
+
+### method-swizzling
+
 ## 消息转发 - Message Forwarding
+
+> [消息转发篇(Message Forwarding)](https://juejin.cn/post/6844903600968171533)
 
 * 方法：与一个类相关的一段实际代码，并给出一个特定的名字。例：`- (int)meaning { return 42; }`
 * 消息：发送给对象的名称和一组参数。示例：向0x12345678对象发送 `meaning` 并且没有参数。
