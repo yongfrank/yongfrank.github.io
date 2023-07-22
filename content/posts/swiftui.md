@@ -784,3 +784,91 @@ struct ViewController_Previews: PreviewProvider {
 > [Swift 中的 MainActor 使用和主线程调度](https://www.jianshu.com/p/a91d1ceaf7ef)
 >
 > MainActor 是Swift 5.5中引入的一个新属性，它是一个全局 actor，提供一个在主线程上执行任务的执行器。在构建应用程序时，在主线程上执行UI更新任务是很重要的，在使用几个后台线程时，这有时会很有挑战性。使用@MainActor属性将帮助你确保你的UI总是在主线程上更新。
+
+## Struct & Class
+
+[Why does Swift have both classes and structs?](https://www.hackingwithswift.com/quick-start/understanding-swift/why-does-swift-have-both-classes-and-structs)
+
+* Variable properties in constant classes can be modified freely, but variable properties in constant structs cannot. 常量类中的变量属性可以自由修改，但常量结构中的变量属性不能。
+* Classes have deinitializers, which are methods that are called when an instance of the class is destroyed, but structs do not.
+* Copies of structs are always unique, whereas copies of classes actually point to the same shared data.
+* One class can be built upon (“inherit from”) another class, gaining its properties and methods.
+* Classes do not come with synthesized memberwise initializers.
+
+[Why @State only works with structs](https://www.hackingwithswift.com/books/ios-swiftui/why-state-only-works-with-structs)
+
+Previously we looked at the differences between classes and structs, and there were two important differences I mentioned. First, that structs always have unique owners, whereas with classes multiple things can point to the same value. And second, that classes don’t need the mutating keyword before methods that change their properties, because you can change properties of constant classes.
+
+When User was a struct, every time we modified a property of that struct Swift was actually creating a new instance of the struct. @State was able to spot that change, and automatically reloaded our view. Now that we have a class, that behavior no longer happens: Swift can just modify the value directly.
+
+For SwiftUI developers, what this means is that if we want to share data between multiple views – if we want two or more views to point to the same data so that when one changes they all get those changes – we need to use classes rather than structs. 对于 SwiftUI 开发人员来说，这意味着，如果我们想在多个视图之间共享数据——如果我们希望两个或多个视图指向相同的数据，以便当一个视图更改时，它们都会得到这些更改——我们需要使用类而不是结构。
+
+When User was a struct, every time we modified a property of that struct Swift was actually creating a new instance of the struct. @State was able to spot that change, and automatically reloaded our view. Now that we have a class, that behavior no longer happens: Swift can just modify the value directly. 
+当 User 是一个结构体时，每次我们修改该结构的属性时，Swift 实际上都在创建该结构体的新实例。 @State 能够发现该更改，并自动重新加载我们的视图。现在我们有一个类，这种行为不再发生：Swift 可以直接修改值。
+
+Remember how we had to use the mutating keyword for struct methods that modify properties? This is because if we create the struct’s properties as variable but the struct itself is constant, we can’t change the properties – Swift needs to be able to destroy and recreate the whole struct when a property changes, and that isn’t possible for constant structs. Classes don’t need the mutating keyword, because even if the class instance is marked as constant Swift can still modify variable properties. 
+还记得我们如何将 mutating 关键字用于修改属性的结构方法吗？这是因为如果我们创建结构的属性为变量，但结构本身是常量的，我们就无法更改属性——Swift 需要能够在属性更改时销毁并重新创建整个结构，而这对于常量结构来说是不可能的。类不需要 mutating 关键字，因为即使类实例被标记为常量，Swift 仍然可以修改变量属性。
+
+I know that all sounds terribly theoretical, but here’s the twist: now that User is a class the property itself isn’t changing, so @State doesn’t notice anything and can’t reload the view. Yes, the values inside the class are changing, but @State doesn’t monitor those, so effectively what’s happening is that the values inside our class are being changed but the view isn’t being reloaded to reflect that change.
+我知道这一切听起来都很理论化，但这里有一个转折点：现在 User 这是一个类，属性本身没有改变，所以 @State 没有注意到任何东西，也无法重新加载视图。是的，类中的值正在更改，但不 @State 监视这些值，因此实际上正在发生的事情是我们类中的值正在更改，但视图未重新加载以反映该更改。
+
+To fix this, it’s time to leave @State behind. Instead we need a more powerful property wrapper called @StateObject – let’s look at that now…
+为了解决这个问题，是时候抛弃 @State 了。相反，我们需要一个更强大的属性包装器，称为 @StateObject – 现在让我们看看......
+
+[[SwiftUI 知识碎片] 为什么SwiftUI 用struct来表示view? - 猫克杯的文章 - 知乎](https://zhuanlan.zhihu.com/p/102707163)
+
+structs are simpler and faster than classes
+
+在 UIKit 中，所有的视图都继承自一个叫 UIView 的类，它有非常多的属性和方法 —— 背景颜色，布局约束，用于渲染的层，等等。还有更多诸如此类的属性，而每一个 UIView 和 UIView 的子类都有，因为这正是继承的工作方式。
+
+通常这样也不会带来问题，但有一个特殊的子类叫 UIStackView，它和 SwiftUI 里的 VStack 和HStack 相似。在 UIKit 里，出于使布局更简单的设计意图，UIStackView 是一个不会被渲染的视图类型。但由于继承机制，尽管它不渲染，它也有那些包括背景颜色在内的各种用不上的属性。
+
+得益于现代 iPhone 的能力，创建 1000 甚至 100,000 个整数只在眨眼之间。对于 SwiftUI 的 1000 个 view 或者 100,000 个 view。这个时间仍然成立。太快了，你都不必考虑它们。
+
+🌟🌟[在任何情况下选择哪个 SwiftUI 属性包装器](https://www.hackingwithswift.com/articles/227/which-swiftui-property-wrapper)
+
+[SwiftUI学习-2 Struct和Class - Jianshu](https://www.jianshu.com/p/3cb186ad1ebf)
+
+• 2. Struct是为了函数式编程（functional programming）而构建的，而Class是为了面向对象形式编程（Object-oriented programming）而构建。
+
+函数式编程专注于事物的功能特性。大多数我们看到的都是Struct，比如说：Array、Dictionary、Int、Bool、Double等。面向对象编程重点是封装数据，并将功能放到某个容器中，一个Object对象。 复制一个东西，还是使用一个指针，导致的行为是大为不同的。
+
+## 封装、继承、多态
+
+[多态及实现原理](https://juejin.cn/post/6946378171683962917)
+
+什么是多态？父类指针指向子类对象就是多态。
+
+类生成的汇编代码非常多，相比结构体复杂了很多，并且通过函数调用发现，函数地址是动态变化的。所以，如果没有继承行为或简单的类，建议使用结构体，效率更高。
+
+类的函数调用地址之所以变化是为因为子类继承父类会导致函数实际调用地址发生变化，这也是多态的体现。
+
+![汇编分析](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/541baf907725411bb83960a3e0160b9b~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.image)
+
+分析： 类的实例前8个字节保存的是类的信息，所以上面的汇编代码会一值围绕着实例animal的前8个字节去查找函数地址。而animal最后一次指向的是对象Dog在堆空间的内存，所以最终调用的是Dog中的speak函数。
+
+callq *0x50(%rcx)中的0x50就是偏移量，跳过0x50就是函数speak的地址。
+
+![虚表 Virtual method table](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/922f4c7e019a4bcfa7df0dece67595bf~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.image)
+
+虚表是一个函数指针数组，数组里存放的都是函数指针，指向虚函数所在的位置。 对象调用虚函数时，会根据虚指针找到虚表的位置，再根据虚函数声明的顺序找到虚函数在数组的哪个位置，找到虚函数的地址，从而调用虚函数。
+
+总结起来其实很简单：
+
+* 先找到全局变量 animal 的地址；
+* animal 地址保存的是堆空间 Dog 对象的内存地址；
+* Dog 对象前8个字节保存的是对象类型信息地址；
+* 对象类型信息地址保存着类中函数的地址。
+
+### C & Cpp
+
+* C是面向过程的语言，是一个结构化的语言，考虑如何通过一个过程对输入进行处理得到输出；
+* C++是面向对象的语言，主要特征是“封装、继承和多态”。
+
+1. 封装隐藏了实现细节，使得代码模块化；
+2. 派生类可以继承父类的数据和方法，扩展了已经存在的模块，实现了代码重用；
+3. 多态则是“一个接口，多种实现”，通过派生类重写父类的虚函数，实现了接口的重用。
+
+> [为什么 SwiftUI 用 some View 作为视图类型？ - 吏小加的回答 - 知乎](https://www.zhihu.com/question/565523776/answer/2855918261)
+
+在 SwiftUI 中使用 some View 作为视图类型，是因为它表示该结构体返回的是一个视图，但不需要知道该视图的具体类型是什么。通过它可以返回任何类型的视图结构体，在各种复杂的高级组件中，经常会看到这种使用方式。从原理上来说，它通过一种类型约束，被称为 opaque return types。该特性允许编译器自行推断返回的视图类型，而不需要开发者去显式地指定它。some 属于 Swift 一种特殊的通用类型占位符，可以支持更加复杂的多种视图类型的组合与复用，让编写的 SwiftUI 代码变得更加灵活简洁，减少了类型错误的可能性，这也是 SwiftUI 多态性的一种体现。

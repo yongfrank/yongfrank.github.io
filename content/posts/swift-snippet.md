@@ -429,3 +429,73 @@ for i in stride(from: 0, through: 1000, by: 100) {
 
 1. NSCoding： 老的Cocoa方式，OC的方式
 2. Codable： 新的swift方式
+
+## Value type, Reference type
+
+[Swift值类型&引用类型](https://www.jianshu.com/p/d02ef86bbf79)
+
+Swift 中，值类型的赋值为深拷贝（Deep Copy），值语义（Value Semantics）即新对象和源对象是独立的，当改变新对象的属性，源对象不会受到影响，反之同理。
+
+## C, C++ Integration
+
+[在 Swift 中去调用 C/C++ 代码](https://glumes.com/post/ios/swift-call-c-function/)
+
+### Cpp integration
+
+1. Cpp File
+2. Objective-C Wapper, .h .mm
+3. Bridging-Header
+
+```cpp
+// .hpp file
+#ifndef CppTest_hpp
+#define CppTest_hpp
+
+#include <stdio.h>
+#include <iostream>
+
+class CppTest {
+    
+public:
+    void test();
+};
+
+#endif /* CppTest_hpp */
+
+// .cpp file
+#include "CppTest.hpp"
+
+void CppTest::test() {
+    printf("swift can call from Cpp");
+}
+```
+
+```objc
+// .h file
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface ObjCpp : NSObject
+- (void)run;
+@end
+
+NS_ASSUME_NONNULL_END
+
+// .mm file
+#import "ObjCpp.h"
+#import "CppTest.hpp"
+
+@implementation ObjCpp
+
+- (void)run {
+    auto sp = std::make_shared<CppTest>();
+    sp->test();
+}
+
+@end
+```
+
+```objc
+#import "ObjCpp.h"
+```

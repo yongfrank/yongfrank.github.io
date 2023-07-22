@@ -32,3 +32,15 @@ Certificate Authority (CA) Sign on the public key with its private key
 * 完成握手：最后，客户端和服务器交换Finished消息，以确认握手过程完成，双方可以开始进行加密数据传输。
 
 值得注意的是，TLS加密过程发生在TCP连接建立完成后。因此，在TCP三次握手阶段，还没有进行TLS加密。TLS加密是在建立了可靠的TCP连接后进行的，用于保障后续数据传输的安全。
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+    Client ->> Server: Client Hello, TLS Version, Cipher Suite, Random Number
+    Server ->> Client: Server Hello, TLS Version, Cipher Suite, Random Number
+    Server ->> Client: Server Certificate, Server Key Exchange, Server Hello Done
+    Client ->> Server: Client Key Exchange, Change Cipher Spec, Encrypted Handshake Message
+    Server ->> Client: Encrypted Handshake Message
+    Server ->> Client: Application Data
+```

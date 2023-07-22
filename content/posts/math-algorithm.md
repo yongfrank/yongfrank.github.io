@@ -4,17 +4,193 @@ date: "2022-10-02T16:37:00Z"
 title: 'Swift: Math Algorithm'
 ---
 
-<!-- markdownlint-disable -->
-<!--
- * @Author: Frank Chu
- * @Date: 2022-10-02 10:02:18
- * @LastEditors: Frank Chu
- * @LastEditTime: 2022-10-04 11:30:10
- * @FilePath: /blog/_posts/2022-10-02-math-algorithm.md
- * @Description: 
- * 
- * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
--->
+## BFS
+
+[BFS and DFS Templates Algorithms in Swift](https://holyswift.app/the-simplest-bfs-and-dfs-templates-for-algorithms-in-swift/)
+
+## LRU - Least Recently Used
+
+https://www.jianshu.com/p/e09870b60046
+那什么是 LruCache 呢？其实 LRU(Least Recently Used) 的意思就是近期最少使用算法，它的核心思想就是会优先淘汰那些近期最少使用的缓存对象。
+
+```swift
+class ListNode {
+    var key: Int
+    var value: Int
+    var next: ListNode?
+    var prev: ListNode?
+    
+    init(key: Int, value: Int) {
+        self.key = key
+        self.value = value
+    }
+}
+
+class LRUCache {
+    private var cache = [Int: ListNode]()
+    // 最大size
+    private var max_size = 0
+    // 当前size
+    private var cur_size = 0
+    // 头
+    private var head: ListNode?
+    // 尾
+    private var tail: ListNode?
+    
+    init(_ capacity: Int) {
+        max_size = capacity
+    }
+    
+    public func get(_ key: Int) -> Int {
+        if let node = cache[key] {
+            moveToHead(node: node)
+            return node.value
+        }
+        return -1
+    }
+    
+    public func put(_ key: Int, _ value: Int) {
+        if let node = cache[key] {
+            node.value = value
+            moveToHead(node: node)
+        } else {
+            let node = ListNode(key: key, value: value)
+            
+            addNode(node: node)
+            cache[key] = node
+            
+            cur_size += 1
+            if cur_size > max_size {
+                removeTail()
+                cur_size -= 1
+            }
+        }
+    }
+    
+    /// 添加节点到头部
+    private func addNode(node: ListNode) {
+        if self.head == nil {
+            self.head = node
+            self.tail = node
+        } else {
+            let temp = self.head!
+            self.head = node
+            self.head?.next = temp
+            temp.prev = self.head
+        }
+    }
+    
+    /// 移动到头部
+    private func moveToHead(node: ListNode) {
+        if node === self.head {
+            return
+        }
+        
+        let prev = node.prev
+        let next = node.next
+        prev?.next = next
+        if next != nil {
+            next!.prev = prev
+        } else {
+            self.tail = prev
+        }
+        let origin = self.head
+        self.head = node
+        self.head?.next = origin
+        origin?.prev = self.head
+    }
+    
+    /// 删除尾部
+    @discardableResult
+    private func removeTail() -> ListNode? {
+        if let tail = self.tail {
+            cache.removeValue(forKey: tail.key)
+            self.tail = tail.prev
+            self.tail?.next = nil
+            return tail
+        }
+        return nil
+    }
+}
+
+let cache = LRUCache(3)
+cache.put(1, 1)
+cache.put(2, 2)
+cache.put(3, 3)
+cache.put(4, 4)
+print(cache.get(4))
+print(cache.get(3))
+print(cache.get(2))
+print(cache.get(1))
+print("==========")
+cache.put(5, 5)
+print(cache.get(1))
+print(cache.get(2))
+print(cache.get(3))
+print(cache.get(4))
+print(cache.get(5))
+
+/**
+print("==========")
+4
+3
+2
+-1
+==========
+-1
+2
+3
+-1
+5
+==========
+*/
+```
+
+## Dynamic Programming
+
+[一个例子带你走进动态规划 -- 青蛙跳阶问题](https://cloud.tencent.com/developer/article/1822779)
+
+暴力递归
+
+★leetcode原题：一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 10 级的台阶总共有多少种跳法。
+
+有些小伙伴第一次见这个题的时候，可能会有点蒙圈，不知道怎么解决。其实可以试想：
+
+* 要想跳到第10级台阶，要么是先跳到第9级，然后再跳1级台阶上去;要么是先跳到第8级，然后一次迈2级台阶上去。
+* 同理，要想跳到第9级台阶，要么是先跳到第8级，然后再跳1级台阶上去;要么是先跳到第7级，然后一次迈2级台阶上去。
+* 要想跳到第8级台阶，要么是先跳到第7级，然后再跳1级台阶上去;要么是先跳到第6级，然后一次迈2级台阶上去。
+”
+假设跳到第n级台阶的跳数我们定义为f(n)，很显然就可以得出以下公式：
+
+## Tree
+
+### Preorder Traverse
+
+[二叉树的前序遍历](https://juejin.cn/post/7126400860640247815)
+
+```swift
+class Solution {
+   func preorderTraversal(_ root: TreeNode?) -> [Int] {
+        var res: [Int] = []
+       if nil == root {
+           return res
+       }
+       
+       var stack: [TreeNode?] = []
+       var node: TreeNode? = root
+       
+       while !stack.isEmpty || nil != node {
+           while nil != node {
+               res.append(node!.val)
+               stack.append(node)
+               node = node?.left
+           }
+           node = stack.removeLast()?.right
+       }
+       return res
+    }
+}
+```
 
 ## Prime Number
 
