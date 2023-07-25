@@ -1,7 +1,109 @@
 <!doctype html><html lang=en-us><title>Swift on Server | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
-<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:title" content="Swift on Server | Blog by Frank"><meta name=twitter:title content="Swift on Server | Blog by Frank"><meta property="og:description" content="Server Side Swift — 玩玩 Vapor 4"><meta property="og:url" content="https://yongfrank.github.io/posts/swift-on-server/"><meta property="og:site_name" content="Blog by Frank"><meta name=generator content="Hugo 0.115.4"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/swift-on-server/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><link rel=stylesheet href=https://yongfrank.github.io/katex/katex.min.css><link rel="shortcut icon" href=favicon.ico><script defer src=https://yongfrank.github.io/katex/katex.min.js></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:title" content="Swift on Server | Blog by Frank"><meta name=twitter:title content="Swift on Server | Blog by Frank"><meta property="og:description" content="
+Server Side Swift — 玩玩 Vapor 4
+Server Side Swift Using Vapor
+
+GET, JSON
+import Vapor
+
+struct Person: Content {
+    var name: String
+    var age: Int
+}
+
+func routes(_ app: Application) throws {
+    // ...
+    app.get(&#34;json&#34;, use: getJson)
+    // ...
+}
+
+func getJson(req: Request) throws -> Person {
+    return Person(name: &#34;Frank&#34;, age: 20)
+}
+curl --location 'http://127.0.0.1:8080/json'
+Colon
+// curl --location 'http://127.0.0.1:8080/customers/12'
+app.get(&#34;customers&#34;, &#34;:customerId&#34; , use: getCustomerId)
+
+func getCustomerId(req: Request) async throws -> String {
+    guard let customerId = req.parameters.get(&#34;customerId&#34;, as: Int.self) else {
+        throw Abort(.badRequest)
+    }
+    return &#34;\(customerId) is welcoming&#34;
+}
+POST
+import Foundation
+import Vapor
+
+struct Movie: Content {
+    let title: String
+    let year: Int
+}
+
+/*
+curl --location 'http://127.0.0.1:8080/movies' \
+--header 'Content-Type: application/json' \
+--data '{
+    &#34;title&#34;: &#34;Up&#34;,
+    &#34;year&#34;: 2020
+}'
+*/
+app.post(&#34;movies&#34;) { req async throws in
+    let movie = try req.content.decode(Movie.self)
+    return movie
+}
+Query
+import Foundation
+import Vapor
+
+struct HotelQuery: Content {
+    let sort: String
+    let search: String?
+}
+
+// curl --location 'http://127.0.0.1:8080/hotels?sort=desc'
+app.get(&#34;hotels&#34;) { req async throws in
+    let hotelQuery = try req.query.decode(HotelQuery.self)
+    return hotelQuery
+}
+MVC Pattern Design
+
+func routes(_ app: Application) throws {   
+    try app.register(collection: MoviesController())
+}
+
+struct MoviesController: RouteCollection {
+    func boot(routes: Vapor.RoutesBuilder) throws {
+        let movies = routes.grouped(&#34;movies&#34;)
+        
+        // /movies
+        movies.get(use: index)
+        
+        // /movies/20
+        movies.get(&#34;:moviesId&#34;, use: index)
+    }
+    
+    func index(req: Request) async throws -> String {
+        return &#34;index&#34;
+    }
+    
+    func show(req: Request) async throws -> String {
+        // 5xx case internalServerError
+        guard let moviesIndex = req.parameters.get(&#34;moviesId&#34;) else { throw Abort(.internalServerError) }
+        return &#34;\(moviesIndex)&#34;
+    }   
+}
+
+import Vapor
+
+struct Movie: Content {
+    let title: String
+    let year: Int
+}
+Middleware
+Vapor.codes"><meta property="og:url" content="https://yongfrank.github.io/posts/swift-on-server/"><meta property="og:site_name" content="Blog by Frank"><meta name=generator content="Hugo 0.115.4"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/swift-on-server/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><link rel=stylesheet href=https://yongfrank.github.io/katex/katex.min.css><link rel="shortcut icon" href=favicon.ico><script defer src=https://yongfrank.github.io/katex/katex.min.js></script>
 <script defer src=https://yongfrank.github.io/katex/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#578490><meta name=msapplication-TileColor content="#da532c"><head><script src=/js/MathJax/es5/tex-chtml.js></script></head><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Swift on Server</h1><time datetime=2023-07-21T10:52:27+08:00>July 21, 2023</time></header><p><a href=https://ken-60401.medium.com/server-side-swift-%E7%8E%A9%E7%8E%A9vapor-4-ff935af56ff9>Server Side Swift — 玩玩 Vapor 4</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Vapor</span>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#578490><meta name=msapplication-TileColor content="#da532c"><head><script src=/js/MathJax/es5/tex-chtml.js></script></head><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Swift on Server</h1><time datetime=2023-07-21T10:52:27+08:00>July 21, 2023</time></header><nav id=TableOfContents><ul><li><a href=#get-json>GET, JSON</a><ul><li><a href=#colon>Colon</a></li></ul></li><li><a href=#post>POST</a></li><li><a href=#query>Query</a></li><li><a href=#mvc-pattern-design>MVC Pattern Design</a></li><li><a href=#middleware>Middleware</a><ul><li><a href=#log-middleware>Log Middleware</a></li><li><a href=#authentication-middleware>Authentication Middleware</a></li></ul></li><li><a href=#setting-fluent-orm>Setting Fluent ORM</a></li><li><a href=#migration>Migration</a></li></ul></nav><ul><li><a href=https://ken-60401.medium.com/server-side-swift-%E7%8E%A9%E7%8E%A9vapor-4-ff935af56ff9>Server Side Swift — 玩玩 Vapor 4</a></li><li><a href="https://www.youtube.com/watch?v=2tACpHQeHfI">Server Side Swift Using Vapor</a></li></ul><h2 id=get-json>GET, JSON</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Vapor</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Person</span>: Content {
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>var</span> name: String
@@ -18,4 +120,118 @@
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> Person(name: <span style=color:#e6db74>&#34;Frank&#34;</span>, age: <span style=color:#ae81ff>20</span>)
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>curl --location <span style=color:#e6db74>&#39;http://127.0.0.1:8080/json&#39;</span>
-</span></span></code></pre></div></article></html>
+</span></span></code></pre></div><h3 id=colon>Colon</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>// curl --location &#39;http://127.0.0.1:8080/customers/12&#39;</span>
+</span></span><span style=display:flex><span>app.<span style=color:#66d9ef>get</span>(<span style=color:#e6db74>&#34;customers&#34;</span>, <span style=color:#e6db74>&#34;:customerId&#34;</span> , use: getCustomerId)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>getCustomerId</span>(req: Request) async <span style=color:#66d9ef>throws</span> -&gt; String {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> customerId = req.parameters.<span style=color:#66d9ef>get</span>(<span style=color:#e6db74>&#34;customerId&#34;</span>, <span style=color:#66d9ef>as</span>: Int.<span style=color:#66d9ef>self</span>) <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>throw</span> Abort(.badRequest)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>\(</span>customerId<span style=color:#e6db74>)</span><span style=color:#e6db74> is welcoming&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=post>POST</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Vapor</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Movie</span>: Content {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> title: String
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> year: Int
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/*
+</span></span></span><span style=display:flex><span><span style=color:#75715e>curl --location &#39;http://127.0.0.1:8080/movies&#39; \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>--header &#39;Content-Type: application/json&#39; \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>--data &#39;{
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;title&#34;: &#34;Up&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;year&#34;: 2020
+</span></span></span><span style=display:flex><span><span style=color:#75715e>}&#39;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>*/</span>
+</span></span><span style=display:flex><span>app.post(<span style=color:#e6db74>&#34;movies&#34;</span>) { req async <span style=color:#66d9ef>throws</span> <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> movie = <span style=color:#66d9ef>try</span> req.content.decode(Movie.<span style=color:#66d9ef>self</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> movie
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=query>Query</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Vapor</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>HotelQuery</span>: Content {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> sort: String
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> search: String?
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// curl --location &#39;http://127.0.0.1:8080/hotels?sort=desc&#39;</span>
+</span></span><span style=display:flex><span>app.<span style=color:#66d9ef>get</span>(<span style=color:#e6db74>&#34;hotels&#34;</span>) { req async <span style=color:#66d9ef>throws</span> <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> hotelQuery = <span style=color:#66d9ef>try</span> req.query.decode(HotelQuery.<span style=color:#66d9ef>self</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> hotelQuery
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=mvc-pattern-design>MVC Pattern Design</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>routes</span>(<span style=color:#66d9ef>_</span> app: Application) <span style=color:#66d9ef>throws</span> {   
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span> app.register(collection: MoviesController())
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>MoviesController</span>: RouteCollection {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>boot</span>(routes: Vapor.RoutesBuilder) <span style=color:#66d9ef>throws</span> {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> movies = routes.grouped(<span style=color:#e6db74>&#34;movies&#34;</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// /movies</span>
+</span></span><span style=display:flex><span>        movies.<span style=color:#66d9ef>get</span>(use: index)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// /movies/20</span>
+</span></span><span style=display:flex><span>        movies.<span style=color:#66d9ef>get</span>(<span style=color:#e6db74>&#34;:moviesId&#34;</span>, use: index)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>index</span>(req: Request) async <span style=color:#66d9ef>throws</span> -&gt; String {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;index&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>show</span>(req: Request) async <span style=color:#66d9ef>throws</span> -&gt; String {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// 5xx case internalServerError</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> moviesIndex = req.parameters.<span style=color:#66d9ef>get</span>(<span style=color:#e6db74>&#34;moviesId&#34;</span>) <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>throw</span> Abort(.internalServerError) }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>\(</span>moviesIndex<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>    }   
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Vapor</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Movie</span>: Content {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> title: String
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> year: Int
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=middleware>Middleware</h2><p><a href="https://docs.vapor.codes/advanced/middleware/?h=middle">Vapor.codes</a></p><p>Middleware is a logic chain between the client and a Vapor route handler. It allows you to perform operations on incoming requests before they get to the route handler and on outgoing responses before they go to the client.</p><h3 id=log-middleware>Log Middleware</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>routes</span>(<span style=color:#66d9ef>_</span> app: Application) <span style=color:#66d9ef>throws</span> {
+</span></span><span style=display:flex><span>    app.middleware.use(LogMiddleware())
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Vapor</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>LogMiddleware</span>: AsyncMiddleware {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>respond</span>(to request: Vapor.Request, chainingTo next: Vapor.AsyncResponder) async <span style=color:#66d9ef>throws</span> -&gt; Vapor.Response {
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;LOG MIDDLEWARE&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>try</span> await next.respond(to: request)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=authentication-middleware>Authentication Middleware</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>/**
+</span></span></span><span style=display:flex><span><span style=color:#75715e>curl --location &#39;http://127.0.0.1:8080/members&#39; \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>--header &#39;Authorization: Bearer 123&#39;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>*/</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Vapor</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>AuthenticationMiddleware</span>: AsyncMiddleware {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>respond</span>(to request: Vapor.Request, chainingTo next: Vapor.AsyncResponder) async <span style=color:#66d9ef>throws</span> -&gt; Vapor.Response {
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// Headers: Authorization: Bearer </span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> auth = request.headers.bearerAuthorization <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>throw</span> Abort(.unauthorized)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        print(auth.token)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>try</span> await next.respond(to: request)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>app.grouped(AuthenticationMiddleware()).group(<span style=color:#e6db74>&#34;members&#34;</span>) { route <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>    route.<span style=color:#66d9ef>get</span> { req async -&gt; String <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Members index&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    route.<span style=color:#66d9ef>get</span>(<span style=color:#e6db74>&#34;hello&#34;</span>) { req async -&gt; String <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Members Hello&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=setting-fluent-orm>Setting Fluent ORM</h2><p>ORM: Object Relational Mapping</p><p><a href=https://www.elephantsql.com>PostgreSQL as a Service</a> Perfectly configured and optimized PostgreSQL databases ready in 2 minutes.</p><h2 id=migration>Migration</h2></article></html>
