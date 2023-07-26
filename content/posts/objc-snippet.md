@@ -884,10 +884,16 @@ protocol Equatable {
 ```objc
 #import "类名.h"
 
-@interface 类名 ()
+@interface 类名 () <XYZViewDelegate>
 // 在此添加私有成员变量、属性、声明方法
 @end
 ```
+
+(): 这里的空括号表示类的扩展（Extension），在扩展中可以添加额外的成员变量、属性、方法或遵循协议等，以增强类的功能。
+
+这里使用尖括号括起来的部分表示该类遵循了一个协议XYZViewDelegate。协议名称放在尖括号内，多个协议之间可以用逗号分隔。遵循协议意味着该类的实例可以实现协议中定义的方法，以响应相关事件或提供实现。
+
+### Details
 
 Objective-C的Category和Extension
 Category是Objective-C语言的一个特性，它主要用于为现有的类添加新的方法，无论这个类是系统类还是自定义类。你可以将类的实现分散到多个不同的源文件中，这使得你可以在不访问类源代码的情况下扩展类的功能。

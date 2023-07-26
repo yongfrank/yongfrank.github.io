@@ -3,9 +3,42 @@ title: "Computer Network"
 date: 2023-07-21T09:13:51+08:00
 ---
 
-## CA, Https, Symmetric-key algorithm, Public-key cryptography
+## Layer
 
-[非对称加密、对称加密、签名、CA机构、证书、https - bilibili](https://www.bilibili.com/video/BV1TP411G7wb)
+![Network layer model](https://miro.medium.com/v2/resize:fit:1044/format:webp/0*f_JZX-PtepdZwOlN.png)
+
+### Application Layer 
+
+BGP DHCP(v6) DNS FTP HTTP HTTPS IMAP IRC LDAP MGCP MQTT NNTP NTP OSPF POP PTP ONC/RPC RTP RTSP RIP SIP SMTP SNMP SSH Telnet TLS/SSL(HTTPS)
+
+### Presentation Layer 
+
+MIME
+
+### Session Layer 
+
+PPTP
+
+### Transport Layer 
+
+TCP: (Three way handshake, four way handshake) UDP DCCP SCTP RSVP QUIC
+
+### Network Layer
+
+IP IPv4 IPv6 ICMP ICMPv6 ECN IGMP OSPF IPsec RIP
+
+### Data Link Layer
+
+Tunnels PPP MAC
+
+### Physical Layer
+
+IEEE 802.11(a, b, g, n, ac, ax)
+
+## CA, Https, Symmetric-key algorithm, Public-key cryptography (Application Layer)
+
+* [非对称加密、对称加密、签名、CA机构、证书、https - bilibili](https://www.bilibili.com/video/BV1TP411G7wb)
+* [HTTP是什么？- bilibili](https://www.bilibili.com/video/BV1zb4y127JU/?share_source=copy_web&vd_source=bf4952280cde801b178268abc99a7047)
 
 ### Public-key cryptography
 
@@ -44,3 +77,40 @@ sequenceDiagram
     Server ->> Client: Encrypted Handshake Message
     Server ->> Client: Application Data
 ```
+
+## TCP Three-way handshake, four-way handshake Termination (Transport Layer)
+
+[bilibili - TCP三次握手和四次挥手](https://www.bilibili.com/video/BV18h41187Ep/?share_source=copy_web&vd_source=bf4952280cde801b178268abc99a7047)
+
+```
+Client SYN 8633
+Server SYN 303 ACK 8634
+Server 8634 ACK 304
+
+Client FIN ACK
+Server ACK
+Server FIN ACK
+Client ACK
+```
+
+三次握手和四次挥手是TCP协议中建立和断开连接的过程。
+
+三次握手（Three-Way Handshake）：
+
+客户端发送连接请求（SYN：Synchronize）给服务器，表示客户端要建立连接。
+服务器收到连接请求后，回复一个确认连接请求（SYN-ACK：Synchronize-Acknowledge）给客户端。
+客户端收到服务器的确认连接请求后，再回复一个确认连接请求（ACK：Acknowledge）给服务器。
+这样，建立连接的过程就完成了，双方都确认对方能够收发数据，可以开始传输数据。
+
+四次挥手（Four-Way Handshake）：
+
+客户端发送断开连接请求（FIN：Finish）给服务器，表示客户端要断开连接。
+服务器收到断开连接请求后，回复一个确认断开连接请求（ACK）给客户端，表示服务器已经收到了断开请求。
+服务器检查是否还有未传输完的数据，如果有，先传输完数据再发送一个断开连接请求（FIN）给客户端，表示服务器也准备好断开连接了。
+客户端收到服务器的断开连接请求后，回复一个确认断开连接请求（ACK）给服务器，表示客户端已经收到了断开请求。
+这样，断开连接的过程就完成了，双方都确认对方已经断开连接，不再传输数据。
+
+总结：
+
+三次握手用于建立连接，确保双方都能正常通信。
+四次挥手用于断开连接，确保双方都知道对方已经断开连接，不再传输数据。

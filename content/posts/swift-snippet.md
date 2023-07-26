@@ -499,3 +499,12 @@ NS_ASSUME_NONNULL_END
 ```objc
 #import "ObjCpp.h"
 ```
+
+### dylib for Xcode project
+
+[Linking Homebrew Libraries in Xcode](https://youtu.be/_BhDsxX7jmQ)
+
+```sh
+cd opt/homebrew/include
+# Header Search Paths
+```

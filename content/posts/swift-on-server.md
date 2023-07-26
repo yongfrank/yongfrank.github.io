@@ -189,3 +189,13 @@ ORM: Object Relational Mapping
 [PostgreSQL as a Service](https://www.elephantsql.com) Perfectly configured and optimized PostgreSQL databases ready in 2 minutes.
 
 ## Migration
+
+```swift
+// configure.swift
+app.databases.use(.postgres(hostname: "", username: "", password: "", database: ""), as: .psql)
+app.migrations.add(CreateMoviesTableMigration())
+```
+
+```sh
+vapor run migrate
+```

@@ -1147,3 +1147,7 @@ NSLog(@"str is empty!!!");
     return rootViewController;
 }
 ```
+
+## Safe Area
+
+[iPhone X Safe Area](https://useyourloaf.com/blog/supporting-iphone-x/)
