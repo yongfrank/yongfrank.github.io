@@ -10,6 +10,8 @@ date: 2023-03-13T17:23:10+08:00
 
 ## Live Activity
 
+> [盒马 iOS Live Activity &“灵动岛”配送场景实践](https://juejin.cn/post/7164594517562097671)
+
 ### 相关限制
 
 * iOS 16.1 及以上

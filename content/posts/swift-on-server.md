@@ -98,6 +98,8 @@ func routes(_ app: Application) throws {
 
 struct MoviesController: RouteCollection {
     func boot(routes: Vapor.RoutesBuilder) throws {
+        // let app = routes.grouped("")
+        // app.get { req async in ... }
         let movies = routes.grouped("movies")
         
         // /movies
@@ -194,8 +196,83 @@ ORM: Object Relational Mapping
 // configure.swift
 app.databases.use(.postgres(hostname: "", username: "", password: "", database: ""), as: .psql)
 app.migrations.add(CreateMoviesTableMigration())
+
+struct CreateMoviesTableMigration: AsyncMigration {
+    
+    func prepare(on database: FluentKit.Database) async throws {
+        // Create movies table
+        try await database.schema("movies")
+            .id()
+            .field("title", .string, .required)
+            .create()
+    }
+    
+    func revert(on database: Database) async throws {
+        // delete movies table
+        try await database.schema("movies")
+            .delete()
+    }
+    
+}
 ```
 
 ```sh
 vapor run migrate
+vapor run migrate --revert
+```
+
+## DB CRUD
+
+```swift
+// Create Movie
+app.post("movies") { req async throws in
+    let movie = try req.content.decode(Movie.self)
+    try await movie.save(on: req.db)
+    return movie
+}
+
+// Get All Movies
+app.get("movies") { req async throws in
+    try await Movie.query(on: req.db)
+        .all()
+}
+
+// Get Specific Movie from id
+// /movie/A7CD531E-B38B-4572-8FE4-DCA406A723EC
+app.get("movie", ":id") { req async throws in
+    guard let movie = try await Movie.find(req.parameters.get("id"), on: req.db) else {
+        throw Abort(.badRequest)
+    }
+    return movie
+}
+
+// Get Specific Movie from id
+// /movie/A7CD531E-B38B-4572-8FE4-DCA406A723EC
+app.get("movie", ":id") { req async throws in
+    guard let movie = try await Movie.find(req.parameters.get("id"), on: req.db) else {
+        throw Abort(.badRequest)
+    }
+    return movie
+}
+
+app.delete("movie", ":id") { req async throws in
+    guard let movie = try await Movie.find(req.parameters.get("id"), on: req.db) else {
+        throw Abort(.badRequest)
+    }
+    try await movie.delete(on: req.db)
+    return movie
+}
+
+// /movies Put
+app.put("movies") { req async throws in
+    let movie = try req.content.decode(Movie.self)
+    guard let movieUpToDate = try await Movie.find(movie.id, on: req.db) else {
+        throw Abort(.badRequest)
+    }
+    
+    movieUpToDate.title = movie.title
+    
+    try await movieUpToDate.update(on: req.db)
+    return movieUpToDate
+}
 ```
