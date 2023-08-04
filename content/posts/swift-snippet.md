@@ -436,6 +436,59 @@ for i in stride(from: 0, through: 1000, by: 100) {
 
 Swift 中，值类型的赋值为深拷贝（Deep Copy），值语义（Value Semantics）即新对象和源对象是独立的，当改变新对象的属性，源对象不会受到影响，反之同理。
 
+## Difference Between Struct and Class
+
+[Understanding Swift](https://www.hackingwithswift.com/quick-start/understanding-swift/)
+
+### Q1: [Why does Swift have both classes and structs?](https://www.hackingwithswift.com/quick-start/understanding-swift/why-does-swift-have-both-classes-and-structs)
+
+* Classes have deinitializers, which are methods that are called when an instance of the class is destroyed, but structs do not.
+* 常量类中的变量属性可以自由修改，但常量结构中的变量属性不能。
+* Variable properties in constant classes can be modified freely, but variable properties in constant structs cannot.
+
+### Q2: [Why do classes have deinitializers and structs don’t?](https://www.hackingwithswift.com/quick-start/understanding-swift/why-do-classes-have-deinitializers-and-structs-dont)
+
+The job of deinitializers is to tell us when a class instance was destroyed. For structs this is fairly simple: the struct is destroyed when whatever owns it no longer exists. So, if we create a struct inside a method and the methods ends, the struct is destroyed.
+
+So, the simple reason for why structs don’t have deinitializers is because they don’t need them: each struct has its own copy of its data, so nothing special needs to happen when it is destroyed.
+
+You can put your deinitializer anywhere you want in your code, but I love this quote from Anne Cahalan: “Code should read like sentences, which makes me think my classes should read like chapters. So the deinitializer goes at the end, it's the ~fin~ of the class!”
+
+### override
+
+[Swift中final、extension、override、@objc等关键字的使用](https://blog.csdn.net/qq_28091923/article/details/86529569)
+
+override 关键字在 Swift 中用来明确表示子类想要覆盖（或重写）父类的方法、属性或下标脚本。这个关键字提供了一种安全机制，如果你尝试覆盖的成员在父类中不存在，编译器将给出错误提示，避免了可能的误操作。
+
+在 Objective-C 中，没有对应的 override 关键字。当你在子类中使用和父类相同的方法名定义方法时，Objective-C 会默认进行覆盖。这也意味着，在 Objective-C 中，如果你错误地拼写了想要覆盖的方法名，编译器将不会发出任何警告，这可能会导致意料之外的运行时行为。
+
+所以，Swift 中的 override 关键字提供了额外的类型检查和安全性，可以在编译时就捕获可能的错误，这是它与 Objective-C 行为的一个主要区别。
+
+### class var, static var
+
+class var 只能在类（class）中定义，不能在枚举（enum）和结构体（struct）中定义。另外，class var 只能定义计算属性，不能定义存储属性，但是它们可以被子类重写。
+
+所以简单总结就是，如果你希望定义一个类型级别的存储属性，只能用 static var；如果你希望定义一个可被子类重写的类型级别的计算属性，可以用 class var。
+
+```swift
+class MyClass {
+    class var myVar: Int {
+        return 42
+    }
+}
+
+class MySubClass: MyClass {
+    override class var myVar: Int {
+        return 84
+    }
+}
+
+print(MyClass.myVar) // 输出 42
+print(MySubClass.myVar) // 输出 84
+```
+
+[`@property(class, nonatomic, readonly) BOOL isSupported;`](https://developer.apple.com/documentation/arkit/arconfiguration/2923553-issupported?language=objc)
+
 ## C, C++ Integration
 
 [在 Swift 中去调用 C/C++ 代码](https://glumes.com/post/ios/swift-call-c-function/)

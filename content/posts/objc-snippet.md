@@ -1683,6 +1683,23 @@ NS_ENUM会自动支持 Swift 的语法糖，例如你可以在 Swift 中直接�
 }
 ```
 
+## NSUserDefaults
+
+[NSUserDefaults](https://developer.apple.com/documentation/foundation/nsuserdefaults?language=objc)
+
+[Yachen Liu - Twitter](https://twitter.com/Blankwonder/status/1686246482012450816?s=20)
+
+> 首先解释下背景，UserDefaults 是 iOS/macOS 系统中一个类似于 Windows 注册表的机制。但与注册表不同的是，UserDefaults 并不像注册表那样是整个系统的公用大数据库，它的每个 app 的存储空间是隔离的，这也是导致大部分开发者不理解这项政策的缘由，既然是 per app 隔离的存储，那就和存取一个文件没有区别，为什么要再额外申报，这有什么意义。
+>
+> 然而事实上 UserDefaults 的行为并非如此，UserDefaults 是一个非常古老的存在，最早在 2001 年的 Mac OS X 中加入，那时候的系统设计还没有太多的隐私考虑。一个关键问题是，UserDefaults 中存在 domain 的分层设计，允许系统通过 UserDefaults 将一些必要的系统设置暴露给 app，这些公共的信息非常庞杂（见附图，如果是开发者的话，可以自己打印 NSUserDefaults.standardUserDefaults.dictionaryRepresentation 查看），比方说 ApplePerAppLanguageSelectionBundleIdentifiers 键值内，就包含了所有曾经手动设置过语言选项的 app 的 bundle id，CarCapabilities 中甚至包含了 CarPlay 设备的唯一序列号，其余键值中包含的时间戳也非常具有特异性。对这些公共设置进行指纹化处理，可以轻松做到跨应用的用户追踪。（这种做法也是很有想象力）
+
+```objc
+for (NSString *key in [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]) {
+    id value = [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] objectForKey:key];
+    NSLog(@"Key: %@, Value: %@", key, value);
+}
+```
+
 ## KVO
 
 ### KVC

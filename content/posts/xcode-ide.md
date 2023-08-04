@@ -832,6 +832,8 @@ platform :ios, '11.0'
 
 请注意，提升 Deployment Target 版本可能会影响你的 app 对旧设备的支持。在提升版本前，确保了解这个改变可能带来的影响。
 
+## Xcode Simulator Installation
 
+[Xcode安装特定版本系统的模拟器（不支持断点下载所以总是下载失败）](https://blog.csdn.net/XunCiy/article/details/128253793)
 
-
+![Console - macOS](https://img-blog.csdnimg.cn/e86c7ce1de2b417ea3e4fd6c8b2f167a.png)

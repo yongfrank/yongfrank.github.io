@@ -272,6 +272,29 @@ TextField("regex", text: $regexResearch, axis: .vertical)
 
 ## Responding to events
 
+> [How to add an AppDelegate to a SwiftUI app](https://www.hackingwithswift.com/quick-start/swiftui/how-to-add-an-appdelegate-to-a-swiftui-app)
+
+```swift
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        print("Your code here")
+        return true
+    }
+}
+
+@main
+struct NewIn14App: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+```
+
+
 ## Tap and gestures
 
 > * [stackoverflow - SwiftUI TapGesture and LongPressGesture in ScrollView with tap indication not working](https://stackoverflow.com/questions/62733633/swiftui-tapgesture-and-longpressgesture-in-scrollview-with-tap-indication-not-wo)
