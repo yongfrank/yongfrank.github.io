@@ -1,5 +1,85 @@
 <!doctype html><html lang=en-us><title>Swift Concurrency | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:title" content="Swift Concurrency | Blog by Frank"><meta name=twitter:title content="Swift Concurrency | Blog by Frank"><meta property="og:description" content="
-Swift Concurrency by Example"><meta property="og:url" content="https://yongfrank.github.io/posts/swift-concurrency/"><meta property="og:site_name" content="Blog by Frank"><meta name=generator content="Hugo 0.117.0"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/swift-concurrency/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><link rel=stylesheet href=https://yongfrank.github.io/katex/katex.min.css><link rel="shortcut icon" href=favicon.ico><script defer src=https://yongfrank.github.io/katex/katex.min.js></script>
+Swift Concurrency by Example"><meta property="og:url" content="https://yongfrank.github.io/posts/swift-concurrency/"><meta property="og:site_name" content="Blog by Frank"><meta name=generator content="Hugo 0.118.2"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/swift-concurrency/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><link rel=stylesheet href=https://yongfrank.github.io/katex/katex.min.css><link rel="shortcut icon" href=favicon.ico><script defer src=https://yongfrank.github.io/katex/katex.min.js></script>
 <script defer src=https://yongfrank.github.io/katex/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#578490><meta name=msapplication-TileColor content="#da532c"><head><script src=/js/MathJax/es5/tex-chtml.js></script></head><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Swift Concurrency</h1><time datetime=2023-04-22T17:32:57+08:00>April 22, 2023</time></header><blockquote><p><a href=https://www.hackingwithswift.com/quick-start/concurrency/>Swift Concurrency by Example</a></p></blockquote><h2 id=introduction>Introduction</h2><h2 id=asyncawait>Async/await</h2><h2 id=sequences-and-streams>Sequences and streams</h2><h2 id=tasks-and-task-groups>Tasks and task groups</h2><h2 id=actors>Actors</h2><blockquote><p><a href=https://www.hackingwithswift.com/quick-start/concurrency/how-to-use-mainactor-to-run-code-on-the-main-queue>How to use @MainActor to run code on the main queue</a></p></blockquote><p>Error: Publishing changes from background threads is not allowed; make sure to publish values from the main thread (via operators like receive(on:)) on model updates.</p><h2 id=solutions>Solutions</h2></article></html>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#578490><meta name=msapplication-TileColor content="#da532c"><head><script src=/js/MathJax/es5/tex-chtml.js></script></head><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Swift Concurrency</h1><time datetime=2023-09-08T17:32:57+08:00>September 08, 2023</time></header><nav id=TableOfContents><ul><li><a href=#introduction>Introduction</a><ul><li><a href=#datatask-closure>DataTask, closure</a></li><li><a href=#concurrency>Concurrency</a></li></ul></li><li><a href=#asyncawait>Async/await</a></li><li><a href=#sequences-and-streams>Sequences and streams</a></li><li><a href=#tasks-and-task-groups>Tasks and task groups</a></li><li><a href=#actors>Actors</a></li><li><a href=#solutions>Solutions</a></li></ul></nav><blockquote><p><a href=https://www.hackingwithswift.com/quick-start/concurrency/>Swift Concurrency by Example</a></p></blockquote><h2 id=introduction>Introduction</h2><blockquote><p><a href=https://www.hackingwithswift.com/swift/5.7/top-level-concurrency>Concurrency in top-level code</a></p><p><a href=https://mp.weixin.qq.com/s/FjEVCxvmsu9hoMqS2zhvMA>玩了分手厨房，我理解了协程是什么</a></p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Foundation</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> apiURL = <span style=color:#e6db74>&#34;https://my.api.mockaroo.com/movie_ticket.json?key=8795e870&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>MovieTicket</span>: Codable {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> movieTitle, movieGenre: String
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> movieTicketPrice: Float
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> movieDuration: Int
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>TicketError</span>: Error {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> urlError
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> invalidServerResponse
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=datatask-closure>DataTask, closure</h3><p><a href=https://www.hackingwithswift.com/quick-start/concurrency/how-to-create-continuations-that-can-throw-errors>How to create continuations that can throw errors</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>getDataFromClosure</span>(completionHandler: @escaping (Result<span style=color:#f92672>&lt;</span>[MovieTicket], Error&gt;) -&gt; Void) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> url = URL(string: apiURL) <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        completionHandler(.failure(TicketError.urlError))
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> error = error {
+</span></span><span style=display:flex><span>            completionHandler(.failure(error))
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> response = response <span style=color:#66d9ef>as</span>? HTTPURLResponse,
+</span></span><span style=display:flex><span>              response.statusCode == <span style=color:#ae81ff>200</span>,
+</span></span><span style=display:flex><span>              <span style=color:#66d9ef>let</span> data = data
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            completionHandler(.failure(TicketError.invalidServerResponse))
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> tickets = <span style=color:#66d9ef>try</span> JSONDecoder().decode([MovieTicket].<span style=color:#66d9ef>self</span>, from: data)
+</span></span><span style=display:flex><span>            completionHandler(.success(tickets))
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>            completionHandler(.failure(error))
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }.resume()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>getDataFromClosure { result <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>switch</span> result {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> .success(<span style=color:#66d9ef>let</span> tickets):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> (index, ticket) <span style=color:#66d9ef>in</span> tickets.enumerated() {
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;</span><span style=color:#e6db74>\(</span>index<span style=color:#e6db74>)</span><span style=color:#e6db74>: </span><span style=color:#e6db74>\(</span>ticket.movieTitle<span style=color:#e6db74>)</span><span style=color:#e6db74> [genre] - </span><span style=color:#e6db74>\(</span>ticket.movieGenre<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> .failure(<span style=color:#66d9ef>let</span> failure):
+</span></span><span style=display:flex><span>        print(failure.localizedDescription)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    exit(<span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// https://developer.apple.com/forums/thread/713085</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// The standard workaround is to add a call to dispatchMain() which ‘parks’ the main thread,</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// preventing the tool from exiting. If you then want to exit after your network request is complete, call exit(_:) directly.</span>
+</span></span><span style=display:flex><span>dispatchMain()
+</span></span></code></pre></div><h3 id=concurrency>Concurrency</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>getDataFromConcurrency</span>() async <span style=color:#66d9ef>throws</span> -&gt; [MovieTicket] {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> url = URL(string: apiURL) <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>throw</span> TicketError.urlError }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> (data, response) = <span style=color:#66d9ef>try</span> await URLSession.shared.data(from: url)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>guard</span> <span style=color:#66d9ef>let</span> response = response <span style=color:#66d9ef>as</span>? HTTPURLResponse,
+</span></span><span style=display:flex><span>          response.statusCode == <span style=color:#ae81ff>200</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> { <span style=color:#66d9ef>throw</span> TicketError.invalidServerResponse }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> tickets = <span style=color:#66d9ef>try</span> JSONDecoder().decode([MovieTicket].<span style=color:#66d9ef>self</span>, from: data)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> tickets
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>do</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> tickets = <span style=color:#66d9ef>try</span> await getDataFromConcurrency()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (index, ticket) <span style=color:#66d9ef>in</span> tickets.enumerated() {
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;</span><span style=color:#e6db74>\(</span>index<span style=color:#e6db74>)</span><span style=color:#e6db74>: </span><span style=color:#e6db74>\(</span>ticket.movieTitle<span style=color:#e6db74>)</span><span style=color:#e6db74> [genre] - </span><span style=color:#e6db74>\(</span>ticket.movieGenre<span style=color:#e6db74>)</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>} <span style=color:#66d9ef>catch</span> {
+</span></span><span style=display:flex><span>    print(error.localizedDescription)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=asyncawait>Async/await</h2><h2 id=sequences-and-streams>Sequences and streams</h2><h2 id=tasks-and-task-groups>Tasks and task groups</h2><h2 id=actors>Actors</h2><blockquote><p><a href=https://www.hackingwithswift.com/quick-start/concurrency/how-to-use-mainactor-to-run-code-on-the-main-queue>How to use @MainActor to run code on the main queue</a></p></blockquote><p>Error: Publishing changes from background threads is not allowed; make sure to publish values from the main thread (via operators like receive(on:)) on model updates.</p><h2 id=solutions>Solutions</h2></article></html>
