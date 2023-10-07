@@ -7,6 +7,47 @@ date: 2023-04-08T14:58:09+08:00
 
 > [确保线程安全的几种方法](https://developer.aliyun.com/article/254282?spm=a2c6h.13262185.profile.388.699e167e7REVuk)
 
+## Runloop
+
+> [Runloop explained](https://hit-alibaba.github.io/interview/iOS/ObjC-Basic/Runloop.html)
+>
+> Runloop 是什么？Runloop 还是比较顾名思义的一个东西，说白了就是一种循环，只不过它这种循环比较高级。一般的 while 循环会导致 CPU 进入忙等待状态，而 Runloop 则是一种“闲”等待，这部分可以类比 Linux 下的 epoll。当没有事件时，Runloop 会进入休眠状态，有事件发生时， Runloop 会去找对应的 Handler 处理事件。Runloop 可以让线程在需要做事的时候忙起来，不需要的话就让线程休眠。
+>
+> 一个 Timer 一次只能加入到一个 RunLoop 中。我们日常使用的时候，通常就是加入到当前的 runLoop 的 default mode 中，而 ScrollView 在用户滑动时，主线程 RunLoop 会转到 UITrackingRunLoopMode 。而这个时候， Timer 就不会运行。
+
+```swift
+class DataTimer: NSObject, ObservableObject {
+    @Published var timer = 0
+    
+    var timerObject = Timer()
+    
+    @objc func increment() {
+        self.timer += 1
+    }
+    
+    func runTimer() {
+        timerObject = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(increment), userInfo: nil, repeats: true)
+//        RunLoop.main.add(timerObject, forMode: .common)
+    }
+}
+
+struct ContentView: View {
+    @StateObject var timer = DataTimer()
+    
+    var body: some View {
+        NavigationStack {
+            Text("\(timer.timer)")
+            List {
+                Text("hi")
+            }
+        }
+        .onAppear {
+            timer.runTimer()
+        }
+    }
+}
+```
+
 ## GCD RAC
 
 [iOS开发「RAC」RAC的定时、延时、超时方法](https://www.jianshu.com/p/d5b90f08f2fc)

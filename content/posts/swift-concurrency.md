@@ -10,6 +10,8 @@ date: 2023-09-08T17:32:57+08:00
 > [Concurrency in top-level code](https://www.hackingwithswift.com/swift/5.7/top-level-concurrency)
 >
 > [玩了分手厨房，我理解了协程是什么](https://mp.weixin.qq.com/s/FjEVCxvmsu9hoMqS2zhvMA)
+>
+> [通过 Swift 的 async await 语法糖进行 URLSession](https://moe.jimmy0w0.me/2022/05/26/swift-urlsession-in-async-await/)
 
 ```swift
 import Foundation
