@@ -1745,6 +1745,41 @@ iOS中的Method Swizzling是一种技术，用于在运行时交换两个方法�
 
 ### method-swizzling
 
+```swift
+import UIKit
+import Foundation
+
+extension UIColor {
+    @objc func colorDescription() -> String {
+        return "Print rainbow colours."
+    }
+    
+    static let swizzleDescriptionImplementation: Void = {
+        let instance: UIColor = .red
+        let aClass: AnyClass! = object_getClass(instance)
+        let originalMethod = class_getInstanceMethod(aClass, #selector(description))
+        let swizzledMethod = class_getInstanceMethod(aClass, #selector(colorDescription))
+        
+        if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
+            method_exchangeImplementations(originalMethod, swizzledMethod)
+        }
+    }()
+    
+    static func swizzleDescription() {
+        self.swizzleDescriptionImplementation
+    }
+}
+
+print(UIColor.red)
+print(UIColor.blue)
+UIColor.swizzleDescription()
+print(UIColor.red)
+print(UIColor.blue)
+UIColor.swizzleDescription()
+print(UIColor.red)
+print(UIColor.blue)
+```
+
 ## 消息转发 - Message Forwarding
 
 > [消息转发篇(Message Forwarding)](https://juejin.cn/post/6844903600968171533)

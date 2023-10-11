@@ -29,6 +29,19 @@ class DataTimer: NSObject, ObservableObject {
         timerObject = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(increment), userInfo: nil, repeats: true)
 //        RunLoop.main.add(timerObject, forMode: .common)
     }
+
+    // 主线程 默认有 runloop
+    // 而 GCD 中没有 runloop 
+    // https://blog.csdn.net/M316625387/article/details/83787313
+    func runTimerOnGCD() {
+        DispatchQueue.global().async {
+            print(Thread.current)
+            self.timerObject = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.increment), userInfo: nil, repeats: true)
+            RunLoop.current.add(Port(), forMode: .default)
+            RunLoop.current.run(mode: .default, before: .distantFuture)
+//            RunLoop.main.add(self.timerObject, forMode: .common)
+        }
+    }
 }
 
 struct ContentView: View {
