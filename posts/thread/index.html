@@ -16,6 +16,19 @@
 </span></span><span style=display:flex><span>        timerObject = Timer.scheduledTimer(timeInterval: <span style=color:#ae81ff>1.0</span>, target: <span style=color:#66d9ef>self</span>, selector: <span style=color:#66d9ef>#selector</span>(increment), userInfo: <span style=color:#66d9ef>nil</span>, repeats: <span style=color:#66d9ef>true</span>)
 </span></span><span style=display:flex><span><span style=color:#75715e>//        RunLoop.main.add(timerObject, forMode: .common)</span>
 </span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 主线程 默认有 runloop</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 而 GCD 中没有 runloop </span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// https://blog.csdn.net/M316625387/article/details/83787313</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>runTimerOnGCD</span>() {
+</span></span><span style=display:flex><span>        DispatchQueue.global().async {
+</span></span><span style=display:flex><span>            print(Thread.current)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>self</span>.timerObject = Timer.scheduledTimer(timeInterval: <span style=color:#ae81ff>1.0</span>, target: <span style=color:#66d9ef>self</span>, selector: <span style=color:#66d9ef>#selector</span>(<span style=color:#66d9ef>self</span>.increment), userInfo: <span style=color:#66d9ef>nil</span>, repeats: <span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>            RunLoop.current.add(Port(), forMode: .<span style=color:#66d9ef>default</span>)
+</span></span><span style=display:flex><span>            RunLoop.current.run(mode: .<span style=color:#66d9ef>default</span>, before: .distantFuture)
+</span></span><span style=display:flex><span><span style=color:#75715e>//            RunLoop.main.add(self.timerObject, forMode: .common)</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>ContentView</span>: View {
