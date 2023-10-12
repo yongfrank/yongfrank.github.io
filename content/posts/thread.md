@@ -7,6 +7,13 @@ date: 2023-04-08T14:58:09+08:00
 
 > [确保线程安全的几种方法](https://developer.aliyun.com/article/254282?spm=a2c6h.13262185.profile.388.699e167e7REVuk)
 
+## Swift 多线程方案
+
+* Thread
+* Cocoa Operation(Operation, Operation Queue)
+* [Dispatch](https://developer.apple.com/documentation/dispatch): Grand Central Dispatch
+* [Swift Concurrency](https://juejin.cn/post/7084640887250092062)
+
 ## Runloop
 
 > [Runloop explained](https://hit-alibaba.github.io/interview/iOS/ObjC-Basic/Runloop.html)
@@ -84,7 +91,6 @@ dispatch_after(delayTime, dispatch_get_main_queue(), ^{
 * 读写锁：读写锁可以同时允许多个读线程访问共享数据，但仅允许单个写线程对共享数据进行修改，进一步提高了效率。
 * 原子操作：通过使用原子操作，可以保证在多线程环境下数据操作的原子性，从而避免数据不一致的情况。
 * 管程：管程是一种特殊的锁，用于保护共享资源的访问，并具有更高的灵活性和可扩展性。
-
 
 ### atomic
 
