@@ -1,5 +1,4 @@
-<!doctype html><html lang=en-us><title>Clash & Config File | Blog by Frank</title>
-<meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script><script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7",{anonymize_ip:!1})}</script><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:title" content="Clash & Config File | Blog by Frank"><meta name=twitter:title content="Clash & Config File | Blog by Frank"><meta property="og:description" content="infrastructure
+<!doctype html><html lang=en-us><title>Clash & Config File | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7")}</script><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:title" content="Clash & Config File | Blog by Frank"><meta name=twitter:title content="Clash & Config File | Blog by Frank"><meta property="og:description" content='infrastructure
 
 port
 hosts
@@ -36,9 +35,9 @@ dns:
     ipv6: false
     enhanced-mode: fake-ip
     fake-ip-filter:
-        {- &#34;*.lan&#34;}
+        {- "*.lan"}
     nameserver:
-        {- &#34;114.114.114.114&#34;}
+        {- "114.114.114.114"}
     fallback:
         {- https://1.0.0.1/dns-query}
     fallback-filter:
@@ -51,7 +50,7 @@ proxies:
     {
         - 
         {
-            name: &#34;Hong Kong&#34;,
+            name: "Hong Kong",
             server: abc.top,
             port: 200001,
             type: trojan,
@@ -89,7 +88,7 @@ Tutorials
 ClashX Pro 使用教程 最好用的Mac苹果电脑科学上网工具
 Mac 电脑使用 ClashX Pro 作为网关旁路由
 
-"><meta property="og:url" content="https://yongfrank.github.io/posts/clash-config-file/"><meta property="og:site_name" content="Blog by Frank"><meta name=generator content="Hugo 0.120.4"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/clash-config-file/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><link rel=stylesheet href=https://yongfrank.github.io/katex/katex.min.css><link rel="shortcut icon" href=favicon.ico><script defer src=https://yongfrank.github.io/katex/katex.min.js></script><script defer src=https://yongfrank.github.io/katex/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#578490><meta name=msapplication-TileColor content="#da532c"><head><script src=/js/MathJax/es5/tex-chtml.js></script></head><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Clash & Config File</h1><time datetime=2023-03-20T10:26:07+08:00>March 20, 2023</time></header><h2 id=infrastructure>infrastructure</h2><ul><li>port</li><li>hosts</li><li>dns</li><li>mode: Rule</li><li>proxies: proxy name, server, Password</li><li>proxies-groups: name, type, proxies</li><li>rules: Match RULE, DOMAIN, Request Rule</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>port</span>: <span style=color:#ae81ff>7890</span>
+'><meta property="og:url" content="https://yongfrank.github.io/posts/clash-config-file/"><meta property="og:site_name" content="Blog by Frank"><meta name=generator content="Hugo 0.150.0"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/clash-config-file/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><link rel=stylesheet href=https://yongfrank.github.io/katex/katex.min.css><link rel="shortcut icon" href=favicon.ico><script defer src=https://yongfrank.github.io/katex/katex.min.js></script><script defer src=https://yongfrank.github.io/katex/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#578490><meta name=msapplication-TileColor content="#da532c"><head><script src=/js/MathJax/es5/tex-chtml.js></script></head><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>Clash & Config File</h1><time datetime=2023-03-20T10:26:07+08:00>March 20, 2023</time></header><h2 id=infrastructure>infrastructure</h2><ul><li>port</li><li>hosts</li><li>dns</li><li>mode: Rule</li><li>proxies: proxy name, server, Password</li><li>proxies-groups: name, type, proxies</li><li>rules: Match RULE, DOMAIN, Request Rule</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>port</span>: <span style=color:#ae81ff>7890</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>socks-port</span>: <span style=color:#ae81ff>7891</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>redir-port</span>: <span style=color:#ae81ff>7892</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>mixed-port</span>: <span style=color:#ae81ff>7893</span>

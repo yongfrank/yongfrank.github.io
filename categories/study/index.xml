@@ -1,29 +1,386 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>study on Blog by Frank</title><link>https://yongfrank.github.io/categories/study/</link><description>Recent content in study on Blog by Frank</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 11 Dec 2022 16:37:00 +0000</lastBuildDate><atom:link href="https://yongfrank.github.io/categories/study/index.xml" rel="self" type="application/rss+xml"/><item><title>Automatic Control Principles</title><link>https://yongfrank.github.io/posts/automatic-control-principles/</link><pubDate>Sun, 11 Dec 2022 16:37:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/automatic-control-principles/</guid><description>Mason&amp;rsquo;s Gain Formula Wikipedia
-Mason&amp;rsquo;s gain formula (MGF) is a method for finding the transfer function $H(s)$ of a linear signal-flow graph (SFG).
-$$ P = \frac{\sum_{k=1}^n G_k \Delta_k}{\Delta} \ \Delta = 1 - \sum L_i + \sum L_iL_j - \sum L_i L_j L_k + &amp;hellip; + (-1)^m\sum&amp;hellip;+&amp;hellip; $$</description></item><item><title>Swift Codable, JSON, UserDefaults Explained</title><link>https://yongfrank.github.io/posts/2022-10-03-codable-explained/</link><pubDate>Mon, 03 Oct 2022 16:37:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-10-03-codable-explained/</guid><description>What&amp;rsquo;s JSON JSON is a file format to store key-value pair.
-It&amp;rsquo;s JSON for Pikachu
-What&amp;rsquo;s Codable in the Swift Codable was introduced in Swift 4.0, bringing with it incredibly smooth conversion between Swift data types and JSON.
-The code comes from
-Hacking With Swift by Paul Hudson
-Codable cheat sheet
-Convert between JSON and Swift types the smart way
-Part I: Codable Part Encoding and decoding JSON import Foundation let json = &amp;#34;&amp;#34;&amp;#34; [ { &amp;#34;name&amp;#34;:&amp;#34;Frank&amp;#34;, &amp;#34;age&amp;#34;: 20 }, { &amp;#34;name&amp;#34;: &amp;#34;Paul&amp;#34;, &amp;#34;age&amp;#34;: 38 } ] &amp;#34;&amp;#34;&amp;#34; /// Convert json into a **Data** object because that&amp;#39;s /// what Codable decoders work with.</description></item><item><title>Swift: Math Algorithm</title><link>https://yongfrank.github.io/posts/math-algorithm/</link><pubDate>Sun, 02 Oct 2022 16:37:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/math-algorithm/</guid><description>BFS BFS and DFS Templates Algorithms in Swift
-LRU - Least Recently Used https://www.jianshu.com/p/e09870b60046 那什么是 LruCache 呢？其实 LRU(Least Recently Used) 的意思就是近期最少使用算法，它的核心思想就是会优先淘汰那些近期最少使用的缓存对象。
-class ListNode { var key: Int var value: Int var next: ListNode? var prev: ListNode? init(key: Int, value: Int) { self.key = key self.value = value } } class LRUCache { private var cache = [Int: ListNode]() // 最大size private var max_size = 0 // 当前size private var cur_size = 0 // 头 private var head: ListNode?</description></item><item><title>Swift: Image Picker UIKit in the SwiftUI</title><link>https://yongfrank.github.io/posts/2022-09-28-swift-image-picker-and-uiviewcontroller/</link><pubDate>Wed, 28 Sep 2022 16:37:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-28-swift-image-picker-and-uiviewcontroller/</guid><description>Swift: Image Picker UIKit in the SwiftUI Wrapping a UIViewController in a SwiftUI view
-Using coordinators to manage SwiftUI view controllers
-import SwiftUI import PhotosUI struct ContentView: View { /// This particular struct is designed to show an image, /// so we need an optional **Image** view to hold the selected image, @State private var imageToBeDisplayedOnTheScreen: Image? /// plus some state that determines whether the sheet is showing or not.</description></item><item><title>Swift Overloading</title><link>https://yongfrank.github.io/posts/2022-09-24-swift-overloading/</link><pubDate>Sat, 24 Sep 2022 14:28:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-24-swift-overloading/</guid><description>Operator Overloading how to use operator overloading - Hacking With Swift
-Operator overloading is the practice of adding new operators and modifying existing ones to do different things.
-To create your own operator you need to tell Swift whether it should be prefix (before its operand; the values used with it), postfix (after its operand), or infix. The most common is infix: +, -, *, and more are all infix.</description></item><item><title>Swift Linked List</title><link>https://yongfrank.github.io/posts/2022-09-23-linkedlist/</link><pubDate>Fri, 23 Sep 2022 11:00:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-23-linkedlist/</guid><description>Linked List by Kelvin Tan
-LinkedList in Swift by DamonLu on juejin.com
-Definition Linked list is a chain of nodes. Nodes have two responsibilities:
-Hold a value. Hold a reference to the next node in which a nil value represent the end of the list. Node and LinkedList Node has to be defined in Class, because of the reference.
-// The &amp;lt;T&amp;gt; represent generic data where you could use // any data types such as Int, String or others.</description></item><item><title>Swift Network URLSession</title><link>https://yongfrank.github.io/posts/2022-09-23-swift-network/</link><pubDate>Fri, 23 Sep 2022 09:50:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-23-swift-network/</guid><description>Swift Network URLSession Sending and receiving Codable data with URLSession and SwiftUI
-Loading an image from a remote server
-import SwiftUI struct InternetNetwork: View { @StateObject var vm = ViewModel() var body: some View { if #available(iOS 16.0, *) { NavigationStack { contentOfMusic } } else { NavigationView { contentOfMusic } } } var contentOfMusic: some View { Form { TextField(&amp;#34;Enter singer&amp;#34;, text: $vm.inputForSearching) .textFieldStyle(.roundedBorder) Text(vm.url) // We want that to be run as soon as our List is shown, // but we can’t just use onAppear() here // because that doesn’t know how to handle sleeping functions – // it expects its function to be synchronous.</description></item><item><title>Swift QRCode and Image Processing</title><link>https://yongfrank.github.io/posts/2022-09-22-swift-qrcode-image-processing/</link><pubDate>Thu, 22 Sep 2022 15:50:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-22-swift-qrcode-image-processing/</guid><description>QRCode Generator Generating and scaling up a QR code
-// First, we need to bring in all the Core Image filters using a new import: import SwiftUI import CoreImage.CIFilterBuiltins func generateQRCode(from string: String) -&amp;gt; UIImage { // We need two properties to store an active Core Image context let context = CIContext() // and an instance of Core Image’s QR code generator filter let filter = CIFilter.qrCodeGenerator() // Working with Core Image filters requires us to provide some input data.</description></item><item><title>Swift throws and rethrows, function as parameter</title><link>https://yongfrank.github.io/posts/2022-09-21-swift-throws-rethrows/</link><pubDate>Wed, 21 Sep 2022 11:31:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-21-swift-throws-rethrows/</guid><description>Keyword throws What is a throwing function?
-Throwing functions are those that will flag up errors if problems happen, and Swift requires you to handle those errors in your code.
-How to handle errors in functions
-enum PasswordError: Error { case short, obvious } func checkPassword(_ password: String) throws -&amp;gt; Bool { if password.count &amp;lt; 6 { throw PasswordError.short } if password == &amp;#34;123456&amp;#34; { throw PasswordError.obvious } return true } let password = &amp;#34;123456&amp;#34; do { let isPasswordPassed = try checkPassword(password) if isPasswordPassed { print(&amp;#34;Password Passed!</description></item><item><title>Summer Vacation Diary</title><link>https://yongfrank.github.io/posts/2022-07-08-summer-diary/</link><pubDate>Fri, 08 Jul 2022 21:44:13 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-07-08-summer-diary/</guid><description>Thu Jul 21 Swift How to use VideoPlayer in SwiftUI Mon Jul 18 Swift Parse HTML in Swift 5 (HTMLKit) - Xcode 11, 2020, iOS Development Fri Jul 16 Swift FileManager Swift 5 Tutorials
-Strom Viewer - Project 1
-iOS 14 Beta 6 File Importer &amp;amp; File Exporter - SwiftUI 2.0 Document Picker LeetCode LeetCode in Python 13. Roman to Integer LeetCode in Swift 13. Roman to Integer Thu Jul 14 Git git pull and git pull &amp;ndash;rebase git tutorial Fri Jul 8 Vapor Getting Started with Vapor 4 - CodeWithChris</description></item><item><title>CS61A fun part, 2022 summer</title><link>https://yongfrank.github.io/posts/2022-06-28-cs61a-fun-part/</link><pubDate>Tue, 28 Jun 2022 10:16:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-06-28-cs61a-fun-part/</guid><description>CHAPTER 1 Building Abstractions with Functions Object, Set, Function In the composing programs, there is an assignment statement.
-from urllib.request import urlopen shakespeare = urlopen(&amp;#39;http://composingprograms.com/shakespeare.txt&amp;#39;) # This statement is to save all words in Set words by words words = set(shakespeare.read().decode().split()) # {} means Set, and it will print all words in &amp;#34;words&amp;#34; above print({w for w in words}) # [::-1] enumerate each letter in a words, but -1 dictates to step backwards.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Study on Blog by Frank</title><link>https://yongfrank.github.io/categories/study/</link><description>Recent content in Study on Blog by Frank</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 11 Dec 2022 16:37:00 +0000</lastBuildDate><atom:link href="https://yongfrank.github.io/categories/study/index.xml" rel="self" type="application/rss+xml"/><item><title>Automatic Control Principles</title><link>https://yongfrank.github.io/posts/automatic-control-principles/</link><pubDate>Sun, 11 Dec 2022 16:37:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/automatic-control-principles/</guid><description>&lt;!--
+ * @Author: Frank Chu
+ * @Date: 2022-10-11 18:41:40
+ * @LastEditors: Frank Chu
+ * @LastEditTime: 2023-03-02 12:35:40
+ * @FilePath: /yongfrank.github.io/content/posts/Automatic-control-principles.md
+ * @Description: 
+ * 
+ * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
+--&gt;
+&lt;h2 id="masons-gain-formula"&gt;Mason&amp;rsquo;s Gain Formula&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Mason%27s_gain_formula"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mason&amp;rsquo;s gain formula (MGF) is a method for finding the &lt;a href="https://en.wikipedia.org/wiki/Transfer_function"&gt;transfer function&lt;/a&gt; $H(s)$ of a linear signal-flow graph (SFG).&lt;/p&gt;
+&lt;p&gt;$$
+P = \frac{\sum_{k=1}^n G_k \Delta_k}{\Delta} \
+\Delta = 1 - \sum L_i + \sum L_iL_j - \sum L_i L_j L_k + &amp;hellip; + (-1)^m\sum&amp;hellip;+&amp;hellip;
+$$&lt;/p&gt;</description></item><item><title>Swift Codable, JSON, UserDefaults Explained</title><link>https://yongfrank.github.io/posts/2022-10-03-codable-explained/</link><pubDate>Mon, 03 Oct 2022 16:37:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-10-03-codable-explained/</guid><description>&lt;!--
+ * @Author: Frank Chu
+ * @Date: 2022-10-03 15:16:00
+ * @LastEditors: Frank Chu
+ * @LastEditTime: 2022-10-04 10:43:25
+ * @FilePath: /blog/_posts/2022-10-03-codable-explained.md
+ * @Description: 
+ * 
+ * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
+--&gt;
+&lt;h2 id="whats-json"&gt;What&amp;rsquo;s JSON&lt;/h2&gt;
+&lt;p&gt;JSON is a file format to store key-value pair.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pokeapi.co/api/v2/pokemon/pikachu"&gt;It&amp;rsquo;s JSON for Pikachu&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="whats-codable-in-the-swift"&gt;What&amp;rsquo;s Codable in the Swift&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Codable&lt;/strong&gt; was introduced in &lt;strong&gt;Swift 4.0&lt;/strong&gt;, bringing with it incredibly smooth conversion between Swift data types and JSON.&lt;/p&gt;</description></item><item><title>Swift: Math Algorithm</title><link>https://yongfrank.github.io/posts/math-algorithm/</link><pubDate>Sun, 02 Oct 2022 16:37:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/math-algorithm/</guid><description>&lt;h2 id="bfs"&gt;BFS&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://holyswift.app/the-simplest-bfs-and-dfs-templates-for-algorithms-in-swift/"&gt;BFS and DFS Templates Algorithms in Swift&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="lru---least-recently-used"&gt;LRU - Least Recently Used&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.jianshu.com/p/e09870b60046"&gt;https://www.jianshu.com/p/e09870b60046&lt;/a&gt;
+那什么是 LruCache 呢？其实 LRU(Least Recently Used) 的意思就是近期最少使用算法，它的核心思想就是会优先淘汰那些近期最少使用的缓存对象。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-swift" data-lang="swift"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;ListNode&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; key: Int
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; value: Int
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; next: ListNode?
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; prev: ListNode?
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;init&lt;/span&gt;(key: Int, value: Int) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.key = key
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.value = value
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;class&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;LRUCache&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; cache = [Int: ListNode]()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 最大size&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; max_size = &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 当前size&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; cur_size = &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 头&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; head: ListNode?
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// 尾&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; tail: ListNode?
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;init&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;_&lt;/span&gt; capacity: Int) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; max_size = capacity
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;func&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;get&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;_&lt;/span&gt; key: Int) -&amp;gt; Int {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; node = cache[key] {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; moveToHead(node: node)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; node.value
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#f92672"&gt;-&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;public&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;func&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;put&lt;/span&gt;(&lt;span style="color:#66d9ef"&gt;_&lt;/span&gt; key: Int, &lt;span style="color:#66d9ef"&gt;_&lt;/span&gt; value: Int) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; node = cache[key] {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; node.value = value
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; moveToHead(node: node)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; } &lt;span style="color:#66d9ef"&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; node = ListNode(key: key, value: value)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; addNode(node: node)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; cache[key] = node
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; cur_size &lt;span style="color:#f92672"&gt;+=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; cur_size &lt;span style="color:#f92672"&gt;&amp;gt;&lt;/span&gt; max_size {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; removeTail()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; cur_size &lt;span style="color:#f92672"&gt;-=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// 添加节点到头部&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;func&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;addNode&lt;/span&gt;(node: ListNode) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head == &lt;span style="color:#66d9ef"&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head = node
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.tail = node
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; } &lt;span style="color:#66d9ef"&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; temp = &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head!
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head = node
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head?.next = temp
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; temp.prev = &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// 移动到头部&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;func&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;moveToHead&lt;/span&gt;(node: ListNode) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; node === &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; prev = node.prev
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; next = node.next
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; prev?.next = next
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; next &lt;span style="color:#f92672"&gt;!=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; next!.prev = prev
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; } &lt;span style="color:#66d9ef"&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.tail = prev
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; origin = &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head = node
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head?.next = origin
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; origin?.prev = &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.head
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;/// 删除尾部&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; @discardableResult
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;private&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;func&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;removeTail&lt;/span&gt;() -&amp;gt; ListNode? {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; tail = &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.tail {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; cache.removeValue(forKey: tail.key)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.tail = tail.prev
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;self&lt;/span&gt;.tail?.next = &lt;span style="color:#66d9ef"&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; tail
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; cache = LRUCache(&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cache.put(&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cache.put(&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cache.put(&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cache.put(&lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(cache.&lt;span style="color:#66d9ef"&gt;get&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(cache.&lt;span style="color:#66d9ef"&gt;get&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(cache.&lt;span style="color:#66d9ef"&gt;get&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(cache.&lt;span style="color:#66d9ef"&gt;get&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(&lt;span style="color:#e6db74"&gt;&amp;#34;==========&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;cache.put(&lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(cache.&lt;span style="color:#66d9ef"&gt;get&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(cache.&lt;span style="color:#66d9ef"&gt;get&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(cache.&lt;span style="color:#66d9ef"&gt;get&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;3&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(cache.&lt;span style="color:#66d9ef"&gt;get&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;4&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(cache.&lt;span style="color:#66d9ef"&gt;get&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;/**
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;print(&amp;#34;==========&amp;#34;)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;4
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;3
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;2
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;-1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;==========
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;-1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;2
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;3
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;-1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;5
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;==========
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="dynamic-programming"&gt;Dynamic Programming&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://cloud.tencent.com/developer/article/1822779"&gt;一个例子带你走进动态规划 &amp;ndash; 青蛙跳阶问题&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Swift: Image Picker UIKit in the SwiftUI</title><link>https://yongfrank.github.io/posts/2022-09-28-swift-image-picker-and-uiviewcontroller/</link><pubDate>Wed, 28 Sep 2022 16:37:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-28-swift-image-picker-and-uiviewcontroller/</guid><description>&lt;!-- markdownlint-disable --&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;!-- Primary Meta Tags --&gt;
+&lt;title&gt;Swift: Image Picker UIKit in the SwiftUI&lt;/title&gt;
+&lt;meta name="title" content="Swift: Image Picker UIKit in the SwiftUI"&gt;
+&lt;meta name="description" content="Swift: Image Picker UIKit in the SwiftUI"&gt;
+&lt;!-- Open Graph / Facebook --&gt;
+&lt;meta property="og:type" content="website"&gt;
+&lt;meta property="og:url" content="https://yongfrank.github.io/blog/study/2022/09/28/swift-image-picker-and-UIViewController"&gt;
+&lt;meta property="og:title" content="Swift: Image Picker UIKit in the SwiftUI"&gt;
+&lt;meta property="og:description" content="Swift: Image Picker UIKit in the SwiftUI"&gt;
+&lt;meta property="og:image" content="https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-28-swift-image-picker.png"&gt;
+&lt;!-- Twitter --&gt;
+&lt;meta property="twitter:card" content="summary_large_image"&gt;
+&lt;meta property="twitter:url" content="https://yongfrank.github.io/blog/study/2022/09/28/swift-image-picker-and-UIViewController"&gt;
+&lt;meta property="twitter:title" content="Swift: Image Picker UIKit in the SwiftUI"&gt;
+&lt;meta property="twitter:description" content="Swift: Image Picker UIKit in the SwiftUI"&gt;
+&lt;meta property="twitter:image" content="https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-28-swift-image-picker.png"&gt;
+&lt;/head&gt;
+&lt;/html&gt;
+&lt;p&gt;&lt;a href="https://www.hackingwithswift.com/books/ios-swiftui/wrapping-a-uiviewcontroller-in-a-swiftui-view"&gt;Wrapping a UIViewController in a SwiftUI view&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.hackingwithswift.com/books/ios-swiftui/using-coordinators-to-manage-swiftui-view-controllers"&gt;Using coordinators to manage SwiftUI view controllers&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Swift Overloading</title><link>https://yongfrank.github.io/posts/2022-09-24-swift-overloading/</link><pubDate>Sat, 24 Sep 2022 14:28:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-24-swift-overloading/</guid><description>&lt;h2 id="operator-overloading"&gt;Operator Overloading&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.hackingwithswift.com/example-code/language/how-to-use-operator-overloading"&gt;how to use operator overloading - Hacking With Swift&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Operator overloading is the practice of adding new operators and modifying existing ones to do different things.&lt;/p&gt;
+&lt;p&gt;To create your own operator you need to tell Swift whether it should be prefix (before its operand; the values used with it), postfix (after its operand), or infix. The most common is infix: +, -, *, and more are all infix.&lt;/p&gt;</description></item><item><title>Swift Linked List</title><link>https://yongfrank.github.io/posts/2022-09-23-linkedlist/</link><pubDate>Fri, 23 Sep 2022 11:00:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-23-linkedlist/</guid><description>&lt;!--
+ * @Author: Frank Chu
+ * @Date: 2022-09-23 11:06:09
+ * @LastEditors: Frank Chu
+ * @LastEditTime: 2022-09-23 14:00:11
+ * @FilePath: /blog/_posts/2022-09-23-linkedlist.md
+ * @Description: 
+ * 
+ * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
+--&gt;
+&lt;p&gt;&lt;a href="https://daddycoding.com/2019/08/15/linked-list/"&gt;Linked List by Kelvin Tan&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://juejin.cn/post/7035278534037733407"&gt;LinkedList in Swift by DamonLu on juejin.com&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="definition"&gt;Definition&lt;/h2&gt;
+&lt;p&gt;Linked list is a chain of nodes. Nodes have two responsibilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hold a value.&lt;/li&gt;
+&lt;li&gt;Hold a reference to the next node in which a nil value represent the end of the list.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="node-and-linkedlist"&gt;Node and LinkedList&lt;/h2&gt;
+&lt;p&gt;Node has to be defined in Class, because of the reference.&lt;/p&gt;</description></item><item><title>Swift Network URLSession</title><link>https://yongfrank.github.io/posts/2022-09-23-swift-network/</link><pubDate>Fri, 23 Sep 2022 09:50:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-23-swift-network/</guid><description>&lt;!-- markdownlint-disable --&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;!-- Primary Meta Tags --&gt;
+&lt;title&gt;Swift Network URLSession&lt;/title&gt;
+&lt;meta name="title" content="Swift Network URLSession"&gt;
+&lt;meta name="description" content="The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs."&gt;
+&lt;!-- Open Graph / Facebook --&gt;
+&lt;meta property="og:type" content="website"&gt;
+&lt;meta property="og:url" content="https://yongfrank.github.io/blog/study/2022/09/23/swift-network"&gt;
+&lt;meta property="og:title" content="Swift Network URLSession"&gt;
+&lt;meta property="og:description" content="The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs."&gt;
+&lt;meta property="og:image" content="https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png"&gt;
+&lt;!-- Twitter --&gt;
+&lt;meta property="twitter:card" content="summary_large_image"&gt;
+&lt;meta property="twitter:url" content="https://yongfrank.github.io/blog/study/2022/09/23/swift-network"&gt;
+&lt;meta property="twitter:title" content="Swift Network URLSession"&gt;
+&lt;meta property="twitter:description" content="The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs."&gt;
+&lt;meta property="twitter:image" content="https://raw.githubusercontent.com/yongfrank/blog/main/metadata_img/2022-09-23-swift-network.png"&gt;
+&lt;/head&gt;
+&lt;/html&gt;
+&lt;!--
+ * @Author: Frank Chu
+ * @Date: 2022-09-23 08:23:03
+ * @LastEditors: Frank Chu
+ * @LastEditTime: 2022-09-26 09:44:49
+ * @FilePath: /blog/_posts/2022-09-23-swift-network.md
+ * @Description: 
+ * 
+ * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
+--&gt;
+&lt;!-- The URLSession class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended. You can use the related URLSessionDelegate and URLSessionTaskDelegate to support authentication and receive events like redirection and task completion. --&gt;
+&lt;p&gt;&lt;a href="https://www.hackingwithswift.com/books/ios-swiftui/sending-and-receiving-codable-data-with-urlsession-and-swiftui"&gt;Sending and receiving Codable data with URLSession and SwiftUI&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Swift QRCode and Image Processing</title><link>https://yongfrank.github.io/posts/2022-09-22-swift-qrcode-image-processing/</link><pubDate>Thu, 22 Sep 2022 15:50:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-22-swift-qrcode-image-processing/</guid><description>&lt;!--
+ * @Author: Frank Chu
+ * @Date: 2022-09-22 15:49:57
+ * @LastEditors: Frank Chu
+ * @LastEditTime: 2022-09-22 18:02:05
+ * @FilePath: /blog/_posts/2022-09-22-swift-qrcode-image-processing.md
+ * @Description: 
+ * 
+ * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
+--&gt;
+&lt;h2 id="qrcode-generator"&gt;QRCode Generator&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.hackingwithswift.com/books/ios-swiftui/generating-and-scaling-up-a-qr-code"&gt;Generating and scaling up a QR code&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-swift" data-lang="swift"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;// First, we need to bring in all the Core Image filters using a new import:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;import&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;SwiftUI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;import&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;CoreImage&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;CIFilterBuiltins&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;func&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;generateQRCode&lt;/span&gt;(from string: String) -&amp;gt; UIImage {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// We need two properties to store an active Core Image context&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; context = CIContext()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// and an instance of Core Image’s QR code generator filter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; filter = CIFilter.qrCodeGenerator()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// Working with Core Image filters requires us to provide some input data.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// Our input for the filter will be a string, &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// but the input for the filter is Data, &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// so we need to convert that.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; filter.message = Data(string.utf8)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// then convert the output CIImage into a CGImage, &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// then that CGImage into a UIImage.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; outputImage = filter.outputImage {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// Return a rect the defines the bounds of non-(0,0,0,0) pixels&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// open var extent: CGRect { get }&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;let&lt;/span&gt; cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; UIImage(cgImage: cgimg)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// If conversion fails for any reason &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// we’ll send back the “xmark.circle” image from SF Symbols.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// If that can’t be read – which is theoretically possible &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// because SF Symbols is stringly typed – then we’ll send back an empty UIImage.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; UIImage(systemName: &lt;span style="color:#e6db74"&gt;&amp;#34;xmark.circle&amp;#34;&lt;/span&gt;) ?? UIImage()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;struct&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;ContentView&lt;/span&gt;: View {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;var&lt;/span&gt; body: some View {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; VStack {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; Image(uiImage: generateQRCode(from: &lt;span style="color:#e6db74"&gt;&amp;#34;apple.com&amp;#34;&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// take a close look at the QR code – &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// do you notice how it’s fuzzy? &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// This is because Core Image is generating &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// a tiny image, and SwiftUI is trying to &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// smooth out the pixels as we scale it up.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// Line art like QR codes and bar codes is &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// a great candidate for disabling image interpolation. &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// Try adding and removing .interpolation(.none) modifier &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// to the image to see what I mean:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; .interpolation(.&lt;span style="color:#66d9ef"&gt;none&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; .resizable()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; .scaledToFit()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; .frame(width: &lt;span style="color:#ae81ff"&gt;300&lt;/span&gt;, height: &lt;span style="color:#ae81ff"&gt;300&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="extended-reading-materials"&gt;Extended Reading Materials&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.hackingwithswift.com/books/ios-swiftui/controlling-image-interpolation-in-swiftui"&gt;Controlling image interpolation in SwiftUI&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Swift throws and rethrows, function as parameter</title><link>https://yongfrank.github.io/posts/2022-09-21-swift-throws-rethrows/</link><pubDate>Wed, 21 Sep 2022 11:31:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-09-21-swift-throws-rethrows/</guid><description>&lt;!--
+ * @Author: Frank Chu
+ * @Date: 2022-09-19 16:47:12
+ * @LastEditors: Frank Chu
+ * @LastEditTime: 2022-09-21 11:32:00
+ * @FilePath: /blog/_posts/2022-09-21-swift-throws-rethrows.md
+ * @Description: 
+ * 
+ * Copyright (c) 2022 by Frank Chu, All Rights Reserved. 
+--&gt;
+&lt;h2 id="keyword-throws"&gt;Keyword throws&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.hackingwithswift.com/example-code/language/what-is-a-throwing-function"&gt;What is a throwing function?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Throwing functions are those that will flag up errors if problems happen, and Swift requires you to handle those errors in your code.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.hackingwithswift.com/quick-start/beginners/how-to-handle-errors-in-functions"&gt;How to handle errors in functions&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Summer Vacation Diary</title><link>https://yongfrank.github.io/posts/2022-07-08-summer-diary/</link><pubDate>Fri, 08 Jul 2022 21:44:13 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-07-08-summer-diary/</guid><description>&lt;h2 id="thu-jul-21"&gt;Thu Jul 21&lt;/h2&gt;
+&lt;h3 id="swift"&gt;Swift&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.swiftanytime.com/videoplayer-in-swiftui/"&gt;How to use VideoPlayer in SwiftUI
+&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="mon-jul-18"&gt;Mon Jul 18&lt;/h2&gt;
+&lt;h3 id="swift-1"&gt;Swift&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=biG7RnRR9Pg"&gt;Parse HTML in Swift 5 (HTMLKit) - Xcode 11, 2020, iOS Development&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="fri-jul-16"&gt;Fri Jul 16&lt;/h2&gt;
+&lt;h3 id="swift-2"&gt;Swift&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=pUAcMruIBGg"&gt;FileManager Swift 5 Tutorials&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.hackingwithswift.com/100/18"&gt;Strom Viewer - Project 1&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=tnOVnwbkAA0"&gt;iOS 14 Beta 6 File Importer &amp;amp; File Exporter - SwiftUI 2.0 Document Picker
+&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="leetcode"&gt;LeetCode&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.bilibili.com/video/BV1Jb411i7ue?share_source=copy_web&amp;amp;vd_source=bf4952280cde801b178268abc99a7047"&gt;LeetCode in Python 13. Roman to Integer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/ecmadao/algorithms/blob/master/leetcode/Swift/No13.roman-to-integer.swift"&gt;LeetCode in Swift 13. Roman to Integer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="thu-jul-14"&gt;Thu Jul 14&lt;/h2&gt;
+&lt;h3 id="git"&gt;Git&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.cnblogs.com/kevingrace/p/5896706.html"&gt;git pull and git pull &amp;ndash;rebase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576"&gt;git tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="fri-jul-8"&gt;Fri Jul 8&lt;/h2&gt;
+&lt;h3 id="vapor"&gt;Vapor&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://youtu.be/CD283bLteP0"&gt;Getting Started with Vapor 4&lt;/a&gt; - CodeWithChris&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>CS61A fun part, 2022 summer</title><link>https://yongfrank.github.io/posts/2022-06-28-cs61a-fun-part/</link><pubDate>Tue, 28 Jun 2022 10:16:00 +0000</pubDate><guid>https://yongfrank.github.io/posts/2022-06-28-cs61a-fun-part/</guid><description>&lt;h1 id="chapter-1-building-abstractions-with-functions"&gt;CHAPTER 1 Building Abstractions with Functions&lt;/h1&gt;
+&lt;h2 id="object-set-function"&gt;Object, Set, Function&lt;/h2&gt;
+&lt;p&gt;In the &lt;a href="http://composingprograms.com/pages/11-getting-started.html"&gt;composing programs&lt;/a&gt;, there is an assignment statement.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; urllib.request &lt;span style="color:#f92672"&gt;import&lt;/span&gt; urlopen
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;shakespeare &lt;span style="color:#f92672"&gt;=&lt;/span&gt; urlopen(&lt;span style="color:#e6db74"&gt;&amp;#39;http://composingprograms.com/shakespeare.txt&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# This statement is to save all words in Set words by words&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;words &lt;span style="color:#f92672"&gt;=&lt;/span&gt; set(shakespeare&lt;span style="color:#f92672"&gt;.&lt;/span&gt;read()&lt;span style="color:#f92672"&gt;.&lt;/span&gt;decode()&lt;span style="color:#f92672"&gt;.&lt;/span&gt;split())
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# {} means Set, and it will print all words in &amp;#34;words&amp;#34; above&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print({w &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; w &lt;span style="color:#f92672"&gt;in&lt;/span&gt; words})
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# [::-1] enumerate each letter in a words, but -1 dictates to step backwards. &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# It will print &amp;#39;olleh&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;a &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#39;hello&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;print(a[::&lt;span style="color:#f92672"&gt;-&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# Then, let&amp;#39;s add some conditions. We want some words like &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# &amp;#39;reward&amp;#39;, &amp;#39;drawer&amp;#39; in the article, and the length of words is 6.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;conditionWords &lt;span style="color:#f92672"&gt;=&lt;/span&gt; {w &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; w &lt;span style="color:#f92672"&gt;in&lt;/span&gt; words &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; len(w) &lt;span style="color:#f92672"&gt;==&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;6&lt;/span&gt; &lt;span style="color:#f92672"&gt;and&lt;/span&gt; w[::&lt;span style="color:#f92672"&gt;-&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;] &lt;span style="color:#f92672"&gt;in&lt;/span&gt; words}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="15-control-short-circuiting"&gt;1.5 Control: Short-circuiting&lt;/h2&gt;
+&lt;p&gt;Truth value of a logical expression can be determined without evaluating all of its subexpressions.&lt;/p&gt;</description></item></channel></rss>
