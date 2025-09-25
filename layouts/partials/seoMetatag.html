@@ -41,17 +41,20 @@
 {{ end }} 
 
 <!-- Pagination meta tags for list pages only -->
-{{ $paginator := .Paginate (where .Pages "Section" "blog") }} 
-{{ if $paginator }}
-  <link rel="first" href="{{ $paginator.First.URL }}" />
-  <link rel="last" href="{{ $paginator.Last.URL }}" />
-  {{ if $paginator.HasPrev }}
-    <link rel="prev" href="{{ $paginator.Prev.URL }}" />
-  {{end }}
-  {{ if $paginator.HasNext }}
-    <link rel="next" href="{{ $paginator.Next.URL }}" />
-  {{end }}
-{{end }}
+{{ if .IsNode }}
+  <!-- Pagination meta tags for list pages only -->
+  {{ $paginator := .Paginate (where .Pages "Section" "blog") }} 
+  {{ if $paginator }}
+    <link rel="first" href="{{ $paginator.First.URL }}" />
+    <link rel="last" href="{{ $paginator.Last.URL }}" />
+    {{ if $paginator.HasPrev }}
+      <link rel="prev" href="{{ $paginator.Prev.URL }}" />
+    {{ end }}
+    {{ if $paginator.HasNext }}
+      <link rel="next" href="{{ $paginator.Next.URL }}" />
+    {{ end }}
+  {{ end }}
+{{ end }}
 
 <meta property="og:type" content="article" />
 <meta property="article:publisher" content="{{ .Site.Params.facebook }}" />
