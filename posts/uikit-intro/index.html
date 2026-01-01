@@ -1,4 +1,4 @@
-<!doctype html><html lang=en-us><title>UIKit Intro in Objective-C & Swift | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7")}</script><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:title" content="UIKit Intro in Objective-C & Swift | Blog by Frank"><meta name=twitter:title content="UIKit Intro in Objective-C & Swift | Blog by Frank"><meta property="og:description" content="Everything about UIKit in Objective-C & Swift when I was coding."><meta property="og:url" content="https://yongfrank.github.io/posts/uikit-intro/"><meta property="og:site_name" content="Blog by Frank"><meta name=generator content="Hugo 0.152.1"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/uikit-intro/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><link rel=stylesheet href=https://yongfrank.github.io/katex/katex.min.css><link rel="shortcut icon" href=favicon.ico><script defer src=https://yongfrank.github.io/katex/katex.min.js></script><script defer src=https://yongfrank.github.io/katex/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#578490><meta name=msapplication-TileColor content="#da532c"><head><script src=/js/MathJax/es5/tex-chtml.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6555780148434263" crossorigin=anonymous></script></head><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>UIKit Intro in Objective-C & Swift</h1><time datetime=2023-03-27T13:31:46+08:00>March 27, 2023</time></header><nav id=TableOfContents><ul><li><a href=#quickstart>QuickStart</a></li><li><a href=#debug-tools>Debug Tools</a></li><li><a href=#components-quickstart>Components QuickStart</a><ul><li><a href=#delegate类扩展>Delegate，类扩展</a></li><li><a href=#button>Button</a></li><li><a href=#uilabel--uitextfield--uitextview>UILabel & UITextField & UITextView</a></li><li><a href=#uiimage>UIImage</a></li><li><a href=#uitableview--uicollectionview>UITableView & UICollectionView</a></li><li><a href=#protocol--uicollectionview>Protocol & UICollectionView</a></li></ul></li><li><a href=#no-storyboard>No Storyboard</a></li><li><a href=#loading-method-of-appdelegate-scenedelegate-and-controller-appdelegatescenedelegate控制器的加载方式>Loading Method of AppDelegate, SceneDelegate and Controller AppDelegate、SceneDelegate、控制器的加载方式</a><ul><li><a href=#startup-process-启动过程>StartUp Process 启动过程</a></li></ul></li><li><a href=#uikit-uiviewcontroller-lifecycle>UIKit UIViewController Lifecycle</a></li><li><a href=#mvc>MVC</a></li><li><a href=#target-for-project-in-xcode>Target for Project in Xcode</a></li><li><a href=#delegate>Delegate</a></li><li><a href=#swiftui-in-uikitobjective-c>SwiftUI In UIKit(Objective-C)</a><ul><li><a href=#full-code>Full Code</a></li><li><a href=#full-code-1>Full Code</a></li></ul></li><li><a href=#lazy-instantiation>Lazy Instantiation</a></li><li><a href=#border>Border</a></li><li><a href=#responsivescalewidth>ResponsiveScaleWidth</a></li><li><a href=#uikit-preview>UIKit Preview</a></li><li><a href=#ibaction>IBAction</a></li><li><a href=#prepareforsegue><code>prepareForSegue</code></a></li><li><a href=#头文件-import>头文件 import</a></li><li><a href=#nsstring-判空>NSString 判空</a></li><li><a href=#sf-symbols>SF Symbols</a></li><li><a href=#present-an-uialertcontroller-from-an-uiview>Present an UIAlertController from an UIView</a></li><li><a href=#observer-观察者>Observer 观察者</a></li><li><a href=#mjextension>MJExtension</a></li><li><a href=#rootviewcontroller>rootViewController</a></li><li><a href=#safe-area>Safe Area</a></li></ul></nav><p>Everything about UIKit in Objective-C & Swift when I was coding.</p><blockquote><p><a href=https://www.hackingwithswift.com/example-code/uikit/>hws - UIKit Example Code</a></p></blockquote><h2 id=quickstart>QuickStart</h2><ul><li><a href=https://supereasyapps.com/blog/2014/8/4/create-a-uibutton-in-code-with-objective-c>Create a UIButton in Code with Objective-C</a></li></ul><h2 id=debug-tools>Debug Tools</h2><blockquote><ul><li><a href=https://github.com/FLEXTool/FLEX>FLEX - Flipboard Explorer</a></li><li><a href=https://www.jianshu.com/p/1d8fc9206204>FLEX 一个轻量级App多维分析工具</a></li><li><a href=https://zhuanlan.zhihu.com/p/434459667>1.2 万 Star！一个 iOS 应用调试利器</a></li></ul></blockquote><p><img src=https://user-images.githubusercontent.com/8371943/70185687-e842c800-16af-11ea-8ef9-9e071380a462.gif alt=Flex></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>#if</span> <span style=color:#75715e>os</span>(<span style=color:#75715e>iOS</span>)
+<!doctype html><html lang=en-us><title>UIKit Intro in Objective-C & Swift | Blog by Frank</title><meta charset=utf-8><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZQ6YTCMN7"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XZQ6YTCMN7")}</script><meta name=twitter:card content="summary_large_image"><meta property="og:type" content="article"><meta property="og:title" content="UIKit Intro in Objective-C & Swift | Blog by Frank"><meta name=twitter:title content="UIKit Intro in Objective-C & Swift | Blog by Frank"><meta property="og:description" content="Everything about UIKit in Objective-C & Swift when I was coding."><meta property="og:url" content="https://yongfrank.github.io/posts/uikit-intro/"><meta property="og:site_name" content="Blog by Frank"><meta name=generator content="Hugo 0.154.0"><meta name=description content="Explorations, Reflections, and More on My Blog"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://yongfrank.github.io/css/index.css><link rel=canonical href=https://yongfrank.github.io/posts/uikit-intro/><link rel=alternate type=application/rss+xml href title="Blog by Frank"><link rel=stylesheet href=https://yongfrank.github.io/katex/katex.min.css><link rel="shortcut icon" href=favicon.ico><script defer src=https://yongfrank.github.io/katex/katex.min.js></script><script defer src=https://yongfrank.github.io/katex/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#578490><meta name=msapplication-TileColor content="#da532c"><head><script src=/js/MathJax/es5/tex-chtml.js></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6555780148434263" crossorigin=anonymous></script></head><header><a href=https://yongfrank.github.io/ class=title>Blog by Frank</a><nav><a href=/about/>About</a></nav></header><article><header><h1>UIKit Intro in Objective-C & Swift</h1><time datetime=2023-03-27T13:31:46+08:00>March 27, 2023</time></header><nav id=TableOfContents><ul><li><a href=#quickstart>QuickStart</a></li><li><a href=#debug-tools>Debug Tools</a></li><li><a href=#components-quickstart>Components QuickStart</a><ul><li><a href=#delegate类扩展>Delegate，类扩展</a></li><li><a href=#button>Button</a></li><li><a href=#uilabel--uitextfield--uitextview>UILabel & UITextField & UITextView</a></li><li><a href=#uiimage>UIImage</a></li><li><a href=#uitableview--uicollectionview>UITableView & UICollectionView</a></li><li><a href=#protocol--uicollectionview>Protocol & UICollectionView</a></li></ul></li><li><a href=#no-storyboard>No Storyboard</a></li><li><a href=#loading-method-of-appdelegate-scenedelegate-and-controller-appdelegatescenedelegate控制器的加载方式>Loading Method of AppDelegate, SceneDelegate and Controller AppDelegate、SceneDelegate、控制器的加载方式</a><ul><li><a href=#startup-process-启动过程>StartUp Process 启动过程</a></li></ul></li><li><a href=#uikit-uiviewcontroller-lifecycle>UIKit UIViewController Lifecycle</a></li><li><a href=#mvc>MVC</a></li><li><a href=#target-for-project-in-xcode>Target for Project in Xcode</a></li><li><a href=#delegate>Delegate</a></li><li><a href=#swiftui-in-uikitobjective-c>SwiftUI In UIKit(Objective-C)</a><ul><li><a href=#full-code>Full Code</a></li><li><a href=#full-code-1>Full Code</a></li></ul></li><li><a href=#lazy-instantiation>Lazy Instantiation</a></li><li><a href=#border>Border</a></li><li><a href=#responsivescalewidth>ResponsiveScaleWidth</a></li><li><a href=#uikit-preview>UIKit Preview</a></li><li><a href=#ibaction>IBAction</a></li><li><a href=#prepareforsegue><code>prepareForSegue</code></a></li><li><a href=#头文件-import>头文件 import</a></li><li><a href=#nsstring-判空>NSString 判空</a></li><li><a href=#sf-symbols>SF Symbols</a></li><li><a href=#present-an-uialertcontroller-from-an-uiview>Present an UIAlertController from an UIView</a></li><li><a href=#observer-观察者>Observer 观察者</a></li><li><a href=#mjextension>MJExtension</a></li><li><a href=#rootviewcontroller>rootViewController</a></li><li><a href=#safe-area>Safe Area</a></li></ul></nav><p>Everything about UIKit in Objective-C & Swift when I was coding.</p><blockquote><p><a href=https://www.hackingwithswift.com/example-code/uikit/>hws - UIKit Example Code</a></p></blockquote><h2 id=quickstart>QuickStart</h2><ul><li><a href=https://supereasyapps.com/blog/2014/8/4/create-a-uibutton-in-code-with-objective-c>Create a UIButton in Code with Objective-C</a></li></ul><h2 id=debug-tools>Debug Tools</h2><blockquote><ul><li><a href=https://github.com/FLEXTool/FLEX>FLEX - Flipboard Explorer</a></li><li><a href=https://www.jianshu.com/p/1d8fc9206204>FLEX 一个轻量级App多维分析工具</a></li><li><a href=https://zhuanlan.zhihu.com/p/434459667>1.2 万 Star！一个 iOS 应用调试利器</a></li></ul></blockquote><p><img src=https://user-images.githubusercontent.com/8371943/70185687-e842c800-16af-11ea-8ef9-9e071380a462.gif alt=Flex></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-swift data-lang=swift><span style=display:flex><span><span style=color:#75715e>#if</span> <span style=color:#75715e>os</span>(<span style=color:#75715e>iOS</span>)
 </span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>FLEX</span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#endif</span>
 </span></span><span style=display:flex><span>
@@ -23,7 +23,7 @@
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// class implementation goes here</span>
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><h3 id=button>Button</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// in file ViewController.m
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
+</span></span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
 </span></span><span style=display:flex><span>    [super viewDidLoad];
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    UIButton <span style=color:#f92672>*</span>button <span style=color:#f92672>=</span> [UIButton buttonWithType:
@@ -32,10 +32,10 @@
 </span></span><span style=display:flex><span>    [button sizeToFit];
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>	<span style=color:#75715e>// Set a new (x,y) point for the button&#39;s center
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    button.center <span style=color:#f92672>=</span> CGPointMake(<span style=color:#ae81ff>320</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>60</span>);
+</span></span></span><span style=display:flex><span>    button.center <span style=color:#f92672>=</span> CGPointMake(<span style=color:#ae81ff>320</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>60</span>);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>	<span style=color:#75715e>// Add an action in current code file (i.e. target)
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    [button addTarget:self 
+</span></span></span><span style=display:flex><span>    [button addTarget:self 
 </span></span><span style=display:flex><span>			action:<span style=color:#66d9ef>@selector</span>(buttonPressed:<span style=color:#960050;background-color:#1e0010>）</span>
 </span></span><span style=display:flex><span>			forControlEvents:UIControlEventTouchUpInside];
 </span></span><span style=display:flex><span>
@@ -47,7 +47,7 @@
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>// Another Button
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
+</span></span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
 </span></span><span style=display:flex><span>    [super viewDidLoad];
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    UIButton <span style=color:#f92672>*</span>button <span style=color:#f92672>=</span> [[UIButton alloc] initWithFrame:CGRectMake(<span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>200</span>, <span style=color:#ae81ff>200</span>)];
@@ -65,9 +65,9 @@
 </span></span></span><span style=display:flex><span><span style=color:#75715e>//
 </span></span></span><span style=display:flex><span><span style=color:#75715e>//  Created by Chu Yong on 5/13/23.
 </span></span></span><span style=display:flex><span><span style=color:#75715e>//
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#import &#34;ViewController.h&#34;
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>ViewController</span> ()<span style=color:#f92672>&lt;</span>UITextFieldDelegate, UITextViewDelegate<span style=color:#f92672>&gt;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
@@ -83,14 +83,14 @@
 </span></span><span style=display:flex><span>    [self.view addSubview:label];
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// TextFields
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    UITextField <span style=color:#f92672>*</span>textfield <span style=color:#f92672>=</span> [[UITextField alloc] initWithFrame:CGRectMake(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>200</span>, UIScreen.mainScreen.bounds.size.width, <span style=color:#ae81ff>200</span>)];
+</span></span></span><span style=display:flex><span>    UITextField <span style=color:#f92672>*</span>textfield <span style=color:#f92672>=</span> [[UITextField alloc] initWithFrame:CGRectMake(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>200</span>, UIScreen.mainScreen.bounds.size.width, <span style=color:#ae81ff>200</span>)];
 </span></span><span style=display:flex><span>    textfield.text <span style=color:#f92672>=</span> <span style=color:#e6db74>@&#34;Hello&#34;</span>;
 </span></span><span style=display:flex><span>    textfield.placeholder <span style=color:#f92672>=</span> <span style=color:#e6db74>@&#34;Enter something&#34;</span>;
 </span></span><span style=display:flex><span>    textfield.delegate <span style=color:#f92672>=</span> self;
 </span></span><span style=display:flex><span>    [self.view addSubview:textfield];
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// TextView
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    UITextView <span style=color:#f92672>*</span>textView <span style=color:#f92672>=</span> [[UITextView alloc] initWithFrame:CGRectMake(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>400</span>, UIScreen.mainScreen.bounds.size.width, <span style=color:#ae81ff>200</span>)];
+</span></span></span><span style=display:flex><span>    UITextView <span style=color:#f92672>*</span>textView <span style=color:#f92672>=</span> [[UITextView alloc] initWithFrame:CGRectMake(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>400</span>, UIScreen.mainScreen.bounds.size.width, <span style=color:#ae81ff>200</span>)];
 </span></span><span style=display:flex><span>    textView.text <span style=color:#f92672>=</span> <span style=color:#e6db74>@&#34;Hello&#34;</span>;
 </span></span><span style=display:flex><span>    textView.backgroundColor <span style=color:#f92672>=</span> [UIColor yellowColor];
 </span></span><span style=display:flex><span>    textView.delegate <span style=color:#f92672>=</span> self;
@@ -122,7 +122,7 @@ UIView *newView = [[UIView alloc] init];</p><p>// 设置视图的方向性边距
 newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);</p><p>// 通过代码或者自动布局约束来进行布局
 // 当在一个从右到左的语言环境中查看这个视图时，leading边距会位于右边，trailing边距会位于左边
 当然，需要注意的是，directionalLayoutMargins并不会直接改变视图的内容布局。要使directionalLayoutMargins生效，还需要结合使用AutoLayout约束，特别是在创建约束时使用NSLayoutAnchor的leadingAnchor和trailingAnchor，而不是leftAnchor和rightAnchor。</p><h3 id=uiimage>UIImage</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// UIImage
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>UIImage <span style=color:#f92672>*</span>image <span style=color:#f92672>=</span> [UIImage systemImageNamed:<span style=color:#e6db74>@&#34;plus&#34;</span>];
+</span></span></span><span style=display:flex><span>UIImage <span style=color:#f92672>*</span>image <span style=color:#f92672>=</span> [UIImage systemImageNamed:<span style=color:#e6db74>@&#34;plus&#34;</span>];
 </span></span><span style=display:flex><span>UIImageView <span style=color:#f92672>*</span>imageView <span style=color:#f92672>=</span> [[UIImageView alloc] initWithImage:image];
 </span></span><span style=display:flex><span>imageView.frame <span style=color:#f92672>=</span> CGRectMake(<span style=color:#ae81ff>50</span>, <span style=color:#ae81ff>50</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>200</span>);
 </span></span><span style=display:flex><span>imageView.contentMode <span style=color:#f92672>=</span> UIViewContentModeScaleAspectFill;
@@ -135,9 +135,9 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span></span><span style=display:flex><span><span style=color:#75715e>//
 </span></span></span><span style=display:flex><span><span style=color:#75715e>//  Created by Chu Yong on 5/13/23.
 </span></span></span><span style=display:flex><span><span style=color:#75715e>//
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#import &#34;ViewController.h&#34;
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>ViewController</span> ()<span style=color:#f92672>&lt;</span>UICollectionViewDelegate, UICollectionViewDataSource<span style=color:#f92672>&gt;</span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) NSMutableArray <span style=color:#f92672>&lt;</span>NSArray <span style=color:#f92672>*&gt;*</span>sections;
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
@@ -148,7 +148,7 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span><span style=display:flex><span>    [super viewDidLoad];
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// UICollectionView
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    self.sections <span style=color:#f92672>=</span> [NSMutableArray array];
+</span></span></span><span style=display:flex><span>    self.sections <span style=color:#f92672>=</span> [NSMutableArray array];
 </span></span><span style=display:flex><span>    [self.sections addObject:<span style=color:#ae81ff>@[</span><span style=color:#e6db74>@&#34;123&#34;</span><span style=color:#ae81ff>]</span>];
 </span></span><span style=display:flex><span>    [self.sections addObject:<span style=color:#ae81ff>@[</span><span style=color:#e6db74>@&#34;3&#34;</span>, <span style=color:#e6db74>@&#34;4&#34;</span><span style=color:#ae81ff>]</span>];
 </span></span><span style=display:flex><span>    [self.sections addObject:<span style=color:#ae81ff>@[</span><span style=color:#e6db74>@&#34;3&#34;</span>, <span style=color:#e6db74>@&#34;4&#34;</span>, <span style=color:#e6db74>@&#34;3&#34;</span>, <span style=color:#e6db74>@&#34;4&#34;</span><span style=color:#ae81ff>]</span>];
@@ -188,21 +188,21 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
 </span></span></code></pre></div><blockquote><p><a href="https://developer.apple.com/documentation/uikit/views_and_controls/table_views/adding_headers_and_footers_to_table_sections?language=objc">Header footer for UITableView</a></p><p><a href=https://www.jianshu.com/p/5f5c550d61a0>iOS-UITableViewCell自适应高度最优雅的方法</a></p></blockquote><h4 id=隐藏分割线>隐藏分割线</h4><blockquote><p><a href=https://juejin.cn/post/6844903887443345416>iOS 中隐藏UITableView最后一条分隔线</a></p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// 分割线
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>if</span> (indexPath.row <span style=color:#f92672>==</span> _menuStringArray.count<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) {
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (indexPath.row <span style=color:#f92672>==</span> _menuStringArray.count<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) {
 </span></span><span style=display:flex><span>    menuCell.separatorInset <span style=color:#f92672>=</span> UIEdgeInsetsMake(<span style=color:#ae81ff>0</span>, self.bounds.size.width, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>);
 </span></span><span style=display:flex><span>} <span style=color:#66d9ef>else</span>{
 </span></span><span style=display:flex><span>    menuCell.separatorInset <span style=color:#f92672>=</span> UIEdgeInsetsMake(<span style=color:#ae81ff>0</span>, FTDefaultMenuTextMargin, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>10</span><span style=color:#f92672>+</span>FTDefaultMenuTextMargin);
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><blockquote><p><a href=https://stackoverflow.com/questions/29006311/grouped-uitableview-remove-outer-separator-line>Grouped UITableview remove outer separator line</a></p></blockquote><p><img src=https://i.stack.imgur.com/nNUTQ.png alt="Grouped UITableview remove outer separator line"></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// Get the width of tableview
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// https://stackoverflow.com/questions/29006311/grouped-uitableview-remove-outer-separator-line
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>for</span> (UIView <span style=color:#f92672>*</span>subview <span style=color:#66d9ef>in</span> cell.subviews) {
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> (UIView <span style=color:#f92672>*</span>subview <span style=color:#66d9ef>in</span> cell.subviews) {
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (subview <span style=color:#f92672>!=</span> cell.contentView <span style=color:#f92672>&amp;&amp;</span> subview.frame.size.width <span style=color:#f92672>==</span> cell.width) {
 </span></span><span style=display:flex><span>        [subview removeFromSuperview];
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><h3 id=protocol--uicollectionview>Protocol & UICollectionView</h3><ul><li><a href=https://www.cnblogs.com/OranBlog/p/9208782.html>[OC] UIcollectionView and UIcollectionViewCell</a></li><li><a href=https://xuebaonline.com/UICollectionView%20data%20source%20and%20delegates/>[Swift] UICollectionView data source and delegates</a></li><li><a href=https://www.jianshu.com/p/16c9d466f88c>纯代码创建UICollectionView步骤以及简单使用</a></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// ViewController.h
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// &lt;&gt; Means Controller conform delegate inside &lt;&gt;
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>ViewController</span> : <span style=color:#a6e22e>UIViewController</span> <span style=color:#f92672>&lt;</span>UICollectionViewDelegate, UICollectionViewDataSource<span style=color:#f92672>&gt;</span>
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>ViewController</span> : <span style=color:#a6e22e>UIViewController</span> <span style=color:#f92672>&lt;</span>UICollectionViewDelegate, UICollectionViewDataSource<span style=color:#f92672>&gt;</span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
 </span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>ViewController</span> ()
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@property</span> (<span style=color:#66d9ef>nonatomic</span>, <span style=color:#66d9ef>strong</span>) UICollectionView <span style=color:#f92672>*</span>collectionView;
@@ -215,65 +215,65 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>loadCollectioView</span> {
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Layout Init
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// let layout = UICollectionViewFlowLayout()
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    UICollectionViewFlowLayout <span style=color:#f92672>*</span>flowlayout <span style=color:#f92672>=</span> [[UICollectionViewFlowLayout alloc] init];
+</span></span></span><span style=display:flex><span>    <span style=color:#75715e>// let layout = UICollectionViewFlowLayout()
+</span></span></span><span style=display:flex><span>    UICollectionViewFlowLayout <span style=color:#f92672>*</span>flowlayout <span style=color:#f92672>=</span> [[UICollectionViewFlowLayout alloc] init];
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    _collectionView <span style=color:#f92672>=</span> [[UICollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:flowlayout];
+</span></span></span><span style=display:flex><span>    _collectionView <span style=color:#f92672>=</span> [[UICollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:flowlayout];
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Cell Size
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flowlayout.itemSize <span style=color:#f92672>=</span> CGSizeMake(<span style=color:#ae81ff>280</span>, <span style=color:#ae81ff>280</span>);
+</span></span></span><span style=display:flex><span>    flowlayout.itemSize <span style=color:#f92672>=</span> CGSizeMake(<span style=color:#ae81ff>280</span>, <span style=color:#ae81ff>280</span>);
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// head Size
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flowlayout.headerReferenceSize <span style=color:#f92672>=</span> CGSizeMake(self.view.frame.size.width, <span style=color:#ae81ff>40</span>);
+</span></span></span><span style=display:flex><span>    flowlayout.headerReferenceSize <span style=color:#f92672>=</span> CGSizeMake(self.view.frame.size.width, <span style=color:#ae81ff>40</span>);
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Cell vertical spacing
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flowlayout.minimumLineSpacing <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span></span><span style=display:flex><span>    flowlayout.minimumLineSpacing <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Cell horizontal spacing
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flowlayout.minimumInteritemSpacing <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
+</span></span></span><span style=display:flex><span>    flowlayout.minimumInteritemSpacing <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Cell to container edge
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    flowlayout.sectionInset <span style=color:#f92672>=</span> UIEdgeInsetsMake(<span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>20</span>); <span style=color:#75715e>// Up left down right
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    
+</span></span></span><span style=display:flex><span>    flowlayout.sectionInset <span style=color:#f92672>=</span> UIEdgeInsetsMake(<span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>20</span>); <span style=color:#75715e>// Up left down right
+</span></span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// collectionView init
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    
+</span></span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Register Cell !! IMPORTANT
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: &#34;cell&#34;)
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    [_collectionView registerClass:[UICollectionViewCell <span style=color:#66d9ef>class</span>] forCellWithReuseIdentifier:<span style=color:#e6db74>@&#34;cell&#34;</span>];
+</span></span></span><span style=display:flex><span>    <span style=color:#75715e>// collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: &#34;cell&#34;)
+</span></span></span><span style=display:flex><span>    [_collectionView registerClass:[UICollectionViewCell <span style=color:#66d9ef>class</span>] forCellWithReuseIdentifier:<span style=color:#e6db74>@&#34;cell&#34;</span>];
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Set delegate
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// collectionView.dataSource = self
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// collectionView.delegate = self
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    _collectionView.dataSource <span style=color:#f92672>=</span> self;
+</span></span></span><span style=display:flex><span>    <span style=color:#75715e>// collectionView.dataSource = self
+</span></span></span><span style=display:flex><span>    <span style=color:#75715e>// collectionView.delegate = self
+</span></span></span><span style=display:flex><span>    _collectionView.dataSource <span style=color:#f92672>=</span> self;
 </span></span><span style=display:flex><span>    _collectionView.delegate <span style=color:#f92672>=</span> self;
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Background color
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    _collectionView.backgroundColor <span style=color:#f92672>=</span> [UIColor greenColor];
+</span></span></span><span style=display:flex><span>    _collectionView.backgroundColor <span style=color:#f92672>=</span> [UIColor greenColor];
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Felxible Width &amp; Height
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    _collectionView.autoresizingMask <span style=color:#f92672>=</span> UIViewAutoresizingFlexibleWidth <span style=color:#f92672>|</span> UIViewAutoresizingFlexibleHeight;
+</span></span></span><span style=display:flex><span>    _collectionView.autoresizingMask <span style=color:#f92672>=</span> UIViewAutoresizingFlexibleWidth <span style=color:#f92672>|</span> UIViewAutoresizingFlexibleHeight;
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Add View
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    [self.view addSubview:_collectionView];
+</span></span></span><span style=display:flex><span>    [self.view addSubview:_collectionView];
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Size settings
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    [_collectionView setFrame:self.view.frame];
+</span></span></span><span style=display:flex><span>    [_collectionView setFrame:self.view.frame];
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>- (__kindof UICollectionViewCell <span style=color:#f92672>*</span>)<span style=color:#a6e22e>collectionView:</span>(UICollectionView <span style=color:#f92672>*</span>)collectionView <span style=color:#a6e22e>cellForItemAtIndexPath:</span>(NSIndexPath <span style=color:#f92672>*</span>)indexPath {
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Cell Reuse, identifier is same as the registration(@&#34;cell&#34;)
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// let cell = collectionView.dequeueReusableCell(withReuseIdentifier: &#34;cell&#34;, for: indexPath)
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    UICollectionViewCell <span style=color:#f92672>*</span>cell <span style=color:#f92672>=</span> [collectionView dequeueReusableCellWithReuseIdentifier:<span style=color:#e6db74>@&#34;cell&#34;</span> forIndexPath:indexPath];
+</span></span></span><span style=display:flex><span>    <span style=color:#75715e>// let cell = collectionView.dequeueReusableCell(withReuseIdentifier: &#34;cell&#34;, for: indexPath)
+</span></span></span><span style=display:flex><span>    UICollectionViewCell <span style=color:#f92672>*</span>cell <span style=color:#f92672>=</span> [collectionView dequeueReusableCellWithReuseIdentifier:<span style=color:#e6db74>@&#34;cell&#34;</span> forIndexPath:indexPath];
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Optional
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>cell) {
+</span></span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>cell) {
 </span></span><span style=display:flex><span>        cell <span style=color:#f92672>=</span> [[UICollectionViewCell alloc] init];
 </span></span><span style=display:flex><span><span style=color:#75715e>//        [cell.contentView setBackgroundColor:[UIColor systemBlueColor]];
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }
+</span></span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// cell.contentView.backgroundColor = .systemBlue
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    [cell.contentView setBackgroundColor:[UIColor systemBlueColor]];
+</span></span></span><span style=display:flex><span>    [cell.contentView setBackgroundColor:[UIColor systemBlueColor]];
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> cell;
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
@@ -374,9 +374,9 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span></span><span style=display:flex><span><span style=color:#75715e>//
 </span></span></span><span style=display:flex><span><span style=color:#75715e>//  Created by Chu Yong on 5/13/23.
 </span></span></span><span style=display:flex><span><span style=color:#75715e>//
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#import &#34;ViewController.h&#34;
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@interface</span> <span style=color:#a6e22e>ViewController</span> ()
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@end</span>
@@ -396,7 +396,7 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
 </span></span><span style=display:flex><span>    [super viewDidLoad];
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Do any additional setup after loading the view.
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    NSLog(<span style=color:#e6db74>@&#34;3&#34;</span>);
+</span></span></span><span style=display:flex><span>    NSLog(<span style=color:#e6db74>@&#34;3&#34;</span>);
 </span></span><span style=display:flex><span>    
 </span></span><span style=display:flex><span>    self.view.backgroundColor <span style=color:#f92672>=</span> [UIColor redColor];
 </span></span><span style=display:flex><span>}
@@ -484,8 +484,8 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>// #import &#34;&lt;projectName&gt;-Swift.h&#34;
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// Lookup in Targets - Build Settings - Search for Swift - Objective-C Generated Interface Header Name
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>#import &#34;testSwift-Swift.h&#34; 
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#import &#34;testSwift-Swift.h&#34; 
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>@implementation</span> <span style=color:#a6e22e>ViewController</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
@@ -592,7 +592,7 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>viewDidLoad</span> {
 </span></span><span style=display:flex><span>    [super viewDidLoad];
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Do any additional setup after loading the view.
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    self.imageView.layer.cornerRadius <span style=color:#f92672>=</span> self.imageView.frame.size.width <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+</span></span></span><span style=display:flex><span>    self.imageView.layer.cornerRadius <span style=color:#f92672>=</span> self.imageView.frame.size.width <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
 </span></span><span style=display:flex><span>    self.imageView.layer.masksToBounds <span style=color:#f92672>=</span> true;
 </span></span><span style=display:flex><span>    self.imageView.layer.borderWidth <span style=color:#f92672>=</span> <span style=color:#ae81ff>2.0</span>;
 </span></span><span style=display:flex><span>    self.imageView.layer.borderColor <span style=color:#f92672>=</span> [UIColor whiteColor].CGColor;
@@ -663,19 +663,19 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// 方法的具体实现</span>
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><h2 id=prepareforsegue><code>prepareForSegue</code></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>#pragma mark - Navigation
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>// In a storyboard-based application, you will often want to do a little preparation before navigation
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>prepareForSegue:</span>(UIStoryboardSegue <span style=color:#f92672>*</span>)segue <span style=color:#a6e22e>sender:</span>(<span style=color:#66d9ef>id</span>)sender {
+</span></span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>prepareForSegue:</span>(UIStoryboardSegue <span style=color:#f92672>*</span>)segue <span style=color:#a6e22e>sender:</span>(<span style=color:#66d9ef>id</span>)sender {
 </span></span><span style=display:flex><span>    <span style=color:#75715e>// Get the new view controller using [segue destinationViewController].
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// Pass the selected object to the new view controller.
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></span><span style=display:flex><span>    <span style=color:#75715e>// Pass the selected object to the new view controller.
+</span></span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p><code>prepareForSegue:sender:</code> 方法是在使用基于Storyboard的应用程序中进行页面跳转前的准备工作的常用方法。当一个Segue（故事板中的跳转）被触发时，系统会自动调用该方法。</p><p>在这个方法中，你可以通过 <code>[segue destinationViewController]</code> 获取目标视图控制器，然后根据需要进行一些准备工作。例如，你可以将数据传递给目标视图控制器，设置目标视图控制器的属性，或执行其他必要的操作。</p><p>通常，你可以根据Segue的标识符（identifier）来区分不同的跳转，并根据需要进行相应的准备工作。例如：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>prepareForSegue:</span>(UIStoryboardSegue <span style=color:#f92672>*</span>)segue <span style=color:#a6e22e>sender:</span>(<span style=color:#66d9ef>id</span>)sender {
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> ([segue.identifier isEqualToString:<span style=color:#e6db74>@&#34;MySegueIdentifier&#34;</span>]) {
 </span></span><span style=display:flex><span>        <span style=color:#75715e>// 获取目标视图控制器
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        MyViewController <span style=color:#f92672>*</span>destinationViewController <span style=color:#f92672>=</span> [segue destinationViewController];
+</span></span></span><span style=display:flex><span>        MyViewController <span style=color:#f92672>*</span>destinationViewController <span style=color:#f92672>=</span> [segue destinationViewController];
 </span></span><span style=display:flex><span>        
 </span></span><span style=display:flex><span>        <span style=color:#75715e>// 进行一些准备工作，例如传递数据或设置属性
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>        destinationViewController.myProperty <span style=color:#f92672>=</span> myData;
+</span></span></span><span style=display:flex><span>        destinationViewController.myProperty <span style=color:#f92672>=</span> myData;
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>通过在 prepareForSegue:sender: 方法中进行准备工作，你可以确保在进行页面跳转之前，目标视图控制器已经准备好接收数据或执行其他操作，以便在跳转后呈现所需的结果。</p><h2 id=头文件-import>头文件 import</h2><p>在 Objective-C 中，#import 是用于导入头文件的预处理指令。它有两种形式：#import &lt;Framework/Module.h> 和 #import &ldquo;LocalFile.h&rdquo;。</p><p>#import &lt;Framework/Module.h>：这种形式用于导入系统框架或第三方库的头文件。&lt;Framework/Module.h> 是一个相对于系统或第三方库的头文件路径。这种方式通常用于导入公共框架或库的头文件。例如：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>#import &lt;UIKit/UIKit.h&gt;
@@ -688,7 +688,7 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>这句代码可以通吃上面case1、2、3；其实也是好理解的，nil本身也是一个对象，在ios中给nil</p><p>发消息是不会崩溃的，只不过没啥反应而已，因此length也是默认的0了；</p><p>至于类似于case4的情况，可以先将字符串中的空格"  " Trim掉，然后在进行判断：</p><blockquote><p><a href=https://cloud.tencent.com/developer/article/1537380>OC中的nil、Nil、NULL、NSNull的区别</a></p></blockquote><h2 id=sf-symbols>SF Symbols</h2><blockquote><p><a href=https://stackoverflow.com/questions/23409610/how-to-use-default-ios-images>How to use default iOS images?</a></p></blockquote><h2 id=present-an-uialertcontroller-from-an-uiview>Present an UIAlertController from an UIView</h2><blockquote><p><a href=https://medium.com/salvarlabs/how-to-present-an-uialertcontroller-from-an-uiview-8e456f287cdd>How to present an UIAlertController from an UIView</a></p></blockquote><h2 id=observer-观察者>Observer 观察者</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-objc data-lang=objc><span style=display:flex><span><span style=color:#75715e>/// 添加系统通知状态的观察者
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>addObserverForSystemNotificationStatus</span> {
+</span></span></span><span style=display:flex><span>- (<span style=color:#66d9ef>void</span>)<span style=color:#a6e22e>addObserverForSystemNotificationStatus</span> {
 </span></span><span style=display:flex><span>    [[NSNotificationCenter defaultCenter] addObserver:self
 </span></span><span style=display:flex><span>                                             selector:<span style=color:#66d9ef>@selector</span>(checkNotificationAuthorization)
 </span></span><span style=display:flex><span>                                                 name:UIApplicationWillEnterForegroundNotification
@@ -698,7 +698,7 @@ newView.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 20, 30, 40);<
 </span></span></span><span style=display:flex><span><span style=color:#75715e>/// - Parameter alertController:
 </span></span></span><span style=display:flex><span><span style=color:#75715e>///
 </span></span></span><span style=display:flex><span><span style=color:#75715e>/// [Stack Overflow](https://stackoverflow.com/questions/26554894/how-to-present-uialertcontroller-when-not-in-a-view-controller)
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>+ (<span style=color:#66d9ef>id</span>)<span style=color:#a6e22e>rootViewController</span> {
+</span></span></span><span style=display:flex><span>+ (<span style=color:#66d9ef>id</span>)<span style=color:#a6e22e>rootViewController</span> {
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>id</span> rootViewController <span style=color:#f92672>=</span> [UIApplication sharedApplication].delegate.window.rootViewController;
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>([rootViewController isKindOfClass:[UINavigationController <span style=color:#66d9ef>class</span>]])
 </span></span><span style=display:flex><span>    {
